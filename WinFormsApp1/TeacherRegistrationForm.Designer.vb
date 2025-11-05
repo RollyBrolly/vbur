@@ -95,7 +95,7 @@ Partial Class TeacherRegistrationForm
         Button1.BackColor = Color.Indigo
         Button1.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
         Button1.ForeColor = Color.White
-        Button1.Location = New Point(1097, 459)
+        Button1.Location = New Point(1093, 570)
         Button1.Margin = New Padding(3, 2, 3, 2)
         Button1.Name = "Button1"
         Button1.Size = New Size(137, 58)
