@@ -22,6 +22,7 @@ Partial Class TeacherRegistrationForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(TeacherRegistrationForm))
         PictureBox1 = New PictureBox()
         Button3 = New Button()
         Button2 = New Button()
@@ -30,7 +31,6 @@ Partial Class TeacherRegistrationForm
         Label11 = New Label()
         TextBox2 = New TextBox()
         TextBox3 = New TextBox()
-        MaskedTextBox1 = New MaskedTextBox()
         Label10 = New Label()
         Label9 = New Label()
         departmentBox = New ComboBox()
@@ -50,6 +50,7 @@ Partial Class TeacherRegistrationForm
         firstNameBox = New TextBox()
         lastnameBox = New TextBox()
         Label12 = New Label()
+        TextBox1 = New TextBox()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -95,7 +96,7 @@ Partial Class TeacherRegistrationForm
         Button1.BackColor = Color.Indigo
         Button1.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
         Button1.ForeColor = Color.White
-        Button1.Location = New Point(1093, 570)
+        Button1.Location = New Point(1095, 597)
         Button1.Margin = New Padding(3, 2, 3, 2)
         Button1.Name = "Button1"
         Button1.Size = New Size(137, 58)
@@ -144,17 +145,6 @@ Partial Class TeacherRegistrationForm
         TextBox3.Name = "TextBox3"
         TextBox3.Size = New Size(231, 35)
         TextBox3.TabIndex = 85
-        ' 
-        ' MaskedTextBox1
-        ' 
-        MaskedTextBox1.BackColor = Color.Silver
-        MaskedTextBox1.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        MaskedTextBox1.Location = New Point(726, 342)
-        MaskedTextBox1.Margin = New Padding(3, 2, 3, 2)
-        MaskedTextBox1.Mask = "F 0 0 0 "
-        MaskedTextBox1.Name = "MaskedTextBox1"
-        MaskedTextBox1.Size = New Size(138, 35)
-        MaskedTextBox1.TabIndex = 84
         ' 
         ' Label10
         ' 
@@ -355,16 +345,26 @@ Partial Class TeacherRegistrationForm
         Label12.TabIndex = 89
         Label12.Text = "Password"
         ' 
+        ' TextBox1
+        ' 
+        TextBox1.BackColor = Color.Silver
+        TextBox1.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold)
+        TextBox1.Location = New Point(735, 343)
+        TextBox1.Margin = New Padding(3, 2, 3, 2)
+        TextBox1.Name = "TextBox1"
+        TextBox1.Size = New Size(122, 35)
+        TextBox1.TabIndex = 90
+        ' 
         ' TeacherRegistrationForm
         ' 
         AutoScaleMode = AutoScaleMode.None
         ClientSize = New Size(1264, 681)
+        Controls.Add(TextBox1)
         Controls.Add(Label12)
         Controls.Add(CheckBox1)
         Controls.Add(Label11)
         Controls.Add(TextBox2)
         Controls.Add(TextBox3)
-        Controls.Add(MaskedTextBox1)
         Controls.Add(Label10)
         Controls.Add(Label9)
         Controls.Add(departmentBox)
@@ -387,6 +387,7 @@ Partial Class TeacherRegistrationForm
         Controls.Add(Button2)
         Controls.Add(Button1)
         Controls.Add(PictureBox1)
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Margin = New Padding(3, 2, 3, 2)
         Name = "TeacherRegistrationForm"
         Text = "Form1"
@@ -403,7 +404,6 @@ Partial Class TeacherRegistrationForm
     Friend WithEvents Label11 As Label
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents TextBox3 As TextBox
-    Friend WithEvents MaskedTextBox1 As MaskedTextBox
     Friend WithEvents Label10 As Label
     Friend WithEvents Label9 As Label
     Friend WithEvents departmentBox As ComboBox
@@ -423,5 +423,6 @@ Partial Class TeacherRegistrationForm
     Friend WithEvents firstNameBox As TextBox
     Friend WithEvents lastnameBox As TextBox
     Friend WithEvents Label12 As Label
+    Friend WithEvents TextBox1 As TextBox
 
 End Class

@@ -3,22 +3,35 @@
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         passwordBox.UseSystemPasswordChar = True
+        Me.FormBorderStyle = FormBorderStyle.None
+        Me.WindowState = FormWindowState.Maximized
     End Sub
 
     Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         ConfirmExit(e)
     End Sub
 
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
 
-    Private Sub Button1_SizeChanged(sender As Object, e As EventArgs) Handles Button1.SizeChanged
+        Dim regForm As New Registration
+
+
+        regForm.Show()
+
+
+        Hide()
+    End Sub
+
+
+    Private Sub Button1_SizeChanged(sender As Object, e As EventArgs)
 
     End Sub
 
-    Private Sub TextBox1_SizeChanged(sender As Object, e As EventArgs) Handles userBox.SizeChanged
+    Private Sub TextBox1_SizeChanged(sender As Object, e As EventArgs)
 
     End Sub
 
-    Private Sub TextBox2_SizeChanged(sender As Object, e As EventArgs) Handles passwordBox.SizeChanged
+    Private Sub TextBox2_SizeChanged(sender As Object, e As EventArgs)
 
     End Sub
 
@@ -26,15 +39,15 @@
 
     End Sub
 
-    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles userBox.TextChanged
+    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs)
 
     End Sub
 
-    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
+    Private Sub Label1_Click(sender As Object, e As EventArgs)
 
     End Sub
 
-    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
+    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs)
         If CheckBox1.Checked Then
             passwordBox.UseSystemPasswordChar = False
         Else
@@ -42,18 +55,14 @@
         End If
     End Sub
 
-    Private Sub passwordBox_TextChanged(sender As Object, e As EventArgs) Handles passwordBox.TextChanged
+    Private Sub passwordBox_TextChanged(sender As Object, e As EventArgs)
 
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
 
-        Dim regForm As New Registration()
+    Private Sub Label1_Click_1(sender As Object, e As EventArgs) Handles Label1.Click
 
-
-        regForm.Show()
-
-
-        Me.Hide()
     End Sub
+
+
 End Class
