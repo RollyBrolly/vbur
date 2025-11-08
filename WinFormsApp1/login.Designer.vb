@@ -35,6 +35,7 @@ Partial Class Login
         Label1 = New Label()
         Button1 = New Button()
         passwordBox = New TextBox()
+        Button3 = New Button()
         Panel2.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
@@ -53,7 +54,7 @@ Partial Class Login
         Panel2.Controls.Add(Panel1)
         Panel2.Controls.Add(Button1)
         Panel2.Controls.Add(passwordBox)
-        Panel2.Location = New Point(642, 89)
+        Panel2.Location = New Point(699, 202)
         Panel2.Name = "Panel2"
         Panel2.Size = New Size(523, 677)
         Panel2.TabIndex = 12
@@ -76,7 +77,7 @@ Partial Class Login
         Button2.FlatStyle = FlatStyle.Popup
         Button2.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Button2.ForeColor = SystemColors.ControlLightLight
-        Button2.Location = New Point(209, 595)
+        Button2.Location = New Point(198, 604)
         Button2.Margin = New Padding(3, 2, 3, 2)
         Button2.Name = "Button2"
         Button2.Size = New Size(119, 46)
@@ -150,7 +151,7 @@ Partial Class Login
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI Black", 36F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label1.Location = New Point(124, 16)
+        Label1.Location = New Point(126, 17)
         Label1.Name = "Label1"
         Label1.Size = New Size(271, 65)
         Label1.TabIndex = 0
@@ -180,12 +181,29 @@ Partial Class Login
         passwordBox.Size = New Size(378, 39)
         passwordBox.TabIndex = 13
         ' 
+        ' Button3
+        ' 
+        Button3.BackColor = Color.Indigo
+        Button3.FlatStyle = FlatStyle.Popup
+        Button3.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Button3.ForeColor = SystemColors.ControlLightLight
+        Button3.Location = New Point(1831, -3)
+        Button3.Margin = New Padding(3, 2, 3, 2)
+        Button3.Name = "Button3"
+        Button3.Size = New Size(103, 55)
+        Button3.TabIndex = 22
+        Button3.Text = "X"
+        Button3.TextAlign = ContentAlignment.TopCenter
+        Button3.UseVisualStyleBackColor = False
+        ' 
         ' Login
         ' 
         AutoScaleMode = AutoScaleMode.None
         BackColor = Color.DarkSlateBlue
+        BackgroundImage = My.Resources.Resources.regisformsBG_bw
         BackgroundImageLayout = ImageLayout.None
         ClientSize = New Size(1904, 1041)
+        Controls.Add(Button3)
         Controls.Add(Panel2)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Margin = New Padding(3, 2, 3, 2)
@@ -212,5 +230,6 @@ Partial Class Login
     Friend WithEvents Label1 As Label
     Friend WithEvents Button1 As Button
     Friend WithEvents passwordBox As TextBox
+    Friend WithEvents Button3 As Button
 
 End Class

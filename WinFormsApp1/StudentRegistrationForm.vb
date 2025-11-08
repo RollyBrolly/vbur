@@ -39,6 +39,9 @@ Public Class StudentRegistrationForm
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        Me.FormBorderStyle = FormBorderStyle.None
+        Me.WindowState = FormWindowState.Maximized
+
         departmentBox.Items.Clear()
         For Each dept As String In departmentCourses.Keys
             departmentBox.Items.Add(dept)
@@ -51,7 +54,6 @@ Public Class StudentRegistrationForm
         courseBox.Enabled = False
 
 
-        TextBox2.UseSystemPasswordChar = True
     End Sub
 
     Private Sub Login_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
@@ -77,9 +79,8 @@ Public Class StudentRegistrationForm
         End If
     End Sub
 
-    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
+    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs)
 
-        TextBox2.UseSystemPasswordChar = Not CheckBox1.Checked
     End Sub
 
 
@@ -96,7 +97,6 @@ Public Class StudentRegistrationForm
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If String.IsNullOrWhiteSpace(firstNameBox.Text) OrElse
        String.IsNullOrWhiteSpace(lastnameBox.Text) OrElse
-       String.IsNullOrWhiteSpace(TextBox2.Text) OrElse
        departmentBox.SelectedIndex = -1 OrElse
        courseBox.SelectedIndex = -1 Then
 
@@ -124,7 +124,7 @@ Public Class StudentRegistrationForm
         courseBox.Enabled = False
 
 
-        CheckBox1.Checked = False
+
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
@@ -133,7 +133,7 @@ Public Class StudentRegistrationForm
         Me.Hide()
     End Sub
 
-    Private Sub TextBox2_TextChanged(sender As Object, e As EventArgs) Handles TextBox2.TextChanged
+    Private Sub TextBox2_TextChanged(sender As Object, e As EventArgs)
 
     End Sub
 
@@ -154,6 +154,10 @@ Public Class StudentRegistrationForm
     End Sub
 
     Private Sub firstNameBox_TextChanged(sender As Object, e As EventArgs) Handles firstNameBox.TextChanged
+
+    End Sub
+
+    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
 
     End Sub
 End Class

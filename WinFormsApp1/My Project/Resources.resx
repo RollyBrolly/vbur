@@ -133,17 +133,26 @@
   <data name="icons8-teacher-64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-teacher-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="studentdashboardHeader" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\studentdashboardHeader.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="staffHeader1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\staffHeader1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="studentHeader" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\studentHeader.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icons8-tasks-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-tasks-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="studentdashboardHeader1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\studentdashboardHeader1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="studentHeader1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\studentHeader1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Praxis logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Praxis logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="msu bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\msu bg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="dashboardHeader" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dashboardHeader.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -157,19 +166,31 @@
   <data name="computer-worker" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\computer-worker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="studentsCover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\studentsCover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="staffHeader" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\staffHeader.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="dashboardHeader1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dashboardHeader1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="studentsCover" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\studentsCover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icons8-tasks-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-tasks-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="regisheader" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\regisheader.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="regisformsBG_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\regisformsBG_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="facultyheader" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\facultyheader.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="regisformsBG_bw1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\regisformsBG_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="studentdashboardHeader" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\studentdashboardHeader.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="regisformsBG_bw2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\regisformsBG_bw1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

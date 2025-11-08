@@ -8,7 +8,6 @@
     End Sub
 
     Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        ConfirmExit(e)
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
@@ -16,10 +15,10 @@
         Dim regForm As New Registration
 
 
-        regForm.Show()
+        regForm.Show
 
 
-        Hide()
+        Hide
     End Sub
 
 
@@ -64,5 +63,14 @@
 
     End Sub
 
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Dim result As DialogResult = MessageBox.Show("Are you sure you want to exit?",
+                                                     "Exit Confirmation",
+                                                     MessageBoxButtons.YesNo,
+                                                     MessageBoxIcon.Question)
 
+        If result = DialogResult.Yes Then
+            Application.Exit()
+        End If
+    End Sub
 End Class

@@ -24,6 +24,7 @@ Partial Class Registration
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Registration))
         Panel1 = New Panel()
+        Button4 = New Button()
         PictureBox7 = New PictureBox()
         PictureBox6 = New PictureBox()
         Button3 = New Button()
@@ -46,6 +47,7 @@ Partial Class Registration
         ' 
         ' Panel1
         ' 
+        Panel1.Controls.Add(Button4)
         Panel1.Controls.Add(PictureBox7)
         Panel1.Controls.Add(PictureBox6)
         Panel1.Controls.Add(Button3)
@@ -60,6 +62,18 @@ Partial Class Registration
         Panel1.Name = "Panel1"
         Panel1.Size = New Size(1908, 1080)
         Panel1.TabIndex = 11
+        ' 
+        ' Button4
+        ' 
+        Button4.BackColor = Color.SlateGray
+        Button4.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Button4.ForeColor = Color.White
+        Button4.Location = New Point(1707, 24)
+        Button4.Name = "Button4"
+        Button4.Size = New Size(167, 74)
+        Button4.TabIndex = 12
+        Button4.Text = "RETURN"
+        Button4.UseVisualStyleBackColor = False
         ' 
         ' PictureBox7
         ' 
@@ -210,5 +224,6 @@ Partial Class Registration
     Friend WithEvents Button3 As Button
     Friend WithEvents PictureBox5 As PictureBox
     Friend WithEvents PictureBox7 As PictureBox
+    Friend WithEvents Button4 As Button
 
 End Class

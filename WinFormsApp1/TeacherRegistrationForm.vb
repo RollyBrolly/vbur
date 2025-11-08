@@ -1,4 +1,9 @@
 ﻿Public Class TeacherRegistrationForm
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.FormBorderStyle = FormBorderStyle.None
+        Me.WindowState = FormWindowState.Maximized
+    End Sub
     Private Sub ClearAllText(parent As Control)
         For Each ctrl As Control In parent.Controls
             If TypeOf ctrl Is TextBox Then
@@ -13,13 +18,12 @@
 
         departmentBox.SelectedIndex = -1
 
-        CheckBox1.Checked = False
+
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs)
         If String.IsNullOrWhiteSpace(firstNameBox.Text) OrElse
        String.IsNullOrWhiteSpace(lastnameBox.Text) OrElse
-       String.IsNullOrWhiteSpace(TextBox2.Text) OrElse
        departmentBox.SelectedIndex = -1 Then
 
             MessageBox.Show("Please fill out all required fields before registering.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -49,10 +53,13 @@
         departmentBox.SelectedIndex = -1
 
 
-        CheckBox1.Checked = False
     End Sub
 
     Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
+
+    End Sub
+
+    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
 
     End Sub
 End Class

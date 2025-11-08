@@ -83,4 +83,13 @@
 
         Hide()
     End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Dim result As DialogResult = MessageBox.Show("Are you sure you want to go back to Login?",
+                                                     "Exit Confirmation",
+                                                     MessageBoxButtons.YesNo,
+                                                     MessageBoxIcon.Question)
+
+        Login.Show()
+    End Sub
 End Class
