@@ -1,6 +1,7 @@
 ﻿Imports System.Globalization
+Imports System.Linq
 
-Public Class studentDashboard
+Public Class facultyDashboard
 
     Private Const MaxTasks As Integer = 3
     Private Const MaxTaskTextLength As Integer = 20
@@ -33,6 +34,10 @@ Public Class studentDashboard
         ' Do NOT clear Panel1 here — keep any design-time tasks if present.
         ReflowTasks()
 
+        ' Configure announcements to match pending tasks visually and layout
+        ConfigureAnnouncements()
+        ReflowAnnouncements()
+
         ' Initialize time system
         Button2.Text = If(String.IsNullOrWhiteSpace(Button2.Text), "TIME IN", Button2.Text)
 
@@ -54,6 +59,60 @@ Public Class studentDashboard
         Label7.TextAlign = ContentAlignment.MiddleCenter
         CenterTimeLabels()
         AddHandler Panel3.Resize, AddressOf Panel3_Resize
+        ' Also keep announcement panel centered when form resizes
+        AddHandler Panel4.Resize, AddressOf Panel4_Resize
+    End Sub
+
+    ' ---------------- ANNOUNCEMENTS: style and layout to match pending tasks ----------------
+    Private Sub ConfigureAnnouncements()
+        ' Find Panel4 (Announcements) and style its checkboxes and label similar to pending tasks
+        If Panel4 Is Nothing Then Return
+
+        ' Ensure the announcement header (Label8) uses the same visual style as pending tasks header
+        Try
+            Label8.Font = New Font("Segoe UI", 26.25F, FontStyle.Bold)
+            Label8.ForeColor = Color.Indigo
+        Catch
+            ' ignore if Label8 doesn't exist or font assignment fails
+        End Try
+
+        ' Style each CheckBox inside Panel4 to match pending tasks and wire the checked handler
+        Dim announceCheckboxes = Panel4.Controls.OfType(Of CheckBox)().OrderBy(Function(c) c.TabIndex).ToList()
+        For Each cb In announceCheckboxes
+            cb.AutoSize = True
+            cb.Font = New Font("Segoe UI", 24.0F, FontStyle.Bold)
+            cb.ForeColor = Color.Indigo
+            cb.UseVisualStyleBackColor = True
+            cb.Left = TaskLeft
+
+            ' Attach checked handler so announcements behave like pending tasks
+            RemoveHandler cb.CheckedChanged, AddressOf AnnouncementCheckChanged
+            AddHandler cb.CheckedChanged, AddressOf AnnouncementCheckChanged
+        Next
+    End Sub
+
+    Private Sub ReflowAnnouncements()
+        If Panel4 Is Nothing Then Return
+
+        Dim announceCheckboxes = Panel4.Controls.OfType(Of CheckBox)().OrderBy(Function(c) c.TabIndex).ToList()
+        ' Start under the announcement header — pick a start top that matches visual spacing used for tasks
+        Dim announcementStartTop As Integer = 130
+        For i As Integer = 0 To announceCheckboxes.Count - 1
+            Dim cb = announceCheckboxes(i)
+            cb.Top = announcementStartTop + (i * TaskSpacing)
+        Next
+
+        ' Center the announcement header (Label8) horizontally in the panel
+        If Label8 IsNot Nothing Then
+            Label8.AutoSize = False
+            Label8.TextAlign = ContentAlignment.MiddleCenter
+            Label8.Width = Math.Max(100, Panel4.ClientSize.Width - 40)
+            Label8.Left = (Panel4.ClientSize.Width - Label8.Width) \ 2
+        End If
+    End Sub
+
+    Private Sub Panel4_Resize(sender As Object, e As EventArgs)
+        ReflowAnnouncements()
     End Sub
 
     ' ---------------- CLOCK ----------------
@@ -155,7 +214,7 @@ Public Class studentDashboard
         ReflowTasks()
     End Sub
 
-    ' ---------------- TASK CHECKED ----------------
+    ' ---------------- TASK CHECKED (PENDING TASKS) ----------------
     Private Sub TaskCheckChanged(sender As Object, e As EventArgs)
         Dim cb = TryCast(sender, CheckBox)
         If cb Is Nothing OrElse Not cb.Checked Then Return
@@ -164,6 +223,20 @@ Public Class studentDashboard
             Panel1.Controls.Remove(cb)
             cb.Dispose()
             ReflowTasks()
+        Else
+            cb.Checked = False
+        End If
+    End Sub
+
+    ' ---------------- ANNOUNCEMENT CHECKED (acts like pending tasks) ----------------
+    Private Sub AnnouncementCheckChanged(sender As Object, e As EventArgs)
+        Dim cb = TryCast(sender, CheckBox)
+        If cb Is Nothing OrElse Not cb.Checked Then Return
+
+        If MessageBox.Show("Mark this announcement as handled and remove it?", "Announcements", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+            Panel4.Controls.Remove(cb)
+            cb.Dispose()
+            ReflowAnnouncements()
         Else
             cb.Checked = False
         End If
@@ -229,17 +302,7 @@ Public Class studentDashboard
         CenterTimeLabels()
     End Sub
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Dim schedule As New studentScheduleForm()
-        schedule.ShowDialog()
-
-    End Sub
-
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-
-    End Sub
-
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
 
     End Sub
 End Class

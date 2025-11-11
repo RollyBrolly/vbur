@@ -47,9 +47,9 @@ Partial Class StaffRegistrationForm
         Button3 = New Button()
         Button2 = New Button()
         Panel1 = New Panel()
-        TextBox2 = New TextBox()
-        Button4 = New Button()
         ComboBox2 = New ComboBox()
+        Button4 = New Button()
+        TextBox2 = New TextBox()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
         SuspendLayout()
@@ -338,15 +338,15 @@ Partial Class StaffRegistrationForm
         Panel1.Size = New Size(1024, 767)
         Panel1.TabIndex = 98
         ' 
-        ' TextBox2
+        ' ComboBox2
         ' 
-        TextBox2.BackColor = Color.Silver
-        TextBox2.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        TextBox2.Location = New Point(767, 166)
-        TextBox2.Margin = New Padding(3, 2, 3, 2)
-        TextBox2.Name = "TextBox2"
-        TextBox2.Size = New Size(122, 46)
-        TextBox2.TabIndex = 98
+        ComboBox2.BackColor = Color.Silver
+        ComboBox2.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        ComboBox2.FormattingEnabled = True
+        ComboBox2.Location = New Point(545, 315)
+        ComboBox2.Name = "ComboBox2"
+        ComboBox2.Size = New Size(304, 48)
+        ComboBox2.TabIndex = 100
         ' 
         ' Button4
         ' 
@@ -362,15 +362,15 @@ Partial Class StaffRegistrationForm
         Button4.TextAlign = ContentAlignment.TopCenter
         Button4.UseVisualStyleBackColor = False
         ' 
-        ' ComboBox2
+        ' TextBox2
         ' 
-        ComboBox2.BackColor = Color.Silver
-        ComboBox2.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        ComboBox2.FormattingEnabled = True
-        ComboBox2.Location = New Point(545, 315)
-        ComboBox2.Name = "ComboBox2"
-        ComboBox2.Size = New Size(304, 48)
-        ComboBox2.TabIndex = 100
+        TextBox2.BackColor = Color.Silver
+        TextBox2.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        TextBox2.Location = New Point(767, 166)
+        TextBox2.Margin = New Padding(3, 2, 3, 2)
+        TextBox2.Name = "TextBox2"
+        TextBox2.Size = New Size(122, 46)
+        TextBox2.TabIndex = 98
         ' 
         ' StaffRegistrationForm
         ' 

@@ -1,29 +1,31 @@
 ﻿Imports System.Globalization
 
-Public Class studentDashboard
-
+Public Class supervisorDashboard
     Private Const MaxTasks As Integer = 3
     Private Const MaxTaskTextLength As Integer = 20
     Private ReadOnly TaskStartTop As Integer = 119
     Private ReadOnly TaskLeft As Integer = 33
     Private ReadOnly TaskSpacing As Integer = 67
 
+
     ' runtime-only label for AM/PM of last timeout
     Private lastOutAmPm As Label
     Private ReadOnly clockTimer As New Timer() With {.Interval = 1000} ' updates every second
 
     ' ---------------- FORM LOAD ----------------
-    Private Sub studentDashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub supervisorDashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.FormBorderStyle = FormBorderStyle.None
         Me.WindowState = FormWindowState.Maximized
 
         ' Wire buttons (always present)
         AddHandler Button1.Click, AddressOf ButtonAddTask_Click
         AddHandler Button3.Click, AddressOf ButtonCompleteSelected_Click
+        AddHandler Button6.Click, AddressOf ButtonAddAnnouncement_Click
 
         ' Attempt to wire up any design-time checkboxes if they exist.
         ' Use Controls.Find so we don't get compile errors if those controls were removed from designer.
-        For i As Integer = 1 To 3
+        ' Wire CheckBox1..CheckBox6 so announcements checkboxes are included too.
+        For i As Integer = 1 To 6
             Dim found() As Control = Me.Controls.Find($"CheckBox{i}", True)
             If found IsNot Nothing AndAlso found.Length > 0 AndAlso TypeOf found(0) Is CheckBox Then
                 AddHandler DirectCast(found(0), CheckBox).CheckedChanged, AddressOf TaskCheckChanged
@@ -31,7 +33,9 @@ Public Class studentDashboard
         Next
 
         ' Do NOT clear Panel1 here — keep any design-time tasks if present.
-        ReflowTasks()
+        ReflowPanel(Panel1)
+        ' Also reflow announcements panel in case design-time announcements exist.
+        ReflowPanel(Panel4)
 
         ' Initialize time system
         Button2.Text = If(String.IsNullOrWhiteSpace(Button2.Text), "TIME IN", Button2.Text)
@@ -127,6 +131,8 @@ Public Class studentDashboard
         End If
     End Sub
 
+
+
     ' ---------------- ADD TASK ----------------
     Private Sub ButtonAddTask_Click(sender As Object, e As EventArgs)
         Dim currentTasks = Panel1.Controls.OfType(Of CheckBox)().ToList()
@@ -152,24 +158,63 @@ Public Class studentDashboard
         }
         AddHandler cb.CheckedChanged, AddressOf TaskCheckChanged
         Panel1.Controls.Add(cb)
-        ReflowTasks()
+        ReflowPanel(Panel1)
     End Sub
 
-    ' ---------------- TASK CHECKED ----------------
+    ' ---------------- ADD ANNOUNCEMENT ----------------
+    Private Sub ButtonAddAnnouncement_Click(sender As Object, e As EventArgs)
+        Dim currentAnnouncements = Panel4.Controls.OfType(Of CheckBox)().ToList()
+        If currentAnnouncements.Count >= MaxTasks Then
+            MessageBox.Show($"You can only have up to {MaxTasks} announcements.", "Announcement Limit", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        Dim annText As String = Microsoft.VisualBasic.Interaction.InputBox("Enter announcement text:", "Add Announcement").Trim()
+        If String.IsNullOrWhiteSpace(annText) Then Return
+        If annText.Length > MaxTaskTextLength Then
+            MessageBox.Show($"Announcement too long. Shorten it and try again.", "Text Too Long", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        Dim cb As New CheckBox() With {
+            .AutoSize = True,
+            .Font = New Font("Segoe UI", 24.0F, FontStyle.Bold),
+            .ForeColor = Color.Indigo,
+            .Left = TaskLeft,
+            .Text = annText,
+            .UseVisualStyleBackColor = True
+        }
+        AddHandler cb.CheckedChanged, AddressOf TaskCheckChanged
+        Panel4.Controls.Add(cb)
+        ReflowPanel(Panel4)
+    End Sub
+
+    ' ---------------- TASK/ANNOUNCEMENT CHECKED ----------------
     Private Sub TaskCheckChanged(sender As Object, e As EventArgs)
         Dim cb = TryCast(sender, CheckBox)
         If cb Is Nothing OrElse Not cb.Checked Then Return
 
-        If MessageBox.Show("Complete this task?", "Complete Task", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-            Panel1.Controls.Remove(cb)
+        If MessageBox.Show("Complete this item?", "Complete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+            ' capture parent before removal
+            Dim parentPanel = TryCast(cb.Parent, Panel)
+            If parentPanel IsNot Nothing Then
+                parentPanel.Controls.Remove(cb)
+            Else
+                ' fallback: remove from form-level controls
+                Me.Controls.Remove(cb)
+            End If
             cb.Dispose()
-            ReflowTasks()
+
+            ' reflow the panel that contained the checkbox
+            If parentPanel IsNot Nothing Then
+                ReflowPanel(parentPanel)
+            End If
         Else
             cb.Checked = False
         End If
     End Sub
 
-    ' ---------------- COMPLETE ALL TASKS ----------------
+    ' ---------------- COMPLETE ALL TASKS (pending tasks only) ----------------
     Private Sub ButtonCompleteSelected_Click(sender As Object, e As EventArgs)
         Dim tasks = Panel1.Controls.OfType(Of CheckBox)().ToList()
         If tasks.Count = 0 Then
@@ -182,15 +227,16 @@ Public Class studentDashboard
                 Panel1.Controls.Remove(cb)
                 cb.Dispose()
             Next
-            ReflowTasks()
+            ReflowPanel(Panel1)
         End If
     End Sub
 
-    ' ---------------- REFLOW TASKS ----------------
-    Private Sub ReflowTasks()
-        Dim tasks = Panel1.Controls.OfType(Of CheckBox)().ToList()
-        For i As Integer = 0 To tasks.Count - 1
-            Dim cb = tasks(i)
+    ' ---------------- REFLOW PANEL (generic) ----------------
+    Private Sub ReflowPanel(targetPanel As Panel)
+        If targetPanel Is Nothing Then Return
+        Dim items = targetPanel.Controls.OfType(Of CheckBox)().ToList()
+        For i As Integer = 0 To items.Count - 1
+            Dim cb = items(i)
             cb.Left = TaskLeft
             cb.Top = TaskStartTop + (i * TaskSpacing)
         Next
@@ -229,9 +275,7 @@ Public Class studentDashboard
         CenterTimeLabels()
     End Sub
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Dim schedule As New studentScheduleForm()
-        schedule.ShowDialog()
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
 
     End Sub
 
@@ -241,5 +285,15 @@ Public Class studentDashboard
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
 
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Dim visitform As New visitationLogs
+        visitform.ShowDialog()
+    End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        Dim evalform As New supervisorEvaluation
+        evalform.ShowDialog()
     End Sub
 End Class
