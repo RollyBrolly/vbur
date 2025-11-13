@@ -37,8 +37,29 @@ Public Class StudentRegistrationForm
         }}
     }
 
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    ' ✅ Fixed abbreviation mapping
+    Private ReadOnly courseAbbreviations As New Dictionary(Of String, String) From {
+        {"Bachelor of Science in Information Technology", "BSIT"},
+        {"Bachelor of Science in Computer Science", "BSCS"},
+        {"Bachelor of Secondary Education - English", "BSEDE"},
+        {"Bachelor of Secondary Education - Math", "BSEDM"},
+        {"Bachelor of Elementary Education - Filipino", "BEED"},
+        {"Bachelor of Science in Marketing Management", "BSMM"},
+        {"Bachelor of Science in Human Resource Management", "BSHR"},
+        {"Bachelor of Science in Civil Engineering", "BSCE"},
+        {"Bachelor of Science in Mechanical Engineering", "BSME"},
+        {"Bachelor of Science in Electrical Engineering", "BSEE"},
+        {"Bachelor of Arts in Psychology", "BAPSY"},
+        {"Bachelor of Science in Biology", "BSBIO"},
+        {"Bachelor of Science in Political Science", "BSPS"},
+        {"Bachelor of Science in Hospitality Management", "BSHM"},
+        {"Bachelor of Science in Tourism Management", "BSTM"},
+        {"Bachelor of Science in Nursing", "BSN"},
+        {"Bachelor of Science in Medical Technology", "BSMT"},
+        {"Bachelor of Science in Pharmacy", "BSPH"}
+    }
 
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.FormBorderStyle = FormBorderStyle.None
         Me.WindowState = FormWindowState.Maximized
 
@@ -46,43 +67,92 @@ Public Class StudentRegistrationForm
         For Each dept As String In departmentCourses.Keys
             departmentBox.Items.Add(dept)
         Next
-        departmentBox.Enabled = True
-        departmentBox.SelectedIndex = -1
 
+        ' ✅ Enable and make departmentBox selection-only
+        departmentBox.Enabled = True
+        departmentBox.DropDownStyle = ComboBoxStyle.DropDownList
+        departmentBox.SelectedIndex = -1
 
         courseBox.Items.Clear()
         courseBox.Enabled = False
 
-
-    End Sub
-
-    Private Sub Login_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        ConfirmExit(e)
+        sectionBox.Items.Clear()
+        sectionBox.Enabled = False
     End Sub
 
     Private Sub departmentBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles departmentBox.SelectedIndexChanged
+        courseBox.Items.Clear()
+        sectionBox.Items.Clear()
+        sectionBox.Enabled = False
+
         If departmentBox.SelectedItem Is Nothing Then
-            courseBox.Items.Clear()
             courseBox.Enabled = False
             Return
         End If
 
         Dim dept As String = departmentBox.SelectedItem.ToString()
-        courseBox.Items.Clear()
 
         If departmentCourses.ContainsKey(dept) Then
             courseBox.Items.AddRange(departmentCourses(dept).ToArray())
             courseBox.Enabled = True
-            If courseBox.Items.Count > 0 Then courseBox.SelectedIndex = 0
         Else
             courseBox.Enabled = False
         End If
     End Sub
 
-    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs)
+    ' ✅ Populate sectionBox with correct abbreviation
+    Private Sub courseBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles courseBox.SelectedIndexChanged
+        sectionBox.Items.Clear()
 
+        If departmentBox.SelectedIndex = -1 OrElse courseBox.SelectedIndex = -1 Then
+            sectionBox.Enabled = False
+            Return
+        End If
+
+        Dim courseName As String = courseBox.SelectedItem.ToString()
+        Dim abbreviation As String = ""
+
+        If courseAbbreviations.ContainsKey(courseName) Then
+            abbreviation = courseAbbreviations(courseName)
+        Else
+            abbreviation = "GEN" ' fallback if course not found
+        End If
+
+        ' Add 4 sections with abbreviation prefix
+        Dim sections As String() = {"4A", "4B", "4C", "4D"}
+        For Each sec In sections
+            sectionBox.Items.Add(abbreviation & sec)
+        Next
+
+        sectionBox.Enabled = True
+        sectionBox.SelectedIndex = 0
     End Sub
 
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        If String.IsNullOrWhiteSpace(firstNameBox.Text) OrElse
+           String.IsNullOrWhiteSpace(lastnameBox.Text) OrElse
+           departmentBox.SelectedIndex = -1 OrElse
+           courseBox.SelectedIndex = -1 OrElse
+           sectionBox.SelectedIndex = -1 Then
+
+            MessageBox.Show("Please fill out all required fields before registering.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        MessageBox.Show("You are now registered as a Student!", "Register Successful!", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Dim result As DialogResult = MessageBox.Show("Are you sure you want to clear all fields?", "Confirm Clear", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If result = DialogResult.Yes Then
+            ClearAllText(Me)
+            departmentBox.SelectedIndex = -1
+            courseBox.Items.Clear()
+            courseBox.Enabled = False
+            sectionBox.Items.Clear()
+            sectionBox.Enabled = False
+        End If
+    End Sub
 
     Private Sub ClearAllText(parent As Control)
         For Each ctrl As Control In parent.Controls
@@ -94,35 +164,6 @@ Public Class StudentRegistrationForm
         Next
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        If String.IsNullOrWhiteSpace(firstNameBox.Text) OrElse
-       String.IsNullOrWhiteSpace(lastnameBox.Text) OrElse
-       departmentBox.SelectedIndex = -1 OrElse
-       courseBox.SelectedIndex = -1 Then
-
-            MessageBox.Show("Please fill out all required fields before registering.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return
-        End If
-
-
-        MessageBox.Show("You are now registered as a Student!", "Register Successful!", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-
-    End Sub
-
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        Dim result As DialogResult = MessageBox.Show("Are you sure you want to clear all fields?", "Confirm Clear", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-        If result = DialogResult.Yes Then
-            ClearAllText(Me)
-            departmentBox.SelectedIndex = -1
-            courseBox.Items.Clear()
-            courseBox.SelectedIndex = -1
-            courseBox.Text = String.Empty
-            courseBox.ResetText()
-            courseBox.Enabled = False
-        End If
-    End Sub
-
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Dim result As DialogResult = MessageBox.Show("Return to registration page?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.Yes Then
@@ -132,31 +173,4 @@ Public Class StudentRegistrationForm
         End If
     End Sub
 
-    Private Sub TextBox2_TextChanged(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub courseBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles courseBox.SelectedIndexChanged
-
-    End Sub
-
-    Private Sub nameLabel_Click(sender As Object, e As EventArgs) Handles nameLabel.Click
-
-    End Sub
-
-    Private Sub midNameBox_TextChanged(sender As Object, e As EventArgs) Handles midNameBox.TextChanged
-
-    End Sub
-
-    Private Sub Label13_Click(sender As Object, e As EventArgs) Handles Label13.Click
-
-    End Sub
-
-    Private Sub firstNameBox_TextChanged(sender As Object, e As EventArgs) Handles firstNameBox.TextChanged
-
-    End Sub
-
-    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
-
-    End Sub
 End Class

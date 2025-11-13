@@ -85,4 +85,12 @@
             ClearAllText(Me)
         End If
     End Sub
+
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+        MessageBox.Show("Username: S001" & vbCrLf & "Password: Dela Cruz_Juan", "Register Successful!", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    End Sub
+
+    Private Sub TextBox2_TextChanged(sender As Object, e As EventArgs) Handles TextBox2.TextChanged
+
+    End Sub
 End Class

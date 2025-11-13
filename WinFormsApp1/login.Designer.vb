@@ -209,7 +209,7 @@ Partial Class Login
         Margin = New Padding(3, 2, 3, 2)
         MaximizeBox = False
         Name = "Login"
-        Text = "Login"
+        Text = "no"
         Panel2.ResumeLayout(False)
         Panel2.PerformLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
