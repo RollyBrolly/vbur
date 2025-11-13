@@ -24,28 +24,28 @@ Partial Class TeacherRegistrationForm
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(TeacherRegistrationForm))
         PictureBox1 = New PictureBox()
-        Button3 = New Button()
-        Button2 = New Button()
-        Button1 = New Button()
-        Label10 = New Label()
-        Label9 = New Label()
-        departmentBox = New ComboBox()
-        numberTextbox = New TextBox()
-        Label7 = New Label()
-        Label6 = New Label()
-        suffixTxtBox = New TextBox()
-        emailBox = New TextBox()
-        Label5 = New Label()
-        ComboBox1 = New ComboBox()
-        Label4 = New Label()
-        Label3 = New Label()
-        Label2 = New Label()
-        Label1 = New Label()
-        nameLabel = New Label()
-        midNameBox = New TextBox()
-        firstNameBox = New TextBox()
-        lastnameBox = New TextBox()
-        TextBox1 = New TextBox()
+        clearbtn = New Button()
+        returnbtn = New Button()
+        regbtn = New Button()
+        fnumlbl = New Label()
+        deptlbl = New Label()
+        deptcb = New ComboBox()
+        numtxt = New TextBox()
+        numlbl = New Label()
+        suffixlbl = New Label()
+        suffixtxt = New TextBox()
+        emailtxt = New TextBox()
+        emaillbl = New Label()
+        gendercb = New ComboBox()
+        genderlbl = New Label()
+        midnamelbl = New Label()
+        fnamelbl = New Label()
+        lnamelbl = New Label()
+        fullnamelbl = New Label()
+        midnametxt = New TextBox()
+        fnametxt = New TextBox()
+        lastnametxt = New TextBox()
+        fnumbertxt = New TextBox()
         Panel1 = New Panel()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
@@ -61,273 +61,273 @@ Partial Class TeacherRegistrationForm
         PictureBox1.TabIndex = 62
         PictureBox1.TabStop = False
         ' 
-        ' Button3
+        ' clearbtn
         ' 
-        Button3.BackColor = Color.DarkSlateBlue
-        Button3.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
-        Button3.ForeColor = Color.White
-        Button3.Location = New Point(429, 664)
-        Button3.Margin = New Padding(3, 2, 3, 2)
-        Button3.Name = "Button3"
-        Button3.Size = New Size(180, 72)
-        Button3.TabIndex = 65
-        Button3.Text = "CLEAR"
-        Button3.UseVisualStyleBackColor = False
+        clearbtn.BackColor = Color.DarkSlateBlue
+        clearbtn.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        clearbtn.ForeColor = Color.White
+        clearbtn.Location = New Point(429, 664)
+        clearbtn.Margin = New Padding(3, 2, 3, 2)
+        clearbtn.Name = "clearbtn"
+        clearbtn.Size = New Size(180, 72)
+        clearbtn.TabIndex = 65
+        clearbtn.Text = "CLEAR"
+        clearbtn.UseVisualStyleBackColor = False
         ' 
-        ' Button2
+        ' returnbtn
         ' 
-        Button2.BackColor = Color.SlateGray
-        Button2.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
-        Button2.ForeColor = Color.White
-        Button2.Location = New Point(107, 664)
-        Button2.Margin = New Padding(3, 2, 3, 2)
-        Button2.Name = "Button2"
-        Button2.Size = New Size(180, 72)
-        Button2.TabIndex = 64
-        Button2.Text = "RETURN"
-        Button2.UseVisualStyleBackColor = False
+        returnbtn.BackColor = Color.SlateGray
+        returnbtn.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        returnbtn.ForeColor = Color.White
+        returnbtn.Location = New Point(107, 664)
+        returnbtn.Margin = New Padding(3, 2, 3, 2)
+        returnbtn.Name = "returnbtn"
+        returnbtn.Size = New Size(180, 72)
+        returnbtn.TabIndex = 64
+        returnbtn.Text = "RETURN"
+        returnbtn.UseVisualStyleBackColor = False
         ' 
-        ' Button1
+        ' regbtn
         ' 
-        Button1.BackColor = Color.Indigo
-        Button1.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
-        Button1.ForeColor = Color.White
-        Button1.Location = New Point(767, 664)
-        Button1.Margin = New Padding(3, 2, 3, 2)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(180, 72)
-        Button1.TabIndex = 63
-        Button1.Text = "REGISTER"
-        Button1.UseVisualStyleBackColor = False
+        regbtn.BackColor = Color.Indigo
+        regbtn.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        regbtn.ForeColor = Color.White
+        regbtn.Location = New Point(767, 664)
+        regbtn.Margin = New Padding(3, 2, 3, 2)
+        regbtn.Name = "regbtn"
+        regbtn.Size = New Size(180, 72)
+        regbtn.TabIndex = 63
+        regbtn.Text = "REGISTER"
+        regbtn.UseVisualStyleBackColor = False
         ' 
-        ' Label10
+        ' fnumlbl
         ' 
-        Label10.AutoSize = True
-        Label10.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
-        Label10.ForeColor = Color.Indigo
-        Label10.Location = New Point(735, 121)
-        Label10.Name = "Label10"
-        Label10.Size = New Size(220, 37)
-        Label10.TabIndex = 83
-        Label10.Text = "Faculty Number"
+        fnumlbl.AutoSize = True
+        fnumlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
+        fnumlbl.ForeColor = Color.Indigo
+        fnumlbl.Location = New Point(735, 121)
+        fnumlbl.Name = "fnumlbl"
+        fnumlbl.Size = New Size(274, 46)
+        fnumlbl.TabIndex = 83
+        fnumlbl.Text = "Faculty Number"
         ' 
-        ' Label9
+        ' deptlbl
         ' 
-        Label9.AutoSize = True
-        Label9.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
-        Label9.ForeColor = Color.Indigo
-        Label9.Location = New Point(540, 321)
-        Label9.Name = "Label9"
-        Label9.Size = New Size(174, 37)
-        Label9.TabIndex = 82
-        Label9.Text = "Department"
+        deptlbl.AutoSize = True
+        deptlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
+        deptlbl.ForeColor = Color.Indigo
+        deptlbl.Location = New Point(540, 321)
+        deptlbl.Name = "deptlbl"
+        deptlbl.Size = New Size(213, 46)
+        deptlbl.TabIndex = 82
+        deptlbl.Text = "Department"
         ' 
-        ' departmentBox
+        ' deptcb
         ' 
-        departmentBox.BackColor = Color.Silver
-        departmentBox.Enabled = False
-        departmentBox.Font = New Font("Segoe UI", 21.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        departmentBox.FormattingEnabled = True
-        departmentBox.Items.AddRange(New Object() {"COLLEGE OF COMPUTER STUDIES", "COLLEGE OF EDUCATION", "COLLEGE OF ENGINEERING", "COLLEGE OF NURSING", "COLLEGE OF ARTS AND SCIENCE", "COLLEGE OF BUSINESS AND ACCOUNTANCY", "COLLEGE OF HOSPITALITY MANAGEMENT"})
-        departmentBox.Location = New Point(540, 374)
-        departmentBox.Margin = New Padding(3, 2, 3, 2)
-        departmentBox.Name = "departmentBox"
-        departmentBox.Size = New Size(327, 48)
-        departmentBox.TabIndex = 81
+        deptcb.BackColor = Color.Silver
+        deptcb.Enabled = False
+        deptcb.Font = New Font("Segoe UI", 21.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        deptcb.FormattingEnabled = True
+        deptcb.Items.AddRange(New Object() {"COLLEGE OF COMPUTER STUDIES", "COLLEGE OF EDUCATION", "COLLEGE OF ENGINEERING", "COLLEGE OF NURSING", "COLLEGE OF ARTS AND SCIENCE", "COLLEGE OF BUSINESS AND ACCOUNTANCY", "COLLEGE OF HOSPITALITY MANAGEMENT"})
+        deptcb.Location = New Point(540, 374)
+        deptcb.Margin = New Padding(3, 2, 3, 2)
+        deptcb.Name = "deptcb"
+        deptcb.Size = New Size(327, 56)
+        deptcb.TabIndex = 81
         ' 
-        ' numberTextbox
+        ' numtxt
         ' 
-        numberTextbox.BackColor = Color.Silver
-        numberTextbox.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        numberTextbox.Location = New Point(724, 585)
-        numberTextbox.Margin = New Padding(3, 2, 3, 2)
-        numberTextbox.Name = "numberTextbox"
-        numberTextbox.Size = New Size(231, 46)
-        numberTextbox.TabIndex = 80
+        numtxt.BackColor = Color.Silver
+        numtxt.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        numtxt.Location = New Point(724, 585)
+        numtxt.Margin = New Padding(3, 2, 3, 2)
+        numtxt.Name = "numtxt"
+        numtxt.Size = New Size(231, 56)
+        numtxt.TabIndex = 80
         ' 
-        ' Label7
+        ' numlbl
         ' 
-        Label7.AutoSize = True
-        Label7.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
-        Label7.ForeColor = Color.Indigo
-        Label7.Location = New Point(718, 536)
-        Label7.Name = "Label7"
-        Label7.Size = New Size(229, 37)
-        Label7.TabIndex = 79
-        Label7.Text = "Contact Number"
+        numlbl.AutoSize = True
+        numlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
+        numlbl.ForeColor = Color.Indigo
+        numlbl.Location = New Point(718, 536)
+        numlbl.Name = "numlbl"
+        numlbl.Size = New Size(284, 46)
+        numlbl.TabIndex = 79
+        numlbl.Text = "Contact Number"
         ' 
-        ' Label6
+        ' suffixlbl
         ' 
-        Label6.AutoSize = True
-        Label6.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
-        Label6.ForeColor = Color.Indigo
-        Label6.Location = New Point(107, 536)
-        Label6.Name = "Label6"
-        Label6.Size = New Size(91, 37)
-        Label6.TabIndex = 78
-        Label6.Text = "Suffix"
+        suffixlbl.AutoSize = True
+        suffixlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
+        suffixlbl.ForeColor = Color.Indigo
+        suffixlbl.Location = New Point(107, 536)
+        suffixlbl.Name = "suffixlbl"
+        suffixlbl.Size = New Size(115, 46)
+        suffixlbl.TabIndex = 78
+        suffixlbl.Text = "Suffix"
         ' 
-        ' suffixTxtBox
+        ' suffixtxt
         ' 
-        suffixTxtBox.BackColor = Color.Silver
-        suffixTxtBox.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
-        suffixTxtBox.Location = New Point(107, 585)
-        suffixTxtBox.Margin = New Padding(3, 2, 3, 2)
-        suffixTxtBox.Name = "suffixTxtBox"
-        suffixTxtBox.Size = New Size(102, 46)
-        suffixTxtBox.TabIndex = 77
+        suffixtxt.BackColor = Color.Silver
+        suffixtxt.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        suffixtxt.Location = New Point(107, 585)
+        suffixtxt.Margin = New Padding(3, 2, 3, 2)
+        suffixtxt.Name = "suffixtxt"
+        suffixtxt.Size = New Size(102, 56)
+        suffixtxt.TabIndex = 77
         ' 
-        ' emailBox
+        ' emailtxt
         ' 
-        emailBox.BackColor = Color.Silver
-        emailBox.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
-        emailBox.Location = New Point(404, 586)
-        emailBox.Margin = New Padding(3, 2, 3, 2)
-        emailBox.Name = "emailBox"
-        emailBox.Size = New Size(231, 46)
-        emailBox.TabIndex = 76
+        emailtxt.BackColor = Color.Silver
+        emailtxt.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        emailtxt.Location = New Point(404, 586)
+        emailtxt.Margin = New Padding(3, 2, 3, 2)
+        emailtxt.Name = "emailtxt"
+        emailtxt.Size = New Size(231, 56)
+        emailtxt.TabIndex = 76
         ' 
-        ' Label5
+        ' emaillbl
         ' 
-        Label5.AutoSize = True
-        Label5.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
-        Label5.ForeColor = Color.Indigo
-        Label5.Location = New Point(404, 536)
-        Label5.Name = "Label5"
-        Label5.Size = New Size(87, 37)
-        Label5.TabIndex = 75
-        Label5.Text = "Email"
+        emaillbl.AutoSize = True
+        emaillbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
+        emaillbl.ForeColor = Color.Indigo
+        emaillbl.Location = New Point(404, 536)
+        emaillbl.Name = "emaillbl"
+        emaillbl.Size = New Size(107, 46)
+        emaillbl.TabIndex = 75
+        emaillbl.Text = "Email"
         ' 
-        ' ComboBox1
+        ' gendercb
         ' 
-        ComboBox1.BackColor = Color.Silver
-        ComboBox1.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        ComboBox1.FormattingEnabled = True
-        ComboBox1.Items.AddRange(New Object() {"MALE", "FEMALE"})
-        ComboBox1.Location = New Point(540, 166)
-        ComboBox1.Margin = New Padding(3, 2, 3, 2)
-        ComboBox1.Name = "ComboBox1"
-        ComboBox1.Size = New Size(142, 48)
-        ComboBox1.TabIndex = 74
+        gendercb.BackColor = Color.Silver
+        gendercb.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        gendercb.FormattingEnabled = True
+        gendercb.Items.AddRange(New Object() {"MALE", "FEMALE"})
+        gendercb.Location = New Point(540, 166)
+        gendercb.Margin = New Padding(3, 2, 3, 2)
+        gendercb.Name = "gendercb"
+        gendercb.Size = New Size(142, 56)
+        gendercb.TabIndex = 74
         ' 
-        ' Label4
+        ' genderlbl
         ' 
-        Label4.AutoSize = True
-        Label4.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
-        Label4.ForeColor = Color.Indigo
-        Label4.Location = New Point(540, 121)
-        Label4.Name = "Label4"
-        Label4.Size = New Size(110, 37)
-        Label4.TabIndex = 73
-        Label4.Text = "Gender"
+        genderlbl.AutoSize = True
+        genderlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
+        genderlbl.ForeColor = Color.Indigo
+        genderlbl.Location = New Point(540, 121)
+        genderlbl.Name = "genderlbl"
+        genderlbl.Size = New Size(136, 46)
+        genderlbl.TabIndex = 73
+        genderlbl.Text = "Gender"
         ' 
-        ' Label3
+        ' midnamelbl
         ' 
-        Label3.AutoSize = True
-        Label3.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
-        Label3.ForeColor = Color.Indigo
-        Label3.Location = New Point(107, 408)
-        Label3.Name = "Label3"
-        Label3.Size = New Size(191, 37)
-        Label3.TabIndex = 72
-        Label3.Text = "Middle Name"
+        midnamelbl.AutoSize = True
+        midnamelbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
+        midnamelbl.ForeColor = Color.Indigo
+        midnamelbl.Location = New Point(107, 408)
+        midnamelbl.Name = "midnamelbl"
+        midnamelbl.Size = New Size(236, 46)
+        midnamelbl.TabIndex = 72
+        midnamelbl.Text = "Middle Name"
         ' 
-        ' Label2
+        ' fnamelbl
         ' 
-        Label2.AutoSize = True
-        Label2.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
-        Label2.ForeColor = Color.Indigo
-        Label2.Location = New Point(107, 265)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(156, 37)
-        Label2.TabIndex = 71
-        Label2.Text = "First Name"
+        fnamelbl.AutoSize = True
+        fnamelbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
+        fnamelbl.ForeColor = Color.Indigo
+        fnamelbl.Location = New Point(107, 265)
+        fnamelbl.Name = "fnamelbl"
+        fnamelbl.Size = New Size(193, 46)
+        fnamelbl.TabIndex = 71
+        fnamelbl.Text = "First Name"
         ' 
-        ' Label1
+        ' lnamelbl
         ' 
-        Label1.AutoSize = True
-        Label1.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
-        Label1.ForeColor = Color.Indigo
-        Label1.Location = New Point(107, 121)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(152, 37)
-        Label1.TabIndex = 70
-        Label1.Text = "Last Name"
+        lnamelbl.AutoSize = True
+        lnamelbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
+        lnamelbl.ForeColor = Color.Indigo
+        lnamelbl.Location = New Point(107, 121)
+        lnamelbl.Name = "lnamelbl"
+        lnamelbl.Size = New Size(186, 46)
+        lnamelbl.TabIndex = 70
+        lnamelbl.Text = "Last Name"
         ' 
-        ' nameLabel
+        ' fullnamelbl
         ' 
-        nameLabel.AutoSize = True
-        nameLabel.Font = New Font("Segoe UI Black", 26.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        nameLabel.Location = New Point(64, 48)
-        nameLabel.Name = "nameLabel"
-        nameLabel.Size = New Size(194, 47)
-        nameLabel.TabIndex = 69
-        nameLabel.Text = "Full Name"
+        fullnamelbl.AutoSize = True
+        fullnamelbl.Font = New Font("Segoe UI Black", 26.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        fullnamelbl.Location = New Point(64, 48)
+        fullnamelbl.Name = "fullnamelbl"
+        fullnamelbl.Size = New Size(245, 60)
+        fullnamelbl.TabIndex = 69
+        fullnamelbl.Text = "Full Name"
         ' 
-        ' midNameBox
+        ' midnametxt
         ' 
-        midNameBox.BackColor = Color.Silver
-        midNameBox.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
-        midNameBox.Location = New Point(107, 460)
-        midNameBox.Margin = New Padding(3, 2, 3, 2)
-        midNameBox.Name = "midNameBox"
-        midNameBox.Size = New Size(307, 46)
-        midNameBox.TabIndex = 68
+        midnametxt.BackColor = Color.Silver
+        midnametxt.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        midnametxt.Location = New Point(107, 460)
+        midnametxt.Margin = New Padding(3, 2, 3, 2)
+        midnametxt.Name = "midnametxt"
+        midnametxt.Size = New Size(307, 56)
+        midnametxt.TabIndex = 68
         ' 
-        ' firstNameBox
+        ' fnametxt
         ' 
-        firstNameBox.BackColor = Color.Silver
-        firstNameBox.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
-        firstNameBox.Location = New Point(107, 316)
-        firstNameBox.Margin = New Padding(3, 2, 3, 2)
-        firstNameBox.Name = "firstNameBox"
-        firstNameBox.Size = New Size(307, 46)
-        firstNameBox.TabIndex = 67
+        fnametxt.BackColor = Color.Silver
+        fnametxt.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        fnametxt.Location = New Point(107, 316)
+        fnametxt.Margin = New Padding(3, 2, 3, 2)
+        fnametxt.Name = "fnametxt"
+        fnametxt.Size = New Size(307, 56)
+        fnametxt.TabIndex = 67
         ' 
-        ' lastnameBox
+        ' lastnametxt
         ' 
-        lastnameBox.BackColor = Color.Silver
-        lastnameBox.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
-        lastnameBox.Location = New Point(107, 173)
-        lastnameBox.Margin = New Padding(3, 2, 3, 2)
-        lastnameBox.Name = "lastnameBox"
-        lastnameBox.Size = New Size(307, 46)
-        lastnameBox.TabIndex = 66
+        lastnametxt.BackColor = Color.Silver
+        lastnametxt.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        lastnametxt.Location = New Point(107, 173)
+        lastnametxt.Margin = New Padding(3, 2, 3, 2)
+        lastnametxt.Name = "lastnametxt"
+        lastnametxt.Size = New Size(307, 56)
+        lastnametxt.TabIndex = 66
         ' 
-        ' TextBox1
+        ' fnumbertxt
         ' 
-        TextBox1.BackColor = Color.Silver
-        TextBox1.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        TextBox1.Location = New Point(764, 168)
-        TextBox1.Margin = New Padding(3, 2, 3, 2)
-        TextBox1.Name = "TextBox1"
-        TextBox1.Size = New Size(122, 46)
-        TextBox1.TabIndex = 90
+        fnumbertxt.BackColor = Color.Silver
+        fnumbertxt.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        fnumbertxt.Location = New Point(764, 168)
+        fnumbertxt.Margin = New Padding(3, 2, 3, 2)
+        fnumbertxt.Name = "fnumbertxt"
+        fnumbertxt.Size = New Size(122, 56)
+        fnumbertxt.TabIndex = 90
         ' 
         ' Panel1
         ' 
-        Panel1.Controls.Add(Label9)
-        Panel1.Controls.Add(TextBox1)
-        Panel1.Controls.Add(departmentBox)
-        Panel1.Controls.Add(Button1)
-        Panel1.Controls.Add(Label4)
-        Panel1.Controls.Add(ComboBox1)
-        Panel1.Controls.Add(Label6)
-        Panel1.Controls.Add(Label10)
-        Panel1.Controls.Add(nameLabel)
-        Panel1.Controls.Add(Label1)
-        Panel1.Controls.Add(Label2)
-        Panel1.Controls.Add(Label3)
-        Panel1.Controls.Add(lastnameBox)
-        Panel1.Controls.Add(suffixTxtBox)
-        Panel1.Controls.Add(Button2)
-        Panel1.Controls.Add(firstNameBox)
-        Panel1.Controls.Add(emailBox)
-        Panel1.Controls.Add(Button3)
-        Panel1.Controls.Add(midNameBox)
-        Panel1.Controls.Add(Label7)
-        Panel1.Controls.Add(numberTextbox)
-        Panel1.Controls.Add(Label5)
+        Panel1.Controls.Add(deptlbl)
+        Panel1.Controls.Add(fnumbertxt)
+        Panel1.Controls.Add(deptcb)
+        Panel1.Controls.Add(regbtn)
+        Panel1.Controls.Add(genderlbl)
+        Panel1.Controls.Add(gendercb)
+        Panel1.Controls.Add(suffixlbl)
+        Panel1.Controls.Add(fnumlbl)
+        Panel1.Controls.Add(fullnamelbl)
+        Panel1.Controls.Add(lnamelbl)
+        Panel1.Controls.Add(fnamelbl)
+        Panel1.Controls.Add(midnamelbl)
+        Panel1.Controls.Add(lastnametxt)
+        Panel1.Controls.Add(suffixtxt)
+        Panel1.Controls.Add(returnbtn)
+        Panel1.Controls.Add(fnametxt)
+        Panel1.Controls.Add(emailtxt)
+        Panel1.Controls.Add(clearbtn)
+        Panel1.Controls.Add(midnametxt)
+        Panel1.Controls.Add(numlbl)
+        Panel1.Controls.Add(numtxt)
+        Panel1.Controls.Add(emaillbl)
         Panel1.Location = New Point(488, 226)
         Panel1.Name = "Panel1"
         Panel1.Size = New Size(1024, 767)
@@ -351,28 +351,28 @@ Partial Class TeacherRegistrationForm
     End Sub
 
     Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Label10 As Label
-    Friend WithEvents Label9 As Label
-    Friend WithEvents departmentBox As ComboBox
-    Friend WithEvents numberTextbox As TextBox
-    Friend WithEvents Label7 As Label
-    Friend WithEvents Label6 As Label
-    Friend WithEvents suffixTxtBox As TextBox
-    Friend WithEvents emailBox As TextBox
-    Friend WithEvents Label5 As Label
-    Friend WithEvents ComboBox1 As ComboBox
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label1 As Label
-    Friend WithEvents nameLabel As Label
-    Friend WithEvents midNameBox As TextBox
-    Friend WithEvents firstNameBox As TextBox
-    Friend WithEvents lastnameBox As TextBox
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents clearbtn As Button
+    Friend WithEvents returnbtn As Button
+    Friend WithEvents regbtn As Button
+    Friend WithEvents fnumlbl As Label
+    Friend WithEvents deptlbl As Label
+    Friend WithEvents deptcb As ComboBox
+    Friend WithEvents numtxt As TextBox
+    Friend WithEvents numlbl As Label
+    Friend WithEvents suffixlbl As Label
+    Friend WithEvents suffixtxt As TextBox
+    Friend WithEvents emailtxt As TextBox
+    Friend WithEvents emaillbl As Label
+    Friend WithEvents gendercb As ComboBox
+    Friend WithEvents genderlbl As Label
+    Friend WithEvents midnamelbl As Label
+    Friend WithEvents fnamelbl As Label
+    Friend WithEvents lnamelbl As Label
+    Friend WithEvents fullnamelbl As Label
+    Friend WithEvents midnametxt As TextBox
+    Friend WithEvents fnametxt As TextBox
+    Friend WithEvents lastnametxt As TextBox
+    Friend WithEvents fnumbertxt As TextBox
     Friend WithEvents Panel1 As Panel
 
 End Class

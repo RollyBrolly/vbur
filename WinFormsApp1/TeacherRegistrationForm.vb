@@ -16,15 +16,15 @@
     Private Sub Button3_Click(sender As Object, e As EventArgs)
         ClearAllText(Me)
 
-        departmentBox.SelectedIndex = -1
+        deptcb.SelectedIndex = -1
 
 
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs)
-        If String.IsNullOrWhiteSpace(firstNameBox.Text) OrElse
-       String.IsNullOrWhiteSpace(lastnameBox.Text) OrElse
-       departmentBox.SelectedIndex = -1 Then
+        If String.IsNullOrWhiteSpace(fnametxt.Text) OrElse
+       String.IsNullOrWhiteSpace(lastnametxt.Text) OrElse
+       deptcb.SelectedIndex = -1 Then
 
             MessageBox.Show("Please fill out all required fields before registering.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
@@ -40,7 +40,7 @@
         Hide()
     End Sub
 
-    Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles returnbtn.Click
         Dim result As DialogResult = MessageBox.Show("Return to registration page?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.Yes Then
             Dim regForm As New Registration()
@@ -49,15 +49,15 @@
         End If
     End Sub
 
-    Private Sub Button3_Click_1(sender As Object, e As EventArgs) Handles Button3.Click
+    Private Sub Button3_Click_1(sender As Object, e As EventArgs) Handles clearbtn.Click
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to clear all fields?", "Confirm Clear", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.Yes Then
             ClearAllText(Me)
-            departmentBox.SelectedIndex = -1
+            deptcb.SelectedIndex = -1
         End If
     End Sub
 
-    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
+    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles fnumbertxt.TextChanged
 
     End Sub
 
