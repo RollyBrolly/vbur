@@ -6,6 +6,10 @@
     <StartupObject>WinFormsApp1.My.MyApplication</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
+
+	<ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
+	<EnableWindowsFormsHighDpiAutoResizing>true</EnableWindowsFormsHighDpiAutoResizing>
+	 <ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
   </PropertyGroup>
 
   <ItemGroup>
