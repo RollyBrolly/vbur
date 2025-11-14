@@ -107,7 +107,7 @@ Partial Class TeacherRegistrationForm
         fnumlbl.ForeColor = Color.Indigo
         fnumlbl.Location = New Point(735, 121)
         fnumlbl.Name = "fnumlbl"
-        fnumlbl.Size = New Size(274, 46)
+        fnumlbl.Size = New Size(220, 37)
         fnumlbl.TabIndex = 83
         fnumlbl.Text = "Faculty Number"
         ' 
@@ -116,9 +116,9 @@ Partial Class TeacherRegistrationForm
         deptlbl.AutoSize = True
         deptlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         deptlbl.ForeColor = Color.Indigo
-        deptlbl.Location = New Point(540, 321)
+        deptlbl.Location = New Point(508, 348)
         deptlbl.Name = "deptlbl"
-        deptlbl.Size = New Size(213, 46)
+        deptlbl.Size = New Size(174, 37)
         deptlbl.TabIndex = 82
         deptlbl.Text = "Department"
         ' 
@@ -126,23 +126,23 @@ Partial Class TeacherRegistrationForm
         ' 
         deptcb.BackColor = Color.Silver
         deptcb.Enabled = False
-        deptcb.Font = New Font("Segoe UI", 21.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        deptcb.Font = New Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         deptcb.FormattingEnabled = True
         deptcb.Items.AddRange(New Object() {"COLLEGE OF COMPUTER STUDIES", "COLLEGE OF EDUCATION", "COLLEGE OF ENGINEERING", "COLLEGE OF NURSING", "COLLEGE OF ARTS AND SCIENCE", "COLLEGE OF BUSINESS AND ACCOUNTANCY", "COLLEGE OF HOSPITALITY MANAGEMENT"})
-        deptcb.Location = New Point(540, 374)
+        deptcb.Location = New Point(508, 401)
         deptcb.Margin = New Padding(3, 2, 3, 2)
         deptcb.Name = "deptcb"
-        deptcb.Size = New Size(327, 56)
+        deptcb.Size = New Size(439, 38)
         deptcb.TabIndex = 81
         ' 
         ' numtxt
         ' 
         numtxt.BackColor = Color.Silver
-        numtxt.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        numtxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
         numtxt.Location = New Point(724, 585)
         numtxt.Margin = New Padding(3, 2, 3, 2)
         numtxt.Name = "numtxt"
-        numtxt.Size = New Size(231, 56)
+        numtxt.Size = New Size(231, 46)
         numtxt.TabIndex = 80
         ' 
         ' numlbl
@@ -152,7 +152,7 @@ Partial Class TeacherRegistrationForm
         numlbl.ForeColor = Color.Indigo
         numlbl.Location = New Point(718, 536)
         numlbl.Name = "numlbl"
-        numlbl.Size = New Size(284, 46)
+        numlbl.Size = New Size(229, 37)
         numlbl.TabIndex = 79
         numlbl.Text = "Contact Number"
         ' 
@@ -163,28 +163,28 @@ Partial Class TeacherRegistrationForm
         suffixlbl.ForeColor = Color.Indigo
         suffixlbl.Location = New Point(107, 536)
         suffixlbl.Name = "suffixlbl"
-        suffixlbl.Size = New Size(115, 46)
+        suffixlbl.Size = New Size(91, 37)
         suffixlbl.TabIndex = 78
         suffixlbl.Text = "Suffix"
         ' 
         ' suffixtxt
         ' 
         suffixtxt.BackColor = Color.Silver
-        suffixtxt.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        suffixtxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
         suffixtxt.Location = New Point(107, 585)
         suffixtxt.Margin = New Padding(3, 2, 3, 2)
         suffixtxt.Name = "suffixtxt"
-        suffixtxt.Size = New Size(102, 56)
+        suffixtxt.Size = New Size(68, 46)
         suffixtxt.TabIndex = 77
         ' 
         ' emailtxt
         ' 
         emailtxt.BackColor = Color.Silver
-        emailtxt.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
-        emailtxt.Location = New Point(404, 586)
+        emailtxt.Font = New Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        emailtxt.Location = New Point(299, 586)
         emailtxt.Margin = New Padding(3, 2, 3, 2)
         emailtxt.Name = "emailtxt"
-        emailtxt.Size = New Size(231, 56)
+        emailtxt.Size = New Size(345, 35)
         emailtxt.TabIndex = 76
         ' 
         ' emaillbl
@@ -192,9 +192,9 @@ Partial Class TeacherRegistrationForm
         emaillbl.AutoSize = True
         emaillbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         emaillbl.ForeColor = Color.Indigo
-        emaillbl.Location = New Point(404, 536)
+        emaillbl.Location = New Point(299, 536)
         emaillbl.Name = "emaillbl"
-        emaillbl.Size = New Size(107, 46)
+        emaillbl.Size = New Size(87, 37)
         emaillbl.TabIndex = 75
         emaillbl.Text = "Email"
         ' 
@@ -203,11 +203,11 @@ Partial Class TeacherRegistrationForm
         gendercb.BackColor = Color.Silver
         gendercb.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         gendercb.FormattingEnabled = True
-        gendercb.Items.AddRange(New Object() {"MALE", "FEMALE"})
-        gendercb.Location = New Point(540, 166)
+        gendercb.Items.AddRange(New Object() {"Male", "Female"})
+        gendercb.Location = New Point(533, 171)
         gendercb.Margin = New Padding(3, 2, 3, 2)
         gendercb.Name = "gendercb"
-        gendercb.Size = New Size(142, 56)
+        gendercb.Size = New Size(110, 48)
         gendercb.TabIndex = 74
         ' 
         ' genderlbl
@@ -215,9 +215,9 @@ Partial Class TeacherRegistrationForm
         genderlbl.AutoSize = True
         genderlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         genderlbl.ForeColor = Color.Indigo
-        genderlbl.Location = New Point(540, 121)
+        genderlbl.Location = New Point(533, 121)
         genderlbl.Name = "genderlbl"
-        genderlbl.Size = New Size(136, 46)
+        genderlbl.Size = New Size(110, 37)
         genderlbl.TabIndex = 73
         genderlbl.Text = "Gender"
         ' 
@@ -228,7 +228,7 @@ Partial Class TeacherRegistrationForm
         midnamelbl.ForeColor = Color.Indigo
         midnamelbl.Location = New Point(107, 408)
         midnamelbl.Name = "midnamelbl"
-        midnamelbl.Size = New Size(236, 46)
+        midnamelbl.Size = New Size(191, 37)
         midnamelbl.TabIndex = 72
         midnamelbl.Text = "Middle Name"
         ' 
@@ -239,7 +239,7 @@ Partial Class TeacherRegistrationForm
         fnamelbl.ForeColor = Color.Indigo
         fnamelbl.Location = New Point(107, 265)
         fnamelbl.Name = "fnamelbl"
-        fnamelbl.Size = New Size(193, 46)
+        fnamelbl.Size = New Size(156, 37)
         fnamelbl.TabIndex = 71
         fnamelbl.Text = "First Name"
         ' 
@@ -250,7 +250,7 @@ Partial Class TeacherRegistrationForm
         lnamelbl.ForeColor = Color.Indigo
         lnamelbl.Location = New Point(107, 121)
         lnamelbl.Name = "lnamelbl"
-        lnamelbl.Size = New Size(186, 46)
+        lnamelbl.Size = New Size(152, 37)
         lnamelbl.TabIndex = 70
         lnamelbl.Text = "Last Name"
         ' 
@@ -260,48 +260,48 @@ Partial Class TeacherRegistrationForm
         fullnamelbl.Font = New Font("Segoe UI Black", 26.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         fullnamelbl.Location = New Point(64, 48)
         fullnamelbl.Name = "fullnamelbl"
-        fullnamelbl.Size = New Size(245, 60)
+        fullnamelbl.Size = New Size(194, 47)
         fullnamelbl.TabIndex = 69
         fullnamelbl.Text = "Full Name"
         ' 
         ' midnametxt
         ' 
         midnametxt.BackColor = Color.Silver
-        midnametxt.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        midnametxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
         midnametxt.Location = New Point(107, 460)
         midnametxt.Margin = New Padding(3, 2, 3, 2)
         midnametxt.Name = "midnametxt"
-        midnametxt.Size = New Size(307, 56)
+        midnametxt.Size = New Size(307, 46)
         midnametxt.TabIndex = 68
         ' 
         ' fnametxt
         ' 
         fnametxt.BackColor = Color.Silver
-        fnametxt.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        fnametxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
         fnametxt.Location = New Point(107, 316)
         fnametxt.Margin = New Padding(3, 2, 3, 2)
         fnametxt.Name = "fnametxt"
-        fnametxt.Size = New Size(307, 56)
+        fnametxt.Size = New Size(307, 46)
         fnametxt.TabIndex = 67
         ' 
         ' lastnametxt
         ' 
         lastnametxt.BackColor = Color.Silver
-        lastnametxt.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        lastnametxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
         lastnametxt.Location = New Point(107, 173)
         lastnametxt.Margin = New Padding(3, 2, 3, 2)
         lastnametxt.Name = "lastnametxt"
-        lastnametxt.Size = New Size(307, 56)
+        lastnametxt.Size = New Size(307, 46)
         lastnametxt.TabIndex = 66
         ' 
         ' fnumbertxt
         ' 
         fnumbertxt.BackColor = Color.Silver
-        fnumbertxt.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        fnumbertxt.Location = New Point(764, 168)
+        fnumbertxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        fnumbertxt.Location = New Point(735, 173)
         fnumbertxt.Margin = New Padding(3, 2, 3, 2)
         fnumbertxt.Name = "fnumbertxt"
-        fnumbertxt.Size = New Size(122, 56)
+        fnumbertxt.Size = New Size(122, 46)
         fnumbertxt.TabIndex = 90
         ' 
         ' Panel1

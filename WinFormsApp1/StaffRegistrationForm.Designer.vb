@@ -79,7 +79,7 @@ Partial Class StaffRegistrationForm
         ' numberTextbox
         ' 
         numberTextbox.BackColor = Color.Silver
-        numberTextbox.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        numberTextbox.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
         numberTextbox.Location = New Point(724, 585)
         numberTextbox.Margin = New Padding(3, 2, 3, 2)
         numberTextbox.Name = "numberTextbox"
@@ -111,21 +111,21 @@ Partial Class StaffRegistrationForm
         ' suffixTxtBox
         ' 
         suffixTxtBox.BackColor = Color.Silver
-        suffixTxtBox.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        suffixTxtBox.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
         suffixTxtBox.Location = New Point(107, 585)
         suffixTxtBox.Margin = New Padding(3, 2, 3, 2)
         suffixTxtBox.Name = "suffixTxtBox"
-        suffixTxtBox.Size = New Size(73, 46)
+        suffixTxtBox.Size = New Size(51, 46)
         suffixTxtBox.TabIndex = 75
         ' 
         ' emailBox
         ' 
         emailBox.BackColor = Color.Silver
-        emailBox.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
-        emailBox.Location = New Point(404, 586)
+        emailBox.Font = New Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        emailBox.Location = New Point(325, 585)
         emailBox.Margin = New Padding(3, 2, 3, 2)
         emailBox.Name = "emailBox"
-        emailBox.Size = New Size(231, 46)
+        emailBox.Size = New Size(345, 33)
         emailBox.TabIndex = 74
         ' 
         ' Label5
@@ -133,7 +133,7 @@ Partial Class StaffRegistrationForm
         Label5.AutoSize = True
         Label5.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
         Label5.ForeColor = Color.Indigo
-        Label5.Location = New Point(404, 536)
+        Label5.Location = New Point(325, 535)
         Label5.Name = "Label5"
         Label5.Size = New Size(91, 40)
         Label5.TabIndex = 73
@@ -144,7 +144,7 @@ Partial Class StaffRegistrationForm
         ComboBox1.BackColor = Color.Silver
         ComboBox1.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         ComboBox1.FormattingEnabled = True
-        ComboBox1.Items.AddRange(New Object() {"MALE", "FEMALE"})
+        ComboBox1.Items.AddRange(New Object() {"Male", "Female"})
         ComboBox1.Location = New Point(540, 166)
         ComboBox1.Margin = New Padding(3, 2, 3, 2)
         ComboBox1.Name = "ComboBox1"
@@ -208,7 +208,7 @@ Partial Class StaffRegistrationForm
         ' midNameBox
         ' 
         midNameBox.BackColor = Color.Silver
-        midNameBox.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        midNameBox.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
         midNameBox.Location = New Point(107, 460)
         midNameBox.Margin = New Padding(3, 2, 3, 2)
         midNameBox.Name = "midNameBox"
@@ -218,7 +218,7 @@ Partial Class StaffRegistrationForm
         ' firstNameBox
         ' 
         firstNameBox.BackColor = Color.Silver
-        firstNameBox.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        firstNameBox.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
         firstNameBox.Location = New Point(107, 316)
         firstNameBox.Margin = New Padding(3, 2, 3, 2)
         firstNameBox.Name = "firstNameBox"
@@ -228,7 +228,7 @@ Partial Class StaffRegistrationForm
         ' lastnameBox
         ' 
         lastnameBox.BackColor = Color.Silver
-        lastnameBox.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        lastnameBox.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
         lastnameBox.Location = New Point(107, 173)
         lastnameBox.Margin = New Padding(3, 2, 3, 2)
         lastnameBox.Name = "lastnameBox"
@@ -249,7 +249,7 @@ Partial Class StaffRegistrationForm
         ' TextBox4
         ' 
         TextBox4.BackColor = Color.Silver
-        TextBox4.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        TextBox4.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
         TextBox4.Location = New Point(545, 461)
         TextBox4.Margin = New Padding(3, 2, 3, 2)
         TextBox4.Name = "TextBox4"
@@ -365,8 +365,8 @@ Partial Class StaffRegistrationForm
         ' TextBox2
         ' 
         TextBox2.BackColor = Color.Silver
-        TextBox2.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        TextBox2.Location = New Point(767, 166)
+        TextBox2.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
+        TextBox2.Location = New Point(753, 168)
         TextBox2.Margin = New Padding(3, 2, 3, 2)
         TextBox2.Name = "TextBox2"
         TextBox2.Size = New Size(122, 46)

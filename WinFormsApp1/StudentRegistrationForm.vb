@@ -3,34 +3,34 @@
 Public Class StudentRegistrationForm
 
     Private ReadOnly departmentCourses As New Dictionary(Of String, List(Of String)) From {
-        {"COLLEGE OF COMPUTER STUDIES", New List(Of String) From {
+        {"College of Computer Studies", New List(Of String) From {
             "Bachelor of Science in Information Technology",
             "Bachelor of Science in Computer Science"
         }},
-        {"COLLEGE OF EDUCATION", New List(Of String) From {
+        {"College of Education", New List(Of String) From {
             "Bachelor of Secondary Education - English",
             "Bachelor of Secondary Education - Math",
             "Bachelor of Elementary Education - Filipino"
         }},
-        {"COLLEGE OF BUSINESS ADMINISTRATION", New List(Of String) From {
+        {"College of Business Management", New List(Of String) From {
             "Bachelor of Science in Marketing Management",
             "Bachelor of Science in Human Resource Management"
         }},
-        {"COLLEGE OF ENGINEERING", New List(Of String) From {
+        {"College of Marketing", New List(Of String) From {
             "Bachelor of Science in Civil Engineering",
             "Bachelor of Science in Mechanical Engineering",
             "Bachelor of Science in Electrical Engineering"
         }},
-        {"COLLEGE OF ARTS AND SCIENCES", New List(Of String) From {
+        {"College of Arts and Sciences", New List(Of String) From {
             "Bachelor of Arts in Psychology",
             "Bachelor of Science in Biology",
             "Bachelor of Science in Political Science"
         }},
-        {"COLLEGE OF HOSPITALITY MANAGEMENT", New List(Of String) From {
+        {"College of Hospitality Management", New List(Of String) From {
             "Bachelor of Science in Hospitality Management",
             "Bachelor of Science in Tourism Management"
         }},
-        {"COLLEGE OF NURSING", New List(Of String) From {
+        {"College of Nursing", New List(Of String) From {
             "Bachelor of Science in Nursing",
             "Bachelor of Science in Medical Technology",
             "Bachelor of Science in Pharmacy"
@@ -41,8 +41,8 @@ Public Class StudentRegistrationForm
     Private ReadOnly courseAbbreviations As New Dictionary(Of String, String) From {
         {"Bachelor of Science in Information Technology", "BSIT"},
         {"Bachelor of Science in Computer Science", "BSCS"},
-        {"Bachelor of Secondary Education - English", "BSEDE"},
-        {"Bachelor of Secondary Education - Math", "BSEDM"},
+        {"Bachelor of Secondary Education - English", "BSED-E"},
+        {"Bachelor of Secondary Education - Math", "BSED-M"},
         {"Bachelor of Elementary Education - Filipino", "BEED"},
         {"Bachelor of Science in Marketing Management", "BSMM"},
         {"Bachelor of Science in Human Resource Management", "BSHR"},
@@ -68,7 +68,7 @@ Public Class StudentRegistrationForm
             studdeptcb.Items.Add(dept)
         Next
 
-        ' ✅ Enable and make departmentBox selection-only
+
         studdeptcb.Enabled = True
         studdeptcb.DropDownStyle = ComboBoxStyle.DropDownList
         studdeptcb.SelectedIndex = -1
@@ -172,5 +172,7 @@ Public Class StudentRegistrationForm
             Me.Hide()
         End If
     End Sub
+    Private Sub numberTextbox_TextChanged(sender As Object, e As EventArgs) Handles numberTextbox.TextChanged
 
+    End Sub
 End Class

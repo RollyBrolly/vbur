@@ -3,6 +3,8 @@
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.FormBorderStyle = FormBorderStyle.None
         Me.WindowState = FormWindowState.Maximized
+
+        deptcb.Enabled = True
     End Sub
     Private Sub ClearAllText(parent As Control)
         For Each ctrl As Control In parent.Controls
@@ -62,6 +64,14 @@
     End Sub
 
     Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
+
+    End Sub
+
+    Private Sub deptcb_SelectedIndexChanged(sender As Object, e As EventArgs) Handles deptcb.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub emailtxt_TextChanged(sender As Object, e As EventArgs) Handles emailtxt.TextChanged
 
     End Sub
 End Class

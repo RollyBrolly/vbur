@@ -58,7 +58,7 @@ Partial Class StudentRegistrationForm
         ' studlastntxt
         ' 
         studlastntxt.BackColor = Color.Silver
-        studlastntxt.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        studlastntxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
         studlastntxt.Location = New Point(107, 173)
         studlastntxt.Margin = New Padding(3, 2, 3, 2)
         studlastntxt.Name = "studlastntxt"
@@ -68,7 +68,7 @@ Partial Class StudentRegistrationForm
         ' firstNameBox
         ' 
         firstNameBox.BackColor = Color.Silver
-        firstNameBox.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        firstNameBox.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
         firstNameBox.Location = New Point(107, 316)
         firstNameBox.Margin = New Padding(3, 2, 3, 2)
         firstNameBox.Name = "firstNameBox"
@@ -78,7 +78,7 @@ Partial Class StudentRegistrationForm
         ' midNameBox
         ' 
         midNameBox.BackColor = Color.Silver
-        midNameBox.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        midNameBox.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
         midNameBox.Location = New Point(107, 460)
         midNameBox.Margin = New Padding(3, 2, 3, 2)
         midNameBox.Name = "midNameBox"
@@ -175,11 +175,11 @@ Partial Class StudentRegistrationForm
         ' suffixTxtBox
         ' 
         suffixTxtBox.BackColor = Color.Silver
-        suffixTxtBox.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        suffixTxtBox.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
         suffixTxtBox.Location = New Point(107, 589)
         suffixTxtBox.Margin = New Padding(3, 2, 3, 2)
         suffixTxtBox.Name = "suffixTxtBox"
-        suffixTxtBox.Size = New Size(68, 43)
+        suffixTxtBox.Size = New Size(68, 46)
         suffixTxtBox.TabIndex = 13
         ' 
         ' Label6
@@ -196,11 +196,11 @@ Partial Class StudentRegistrationForm
         ' numberTextbox
         ' 
         numberTextbox.BackColor = Color.Silver
-        numberTextbox.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        numberTextbox.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
         numberTextbox.Location = New Point(716, 590)
         numberTextbox.Margin = New Padding(3, 2, 3, 2)
         numberTextbox.Name = "numberTextbox"
-        numberTextbox.Size = New Size(231, 43)
+        numberTextbox.Size = New Size(231, 46)
         numberTextbox.TabIndex = 16
         ' 
         ' Label7
