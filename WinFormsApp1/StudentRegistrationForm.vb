@@ -63,53 +63,53 @@ Public Class StudentRegistrationForm
         Me.FormBorderStyle = FormBorderStyle.None
         Me.WindowState = FormWindowState.Maximized
 
-        departmentBox.Items.Clear()
+        studdeptcb.Items.Clear()
         For Each dept As String In departmentCourses.Keys
-            departmentBox.Items.Add(dept)
+            studdeptcb.Items.Add(dept)
         Next
 
         ' ✅ Enable and make departmentBox selection-only
-        departmentBox.Enabled = True
-        departmentBox.DropDownStyle = ComboBoxStyle.DropDownList
-        departmentBox.SelectedIndex = -1
+        studdeptcb.Enabled = True
+        studdeptcb.DropDownStyle = ComboBoxStyle.DropDownList
+        studdeptcb.SelectedIndex = -1
 
-        courseBox.Items.Clear()
-        courseBox.Enabled = False
+        courcb.Items.Clear()
+        courcb.Enabled = False
 
         sectioncb.Items.Clear()
         sectioncb.Enabled = False
     End Sub
 
-    Private Sub departmentBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles departmentBox.SelectedIndexChanged
-        courseBox.Items.Clear()
+    Private Sub departmentBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles studdeptcb.SelectedIndexChanged
+        courcb.Items.Clear()
         sectioncb.Items.Clear()
         sectioncb.Enabled = False
 
-        If departmentBox.SelectedItem Is Nothing Then
-            courseBox.Enabled = False
+        If studdeptcb.SelectedItem Is Nothing Then
+            courcb.Enabled = False
             Return
         End If
 
-        Dim dept As String = departmentBox.SelectedItem.ToString()
+        Dim dept As String = studdeptcb.SelectedItem.ToString()
 
         If departmentCourses.ContainsKey(dept) Then
-            courseBox.Items.AddRange(departmentCourses(dept).ToArray())
-            courseBox.Enabled = True
+            courcb.Items.AddRange(departmentCourses(dept).ToArray())
+            courcb.Enabled = True
         Else
-            courseBox.Enabled = False
+            courcb.Enabled = False
         End If
     End Sub
 
     ' ✅ Populate sectionBox with correct abbreviation
-    Private Sub courseBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles courseBox.SelectedIndexChanged
+    Private Sub courseBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles courcb.SelectedIndexChanged
         sectioncb.Items.Clear()
 
-        If departmentBox.SelectedIndex = -1 OrElse courseBox.SelectedIndex = -1 Then
+        If studdeptcb.SelectedIndex = -1 OrElse courcb.SelectedIndex = -1 Then
             sectioncb.Enabled = False
             Return
         End If
 
-        Dim courseName As String = courseBox.SelectedItem.ToString()
+        Dim courseName As String = courcb.SelectedItem.ToString()
         Dim abbreviation As String = ""
 
         If courseAbbreviations.ContainsKey(courseName) Then
@@ -130,9 +130,9 @@ Public Class StudentRegistrationForm
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If String.IsNullOrWhiteSpace(firstNameBox.Text) OrElse
-           String.IsNullOrWhiteSpace(lastnameBox.Text) OrElse
-           departmentBox.SelectedIndex = -1 OrElse
-           courseBox.SelectedIndex = -1 OrElse
+           String.IsNullOrWhiteSpace(studlastntxt.Text) OrElse
+           studdeptcb.SelectedIndex = -1 OrElse
+           courcb.SelectedIndex = -1 OrElse
            sectioncb.SelectedIndex = -1 Then
 
             MessageBox.Show("Please fill out all required fields before registering.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -146,9 +146,9 @@ Public Class StudentRegistrationForm
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to clear all fields?", "Confirm Clear", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.Yes Then
             ClearAllText(Me)
-            departmentBox.SelectedIndex = -1
-            courseBox.Items.Clear()
-            courseBox.Enabled = False
+            studdeptcb.SelectedIndex = -1
+            courcb.Items.Clear()
+            courcb.Enabled = False
             sectioncb.Items.Clear()
             sectioncb.Enabled = False
         End If

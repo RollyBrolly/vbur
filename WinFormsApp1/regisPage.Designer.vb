@@ -24,16 +24,16 @@ Partial Class Registration
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Registration))
         Panel1 = New Panel()
-        Button4 = New Button()
+        returnbtn = New Button()
         PictureBox7 = New PictureBox()
         PictureBox6 = New PictureBox()
-        Button3 = New Button()
+        staffbtn = New Button()
         PictureBox5 = New PictureBox()
         PictureBox3 = New PictureBox()
-        Button2 = New Button()
+        faculbtn = New Button()
         PictureBox2 = New PictureBox()
         PictureBox4 = New PictureBox()
-        Button1 = New Button()
+        studbtn = New Button()
         PictureBox1 = New PictureBox()
         Panel1.SuspendLayout()
         CType(PictureBox7, ComponentModel.ISupportInitialize).BeginInit()
@@ -47,33 +47,33 @@ Partial Class Registration
         ' 
         ' Panel1
         ' 
-        Panel1.Controls.Add(Button4)
+        Panel1.Controls.Add(returnbtn)
         Panel1.Controls.Add(PictureBox7)
         Panel1.Controls.Add(PictureBox6)
-        Panel1.Controls.Add(Button3)
+        Panel1.Controls.Add(staffbtn)
         Panel1.Controls.Add(PictureBox5)
         Panel1.Controls.Add(PictureBox3)
-        Panel1.Controls.Add(Button2)
+        Panel1.Controls.Add(faculbtn)
         Panel1.Controls.Add(PictureBox2)
         Panel1.Controls.Add(PictureBox4)
-        Panel1.Controls.Add(Button1)
+        Panel1.Controls.Add(studbtn)
         Panel1.Controls.Add(PictureBox1)
         Panel1.Location = New Point(-1, -1)
         Panel1.Name = "Panel1"
         Panel1.Size = New Size(1908, 1080)
         Panel1.TabIndex = 11
         ' 
-        ' Button4
+        ' returnbtn
         ' 
-        Button4.BackColor = Color.SlateGray
-        Button4.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button4.ForeColor = Color.White
-        Button4.Location = New Point(1707, 24)
-        Button4.Name = "Button4"
-        Button4.Size = New Size(167, 74)
-        Button4.TabIndex = 12
-        Button4.Text = "RETURN"
-        Button4.UseVisualStyleBackColor = False
+        returnbtn.BackColor = Color.SlateGray
+        returnbtn.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        returnbtn.ForeColor = Color.White
+        returnbtn.Location = New Point(1707, 24)
+        returnbtn.Name = "returnbtn"
+        returnbtn.Size = New Size(167, 74)
+        returnbtn.TabIndex = 12
+        returnbtn.Text = "RETURN"
+        returnbtn.UseVisualStyleBackColor = False
         ' 
         ' PictureBox7
         ' 
@@ -98,18 +98,18 @@ Partial Class Registration
         PictureBox6.TabIndex = 21
         PictureBox6.TabStop = False
         ' 
-        ' Button3
+        ' staffbtn
         ' 
-        Button3.BackColor = Color.Black
-        Button3.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
-        Button3.ForeColor = SystemColors.ControlLightLight
-        Button3.Location = New Point(1557, 887)
-        Button3.Margin = New Padding(3, 2, 3, 2)
-        Button3.Name = "Button3"
-        Button3.Size = New Size(158, 62)
-        Button3.TabIndex = 20
-        Button3.Text = "STAFF"
-        Button3.UseVisualStyleBackColor = False
+        staffbtn.BackColor = Color.Black
+        staffbtn.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
+        staffbtn.ForeColor = SystemColors.ControlLightLight
+        staffbtn.Location = New Point(1557, 887)
+        staffbtn.Margin = New Padding(3, 2, 3, 2)
+        staffbtn.Name = "staffbtn"
+        staffbtn.Size = New Size(158, 62)
+        staffbtn.TabIndex = 20
+        staffbtn.Text = "STAFF"
+        staffbtn.UseVisualStyleBackColor = False
         ' 
         ' PictureBox5
         ' 
@@ -133,18 +133,18 @@ Partial Class Registration
         PictureBox3.TabIndex = 25
         PictureBox3.TabStop = False
         ' 
-        ' Button2
+        ' faculbtn
         ' 
-        Button2.BackColor = Color.Black
-        Button2.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
-        Button2.ForeColor = SystemColors.ControlLightLight
-        Button2.Location = New Point(872, 887)
-        Button2.Margin = New Padding(3, 2, 3, 2)
-        Button2.Name = "Button2"
-        Button2.Size = New Size(158, 62)
-        Button2.TabIndex = 24
-        Button2.Text = "FACULTY"
-        Button2.UseVisualStyleBackColor = False
+        faculbtn.BackColor = Color.Black
+        faculbtn.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
+        faculbtn.ForeColor = SystemColors.ControlLightLight
+        faculbtn.Location = New Point(872, 887)
+        faculbtn.Margin = New Padding(3, 2, 3, 2)
+        faculbtn.Name = "faculbtn"
+        faculbtn.Size = New Size(158, 62)
+        faculbtn.TabIndex = 24
+        faculbtn.Text = "FACULTY"
+        faculbtn.UseVisualStyleBackColor = False
         ' 
         ' PictureBox2
         ' 
@@ -168,18 +168,18 @@ Partial Class Registration
         PictureBox4.TabIndex = 22
         PictureBox4.TabStop = False
         ' 
-        ' Button1
+        ' studbtn
         ' 
-        Button1.BackColor = Color.Black
-        Button1.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
-        Button1.ForeColor = SystemColors.ControlLightLight
-        Button1.Location = New Point(194, 887)
-        Button1.Margin = New Padding(3, 2, 3, 2)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(158, 62)
-        Button1.TabIndex = 21
-        Button1.Text = "STUDENT"
-        Button1.UseVisualStyleBackColor = False
+        studbtn.BackColor = Color.Black
+        studbtn.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
+        studbtn.ForeColor = SystemColors.ControlLightLight
+        studbtn.Location = New Point(194, 887)
+        studbtn.Margin = New Padding(3, 2, 3, 2)
+        studbtn.Name = "studbtn"
+        studbtn.Size = New Size(158, 62)
+        studbtn.TabIndex = 21
+        studbtn.Text = "STUDENT"
+        studbtn.UseVisualStyleBackColor = False
         ' 
         ' PictureBox1
         ' 
@@ -215,15 +215,15 @@ Partial Class Registration
 
     Friend WithEvents Panel1 As Panel
     Friend WithEvents PictureBox4 As PictureBox
-    Friend WithEvents Button1 As Button
+    Friend WithEvents studbtn As Button
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents PictureBox2 As PictureBox
     Friend WithEvents PictureBox3 As PictureBox
-    Friend WithEvents Button2 As Button
+    Friend WithEvents faculbtn As Button
     Friend WithEvents PictureBox6 As PictureBox
-    Friend WithEvents Button3 As Button
+    Friend WithEvents staffbtn As Button
     Friend WithEvents PictureBox5 As PictureBox
     Friend WithEvents PictureBox7 As PictureBox
-    Friend WithEvents Button4 As Button
+    Friend WithEvents returnbtn As Button
 
 End Class
