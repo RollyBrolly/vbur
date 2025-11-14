@@ -24,28 +24,28 @@ Partial Class TeacherRegistrationForm
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(TeacherRegistrationForm))
         PictureBox1 = New PictureBox()
-        clearbtn = New Button()
-        returnbtn = New Button()
-        regbtn = New Button()
-        fnumlbl = New Label()
-        deptlbl = New Label()
-        deptcb = New ComboBox()
-        numtxt = New TextBox()
-        numlbl = New Label()
-        suffixlbl = New Label()
-        suffixtxt = New TextBox()
-        emailtxt = New TextBox()
-        emaillbl = New Label()
-        gendercb = New ComboBox()
-        genderlbl = New Label()
-        midnamelbl = New Label()
-        fnamelbl = New Label()
-        lnamelbl = New Label()
-        fullnamelbl = New Label()
-        midnametxt = New TextBox()
-        fnametxt = New TextBox()
-        lastnametxt = New TextBox()
-        fnumbertxt = New TextBox()
+        tcclearbtn = New Button()
+        tcreturnbtn = New Button()
+        tcregbtn = New Button()
+        tcfnumlbl = New Label()
+        tcdeptlbl = New Label()
+        tcdeptcb = New ComboBox()
+        tcnumtxt = New TextBox()
+        tcnumlbl = New Label()
+        tcsuffixlbl = New Label()
+        tcsuffixtxt = New TextBox()
+        tcemailtxt = New TextBox()
+        tcemaillbl = New Label()
+        tcgendercb = New ComboBox()
+        tcgenderlbl = New Label()
+        tcmidnamelbl = New Label()
+        tcfnamelbl = New Label()
+        tclnamelbl = New Label()
+        tctitlelbl = New Label()
+        tcmidnametxt = New TextBox()
+        tcfnametxt = New TextBox()
+        tclastnametxt = New TextBox()
+        tcfnumbertxt = New TextBox()
         Panel1 = New Panel()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
@@ -61,273 +61,273 @@ Partial Class TeacherRegistrationForm
         PictureBox1.TabIndex = 62
         PictureBox1.TabStop = False
         ' 
-        ' clearbtn
+        ' tcclearbtn
         ' 
-        clearbtn.BackColor = Color.DarkSlateBlue
-        clearbtn.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
-        clearbtn.ForeColor = Color.White
-        clearbtn.Location = New Point(429, 664)
-        clearbtn.Margin = New Padding(3, 2, 3, 2)
-        clearbtn.Name = "clearbtn"
-        clearbtn.Size = New Size(180, 72)
-        clearbtn.TabIndex = 65
-        clearbtn.Text = "CLEAR"
-        clearbtn.UseVisualStyleBackColor = False
+        tcclearbtn.BackColor = Color.DarkSlateBlue
+        tcclearbtn.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        tcclearbtn.ForeColor = Color.White
+        tcclearbtn.Location = New Point(429, 664)
+        tcclearbtn.Margin = New Padding(3, 2, 3, 2)
+        tcclearbtn.Name = "tcclearbtn"
+        tcclearbtn.Size = New Size(180, 72)
+        tcclearbtn.TabIndex = 65
+        tcclearbtn.Text = "CLEAR"
+        tcclearbtn.UseVisualStyleBackColor = False
         ' 
-        ' returnbtn
+        ' tcreturnbtn
         ' 
-        returnbtn.BackColor = Color.SlateGray
-        returnbtn.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
-        returnbtn.ForeColor = Color.White
-        returnbtn.Location = New Point(107, 664)
-        returnbtn.Margin = New Padding(3, 2, 3, 2)
-        returnbtn.Name = "returnbtn"
-        returnbtn.Size = New Size(180, 72)
-        returnbtn.TabIndex = 64
-        returnbtn.Text = "RETURN"
-        returnbtn.UseVisualStyleBackColor = False
+        tcreturnbtn.BackColor = Color.SlateGray
+        tcreturnbtn.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        tcreturnbtn.ForeColor = Color.White
+        tcreturnbtn.Location = New Point(107, 664)
+        tcreturnbtn.Margin = New Padding(3, 2, 3, 2)
+        tcreturnbtn.Name = "tcreturnbtn"
+        tcreturnbtn.Size = New Size(180, 72)
+        tcreturnbtn.TabIndex = 64
+        tcreturnbtn.Text = "RETURN"
+        tcreturnbtn.UseVisualStyleBackColor = False
         ' 
-        ' regbtn
+        ' tcregbtn
         ' 
-        regbtn.BackColor = Color.Indigo
-        regbtn.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
-        regbtn.ForeColor = Color.White
-        regbtn.Location = New Point(767, 664)
-        regbtn.Margin = New Padding(3, 2, 3, 2)
-        regbtn.Name = "regbtn"
-        regbtn.Size = New Size(180, 72)
-        regbtn.TabIndex = 63
-        regbtn.Text = "REGISTER"
-        regbtn.UseVisualStyleBackColor = False
+        tcregbtn.BackColor = Color.Indigo
+        tcregbtn.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        tcregbtn.ForeColor = Color.White
+        tcregbtn.Location = New Point(767, 664)
+        tcregbtn.Margin = New Padding(3, 2, 3, 2)
+        tcregbtn.Name = "tcregbtn"
+        tcregbtn.Size = New Size(180, 72)
+        tcregbtn.TabIndex = 63
+        tcregbtn.Text = "REGISTER"
+        tcregbtn.UseVisualStyleBackColor = False
         ' 
-        ' fnumlbl
+        ' tcfnumlbl
         ' 
-        fnumlbl.AutoSize = True
-        fnumlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
-        fnumlbl.ForeColor = Color.Indigo
-        fnumlbl.Location = New Point(735, 121)
-        fnumlbl.Name = "fnumlbl"
-        fnumlbl.Size = New Size(220, 37)
-        fnumlbl.TabIndex = 83
-        fnumlbl.Text = "Faculty Number"
+        tcfnumlbl.AutoSize = True
+        tcfnumlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
+        tcfnumlbl.ForeColor = Color.Indigo
+        tcfnumlbl.Location = New Point(735, 121)
+        tcfnumlbl.Name = "tcfnumlbl"
+        tcfnumlbl.Size = New Size(220, 37)
+        tcfnumlbl.TabIndex = 83
+        tcfnumlbl.Text = "Faculty Number"
         ' 
-        ' deptlbl
+        ' tcdeptlbl
         ' 
-        deptlbl.AutoSize = True
-        deptlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
-        deptlbl.ForeColor = Color.Indigo
-        deptlbl.Location = New Point(508, 348)
-        deptlbl.Name = "deptlbl"
-        deptlbl.Size = New Size(174, 37)
-        deptlbl.TabIndex = 82
-        deptlbl.Text = "Department"
+        tcdeptlbl.AutoSize = True
+        tcdeptlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
+        tcdeptlbl.ForeColor = Color.Indigo
+        tcdeptlbl.Location = New Point(508, 348)
+        tcdeptlbl.Name = "tcdeptlbl"
+        tcdeptlbl.Size = New Size(174, 37)
+        tcdeptlbl.TabIndex = 82
+        tcdeptlbl.Text = "Department"
         ' 
-        ' deptcb
+        ' tcdeptcb
         ' 
-        deptcb.BackColor = Color.Silver
-        deptcb.Enabled = False
-        deptcb.Font = New Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        deptcb.FormattingEnabled = True
-        deptcb.Items.AddRange(New Object() {"COLLEGE OF COMPUTER STUDIES", "COLLEGE OF EDUCATION", "COLLEGE OF ENGINEERING", "COLLEGE OF NURSING", "COLLEGE OF ARTS AND SCIENCE", "COLLEGE OF BUSINESS AND ACCOUNTANCY", "COLLEGE OF HOSPITALITY MANAGEMENT"})
-        deptcb.Location = New Point(508, 401)
-        deptcb.Margin = New Padding(3, 2, 3, 2)
-        deptcb.Name = "deptcb"
-        deptcb.Size = New Size(439, 38)
-        deptcb.TabIndex = 81
+        tcdeptcb.BackColor = Color.Silver
+        tcdeptcb.Enabled = False
+        tcdeptcb.Font = New Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        tcdeptcb.FormattingEnabled = True
+        tcdeptcb.Items.AddRange(New Object() {"COLLEGE OF COMPUTER STUDIES", "COLLEGE OF EDUCATION", "COLLEGE OF ENGINEERING", "COLLEGE OF NURSING", "COLLEGE OF ARTS AND SCIENCE", "COLLEGE OF BUSINESS AND ACCOUNTANCY", "COLLEGE OF HOSPITALITY MANAGEMENT"})
+        tcdeptcb.Location = New Point(508, 401)
+        tcdeptcb.Margin = New Padding(3, 2, 3, 2)
+        tcdeptcb.Name = "tcdeptcb"
+        tcdeptcb.Size = New Size(439, 38)
+        tcdeptcb.TabIndex = 81
         ' 
-        ' numtxt
+        ' tcnumtxt
         ' 
-        numtxt.BackColor = Color.Silver
-        numtxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
-        numtxt.Location = New Point(724, 585)
-        numtxt.Margin = New Padding(3, 2, 3, 2)
-        numtxt.Name = "numtxt"
-        numtxt.Size = New Size(231, 46)
-        numtxt.TabIndex = 80
+        tcnumtxt.BackColor = Color.Silver
+        tcnumtxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
+        tcnumtxt.Location = New Point(724, 585)
+        tcnumtxt.Margin = New Padding(3, 2, 3, 2)
+        tcnumtxt.Name = "tcnumtxt"
+        tcnumtxt.Size = New Size(231, 46)
+        tcnumtxt.TabIndex = 80
         ' 
-        ' numlbl
+        ' tcnumlbl
         ' 
-        numlbl.AutoSize = True
-        numlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
-        numlbl.ForeColor = Color.Indigo
-        numlbl.Location = New Point(718, 536)
-        numlbl.Name = "numlbl"
-        numlbl.Size = New Size(229, 37)
-        numlbl.TabIndex = 79
-        numlbl.Text = "Contact Number"
+        tcnumlbl.AutoSize = True
+        tcnumlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
+        tcnumlbl.ForeColor = Color.Indigo
+        tcnumlbl.Location = New Point(718, 536)
+        tcnumlbl.Name = "tcnumlbl"
+        tcnumlbl.Size = New Size(229, 37)
+        tcnumlbl.TabIndex = 79
+        tcnumlbl.Text = "Contact Number"
         ' 
-        ' suffixlbl
+        ' tcsuffixlbl
         ' 
-        suffixlbl.AutoSize = True
-        suffixlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
-        suffixlbl.ForeColor = Color.Indigo
-        suffixlbl.Location = New Point(107, 536)
-        suffixlbl.Name = "suffixlbl"
-        suffixlbl.Size = New Size(91, 37)
-        suffixlbl.TabIndex = 78
-        suffixlbl.Text = "Suffix"
+        tcsuffixlbl.AutoSize = True
+        tcsuffixlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
+        tcsuffixlbl.ForeColor = Color.Indigo
+        tcsuffixlbl.Location = New Point(107, 536)
+        tcsuffixlbl.Name = "tcsuffixlbl"
+        tcsuffixlbl.Size = New Size(91, 37)
+        tcsuffixlbl.TabIndex = 78
+        tcsuffixlbl.Text = "Suffix"
         ' 
-        ' suffixtxt
+        ' tcsuffixtxt
         ' 
-        suffixtxt.BackColor = Color.Silver
-        suffixtxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
-        suffixtxt.Location = New Point(107, 585)
-        suffixtxt.Margin = New Padding(3, 2, 3, 2)
-        suffixtxt.Name = "suffixtxt"
-        suffixtxt.Size = New Size(68, 46)
-        suffixtxt.TabIndex = 77
+        tcsuffixtxt.BackColor = Color.Silver
+        tcsuffixtxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
+        tcsuffixtxt.Location = New Point(107, 585)
+        tcsuffixtxt.Margin = New Padding(3, 2, 3, 2)
+        tcsuffixtxt.Name = "tcsuffixtxt"
+        tcsuffixtxt.Size = New Size(68, 46)
+        tcsuffixtxt.TabIndex = 77
         ' 
-        ' emailtxt
+        ' tcemailtxt
         ' 
-        emailtxt.BackColor = Color.Silver
-        emailtxt.Font = New Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        emailtxt.Location = New Point(299, 586)
-        emailtxt.Margin = New Padding(3, 2, 3, 2)
-        emailtxt.Name = "emailtxt"
-        emailtxt.Size = New Size(345, 35)
-        emailtxt.TabIndex = 76
+        tcemailtxt.BackColor = Color.Silver
+        tcemailtxt.Font = New Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        tcemailtxt.Location = New Point(299, 586)
+        tcemailtxt.Margin = New Padding(3, 2, 3, 2)
+        tcemailtxt.Name = "tcemailtxt"
+        tcemailtxt.Size = New Size(345, 35)
+        tcemailtxt.TabIndex = 76
         ' 
-        ' emaillbl
+        ' tcemaillbl
         ' 
-        emaillbl.AutoSize = True
-        emaillbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
-        emaillbl.ForeColor = Color.Indigo
-        emaillbl.Location = New Point(299, 536)
-        emaillbl.Name = "emaillbl"
-        emaillbl.Size = New Size(87, 37)
-        emaillbl.TabIndex = 75
-        emaillbl.Text = "Email"
+        tcemaillbl.AutoSize = True
+        tcemaillbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
+        tcemaillbl.ForeColor = Color.Indigo
+        tcemaillbl.Location = New Point(299, 536)
+        tcemaillbl.Name = "tcemaillbl"
+        tcemaillbl.Size = New Size(87, 37)
+        tcemaillbl.TabIndex = 75
+        tcemaillbl.Text = "Email"
         ' 
-        ' gendercb
+        ' tcgendercb
         ' 
-        gendercb.BackColor = Color.Silver
-        gendercb.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        gendercb.FormattingEnabled = True
-        gendercb.Items.AddRange(New Object() {"Male", "Female"})
-        gendercb.Location = New Point(533, 171)
-        gendercb.Margin = New Padding(3, 2, 3, 2)
-        gendercb.Name = "gendercb"
-        gendercb.Size = New Size(110, 48)
-        gendercb.TabIndex = 74
+        tcgendercb.BackColor = Color.Silver
+        tcgendercb.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        tcgendercb.FormattingEnabled = True
+        tcgendercb.Items.AddRange(New Object() {"Male", "Female"})
+        tcgendercb.Location = New Point(533, 171)
+        tcgendercb.Margin = New Padding(3, 2, 3, 2)
+        tcgendercb.Name = "tcgendercb"
+        tcgendercb.Size = New Size(110, 48)
+        tcgendercb.TabIndex = 74
         ' 
-        ' genderlbl
+        ' tcgenderlbl
         ' 
-        genderlbl.AutoSize = True
-        genderlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
-        genderlbl.ForeColor = Color.Indigo
-        genderlbl.Location = New Point(533, 121)
-        genderlbl.Name = "genderlbl"
-        genderlbl.Size = New Size(110, 37)
-        genderlbl.TabIndex = 73
-        genderlbl.Text = "Gender"
+        tcgenderlbl.AutoSize = True
+        tcgenderlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
+        tcgenderlbl.ForeColor = Color.Indigo
+        tcgenderlbl.Location = New Point(533, 121)
+        tcgenderlbl.Name = "tcgenderlbl"
+        tcgenderlbl.Size = New Size(110, 37)
+        tcgenderlbl.TabIndex = 73
+        tcgenderlbl.Text = "Gender"
         ' 
-        ' midnamelbl
+        ' tcmidnamelbl
         ' 
-        midnamelbl.AutoSize = True
-        midnamelbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
-        midnamelbl.ForeColor = Color.Indigo
-        midnamelbl.Location = New Point(107, 408)
-        midnamelbl.Name = "midnamelbl"
-        midnamelbl.Size = New Size(191, 37)
-        midnamelbl.TabIndex = 72
-        midnamelbl.Text = "Middle Name"
+        tcmidnamelbl.AutoSize = True
+        tcmidnamelbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
+        tcmidnamelbl.ForeColor = Color.Indigo
+        tcmidnamelbl.Location = New Point(107, 408)
+        tcmidnamelbl.Name = "tcmidnamelbl"
+        tcmidnamelbl.Size = New Size(191, 37)
+        tcmidnamelbl.TabIndex = 72
+        tcmidnamelbl.Text = "Middle Name"
         ' 
-        ' fnamelbl
+        ' tcfnamelbl
         ' 
-        fnamelbl.AutoSize = True
-        fnamelbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
-        fnamelbl.ForeColor = Color.Indigo
-        fnamelbl.Location = New Point(107, 265)
-        fnamelbl.Name = "fnamelbl"
-        fnamelbl.Size = New Size(156, 37)
-        fnamelbl.TabIndex = 71
-        fnamelbl.Text = "First Name"
+        tcfnamelbl.AutoSize = True
+        tcfnamelbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
+        tcfnamelbl.ForeColor = Color.Indigo
+        tcfnamelbl.Location = New Point(107, 265)
+        tcfnamelbl.Name = "tcfnamelbl"
+        tcfnamelbl.Size = New Size(156, 37)
+        tcfnamelbl.TabIndex = 71
+        tcfnamelbl.Text = "First Name"
         ' 
-        ' lnamelbl
+        ' tclnamelbl
         ' 
-        lnamelbl.AutoSize = True
-        lnamelbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
-        lnamelbl.ForeColor = Color.Indigo
-        lnamelbl.Location = New Point(107, 121)
-        lnamelbl.Name = "lnamelbl"
-        lnamelbl.Size = New Size(152, 37)
-        lnamelbl.TabIndex = 70
-        lnamelbl.Text = "Last Name"
+        tclnamelbl.AutoSize = True
+        tclnamelbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
+        tclnamelbl.ForeColor = Color.Indigo
+        tclnamelbl.Location = New Point(107, 121)
+        tclnamelbl.Name = "tclnamelbl"
+        tclnamelbl.Size = New Size(152, 37)
+        tclnamelbl.TabIndex = 70
+        tclnamelbl.Text = "Last Name"
         ' 
-        ' fullnamelbl
+        ' tctitlelbl
         ' 
-        fullnamelbl.AutoSize = True
-        fullnamelbl.Font = New Font("Segoe UI Black", 26.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        fullnamelbl.Location = New Point(64, 48)
-        fullnamelbl.Name = "fullnamelbl"
-        fullnamelbl.Size = New Size(194, 47)
-        fullnamelbl.TabIndex = 69
-        fullnamelbl.Text = "Full Name"
+        tctitlelbl.AutoSize = True
+        tctitlelbl.Font = New Font("Segoe UI Black", 26.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        tctitlelbl.Location = New Point(64, 48)
+        tctitlelbl.Name = "tctitlelbl"
+        tctitlelbl.Size = New Size(194, 47)
+        tctitlelbl.TabIndex = 69
+        tctitlelbl.Text = "Full Name"
         ' 
-        ' midnametxt
+        ' tcmidnametxt
         ' 
-        midnametxt.BackColor = Color.Silver
-        midnametxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
-        midnametxt.Location = New Point(107, 460)
-        midnametxt.Margin = New Padding(3, 2, 3, 2)
-        midnametxt.Name = "midnametxt"
-        midnametxt.Size = New Size(307, 46)
-        midnametxt.TabIndex = 68
+        tcmidnametxt.BackColor = Color.Silver
+        tcmidnametxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
+        tcmidnametxt.Location = New Point(107, 460)
+        tcmidnametxt.Margin = New Padding(3, 2, 3, 2)
+        tcmidnametxt.Name = "tcmidnametxt"
+        tcmidnametxt.Size = New Size(307, 46)
+        tcmidnametxt.TabIndex = 68
         ' 
-        ' fnametxt
+        ' tcfnametxt
         ' 
-        fnametxt.BackColor = Color.Silver
-        fnametxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
-        fnametxt.Location = New Point(107, 316)
-        fnametxt.Margin = New Padding(3, 2, 3, 2)
-        fnametxt.Name = "fnametxt"
-        fnametxt.Size = New Size(307, 46)
-        fnametxt.TabIndex = 67
+        tcfnametxt.BackColor = Color.Silver
+        tcfnametxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
+        tcfnametxt.Location = New Point(107, 316)
+        tcfnametxt.Margin = New Padding(3, 2, 3, 2)
+        tcfnametxt.Name = "tcfnametxt"
+        tcfnametxt.Size = New Size(307, 46)
+        tcfnametxt.TabIndex = 67
         ' 
-        ' lastnametxt
+        ' tclastnametxt
         ' 
-        lastnametxt.BackColor = Color.Silver
-        lastnametxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
-        lastnametxt.Location = New Point(107, 173)
-        lastnametxt.Margin = New Padding(3, 2, 3, 2)
-        lastnametxt.Name = "lastnametxt"
-        lastnametxt.Size = New Size(307, 46)
-        lastnametxt.TabIndex = 66
+        tclastnametxt.BackColor = Color.Silver
+        tclastnametxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
+        tclastnametxt.Location = New Point(107, 173)
+        tclastnametxt.Margin = New Padding(3, 2, 3, 2)
+        tclastnametxt.Name = "tclastnametxt"
+        tclastnametxt.Size = New Size(307, 46)
+        tclastnametxt.TabIndex = 66
         ' 
-        ' fnumbertxt
+        ' tcfnumbertxt
         ' 
-        fnumbertxt.BackColor = Color.Silver
-        fnumbertxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        fnumbertxt.Location = New Point(735, 173)
-        fnumbertxt.Margin = New Padding(3, 2, 3, 2)
-        fnumbertxt.Name = "fnumbertxt"
-        fnumbertxt.Size = New Size(122, 46)
-        fnumbertxt.TabIndex = 90
+        tcfnumbertxt.BackColor = Color.Silver
+        tcfnumbertxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        tcfnumbertxt.Location = New Point(735, 173)
+        tcfnumbertxt.Margin = New Padding(3, 2, 3, 2)
+        tcfnumbertxt.Name = "tcfnumbertxt"
+        tcfnumbertxt.Size = New Size(122, 46)
+        tcfnumbertxt.TabIndex = 90
         ' 
         ' Panel1
         ' 
-        Panel1.Controls.Add(deptlbl)
-        Panel1.Controls.Add(fnumbertxt)
-        Panel1.Controls.Add(deptcb)
-        Panel1.Controls.Add(regbtn)
-        Panel1.Controls.Add(genderlbl)
-        Panel1.Controls.Add(gendercb)
-        Panel1.Controls.Add(suffixlbl)
-        Panel1.Controls.Add(fnumlbl)
-        Panel1.Controls.Add(fullnamelbl)
-        Panel1.Controls.Add(lnamelbl)
-        Panel1.Controls.Add(fnamelbl)
-        Panel1.Controls.Add(midnamelbl)
-        Panel1.Controls.Add(lastnametxt)
-        Panel1.Controls.Add(suffixtxt)
-        Panel1.Controls.Add(returnbtn)
-        Panel1.Controls.Add(fnametxt)
-        Panel1.Controls.Add(emailtxt)
-        Panel1.Controls.Add(clearbtn)
-        Panel1.Controls.Add(midnametxt)
-        Panel1.Controls.Add(numlbl)
-        Panel1.Controls.Add(numtxt)
-        Panel1.Controls.Add(emaillbl)
+        Panel1.Controls.Add(tcdeptlbl)
+        Panel1.Controls.Add(tcfnumbertxt)
+        Panel1.Controls.Add(tcdeptcb)
+        Panel1.Controls.Add(tcregbtn)
+        Panel1.Controls.Add(tcgenderlbl)
+        Panel1.Controls.Add(tcgendercb)
+        Panel1.Controls.Add(tcsuffixlbl)
+        Panel1.Controls.Add(tcfnumlbl)
+        Panel1.Controls.Add(tctitlelbl)
+        Panel1.Controls.Add(tclnamelbl)
+        Panel1.Controls.Add(tcfnamelbl)
+        Panel1.Controls.Add(tcmidnamelbl)
+        Panel1.Controls.Add(tclastnametxt)
+        Panel1.Controls.Add(tcsuffixtxt)
+        Panel1.Controls.Add(tcreturnbtn)
+        Panel1.Controls.Add(tcfnametxt)
+        Panel1.Controls.Add(tcemailtxt)
+        Panel1.Controls.Add(tcclearbtn)
+        Panel1.Controls.Add(tcmidnametxt)
+        Panel1.Controls.Add(tcnumlbl)
+        Panel1.Controls.Add(tcnumtxt)
+        Panel1.Controls.Add(tcemaillbl)
         Panel1.Location = New Point(488, 226)
         Panel1.Name = "Panel1"
         Panel1.Size = New Size(1024, 767)
@@ -351,28 +351,28 @@ Partial Class TeacherRegistrationForm
     End Sub
 
     Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents clearbtn As Button
-    Friend WithEvents returnbtn As Button
-    Friend WithEvents regbtn As Button
-    Friend WithEvents fnumlbl As Label
-    Friend WithEvents deptlbl As Label
-    Friend WithEvents deptcb As ComboBox
-    Friend WithEvents numtxt As TextBox
-    Friend WithEvents numlbl As Label
-    Friend WithEvents suffixlbl As Label
-    Friend WithEvents suffixtxt As TextBox
-    Friend WithEvents emailtxt As TextBox
-    Friend WithEvents emaillbl As Label
-    Friend WithEvents gendercb As ComboBox
-    Friend WithEvents genderlbl As Label
-    Friend WithEvents midnamelbl As Label
-    Friend WithEvents fnamelbl As Label
-    Friend WithEvents lnamelbl As Label
-    Friend WithEvents fullnamelbl As Label
-    Friend WithEvents midnametxt As TextBox
-    Friend WithEvents fnametxt As TextBox
-    Friend WithEvents lastnametxt As TextBox
-    Friend WithEvents fnumbertxt As TextBox
+    Friend WithEvents tcclearbtn As Button
+    Friend WithEvents tcreturnbtn As Button
+    Friend WithEvents tcregbtn As Button
+    Friend WithEvents tcfnumlbl As Label
+    Friend WithEvents tcdeptlbl As Label
+    Friend WithEvents tcdeptcb As ComboBox
+    Friend WithEvents tcnumtxt As TextBox
+    Friend WithEvents tcnumlbl As Label
+    Friend WithEvents tcsuffixlbl As Label
+    Friend WithEvents tcsuffixtxt As TextBox
+    Friend WithEvents tcemailtxt As TextBox
+    Friend WithEvents tcemaillbl As Label
+    Friend WithEvents tcgendercb As ComboBox
+    Friend WithEvents tcgenderlbl As Label
+    Friend WithEvents tcmidnamelbl As Label
+    Friend WithEvents tcfnamelbl As Label
+    Friend WithEvents tclnamelbl As Label
+    Friend WithEvents tctitlelbl As Label
+    Friend WithEvents tcmidnametxt As TextBox
+    Friend WithEvents tcfnametxt As TextBox
+    Friend WithEvents tclastnametxt As TextBox
+    Friend WithEvents tcfnumbertxt As TextBox
     Friend WithEvents Panel1 As Panel
 
 End Class

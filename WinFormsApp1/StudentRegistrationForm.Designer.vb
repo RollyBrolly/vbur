@@ -24,33 +24,33 @@ Partial Class StudentRegistrationForm
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(StudentRegistrationForm))
         studlastntxt = New TextBox()
-        firstNameBox = New TextBox()
-        midNameBox = New TextBox()
-        titlelbl = New Label()
-        Label1 = New Label()
-        Label2 = New Label()
-        Label3 = New Label()
-        Label4 = New Label()
+        studfnametxt = New TextBox()
+        studmiddlentxt = New TextBox()
+        studtitlelbl = New Label()
+        studlnamelbl = New Label()
+        studfname = New Label()
+        studmddilenlbl = New Label()
+        studgenderlbl = New Label()
         studgendercb = New ComboBox()
-        Label5 = New Label()
+        studemaillbl = New Label()
         studemailtxt = New TextBox()
-        suffixTxtBox = New TextBox()
-        Label6 = New Label()
-        numberTextbox = New TextBox()
-        Label7 = New Label()
-        courcb = New ComboBox()
+        studsuffixtxt = New TextBox()
+        suffixlbl = New Label()
+        studnumtxt = New TextBox()
+        studcontlbl = New Label()
+        studcourcb = New ComboBox()
         studdeptcb = New ComboBox()
         deptlbl = New Label()
         studnolbl = New Label()
         studnotxt = New MaskedTextBox()
-        Button1 = New Button()
-        Button2 = New Button()
-        Button3 = New Button()
+        studregbtn = New Button()
+        studreternbtn = New Button()
+        studclearbtn = New Button()
         PictureBox1 = New PictureBox()
-        courlbl = New Label()
+        studcourlbl = New Label()
         Panel1 = New Panel()
         sectionlbl = New Label()
-        sectioncb = New ComboBox()
+        studsectioncb = New ComboBox()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
         SuspendLayout()
@@ -65,79 +65,79 @@ Partial Class StudentRegistrationForm
         studlastntxt.Size = New Size(307, 46)
         studlastntxt.TabIndex = 1
         ' 
-        ' firstNameBox
+        ' studfnametxt
         ' 
-        firstNameBox.BackColor = Color.Silver
-        firstNameBox.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
-        firstNameBox.Location = New Point(107, 316)
-        firstNameBox.Margin = New Padding(3, 2, 3, 2)
-        firstNameBox.Name = "firstNameBox"
-        firstNameBox.Size = New Size(307, 46)
-        firstNameBox.TabIndex = 2
+        studfnametxt.BackColor = Color.Silver
+        studfnametxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
+        studfnametxt.Location = New Point(107, 316)
+        studfnametxt.Margin = New Padding(3, 2, 3, 2)
+        studfnametxt.Name = "studfnametxt"
+        studfnametxt.Size = New Size(307, 46)
+        studfnametxt.TabIndex = 2
         ' 
-        ' midNameBox
+        ' studmiddlentxt
         ' 
-        midNameBox.BackColor = Color.Silver
-        midNameBox.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
-        midNameBox.Location = New Point(107, 460)
-        midNameBox.Margin = New Padding(3, 2, 3, 2)
-        midNameBox.Name = "midNameBox"
-        midNameBox.Size = New Size(307, 46)
-        midNameBox.TabIndex = 3
+        studmiddlentxt.BackColor = Color.Silver
+        studmiddlentxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
+        studmiddlentxt.Location = New Point(107, 460)
+        studmiddlentxt.Margin = New Padding(3, 2, 3, 2)
+        studmiddlentxt.Name = "studmiddlentxt"
+        studmiddlentxt.Size = New Size(307, 46)
+        studmiddlentxt.TabIndex = 3
         ' 
-        ' titlelbl
+        ' studtitlelbl
         ' 
-        titlelbl.AutoSize = True
-        titlelbl.Font = New Font("Segoe UI Black", 26.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        titlelbl.Location = New Point(64, 48)
-        titlelbl.Name = "titlelbl"
-        titlelbl.Size = New Size(194, 47)
-        titlelbl.TabIndex = 4
-        titlelbl.Text = "Full Name"
+        studtitlelbl.AutoSize = True
+        studtitlelbl.Font = New Font("Segoe UI Black", 26.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        studtitlelbl.Location = New Point(64, 48)
+        studtitlelbl.Name = "studtitlelbl"
+        studtitlelbl.Size = New Size(194, 47)
+        studtitlelbl.TabIndex = 4
+        studtitlelbl.Text = "Full Name"
         ' 
-        ' Label1
+        ' studlnamelbl
         ' 
-        Label1.AutoSize = True
-        Label1.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label1.ForeColor = Color.Indigo
-        Label1.Location = New Point(107, 121)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(152, 37)
-        Label1.TabIndex = 5
-        Label1.Text = "Last Name"
+        studlnamelbl.AutoSize = True
+        studlnamelbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        studlnamelbl.ForeColor = Color.Indigo
+        studlnamelbl.Location = New Point(107, 121)
+        studlnamelbl.Name = "studlnamelbl"
+        studlnamelbl.Size = New Size(152, 37)
+        studlnamelbl.TabIndex = 5
+        studlnamelbl.Text = "Last Name"
         ' 
-        ' Label2
+        ' studfname
         ' 
-        Label2.AutoSize = True
-        Label2.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
-        Label2.ForeColor = Color.Indigo
-        Label2.Location = New Point(107, 265)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(156, 37)
-        Label2.TabIndex = 6
-        Label2.Text = "First Name"
+        studfname.AutoSize = True
+        studfname.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
+        studfname.ForeColor = Color.Indigo
+        studfname.Location = New Point(107, 265)
+        studfname.Name = "studfname"
+        studfname.Size = New Size(156, 37)
+        studfname.TabIndex = 6
+        studfname.Text = "First Name"
         ' 
-        ' Label3
+        ' studmddilenlbl
         ' 
-        Label3.AutoSize = True
-        Label3.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
-        Label3.ForeColor = Color.Indigo
-        Label3.Location = New Point(107, 408)
-        Label3.Name = "Label3"
-        Label3.Size = New Size(191, 37)
-        Label3.TabIndex = 7
-        Label3.Text = "Middle Name"
+        studmddilenlbl.AutoSize = True
+        studmddilenlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
+        studmddilenlbl.ForeColor = Color.Indigo
+        studmddilenlbl.Location = New Point(107, 408)
+        studmddilenlbl.Name = "studmddilenlbl"
+        studmddilenlbl.Size = New Size(191, 37)
+        studmddilenlbl.TabIndex = 7
+        studmddilenlbl.Text = "Middle Name"
         ' 
-        ' Label4
+        ' studgenderlbl
         ' 
-        Label4.AutoSize = True
-        Label4.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
-        Label4.ForeColor = Color.Indigo
-        Label4.Location = New Point(215, 543)
-        Label4.Name = "Label4"
-        Label4.Size = New Size(110, 37)
-        Label4.TabIndex = 9
-        Label4.Text = "Gender"
+        studgenderlbl.AutoSize = True
+        studgenderlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
+        studgenderlbl.ForeColor = Color.Indigo
+        studgenderlbl.Location = New Point(215, 543)
+        studgenderlbl.Name = "studgenderlbl"
+        studgenderlbl.Size = New Size(110, 37)
+        studgenderlbl.TabIndex = 9
+        studgenderlbl.Text = "Gender"
         ' 
         ' studgendercb
         ' 
@@ -151,16 +151,16 @@ Partial Class StudentRegistrationForm
         studgendercb.Size = New Size(110, 45)
         studgendercb.TabIndex = 10
         ' 
-        ' Label5
+        ' studemaillbl
         ' 
-        Label5.AutoSize = True
-        Label5.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
-        Label5.ForeColor = Color.Indigo
-        Label5.Location = New Point(348, 543)
-        Label5.Name = "Label5"
-        Label5.Size = New Size(87, 37)
-        Label5.TabIndex = 11
-        Label5.Text = "Email"
+        studemaillbl.AutoSize = True
+        studemaillbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
+        studemaillbl.ForeColor = Color.Indigo
+        studemaillbl.Location = New Point(348, 543)
+        studemaillbl.Name = "studemaillbl"
+        studemaillbl.Size = New Size(87, 37)
+        studemaillbl.TabIndex = 11
+        studemaillbl.Text = "Email"
         ' 
         ' studemailtxt
         ' 
@@ -172,59 +172,60 @@ Partial Class StudentRegistrationForm
         studemailtxt.Size = New Size(345, 33)
         studemailtxt.TabIndex = 12
         ' 
-        ' suffixTxtBox
+        ' studsuffixtxt
         ' 
-        suffixTxtBox.BackColor = Color.Silver
-        suffixTxtBox.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
-        suffixTxtBox.Location = New Point(107, 589)
-        suffixTxtBox.Margin = New Padding(3, 2, 3, 2)
-        suffixTxtBox.Name = "suffixTxtBox"
-        suffixTxtBox.Size = New Size(68, 46)
-        suffixTxtBox.TabIndex = 13
+        studsuffixtxt.BackColor = Color.Silver
+        studsuffixtxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
+        studsuffixtxt.Location = New Point(107, 589)
+        studsuffixtxt.Margin = New Padding(3, 2, 3, 2)
+        studsuffixtxt.Name = "studsuffixtxt"
+        studsuffixtxt.Size = New Size(68, 46)
+        studsuffixtxt.TabIndex = 13
         ' 
-        ' Label6
+        ' suffixlbl
         ' 
-        Label6.AutoSize = True
-        Label6.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
-        Label6.ForeColor = Color.Indigo
-        Label6.Location = New Point(107, 543)
-        Label6.Name = "Label6"
-        Label6.Size = New Size(91, 37)
-        Label6.TabIndex = 14
-        Label6.Text = "Suffix"
+        suffixlbl.AutoSize = True
+        suffixlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
+        suffixlbl.ForeColor = Color.Indigo
+        suffixlbl.Location = New Point(107, 543)
+        suffixlbl.Name = "suffixlbl"
+        suffixlbl.Size = New Size(91, 37)
+        suffixlbl.TabIndex = 14
+        suffixlbl.Text = "Suffix"
         ' 
-        ' numberTextbox
+        ' studnumtxt
         ' 
-        numberTextbox.BackColor = Color.Silver
-        numberTextbox.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
-        numberTextbox.Location = New Point(716, 590)
-        numberTextbox.Margin = New Padding(3, 2, 3, 2)
-        numberTextbox.Name = "numberTextbox"
-        numberTextbox.Size = New Size(231, 46)
-        numberTextbox.TabIndex = 16
+        studnumtxt.BackColor = Color.Silver
+        studnumtxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
+        studnumtxt.Location = New Point(716, 590)
+        studnumtxt.Margin = New Padding(3, 2, 3, 2)
+        studnumtxt.Name = "studnumtxt"
+        studnumtxt.Size = New Size(231, 46)
+        studnumtxt.TabIndex = 16
         ' 
-        ' Label7
+        ' studcontlbl
         ' 
-        Label7.AutoSize = True
-        Label7.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
-        Label7.ForeColor = Color.Indigo
-        Label7.Location = New Point(716, 540)
-        Label7.Name = "Label7"
-        Label7.Size = New Size(229, 37)
-        Label7.TabIndex = 15
-        Label7.Text = "Contact Number"
+        studcontlbl.AutoSize = True
+        studcontlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
+        studcontlbl.ForeColor = Color.Indigo
+        studcontlbl.Location = New Point(716, 540)
+        studcontlbl.Name = "studcontlbl"
+        studcontlbl.Size = New Size(229, 37)
+        studcontlbl.TabIndex = 15
+        studcontlbl.Text = "Contact Number"
         ' 
-        ' courcb
+        ' studcourcb
         ' 
-        courcb.BackColor = Color.Silver
-        courcb.Font = New Font("Segoe UI", 15.75F)
-        courcb.FormattingEnabled = True
-        courcb.Items.AddRange(New Object() {"Bachelor of Science in Information Technology", "Bachelor of Science in Computer Science"})
-        courcb.Location = New Point(470, 461)
-        courcb.Margin = New Padding(3, 2, 3, 2)
-        courcb.Name = "courcb"
-        courcb.Size = New Size(439, 38)
-        courcb.TabIndex = 17
+        studcourcb.BackColor = Color.Silver
+        studcourcb.Enabled = False
+        studcourcb.Font = New Font("Segoe UI", 15.75F)
+        studcourcb.FormattingEnabled = True
+        studcourcb.Items.AddRange(New Object() {"Bachelor of Science in Information Technology", "Bachelor of Science in Computer Science"})
+        studcourcb.Location = New Point(470, 461)
+        studcourcb.Margin = New Padding(3, 2, 3, 2)
+        studcourcb.Name = "studcourcb"
+        studcourcb.Size = New Size(439, 38)
+        studcourcb.TabIndex = 17
         ' 
         ' studdeptcb
         ' 
@@ -272,44 +273,44 @@ Partial Class StudentRegistrationForm
         studnotxt.Size = New Size(170, 46)
         studnotxt.TabIndex = 22
         ' 
-        ' Button1
+        ' studregbtn
         ' 
-        Button1.BackColor = Color.Indigo
-        Button1.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
-        Button1.ForeColor = Color.White
-        Button1.Location = New Point(767, 664)
-        Button1.Margin = New Padding(3, 2, 3, 2)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(180, 72)
-        Button1.TabIndex = 28
-        Button1.Text = "REGISTER"
-        Button1.UseVisualStyleBackColor = False
+        studregbtn.BackColor = Color.Indigo
+        studregbtn.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        studregbtn.ForeColor = Color.White
+        studregbtn.Location = New Point(767, 664)
+        studregbtn.Margin = New Padding(3, 2, 3, 2)
+        studregbtn.Name = "studregbtn"
+        studregbtn.Size = New Size(180, 72)
+        studregbtn.TabIndex = 28
+        studregbtn.Text = "REGISTER"
+        studregbtn.UseVisualStyleBackColor = False
         ' 
-        ' Button2
+        ' studreternbtn
         ' 
-        Button2.BackColor = Color.SlateGray
-        Button2.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button2.ForeColor = Color.White
-        Button2.Location = New Point(107, 664)
-        Button2.Margin = New Padding(3, 2, 3, 2)
-        Button2.Name = "Button2"
-        Button2.Size = New Size(180, 72)
-        Button2.TabIndex = 29
-        Button2.Text = "RETURN"
-        Button2.UseVisualStyleBackColor = False
+        studreternbtn.BackColor = Color.SlateGray
+        studreternbtn.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        studreternbtn.ForeColor = Color.White
+        studreternbtn.Location = New Point(107, 664)
+        studreternbtn.Margin = New Padding(3, 2, 3, 2)
+        studreternbtn.Name = "studreternbtn"
+        studreternbtn.Size = New Size(180, 72)
+        studreternbtn.TabIndex = 29
+        studreternbtn.Text = "RETURN"
+        studreternbtn.UseVisualStyleBackColor = False
         ' 
-        ' Button3
+        ' studclearbtn
         ' 
-        Button3.BackColor = Color.DarkSlateBlue
-        Button3.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
-        Button3.ForeColor = Color.White
-        Button3.Location = New Point(429, 664)
-        Button3.Margin = New Padding(3, 2, 3, 2)
-        Button3.Name = "Button3"
-        Button3.Size = New Size(180, 72)
-        Button3.TabIndex = 30
-        Button3.Text = "CLEAR"
-        Button3.UseVisualStyleBackColor = False
+        studclearbtn.BackColor = Color.DarkSlateBlue
+        studclearbtn.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        studclearbtn.ForeColor = Color.White
+        studclearbtn.Location = New Point(429, 664)
+        studclearbtn.Margin = New Padding(3, 2, 3, 2)
+        studclearbtn.Name = "studclearbtn"
+        studclearbtn.Size = New Size(180, 72)
+        studclearbtn.TabIndex = 30
+        studclearbtn.Text = "CLEAR"
+        studclearbtn.UseVisualStyleBackColor = False
         ' 
         ' PictureBox1
         ' 
@@ -322,24 +323,24 @@ Partial Class StudentRegistrationForm
         PictureBox1.TabIndex = 31
         PictureBox1.TabStop = False
         ' 
-        ' courlbl
+        ' studcourlbl
         ' 
-        courlbl.AutoSize = True
-        courlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
-        courlbl.ForeColor = Color.Indigo
-        courlbl.Location = New Point(470, 408)
-        courlbl.Name = "courlbl"
-        courlbl.Size = New Size(105, 37)
-        courlbl.TabIndex = 32
-        courlbl.Text = "Course"
+        studcourlbl.AutoSize = True
+        studcourlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
+        studcourlbl.ForeColor = Color.Indigo
+        studcourlbl.Location = New Point(470, 408)
+        studcourlbl.Name = "studcourlbl"
+        studcourlbl.Size = New Size(105, 37)
+        studcourlbl.TabIndex = 32
+        studcourlbl.Text = "Course"
         ' 
         ' Panel1
         ' 
         Panel1.Controls.Add(sectionlbl)
-        Panel1.Controls.Add(sectioncb)
-        Panel1.Controls.Add(titlelbl)
-        Panel1.Controls.Add(courlbl)
-        Panel1.Controls.Add(courcb)
+        Panel1.Controls.Add(studsectioncb)
+        Panel1.Controls.Add(studtitlelbl)
+        Panel1.Controls.Add(studcourlbl)
+        Panel1.Controls.Add(studcourcb)
         Panel1.Controls.Add(deptlbl)
         Panel1.Controls.Add(studdeptcb)
         Panel1.Controls.Add(studnotxt)
@@ -347,20 +348,20 @@ Partial Class StudentRegistrationForm
         Panel1.Controls.Add(studnolbl)
         Panel1.Controls.Add(studgendercb)
         Panel1.Controls.Add(studemailtxt)
-        Panel1.Controls.Add(Label4)
-        Panel1.Controls.Add(numberTextbox)
-        Panel1.Controls.Add(Label5)
-        Panel1.Controls.Add(suffixTxtBox)
-        Panel1.Controls.Add(Label6)
-        Panel1.Controls.Add(firstNameBox)
-        Panel1.Controls.Add(Label2)
-        Panel1.Controls.Add(Label7)
-        Panel1.Controls.Add(Label1)
-        Panel1.Controls.Add(midNameBox)
-        Panel1.Controls.Add(Label3)
-        Panel1.Controls.Add(Button2)
-        Panel1.Controls.Add(Button3)
-        Panel1.Controls.Add(Button1)
+        Panel1.Controls.Add(studgenderlbl)
+        Panel1.Controls.Add(studnumtxt)
+        Panel1.Controls.Add(studemaillbl)
+        Panel1.Controls.Add(studsuffixtxt)
+        Panel1.Controls.Add(suffixlbl)
+        Panel1.Controls.Add(studfnametxt)
+        Panel1.Controls.Add(studfname)
+        Panel1.Controls.Add(studcontlbl)
+        Panel1.Controls.Add(studlnamelbl)
+        Panel1.Controls.Add(studmiddlentxt)
+        Panel1.Controls.Add(studmddilenlbl)
+        Panel1.Controls.Add(studreternbtn)
+        Panel1.Controls.Add(studclearbtn)
+        Panel1.Controls.Add(studregbtn)
         Panel1.Location = New Point(488, 226)
         Panel1.Name = "Panel1"
         Panel1.Size = New Size(1024, 767)
@@ -377,18 +378,18 @@ Partial Class StudentRegistrationForm
         sectionlbl.TabIndex = 34
         sectionlbl.Text = "Section"
         ' 
-        ' sectioncb
+        ' studsectioncb
         ' 
-        sectioncb.BackColor = Color.Silver
-        sectioncb.Enabled = False
-        sectioncb.Font = New Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        sectioncb.FormattingEnabled = True
-        sectioncb.Items.AddRange(New Object() {"COLLEGE OF COMPUTER STUDIES", "COLLEGE OF EDUCATION", "COLLEGE OF ENGINEERING", "COLLEGE OF NURSING", "COLLEGE OF ARTS AND SCIENCE", "COLLEGE OF BUSINESS AND ACCOUNTANCY", "COLLEGE OF HOSPITALITY MANAGEMENT"})
-        sectioncb.Location = New Point(688, 169)
-        sectioncb.Margin = New Padding(3, 2, 3, 2)
-        sectioncb.Name = "sectioncb"
-        sectioncb.Size = New Size(211, 45)
-        sectioncb.TabIndex = 33
+        studsectioncb.BackColor = Color.Silver
+        studsectioncb.Enabled = False
+        studsectioncb.Font = New Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        studsectioncb.FormattingEnabled = True
+        studsectioncb.Items.AddRange(New Object() {"COLLEGE OF COMPUTER STUDIES", "COLLEGE OF EDUCATION", "COLLEGE OF ENGINEERING", "COLLEGE OF NURSING", "COLLEGE OF ARTS AND SCIENCE", "COLLEGE OF BUSINESS AND ACCOUNTANCY", "COLLEGE OF HOSPITALITY MANAGEMENT"})
+        studsectioncb.Location = New Point(688, 169)
+        studsectioncb.Margin = New Padding(3, 2, 3, 2)
+        studsectioncb.Name = "studsectioncb"
+        studsectioncb.Size = New Size(211, 45)
+        studsectioncb.TabIndex = 33
         ' 
         ' StudentRegistrationForm
         ' 
@@ -408,32 +409,32 @@ Partial Class StudentRegistrationForm
         ResumeLayout(False)
     End Sub
     Friend WithEvents studlastntxt As TextBox
-    Friend WithEvents firstNameBox As TextBox
-    Friend WithEvents midNameBox As TextBox
-    Friend WithEvents titlelbl As Label
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label4 As Label
+    Friend WithEvents studfnametxt As TextBox
+    Friend WithEvents studmiddlentxt As TextBox
+    Friend WithEvents studtitlelbl As Label
+    Friend WithEvents studlnamelbl As Label
+    Friend WithEvents studfname As Label
+    Friend WithEvents studmddilenlbl As Label
+    Friend WithEvents studgenderlbl As Label
     Friend WithEvents studgendercb As ComboBox
-    Friend WithEvents Label5 As Label
+    Friend WithEvents studemaillbl As Label
     Friend WithEvents studemailtxt As TextBox
-    Friend WithEvents suffixTxtBox As TextBox
-    Friend WithEvents Label6 As Label
-    Friend WithEvents numberTextbox As TextBox
-    Friend WithEvents Label7 As Label
-    Friend WithEvents courcb As ComboBox
+    Friend WithEvents studsuffixtxt As TextBox
+    Friend WithEvents suffixlbl As Label
+    Friend WithEvents studnumtxt As TextBox
+    Friend WithEvents studcontlbl As Label
+    Friend WithEvents studcourcb As ComboBox
     Friend WithEvents studdeptcb As ComboBox
     Friend WithEvents deptlbl As Label
     Friend WithEvents studnolbl As Label
     Friend WithEvents studnotxt As MaskedTextBox
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button3 As Button
+    Friend WithEvents studregbtn As Button
+    Friend WithEvents studreternbtn As Button
+    Friend WithEvents studclearbtn As Button
     Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents courlbl As Label
+    Friend WithEvents studcourlbl As Label
     Friend WithEvents Panel1 As Panel
     Friend WithEvents sectionlbl As Label
-    Friend WithEvents sectioncb As ComboBox
+    Friend WithEvents studsectioncb As ComboBox
 
 End Class

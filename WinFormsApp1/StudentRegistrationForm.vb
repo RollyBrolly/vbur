@@ -1,44 +1,20 @@
-﻿Imports System.Windows.Forms.VisualStyles
-
+﻿Imports MySql.Data.MySqlClient
+Imports System.Windows.Forms.VisualStyles
 Public Class StudentRegistrationForm
 
-    Private ReadOnly departmentCourses As New Dictionary(Of String, List(Of String)) From {
-        {"College of Computer Studies", New List(Of String) From {
-            "Bachelor of Science in Information Technology",
-            "Bachelor of Science in Computer Science"
-        }},
-        {"College of Education", New List(Of String) From {
-            "Bachelor of Secondary Education - English",
-            "Bachelor of Secondary Education - Math",
-            "Bachelor of Elementary Education - Filipino"
-        }},
-        {"College of Business Management", New List(Of String) From {
-            "Bachelor of Science in Marketing Management",
-            "Bachelor of Science in Human Resource Management"
-        }},
-        {"College of Marketing", New List(Of String) From {
-            "Bachelor of Science in Civil Engineering",
-            "Bachelor of Science in Mechanical Engineering",
-            "Bachelor of Science in Electrical Engineering"
-        }},
-        {"College of Arts and Sciences", New List(Of String) From {
-            "Bachelor of Arts in Psychology",
-            "Bachelor of Science in Biology",
-            "Bachelor of Science in Political Science"
-        }},
-        {"College of Hospitality Management", New List(Of String) From {
-            "Bachelor of Science in Hospitality Management",
-            "Bachelor of Science in Tourism Management"
-        }},
-        {"College of Nursing", New List(Of String) From {
-            "Bachelor of Science in Nursing",
-            "Bachelor of Science in Medical Technology",
-            "Bachelor of Science in Pharmacy"
-        }}
+    Private conn As New MySqlConnection(connectdb.connstring)
+
+    Private ReadOnly departmentDict As New Dictionary(Of String, String) From {
+        {"College of Computer Studies", "CCS"},
+        {"College of Education", "COED"},
+        {"College of Business Management", "CBM"},
+        {"College of Marketing", "CMKT"},
+        {"College of Arts and Sciences", "CAS"},
+        {"College of Hospitality Management", "CHM"},
+        {"College of Nursing", "CON"}
     }
 
-    ' ✅ Fixed abbreviation mapping
-    Private ReadOnly courseAbbreviations As New Dictionary(Of String, String) From {
+    Private ReadOnly courseDict As New Dictionary(Of String, String) From {
         {"Bachelor of Science in Information Technology", "BSIT"},
         {"Bachelor of Science in Computer Science", "BSCS"},
         {"Bachelor of Secondary Education - English", "BSED-E"},
@@ -59,104 +35,174 @@ Public Class StudentRegistrationForm
         {"Bachelor of Science in Pharmacy", "BSPH"}
     }
 
+    Private ReadOnly sections As String() = {
+        "1A", "1B", "1C", "1D", "1E", "1F",
+        "2A", "2B", "2C", "2D", "2E", "2F",
+        "3A", "3B", "3C", "3D", "3E", "3F",
+        "4A", "4B", "4C", "4D", "4E", "4F"
+    }
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.FormBorderStyle = FormBorderStyle.None
         Me.WindowState = FormWindowState.Maximized
 
         studdeptcb.Items.Clear()
-        For Each dept As String In departmentCourses.Keys
+        For Each dept As String In departmentDict.Keys
             studdeptcb.Items.Add(dept)
         Next
-
-
-        studdeptcb.Enabled = True
         studdeptcb.DropDownStyle = ComboBoxStyle.DropDownList
         studdeptcb.SelectedIndex = -1
 
-        courcb.Items.Clear()
-        courcb.Enabled = False
+        studcourcb.Items.Clear()
+        studcourcb.Enabled = False
 
-        sectioncb.Items.Clear()
-        sectioncb.Enabled = False
+        studsectioncb.Items.Clear()
+        studsectioncb.Enabled = False
+
+        studgendercb.Items.Clear()
+        studgendercb.Items.AddRange({"M", "F"})
+        studgendercb.DropDownStyle = ComboBoxStyle.DropDownList
+        studgendercb.SelectedIndex = -1
+
+        studnotxt.Text = GeneratedStudentID()
     End Sub
 
-    Private Sub departmentBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles studdeptcb.SelectedIndexChanged
-        courcb.Items.Clear()
-        sectioncb.Items.Clear()
-        sectioncb.Enabled = False
+    Private Sub studdeptcb_SelectedIndexChanged(sender As Object, e As EventArgs) Handles studdeptcb.SelectedIndexChanged
+        studcourcb.Items.Clear()
+        studsectioncb.Items.Clear()
+        studsectioncb.Enabled = False
 
-        If studdeptcb.SelectedItem Is Nothing Then
-            courcb.Enabled = False
+        If studcourcb.SelectedItem Is Nothing Then
+            studcourcb.Enabled = False
             Return
         End If
 
-        Dim dept As String = studdeptcb.SelectedItem.ToString()
+        studcourcb.Enabled = True
+        studcourcb.Items.Clear()
 
-        If departmentCourses.ContainsKey(dept) Then
-            courcb.Items.AddRange(departmentCourses(dept).ToArray())
-            courcb.Enabled = True
-        Else
-            courcb.Enabled = False
-        End If
-    End Sub
-
-    ' ✅ Populate sectionBox with correct abbreviation
-    Private Sub courseBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles courcb.SelectedIndexChanged
-        sectioncb.Items.Clear()
-
-        If studdeptcb.SelectedIndex = -1 OrElse courcb.SelectedIndex = -1 Then
-            sectioncb.Enabled = False
-            Return
-        End If
-
-        Dim courseName As String = courcb.SelectedItem.ToString()
-        Dim abbreviation As String = ""
-
-        If courseAbbreviations.ContainsKey(courseName) Then
-            abbreviation = courseAbbreviations(courseName)
-        Else
-            abbreviation = "GEN" ' fallback if course not found
-        End If
-
-        ' Add 4 sections with abbreviation prefix
-        Dim sections As String() = {"4A", "4B", "4C", "4D"}
-        For Each sec In sections
-            sectioncb.Items.Add(abbreviation & sec)
+        For Each kvp In courseDict
+            studcourcb.Items.Add(kvp.Key)
         Next
-
-        sectioncb.Enabled = True
-        sectioncb.SelectedIndex = 0
+        studcourcb.SelectedIndex = -1
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        If String.IsNullOrWhiteSpace(firstNameBox.Text) OrElse
-           String.IsNullOrWhiteSpace(studlastntxt.Text) OrElse
-           studdeptcb.SelectedIndex = -1 OrElse
-           courcb.SelectedIndex = -1 OrElse
-           sectioncb.SelectedIndex = -1 Then
+    Private Sub studcourcb_SelectedIndexChanged(sender As Object, e As EventArgs) Handles studcourcb.SelectedIndexChanged
+        studsectioncb.Items.Clear()
+        studsectioncb.Items.AddRange(sections)
+        studsectioncb.Enabled = True
+        studsectioncb.SelectedIndex = -1
+    End Sub
 
-            MessageBox.Show("Please fill out all required fields before registering.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+    Private Function GeneratedStudentID() As String
+        Dim yearprefix As String = (DateTime.Now.Year Mod 100).ToString("D2")
+        Dim nextid As Integer = 1
+
+        Try
+            conn.Open()
+            Dim cmd As New MySqlCommand("SELECT StudentID FROM student WHERE StudentID LIKE @YearPrefix ORDER BY StudentID DESC LIMIT 1", conn)
+            cmd.Parameters.AddWithValue("@YearPrefix", yearprefix & "- %")
+            Dim result = cmd.ExecuteScalar()
+
+            If result IsNot Nothing Then
+                Dim lastid As String = result.ToString().Split("-"c)(1).Trim()
+                nextid = Integer.Parse(lastid) + 1
+            End If
+        Catch ex As MySqlException
+            MessageBox.Show("Database error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            conn.Close()
+        End Try
+
+        Return yearprefix & " - " & nextid.ToString("D5")
+    End Function
+
+    Private Sub studregbtn_Click(sender As Object, e As EventArgs) Handles studregbtn.Click
+        If String.IsNullOrWhiteSpace(studfnametxt.Text) OrElse
+        String.IsNullOrWhiteSpace(studlastntxt.Text) OrElse
+        studgendercb.SelectedIndex = -1 OrElse
+        studdeptcb.SelectedIndex = -1 OrElse
+        studcourcb.SelectedIndex = -1 OrElse
+        String.IsNullOrWhiteSpace(studnumtxt.Text) OrElse
+        String.IsNullOrWhiteSpace(studemailtxt.Text) OrElse
+        String.IsNullOrWhiteSpace(studnotxt.Text) Then
+
+            MessageBox.Show("Please fill in all required fields.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
 
-        MessageBox.Show("You are now registered as a Student!", "Register Successful!", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Try
+            conn.Open()
+
+
+            Dim cmd As New MySqlCommand("
+                INSERT INTO student 
+                (StudentID, StudentFirstName, StudentMiddleName, StudentLastName, Gender, StudentContantNo, StudentEmail, CourseID)
+                VALUES 
+                (@StudentID, @FirstName, @MiddleName, @LastName, @Gender, @ContantNo, @Email, @CourseID)
+                ", conn)
+
+            Dim studentID As String = studnotxt.Text.Trim()
+            Dim courseID As String = courseDict(studcourcb.SelectedItem.ToString())
+
+            cmd.Parameters.AddWithValue("@StudentID", studentID)
+            cmd.Parameters.AddWithValue("@FirstName", studfnametxt.Text.Trim())
+            cmd.Parameters.AddWithValue("@MiddleName", studmiddlentxt.Text.Trim())
+            cmd.Parameters.AddWithValue("@LastName", studlastntxt.Text.Trim())
+            cmd.Parameters.AddWithValue("@Gender", studgendercb.SelectedItem.ToString())
+            cmd.Parameters.AddWithValue("@ContantNo", studnumtxt.Text.Trim())
+            cmd.Parameters.AddWithValue("@Email", studemailtxt.Text.Trim())
+            cmd.Parameters.AddWithValue("@CourseID", courseID)
+
+            cmd.ExecuteNonQuery()
+
+            '====================================
+            ' CREATE LOGIN ACCOUNT (users + useraccounts)
+            ' Username = StudentID
+            ' Password = lastname_firstname
+            '====================================
+            Dim username As String = studentID
+            Dim password As String = studlastntxt.Text.Trim() & "_" & studfnametxt.Text.Trim()
+
+            If CreateUserAccount(username, password, "Student", studentID, Nothing, Nothing) Then
+                MessageBox.Show(
+                "Student registered successfully!" & vbCrLf &
+                "Student ID: " & studentID & vbCrLf &
+                "Username: " & username & vbCrLf &
+                "Password: " & password,
+                "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Else
+                MessageBox.Show("Student saved, but failed to create login account.",
+                            "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            End If
+
+            studnotxt.Text = GeneratedStudentID()
+
+        Catch ex As MySqlException
+            MessageBox.Show("Database error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            conn.Close()
+        End Try
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+    Private Sub studclearbtn_Click(sender As Object, e As EventArgs) Handles studclearbtn.Click
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to clear all fields?", "Confirm Clear", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.Yes Then
             ClearAllText(Me)
             studdeptcb.SelectedIndex = -1
-            courcb.Items.Clear()
-            courcb.Enabled = False
-            sectioncb.Items.Clear()
-            sectioncb.Enabled = False
+            studcourcb.Items.Clear()
+            studcourcb.Enabled = False
+            studsectioncb.Items.Clear()
+            studsectioncb.Enabled = False
+            studgendercb.SelectedIndex = -1
+
+
+            studnotxt.Text = GeneratedStudentID()
         End If
     End Sub
 
     Private Sub ClearAllText(parent As Control)
         For Each ctrl As Control In parent.Controls
-            If TypeOf ctrl Is TextBox Then
+            If TypeOf ctrl Is TextBox Or TypeOf ctrl Is MaskedTextBox Then
                 CType(ctrl, TextBox).Clear()
             ElseIf ctrl.HasChildren Then
                 ClearAllText(ctrl)
@@ -164,15 +210,18 @@ Public Class StudentRegistrationForm
         Next
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub studreternbtn_Click(sender As Object, e As EventArgs) Handles studreternbtn.Click
         Dim result As DialogResult = MessageBox.Show("Return to registration page?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.Yes Then
+            Me.Hide()
             Dim regForm As New Registration()
             regForm.Show()
-            Me.Hide()
         End If
     End Sub
-    Private Sub numberTextbox_TextChanged(sender As Object, e As EventArgs) Handles numberTextbox.TextChanged
 
-    End Sub
+    'to fix
+    'wala sa sql
+    'suffix
+    'section
+    'dept
 End Class
