@@ -12,7 +12,7 @@ Public Class TeacherRegistrationForm
         {"College of Nursing", "CON"}
     }
 
-    Private ReadOnly genders As String() = {"Male", "Female")
+    Private ReadOnly genders As String() = {"Male", "Female"}
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.FormBorderStyle = FormBorderStyle.None
@@ -164,8 +164,8 @@ Public Class TeacherRegistrationForm
     End Sub
 
     'to fix
-    'walang sa sql
-    'middle name
-    'contact no
-    ' suffix
+    'Middle name wala sa SQL
+    'Suffix wala sa SQL
+    'Contact number wala sa SQL
+    ' Gender wala sa SQL
 End Class

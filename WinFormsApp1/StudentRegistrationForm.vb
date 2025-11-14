@@ -43,50 +43,73 @@ Public Class StudentRegistrationForm
     }
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         Me.FormBorderStyle = FormBorderStyle.None
         Me.WindowState = FormWindowState.Maximized
+
 
         studdeptcb.Items.Clear()
         For Each dept As String In departmentDict.Keys
             studdeptcb.Items.Add(dept)
         Next
         studdeptcb.DropDownStyle = ComboBoxStyle.DropDownList
+        studdeptcb.Enabled = True
         studdeptcb.SelectedIndex = -1
 
+
         studcourcb.Items.Clear()
+        studcourcb.DropDownStyle = ComboBoxStyle.DropDownList
         studcourcb.Enabled = False
+        studcourcb.SelectedIndex = -1
+
 
         studsectioncb.Items.Clear()
+        studsectioncb.DropDownStyle = ComboBoxStyle.DropDownList
         studsectioncb.Enabled = False
+        studsectioncb.SelectedIndex = -1
+
 
         studgendercb.Items.Clear()
         studgendercb.Items.AddRange({"M", "F"})
         studgendercb.DropDownStyle = ComboBoxStyle.DropDownList
+        studgendercb.Enabled = True
         studgendercb.SelectedIndex = -1
+
 
         studnotxt.Text = GeneratedStudentID()
     End Sub
 
     Private Sub studdeptcb_SelectedIndexChanged(sender As Object, e As EventArgs) Handles studdeptcb.SelectedIndexChanged
+
         studcourcb.Items.Clear()
         studsectioncb.Items.Clear()
         studsectioncb.Enabled = False
 
-        If studcourcb.SelectedItem Is Nothing Then
+        Dim selectedDept As String = studdeptcb.SelectedItem?.ToString()
+        If String.IsNullOrEmpty(selectedDept) Then
             studcourcb.Enabled = False
             Return
         End If
 
+
         studcourcb.Enabled = True
-        studcourcb.Items.Clear()
+
 
         For Each kvp In courseDict
             studcourcb.Items.Add(kvp.Key)
         Next
+
         studcourcb.SelectedIndex = -1
     End Sub
 
     Private Sub studcourcb_SelectedIndexChanged(sender As Object, e As EventArgs) Handles studcourcb.SelectedIndexChanged
+        If studcourcb.SelectedItem Is Nothing Then
+            studsectioncb.Enabled = False
+            studsectioncb.Items.Clear()
+            Return
+        End If
+
+        ' Enable section combo box
         studsectioncb.Items.Clear()
         studsectioncb.Items.AddRange(sections)
         studsectioncb.Enabled = True
@@ -113,7 +136,7 @@ Public Class StudentRegistrationForm
             conn.Close()
         End Try
 
-        Return yearprefix & " - " & nextid.ToString("D5")
+        Return yearprefix & " - " & nextid.ToString("D4")
     End Function
 
     Private Sub studregbtn_Click(sender As Object, e As EventArgs) Handles studregbtn.Click
@@ -223,5 +246,4 @@ Public Class StudentRegistrationForm
     'wala sa sql
     'suffix
     'section
-    'dept
 End Class
