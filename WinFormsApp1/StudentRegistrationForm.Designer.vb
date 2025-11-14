@@ -43,7 +43,6 @@ Partial Class StudentRegistrationForm
         Label9 = New Label()
         Label10 = New Label()
         MaskedTextBox1 = New MaskedTextBox()
-        TextBox3 = New TextBox()
         Button1 = New Button()
         Button2 = New Button()
         Button3 = New Button()
@@ -60,39 +59,36 @@ Partial Class StudentRegistrationForm
         ' 
         lastnameBox.BackColor = Color.Silver
         lastnameBox.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lastnameBox.Location = New Point(107, 173)
-        lastnameBox.Margin = New Padding(3, 2, 3, 2)
+        lastnameBox.Location = New Point(122, 231)
         lastnameBox.Name = "lastnameBox"
-        lastnameBox.Size = New Size(307, 46)
+        lastnameBox.Size = New Size(350, 56)
         lastnameBox.TabIndex = 1
         ' 
         ' firstNameBox
         ' 
         firstNameBox.BackColor = Color.Silver
         firstNameBox.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
-        firstNameBox.Location = New Point(107, 316)
-        firstNameBox.Margin = New Padding(3, 2, 3, 2)
+        firstNameBox.Location = New Point(122, 421)
         firstNameBox.Name = "firstNameBox"
-        firstNameBox.Size = New Size(307, 46)
+        firstNameBox.Size = New Size(350, 56)
         firstNameBox.TabIndex = 2
         ' 
         ' midNameBox
         ' 
         midNameBox.BackColor = Color.Silver
         midNameBox.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        midNameBox.Location = New Point(107, 460)
-        midNameBox.Margin = New Padding(3, 2, 3, 2)
+        midNameBox.Location = New Point(122, 613)
         midNameBox.Name = "midNameBox"
-        midNameBox.Size = New Size(307, 46)
+        midNameBox.Size = New Size(350, 56)
         midNameBox.TabIndex = 3
         ' 
         ' nameLabel
         ' 
         nameLabel.AutoSize = True
         nameLabel.Font = New Font("Segoe UI Black", 26.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        nameLabel.Location = New Point(64, 48)
+        nameLabel.Location = New Point(73, 64)
         nameLabel.Name = "nameLabel"
-        nameLabel.Size = New Size(194, 47)
+        nameLabel.Size = New Size(245, 60)
         nameLabel.TabIndex = 4
         nameLabel.Text = "Full Name"
         ' 
@@ -101,9 +97,9 @@ Partial Class StudentRegistrationForm
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label1.ForeColor = Color.Indigo
-        Label1.Location = New Point(107, 121)
+        Label1.Location = New Point(122, 161)
         Label1.Name = "Label1"
-        Label1.Size = New Size(152, 37)
+        Label1.Size = New Size(186, 46)
         Label1.TabIndex = 5
         Label1.Text = "Last Name"
         ' 
@@ -112,9 +108,9 @@ Partial Class StudentRegistrationForm
         Label2.AutoSize = True
         Label2.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         Label2.ForeColor = Color.Indigo
-        Label2.Location = New Point(107, 265)
+        Label2.Location = New Point(122, 353)
         Label2.Name = "Label2"
-        Label2.Size = New Size(156, 37)
+        Label2.Size = New Size(193, 46)
         Label2.TabIndex = 6
         Label2.Text = "First Name"
         ' 
@@ -123,9 +119,9 @@ Partial Class StudentRegistrationForm
         Label3.AutoSize = True
         Label3.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         Label3.ForeColor = Color.Indigo
-        Label3.Location = New Point(107, 408)
+        Label3.Location = New Point(122, 544)
         Label3.Name = "Label3"
-        Label3.Size = New Size(191, 37)
+        Label3.Size = New Size(236, 46)
         Label3.TabIndex = 7
         Label3.Text = "Middle Name"
         ' 
@@ -134,9 +130,9 @@ Partial Class StudentRegistrationForm
         Label4.AutoSize = True
         Label4.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         Label4.ForeColor = Color.Indigo
-        Label4.Location = New Point(260, 543)
+        Label4.Location = New Point(297, 724)
         Label4.Name = "Label4"
-        Label4.Size = New Size(110, 37)
+        Label4.Size = New Size(136, 46)
         Label4.TabIndex = 9
         Label4.Text = "Gender"
         ' 
@@ -146,10 +142,9 @@ Partial Class StudentRegistrationForm
         ComboBox1.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         ComboBox1.FormattingEnabled = True
         ComboBox1.Items.AddRange(New Object() {"MALE", "FEMALE"})
-        ComboBox1.Location = New Point(260, 588)
-        ComboBox1.Margin = New Padding(3, 2, 3, 2)
+        ComboBox1.Location = New Point(297, 784)
         ComboBox1.Name = "ComboBox1"
-        ComboBox1.Size = New Size(142, 45)
+        ComboBox1.Size = New Size(162, 54)
         ComboBox1.TabIndex = 10
         ' 
         ' Label5
@@ -157,9 +152,9 @@ Partial Class StudentRegistrationForm
         Label5.AutoSize = True
         Label5.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         Label5.ForeColor = Color.Indigo
-        Label5.Location = New Point(442, 540)
+        Label5.Location = New Point(505, 720)
         Label5.Name = "Label5"
-        Label5.Size = New Size(87, 37)
+        Label5.Size = New Size(107, 46)
         Label5.TabIndex = 11
         Label5.Text = "Email"
         ' 
@@ -167,20 +162,18 @@ Partial Class StudentRegistrationForm
         ' 
         emailBox.BackColor = Color.Silver
         emailBox.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        emailBox.Location = New Point(442, 590)
-        emailBox.Margin = New Padding(3, 2, 3, 2)
+        emailBox.Location = New Point(505, 787)
         emailBox.Name = "emailBox"
-        emailBox.Size = New Size(232, 43)
+        emailBox.Size = New Size(265, 52)
         emailBox.TabIndex = 12
         ' 
         ' suffixTxtBox
         ' 
         suffixTxtBox.BackColor = Color.Silver
         suffixTxtBox.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        suffixTxtBox.Location = New Point(107, 589)
-        suffixTxtBox.Margin = New Padding(3, 2, 3, 2)
+        suffixTxtBox.Location = New Point(122, 785)
         suffixTxtBox.Name = "suffixTxtBox"
-        suffixTxtBox.Size = New Size(102, 43)
+        suffixTxtBox.Size = New Size(116, 52)
         suffixTxtBox.TabIndex = 13
         ' 
         ' Label6
@@ -188,9 +181,9 @@ Partial Class StudentRegistrationForm
         Label6.AutoSize = True
         Label6.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         Label6.ForeColor = Color.Indigo
-        Label6.Location = New Point(107, 543)
+        Label6.Location = New Point(122, 724)
         Label6.Name = "Label6"
-        Label6.Size = New Size(91, 37)
+        Label6.Size = New Size(115, 46)
         Label6.TabIndex = 14
         Label6.Text = "Suffix"
         ' 
@@ -198,10 +191,9 @@ Partial Class StudentRegistrationForm
         ' 
         numberTextbox.BackColor = Color.Silver
         numberTextbox.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        numberTextbox.Location = New Point(716, 590)
-        numberTextbox.Margin = New Padding(3, 2, 3, 2)
+        numberTextbox.Location = New Point(818, 787)
         numberTextbox.Name = "numberTextbox"
-        numberTextbox.Size = New Size(231, 43)
+        numberTextbox.Size = New Size(263, 52)
         numberTextbox.TabIndex = 16
         ' 
         ' Label7
@@ -209,9 +201,9 @@ Partial Class StudentRegistrationForm
         Label7.AutoSize = True
         Label7.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         Label7.ForeColor = Color.Indigo
-        Label7.Location = New Point(716, 540)
+        Label7.Location = New Point(818, 720)
         Label7.Name = "Label7"
-        Label7.Size = New Size(229, 37)
+        Label7.Size = New Size(284, 46)
         Label7.TabIndex = 15
         Label7.Text = "Contact Number"
         ' 
@@ -221,10 +213,9 @@ Partial Class StudentRegistrationForm
         courseBox.Font = New Font("Segoe UI", 15.75F)
         courseBox.FormattingEnabled = True
         courseBox.Items.AddRange(New Object() {"Bachelor of Science in Information Technology", "Bachelor of Science in Computer Science"})
-        courseBox.Location = New Point(470, 461)
-        courseBox.Margin = New Padding(3, 2, 3, 2)
+        courseBox.Location = New Point(537, 615)
         courseBox.Name = "courseBox"
-        courseBox.Size = New Size(439, 38)
+        courseBox.Size = New Size(501, 44)
         courseBox.TabIndex = 17
         ' 
         ' departmentBox
@@ -234,10 +225,9 @@ Partial Class StudentRegistrationForm
         departmentBox.Font = New Font("Segoe UI", 15.75F)
         departmentBox.FormattingEnabled = True
         departmentBox.Items.AddRange(New Object() {"COLLEGE OF COMPUTER STUDIES", "COLLEGE OF EDUCATION", "COLLEGE OF ENGINEERING", "COLLEGE OF NURSING", "COLLEGE OF ARTS AND SCIENCE", "COLLEGE OF BUSINESS AND ACCOUNTANCY", "COLLEGE OF HOSPITALITY MANAGEMENT"})
-        departmentBox.Location = New Point(470, 314)
-        departmentBox.Margin = New Padding(3, 2, 3, 2)
+        departmentBox.Location = New Point(537, 419)
         departmentBox.Name = "departmentBox"
-        departmentBox.Size = New Size(439, 38)
+        departmentBox.Size = New Size(501, 44)
         departmentBox.TabIndex = 19
         ' 
         ' Label9
@@ -245,9 +235,9 @@ Partial Class StudentRegistrationForm
         Label9.AutoSize = True
         Label9.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label9.ForeColor = Color.Indigo
-        Label9.Location = New Point(465, 265)
+        Label9.Location = New Point(531, 353)
         Label9.Name = "Label9"
-        Label9.Size = New Size(174, 37)
+        Label9.Size = New Size(213, 46)
         Label9.TabIndex = 20
         Label9.Text = "Department"
         ' 
@@ -256,9 +246,9 @@ Partial Class StudentRegistrationForm
         Label10.AutoSize = True
         Label10.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         Label10.ForeColor = Color.Indigo
-        Label10.Location = New Point(741, 121)
+        Label10.Location = New Point(847, 161)
         Label10.Name = "Label10"
-        Label10.Size = New Size(229, 37)
+        Label10.Size = New Size(286, 46)
         Label10.TabIndex = 21
         Label10.Text = "Student Number"
         ' 
@@ -266,32 +256,20 @@ Partial Class StudentRegistrationForm
         ' 
         MaskedTextBox1.BackColor = Color.Silver
         MaskedTextBox1.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        MaskedTextBox1.Location = New Point(745, 166)
-        MaskedTextBox1.Margin = New Padding(3, 2, 3, 2)
+        MaskedTextBox1.Location = New Point(851, 221)
         MaskedTextBox1.Mask = "0 0  -  0 0 0 0 0"
         MaskedTextBox1.Name = "MaskedTextBox1"
-        MaskedTextBox1.Size = New Size(170, 46)
+        MaskedTextBox1.Size = New Size(194, 56)
         MaskedTextBox1.TabIndex = 22
-        ' 
-        ' TextBox3
-        ' 
-        TextBox3.BackColor = Color.Silver
-        TextBox3.Font = New Font("Microsoft Sans Serif", 18F)
-        TextBox3.Location = New Point(0, 0)
-        TextBox3.Margin = New Padding(3, 2, 3, 2)
-        TextBox3.Name = "TextBox3"
-        TextBox3.Size = New Size(231, 35)
-        TextBox3.TabIndex = 23
         ' 
         ' Button1
         ' 
         Button1.BackColor = Color.Indigo
         Button1.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
         Button1.ForeColor = Color.White
-        Button1.Location = New Point(767, 664)
-        Button1.Margin = New Padding(3, 2, 3, 2)
+        Button1.Location = New Point(877, 885)
         Button1.Name = "Button1"
-        Button1.Size = New Size(180, 72)
+        Button1.Size = New Size(206, 96)
         Button1.TabIndex = 28
         Button1.Text = "REGISTER"
         Button1.UseVisualStyleBackColor = False
@@ -301,10 +279,9 @@ Partial Class StudentRegistrationForm
         Button2.BackColor = Color.SlateGray
         Button2.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Button2.ForeColor = Color.White
-        Button2.Location = New Point(107, 664)
-        Button2.Margin = New Padding(3, 2, 3, 2)
+        Button2.Location = New Point(122, 885)
         Button2.Name = "Button2"
-        Button2.Size = New Size(180, 72)
+        Button2.Size = New Size(206, 96)
         Button2.TabIndex = 29
         Button2.Text = "RETURN"
         Button2.UseVisualStyleBackColor = False
@@ -314,10 +291,9 @@ Partial Class StudentRegistrationForm
         Button3.BackColor = Color.DarkSlateBlue
         Button3.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
         Button3.ForeColor = Color.White
-        Button3.Location = New Point(429, 664)
-        Button3.Margin = New Padding(3, 2, 3, 2)
+        Button3.Location = New Point(490, 885)
         Button3.Name = "Button3"
-        Button3.Size = New Size(180, 72)
+        Button3.Size = New Size(206, 96)
         Button3.TabIndex = 30
         Button3.Text = "CLEAR"
         Button3.UseVisualStyleBackColor = False
@@ -325,10 +301,9 @@ Partial Class StudentRegistrationForm
         ' PictureBox1
         ' 
         PictureBox1.Image = My.Resources.Resources.studentHeader1
-        PictureBox1.Location = New Point(-3, -2)
-        PictureBox1.Margin = New Padding(3, 2, 3, 2)
+        PictureBox1.Location = New Point(-3, -3)
         PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New Size(1920, 180)
+        PictureBox1.Size = New Size(2194, 240)
         PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
         PictureBox1.TabIndex = 31
         PictureBox1.TabStop = False
@@ -338,9 +313,9 @@ Partial Class StudentRegistrationForm
         Label13.AutoSize = True
         Label13.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         Label13.ForeColor = Color.Indigo
-        Label13.Location = New Point(470, 408)
+        Label13.Location = New Point(537, 544)
         Label13.Name = "Label13"
-        Label13.Size = New Size(105, 37)
+        Label13.Size = New Size(130, 46)
         Label13.TabIndex = 32
         Label13.Text = "Course"
         ' 
@@ -372,9 +347,10 @@ Partial Class StudentRegistrationForm
         Panel1.Controls.Add(Button2)
         Panel1.Controls.Add(Button3)
         Panel1.Controls.Add(Button1)
-        Panel1.Location = New Point(488, 226)
+        Panel1.Location = New Point(558, 301)
+        Panel1.Margin = New Padding(3, 4, 3, 4)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(1024, 767)
+        Panel1.Size = New Size(1170, 1023)
         Panel1.TabIndex = 33
         ' 
         ' Label8
@@ -382,9 +358,9 @@ Partial Class StudentRegistrationForm
         Label8.AutoSize = True
         Label8.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         Label8.ForeColor = Color.Indigo
-        Label8.Location = New Point(465, 121)
+        Label8.Location = New Point(531, 161)
         Label8.Name = "Label8"
-        Label8.Size = New Size(112, 37)
+        Label8.Size = New Size(138, 46)
         Label8.TabIndex = 34
         Label8.Text = "Section"
         ' 
@@ -395,30 +371,26 @@ Partial Class StudentRegistrationForm
         sectionBox.Font = New Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         sectionBox.FormattingEnabled = True
         sectionBox.Items.AddRange(New Object() {"COLLEGE OF COMPUTER STUDIES", "COLLEGE OF EDUCATION", "COLLEGE OF ENGINEERING", "COLLEGE OF NURSING", "COLLEGE OF ARTS AND SCIENCE", "COLLEGE OF BUSINESS AND ACCOUNTANCY", "COLLEGE OF HOSPITALITY MANAGEMENT"})
-        sectionBox.Location = New Point(465, 169)
-        sectionBox.Margin = New Padding(3, 2, 3, 2)
+        sectionBox.Location = New Point(531, 225)
         sectionBox.Name = "sectionBox"
-        sectionBox.Size = New Size(211, 45)
+        sectionBox.Size = New Size(241, 54)
         sectionBox.TabIndex = 33
         ' 
         ' StudentRegistrationForm
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         BackgroundImage = My.Resources.Resources.regisformsBG_bw1
-        ClientSize = New Size(1904, 1041)
+        ClientSize = New Size(1924, 1055)
         Controls.Add(PictureBox1)
-        Controls.Add(TextBox3)
         Controls.Add(Panel1)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
-        Margin = New Padding(3, 2, 3, 2)
         Name = "StudentRegistrationForm"
         Text = "Student Registration Form"
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         Panel1.ResumeLayout(False)
         Panel1.PerformLayout()
         ResumeLayout(False)
-        PerformLayout()
     End Sub
     Friend WithEvents lastnameBox As TextBox
     Friend WithEvents firstNameBox As TextBox
@@ -440,7 +412,6 @@ Partial Class StudentRegistrationForm
     Friend WithEvents Label9 As Label
     Friend WithEvents Label10 As Label
     Friend WithEvents MaskedTextBox1 As MaskedTextBox
-    Friend WithEvents TextBox3 As TextBox
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
     Friend WithEvents Button3 As Button
