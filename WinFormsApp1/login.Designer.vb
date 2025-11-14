@@ -24,18 +24,18 @@ Partial Class Login
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Login))
         Panel2 = New Panel()
-        CheckBox1 = New CheckBox()
-        Button2 = New Button()
-        Label4 = New Label()
-        Label3 = New Label()
-        Label2 = New Label()
-        userBox = New TextBox()
+        showpasschkb = New CheckBox()
+        signupbtn = New Button()
+        donthaveacclbl = New Label()
+        passlbl = New Label()
+        userlbl = New Label()
+        usertxt = New TextBox()
         PictureBox1 = New PictureBox()
         Panel1 = New Panel()
-        Label1 = New Label()
-        Button1 = New Button()
-        passwordBox = New TextBox()
-        Button3 = New Button()
+        welcomelbl = New Label()
+        signinbtn = New Button()
+        passbtn = New TextBox()
+        exitbtn = New Button()
         Panel2.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
@@ -44,86 +44,86 @@ Partial Class Login
         ' Panel2
         ' 
         Panel2.BackColor = SystemColors.ButtonHighlight
-        Panel2.Controls.Add(CheckBox1)
-        Panel2.Controls.Add(Button2)
-        Panel2.Controls.Add(Label4)
-        Panel2.Controls.Add(Label3)
-        Panel2.Controls.Add(Label2)
-        Panel2.Controls.Add(userBox)
+        Panel2.Controls.Add(showpasschkb)
+        Panel2.Controls.Add(signupbtn)
+        Panel2.Controls.Add(donthaveacclbl)
+        Panel2.Controls.Add(passlbl)
+        Panel2.Controls.Add(userlbl)
+        Panel2.Controls.Add(usertxt)
         Panel2.Controls.Add(PictureBox1)
         Panel2.Controls.Add(Panel1)
-        Panel2.Controls.Add(Button1)
-        Panel2.Controls.Add(passwordBox)
+        Panel2.Controls.Add(signinbtn)
+        Panel2.Controls.Add(passbtn)
         Panel2.Location = New Point(699, 202)
         Panel2.Name = "Panel2"
         Panel2.Size = New Size(523, 677)
         Panel2.TabIndex = 12
         ' 
-        ' CheckBox1
+        ' showpasschkb
         ' 
-        CheckBox1.AutoSize = True
-        CheckBox1.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        CheckBox1.Location = New Point(76, 459)
-        CheckBox1.Margin = New Padding(3, 2, 3, 2)
-        CheckBox1.Name = "CheckBox1"
-        CheckBox1.Size = New Size(147, 25)
-        CheckBox1.TabIndex = 21
-        CheckBox1.Text = "Show Password"
-        CheckBox1.UseVisualStyleBackColor = True
+        showpasschkb.AutoSize = True
+        showpasschkb.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        showpasschkb.Location = New Point(76, 459)
+        showpasschkb.Margin = New Padding(3, 2, 3, 2)
+        showpasschkb.Name = "showpasschkb"
+        showpasschkb.Size = New Size(180, 32)
+        showpasschkb.TabIndex = 21
+        showpasschkb.Text = "Show Password"
+        showpasschkb.UseVisualStyleBackColor = True
         ' 
-        ' Button2
+        ' signupbtn
         ' 
-        Button2.BackColor = Color.Indigo
-        Button2.FlatStyle = FlatStyle.Popup
-        Button2.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button2.ForeColor = SystemColors.ControlLightLight
-        Button2.Location = New Point(198, 604)
-        Button2.Margin = New Padding(3, 2, 3, 2)
-        Button2.Name = "Button2"
-        Button2.Size = New Size(119, 46)
-        Button2.TabIndex = 20
-        Button2.Text = "Sign Up"
-        Button2.UseVisualStyleBackColor = False
+        signupbtn.BackColor = Color.Indigo
+        signupbtn.FlatStyle = FlatStyle.Popup
+        signupbtn.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        signupbtn.ForeColor = SystemColors.ControlLightLight
+        signupbtn.Location = New Point(198, 604)
+        signupbtn.Margin = New Padding(3, 2, 3, 2)
+        signupbtn.Name = "signupbtn"
+        signupbtn.Size = New Size(119, 46)
+        signupbtn.TabIndex = 20
+        signupbtn.Text = "Sign Up"
+        signupbtn.UseVisualStyleBackColor = False
         ' 
-        ' Label4
+        ' donthaveacclbl
         ' 
-        Label4.AutoSize = True
-        Label4.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label4.Location = New Point(159, 568)
-        Label4.Name = "Label4"
-        Label4.Size = New Size(218, 25)
-        Label4.TabIndex = 19
-        Label4.Text = "Don't have an account?"
+        donthaveacclbl.AutoSize = True
+        donthaveacclbl.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        donthaveacclbl.Location = New Point(159, 568)
+        donthaveacclbl.Name = "donthaveacclbl"
+        donthaveacclbl.Size = New Size(280, 32)
+        donthaveacclbl.TabIndex = 19
+        donthaveacclbl.Text = "Don't have an account?"
         ' 
-        ' Label3
+        ' passlbl
         ' 
-        Label3.AutoSize = True
-        Label3.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label3.Location = New Point(70, 360)
-        Label3.Name = "Label3"
-        Label3.Size = New Size(130, 30)
-        Label3.TabIndex = 18
-        Label3.Text = "PASSWORD"
+        passlbl.AutoSize = True
+        passlbl.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        passlbl.Location = New Point(70, 360)
+        passlbl.Name = "passlbl"
+        passlbl.Size = New Size(166, 37)
+        passlbl.TabIndex = 18
+        passlbl.Text = "PASSWORD"
         ' 
-        ' Label2
+        ' userlbl
         ' 
-        Label2.AutoSize = True
-        Label2.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label2.Location = New Point(70, 265)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(128, 30)
-        Label2.TabIndex = 17
-        Label2.Text = "USERNAME"
+        userlbl.AutoSize = True
+        userlbl.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        userlbl.Location = New Point(70, 265)
+        userlbl.Name = "userlbl"
+        userlbl.Size = New Size(164, 37)
+        userlbl.TabIndex = 17
+        userlbl.Text = "USERNAME"
         ' 
-        ' userBox
+        ' usertxt
         ' 
-        userBox.BackColor = Color.Silver
-        userBox.Font = New Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        userBox.Location = New Point(76, 309)
-        userBox.Margin = New Padding(3, 2, 3, 2)
-        userBox.Name = "userBox"
-        userBox.Size = New Size(378, 39)
-        userBox.TabIndex = 12
+        usertxt.BackColor = Color.Silver
+        usertxt.Font = New Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        usertxt.Location = New Point(76, 309)
+        usertxt.Margin = New Padding(3, 2, 3, 2)
+        usertxt.Name = "usertxt"
+        usertxt.Size = New Size(378, 47)
+        usertxt.TabIndex = 12
         ' 
         ' PictureBox1
         ' 
@@ -139,7 +139,7 @@ Partial Class Login
         ' Panel1
         ' 
         Panel1.BackColor = Color.Indigo
-        Panel1.Controls.Add(Label1)
+        Panel1.Controls.Add(welcomelbl)
         Panel1.ForeColor = Color.White
         Panel1.Location = New Point(0, 0)
         Panel1.Margin = New Padding(3, 2, 3, 2)
@@ -147,54 +147,54 @@ Partial Class Login
         Panel1.Size = New Size(523, 96)
         Panel1.TabIndex = 15
         ' 
-        ' Label1
+        ' welcomelbl
         ' 
-        Label1.AutoSize = True
-        Label1.Font = New Font("Segoe UI Black", 36F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label1.Location = New Point(126, 17)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(271, 65)
-        Label1.TabIndex = 0
-        Label1.Text = "WELCOME"
+        welcomelbl.AutoSize = True
+        welcomelbl.Font = New Font("Segoe UI Black", 36F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        welcomelbl.Location = New Point(126, 17)
+        welcomelbl.Name = "welcomelbl"
+        welcomelbl.Size = New Size(339, 81)
+        welcomelbl.TabIndex = 0
+        welcomelbl.Text = "WELCOME"
         ' 
-        ' Button1
+        ' signinbtn
         ' 
-        Button1.BackColor = Color.Indigo
-        Button1.FlatStyle = FlatStyle.Popup
-        Button1.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button1.ForeColor = SystemColors.ControlLightLight
-        Button1.Location = New Point(76, 495)
-        Button1.Margin = New Padding(3, 2, 3, 2)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(378, 57)
-        Button1.TabIndex = 14
-        Button1.Text = "SIGN IN"
-        Button1.UseVisualStyleBackColor = False
+        signinbtn.BackColor = Color.Indigo
+        signinbtn.FlatStyle = FlatStyle.Popup
+        signinbtn.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        signinbtn.ForeColor = SystemColors.ControlLightLight
+        signinbtn.Location = New Point(76, 495)
+        signinbtn.Margin = New Padding(3, 2, 3, 2)
+        signinbtn.Name = "signinbtn"
+        signinbtn.Size = New Size(378, 57)
+        signinbtn.TabIndex = 14
+        signinbtn.Text = "SIGN IN"
+        signinbtn.UseVisualStyleBackColor = False
         ' 
-        ' passwordBox
+        ' passbtn
         ' 
-        passwordBox.BackColor = Color.Silver
-        passwordBox.Font = New Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        passwordBox.Location = New Point(76, 400)
-        passwordBox.Margin = New Padding(3, 2, 3, 2)
-        passwordBox.Name = "passwordBox"
-        passwordBox.Size = New Size(378, 39)
-        passwordBox.TabIndex = 13
+        passbtn.BackColor = Color.Silver
+        passbtn.Font = New Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        passbtn.Location = New Point(76, 400)
+        passbtn.Margin = New Padding(3, 2, 3, 2)
+        passbtn.Name = "passbtn"
+        passbtn.Size = New Size(378, 47)
+        passbtn.TabIndex = 13
         ' 
-        ' Button3
+        ' exitbtn
         ' 
-        Button3.BackColor = Color.Indigo
-        Button3.FlatStyle = FlatStyle.Popup
-        Button3.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button3.ForeColor = SystemColors.ControlLightLight
-        Button3.Location = New Point(1831, -3)
-        Button3.Margin = New Padding(3, 2, 3, 2)
-        Button3.Name = "Button3"
-        Button3.Size = New Size(103, 55)
-        Button3.TabIndex = 22
-        Button3.Text = "X"
-        Button3.TextAlign = ContentAlignment.TopCenter
-        Button3.UseVisualStyleBackColor = False
+        exitbtn.BackColor = Color.Indigo
+        exitbtn.FlatStyle = FlatStyle.Popup
+        exitbtn.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        exitbtn.ForeColor = SystemColors.ControlLightLight
+        exitbtn.Location = New Point(1831, -3)
+        exitbtn.Margin = New Padding(3, 2, 3, 2)
+        exitbtn.Name = "exitbtn"
+        exitbtn.Size = New Size(103, 55)
+        exitbtn.TabIndex = 22
+        exitbtn.Text = "X"
+        exitbtn.TextAlign = ContentAlignment.TopCenter
+        exitbtn.UseVisualStyleBackColor = False
         ' 
         ' Login
         ' 
@@ -203,7 +203,7 @@ Partial Class Login
         BackgroundImage = My.Resources.Resources.regisformsBG_bw
         BackgroundImageLayout = ImageLayout.None
         ClientSize = New Size(1904, 1041)
-        Controls.Add(Button3)
+        Controls.Add(exitbtn)
         Controls.Add(Panel2)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Margin = New Padding(3, 2, 3, 2)
@@ -219,17 +219,17 @@ Partial Class Login
     End Sub
 
     Friend WithEvents Panel2 As Panel
-    Friend WithEvents CheckBox1 As CheckBox
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label2 As Label
-    Friend WithEvents userBox As TextBox
+    Friend WithEvents showpasschkb As CheckBox
+    Friend WithEvents signupbtn As Button
+    Friend WithEvents donthaveacclbl As Label
+    Friend WithEvents passlbl As Label
+    Friend WithEvents userlbl As Label
+    Friend WithEvents usertxt As TextBox
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Button1 As Button
-    Friend WithEvents passwordBox As TextBox
-    Friend WithEvents Button3 As Button
+    Friend WithEvents welcomelbl As Label
+    Friend WithEvents signinbtn As Button
+    Friend WithEvents passbtn As TextBox
+    Friend WithEvents exitbtn As Button
 
 End Class
