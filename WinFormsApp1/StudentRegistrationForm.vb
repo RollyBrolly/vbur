@@ -76,14 +76,14 @@ Public Class StudentRegistrationForm
         courseBox.Items.Clear()
         courseBox.Enabled = False
 
-        sectionBox.Items.Clear()
-        sectionBox.Enabled = False
+        sectioncb.Items.Clear()
+        sectioncb.Enabled = False
     End Sub
 
     Private Sub departmentBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles departmentBox.SelectedIndexChanged
         courseBox.Items.Clear()
-        sectionBox.Items.Clear()
-        sectionBox.Enabled = False
+        sectioncb.Items.Clear()
+        sectioncb.Enabled = False
 
         If departmentBox.SelectedItem Is Nothing Then
             courseBox.Enabled = False
@@ -102,10 +102,10 @@ Public Class StudentRegistrationForm
 
     ' ✅ Populate sectionBox with correct abbreviation
     Private Sub courseBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles courseBox.SelectedIndexChanged
-        sectionBox.Items.Clear()
+        sectioncb.Items.Clear()
 
         If departmentBox.SelectedIndex = -1 OrElse courseBox.SelectedIndex = -1 Then
-            sectionBox.Enabled = False
+            sectioncb.Enabled = False
             Return
         End If
 
@@ -121,11 +121,11 @@ Public Class StudentRegistrationForm
         ' Add 4 sections with abbreviation prefix
         Dim sections As String() = {"4A", "4B", "4C", "4D"}
         For Each sec In sections
-            sectionBox.Items.Add(abbreviation & sec)
+            sectioncb.Items.Add(abbreviation & sec)
         Next
 
-        sectionBox.Enabled = True
-        sectionBox.SelectedIndex = 0
+        sectioncb.Enabled = True
+        sectioncb.SelectedIndex = 0
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -133,7 +133,7 @@ Public Class StudentRegistrationForm
            String.IsNullOrWhiteSpace(lastnameBox.Text) OrElse
            departmentBox.SelectedIndex = -1 OrElse
            courseBox.SelectedIndex = -1 OrElse
-           sectionBox.SelectedIndex = -1 Then
+           sectioncb.SelectedIndex = -1 Then
 
             MessageBox.Show("Please fill out all required fields before registering.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
@@ -149,8 +149,8 @@ Public Class StudentRegistrationForm
             departmentBox.SelectedIndex = -1
             courseBox.Items.Clear()
             courseBox.Enabled = False
-            sectionBox.Items.Clear()
-            sectionBox.Enabled = False
+            sectioncb.Items.Clear()
+            sectioncb.Enabled = False
         End If
     End Sub
 
