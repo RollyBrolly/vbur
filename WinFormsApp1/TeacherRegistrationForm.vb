@@ -167,8 +167,8 @@ Public Class TeacherRegistrationForm
     End Sub
 
     'to fix
-    'walang sa sql
-    'middle name
-    'contact no
-    ' suffix
+    'Middle name wala sa SQL
+    'Suffix wala sa SQL
+    'Contact number wala sa SQL
+    ' Gender wala sa SQL
 End Class

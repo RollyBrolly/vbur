@@ -135,4 +135,9 @@ Public Class StaffRegistrationForm
         End If
     End Sub
 
+    'to fix
+    'middle
+    'suffix
+    'gender di kona lagay
+    'Company name/ID nag iisip pa ako kung pano
 End Class
