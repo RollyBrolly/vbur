@@ -23,45 +23,45 @@ Partial Class AddCompanyForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AddCompanyForm))
-        lastnameBox = New TextBox()
-        companyNameBox = New TextBox()
-        addressBox = New TextBox()
+        lnametxtbox = New TextBox()
+        companynametxtbx = New TextBox()
+        addresstxtbox = New TextBox()
         Label1 = New Label()
         Label2 = New Label()
         Label3 = New Label()
-        ButtonBack = New Button()
-        ButtonAdd = New Button()
+        returnbtm = New Button()
+        addcompantbtn = New Button()
         SuspendLayout()
         ' 
-        ' lastnameBox
+        ' lnametxtbox
         ' 
-        lastnameBox.BackColor = Color.Silver
-        lastnameBox.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
-        lastnameBox.Location = New Point(41, 82)
-        lastnameBox.Margin = New Padding(3, 2, 3, 2)
-        lastnameBox.Name = "lastnameBox"
-        lastnameBox.Size = New Size(130, 46)
-        lastnameBox.TabIndex = 65
+        lnametxtbox.BackColor = Color.Silver
+        lnametxtbox.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        lnametxtbox.Location = New Point(41, 82)
+        lnametxtbox.Margin = New Padding(3, 2, 3, 2)
+        lnametxtbox.Name = "lnametxtbox"
+        lnametxtbox.Size = New Size(130, 46)
+        lnametxtbox.TabIndex = 65
         ' 
-        ' companyNameBox
+        ' companynametxtbx
         ' 
-        companyNameBox.BackColor = Color.Silver
-        companyNameBox.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
-        companyNameBox.Location = New Point(205, 82)
-        companyNameBox.Margin = New Padding(3, 2, 3, 2)
-        companyNameBox.Name = "companyNameBox"
-        companyNameBox.Size = New Size(283, 46)
-        companyNameBox.TabIndex = 66
+        companynametxtbx.BackColor = Color.Silver
+        companynametxtbx.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        companynametxtbx.Location = New Point(205, 82)
+        companynametxtbx.Margin = New Padding(3, 2, 3, 2)
+        companynametxtbx.Name = "companynametxtbx"
+        companynametxtbx.Size = New Size(283, 46)
+        companynametxtbx.TabIndex = 66
         ' 
-        ' addressBox
+        ' addresstxtbox
         ' 
-        addressBox.BackColor = Color.Silver
-        addressBox.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
-        addressBox.Location = New Point(517, 82)
-        addressBox.Margin = New Padding(3, 2, 3, 2)
-        addressBox.Name = "addressBox"
-        addressBox.Size = New Size(347, 46)
-        addressBox.TabIndex = 67
+        addresstxtbox.BackColor = Color.Silver
+        addresstxtbox.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        addresstxtbox.Location = New Point(517, 82)
+        addresstxtbox.Margin = New Padding(3, 2, 3, 2)
+        addresstxtbox.Name = "addresstxtbox"
+        addresstxtbox.Size = New Size(347, 46)
+        addresstxtbox.TabIndex = 67
         ' 
         ' Label1
         ' 
@@ -96,45 +96,45 @@ Partial Class AddCompanyForm
         Label3.TabIndex = 71
         Label3.Text = "Company Address"
         ' 
-        ' ButtonBack
+        ' returnbtm
         ' 
-        ButtonBack.BackColor = Color.LightSlateGray
-        ButtonBack.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        ButtonBack.ForeColor = Color.White
-        ButtonBack.Location = New Point(627, 160)
-        ButtonBack.Margin = New Padding(3, 2, 3, 2)
-        ButtonBack.Name = "ButtonBack"
-        ButtonBack.Size = New Size(111, 50)
-        ButtonBack.TabIndex = 98
-        ButtonBack.Text = "RETURN"
-        ButtonBack.UseVisualStyleBackColor = False
+        returnbtm.BackColor = Color.LightSlateGray
+        returnbtm.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        returnbtm.ForeColor = Color.White
+        returnbtm.Location = New Point(627, 160)
+        returnbtm.Margin = New Padding(3, 2, 3, 2)
+        returnbtm.Name = "returnbtm"
+        returnbtm.Size = New Size(111, 50)
+        returnbtm.TabIndex = 98
+        returnbtm.Text = "RETURN"
+        returnbtm.UseVisualStyleBackColor = False
         ' 
-        ' ButtonAdd
+        ' addcompantbtn
         ' 
-        ButtonAdd.BackColor = Color.Indigo
-        ButtonAdd.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        ButtonAdd.ForeColor = Color.White
-        ButtonAdd.Location = New Point(753, 160)
-        ButtonAdd.Margin = New Padding(3, 2, 3, 2)
-        ButtonAdd.Name = "ButtonAdd"
-        ButtonAdd.Size = New Size(111, 50)
-        ButtonAdd.TabIndex = 99
-        ButtonAdd.Text = "ADD"
-        ButtonAdd.UseVisualStyleBackColor = False
+        addcompantbtn.BackColor = Color.Indigo
+        addcompantbtn.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        addcompantbtn.ForeColor = Color.White
+        addcompantbtn.Location = New Point(753, 160)
+        addcompantbtn.Margin = New Padding(3, 2, 3, 2)
+        addcompantbtn.Name = "addcompantbtn"
+        addcompantbtn.Size = New Size(111, 50)
+        addcompantbtn.TabIndex = 99
+        addcompantbtn.Text = "ADD"
+        addcompantbtn.UseVisualStyleBackColor = False
         ' 
         ' AddCompanyForm
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(911, 221)
-        Controls.Add(ButtonAdd)
-        Controls.Add(ButtonBack)
+        Controls.Add(addcompantbtn)
+        Controls.Add(returnbtm)
         Controls.Add(Label3)
         Controls.Add(Label2)
         Controls.Add(Label1)
-        Controls.Add(addressBox)
-        Controls.Add(companyNameBox)
-        Controls.Add(lastnameBox)
+        Controls.Add(addresstxtbox)
+        Controls.Add(companynametxtbx)
+        Controls.Add(lnametxtbox)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "AddCompanyForm"
         Text = "Add Company Form"
@@ -142,12 +142,12 @@ Partial Class AddCompanyForm
         PerformLayout()
     End Sub
 
-    Friend WithEvents lastnameBox As TextBox
-    Friend WithEvents companyNameBox As TextBox
-    Friend WithEvents addressBox As TextBox
+    Friend WithEvents lnametxtbox As TextBox
+    Friend WithEvents companynametxtbx As TextBox
+    Friend WithEvents addresstxtbox As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
-    Friend WithEvents ButtonBack As Button
-    Friend WithEvents ButtonAdd As Button
+    Friend WithEvents returnbtm As Button
+    Friend WithEvents addcompantbtn As Button
 End Class

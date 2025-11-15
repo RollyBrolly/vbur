@@ -36,9 +36,6 @@ Public Class StudentRegistrationForm
     }
 
     Private ReadOnly sections As String() = {
-        "1A", "1B", "1C", "1D", "1E", "1F",
-        "2A", "2B", "2C", "2D", "2E", "2F",
-        "3A", "3B", "3C", "3D", "3E", "3F",
         "4A", "4B", "4C", "4D", "4E", "4F"
     }
 
@@ -50,8 +47,8 @@ Public Class StudentRegistrationForm
         For Each dept As String In departmentDict.Keys
             studdeptcb.Items.Add(dept)
         Next
-        studdeptcb.DropDownStyle = ComboBoxStyle.DropDownList
         studdeptcb.SelectedIndex = -1
+        studdeptcb.Enabled = True
 
         studcourcb.Items.Clear()
         studcourcb.Enabled = False
@@ -61,7 +58,6 @@ Public Class StudentRegistrationForm
 
         studgendercb.Items.Clear()
         studgendercb.Items.AddRange({"M", "F"})
-        studgendercb.DropDownStyle = ComboBoxStyle.DropDownList
         studgendercb.SelectedIndex = -1
 
         studnotxt.Text = GeneratedStudentID()
@@ -72,17 +68,23 @@ Public Class StudentRegistrationForm
         studsectioncb.Items.Clear()
         studsectioncb.Enabled = False
 
-        If studcourcb.SelectedItem Is Nothing Then
+        ' If no department selected
+        If studdeptcb.SelectedIndex = -1 Then
             studcourcb.Enabled = False
             Return
         End If
 
+        ' Enable course combobox
         studcourcb.Enabled = True
-        studcourcb.Items.Clear()
+
+        ' Load courses related to the selected department
+        Dim selectedDept As String = studdeptcb.SelectedItem.ToString()
 
         For Each kvp In courseDict
+            ' Add all courses from the selected department (automatic for now)
             studcourcb.Items.Add(kvp.Key)
         Next
+
         studcourcb.SelectedIndex = -1
     End Sub
 
@@ -217,6 +219,14 @@ Public Class StudentRegistrationForm
             Dim regForm As New Registration()
             regForm.Show()
         End If
+    End Sub
+
+    Private Sub studsectioncb_SelectedIndexChanged(sender As Object, e As EventArgs) Handles studsectioncb.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub studnotxt_MaskInputRejected(sender As Object, e As MaskInputRejectedEventArgs) Handles studnotxt.MaskInputRejected
+
     End Sub
 
     'to fix

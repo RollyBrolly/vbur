@@ -24,48 +24,48 @@ Partial Class facultyDashboard
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(facultyDashboard))
         PictureBox1 = New PictureBox()
-        Panel6 = New Panel()
-        Button5 = New Button()
-        PictureBox6 = New PictureBox()
-        Label10 = New Label()
-        Panel5 = New Panel()
-        Button4 = New Button()
-        PictureBox5 = New PictureBox()
-        Label9 = New Label()
-        Panel4 = New Panel()
+        facgradepnl = New Panel()
+        gradestudentslbl = New Button()
+        gradingicon = New PictureBox()
+        gradinglbl = New Label()
+        facvisitlog = New Panel()
+        viewvisitbtn = New Button()
+        visiticon = New PictureBox()
+        visitlbl = New Label()
+        facannouncementspnl = New Panel()
         CheckBox4 = New CheckBox()
-        Label8 = New Label()
+        announcementslbl = New Label()
         CheckBox5 = New CheckBox()
-        PictureBox4 = New PictureBox()
+        announcementsicon = New PictureBox()
         CheckBox6 = New CheckBox()
-        Panel3 = New Panel()
+        factimeinpnl = New Panel()
         Label7 = New Label()
-        Label6 = New Label()
-        Label5 = New Label()
-        Button2 = New Button()
-        Panel2 = New Panel()
+        timeoutlbl = New Label()
+        timetodaylbl = New Label()
+        timeinbtn = New Button()
+        facstudentspnl = New Panel()
         Button6 = New Button()
         PictureBox3 = New PictureBox()
         Label11 = New Label()
-        Panel1 = New Panel()
-        Button3 = New Button()
-        PictureBox2 = New PictureBox()
-        Button1 = New Button()
-        Label2 = New Label()
+        factaskspnl = New Panel()
+        completetasksbtn = New Button()
+        tasksicon = New PictureBox()
+        addtasksbtn = New Button()
+        taskslbl = New Label()
         Label1 = New Label()
         PictureBox7 = New PictureBox()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
-        Panel6.SuspendLayout()
-        CType(PictureBox6, ComponentModel.ISupportInitialize).BeginInit()
-        Panel5.SuspendLayout()
-        CType(PictureBox5, ComponentModel.ISupportInitialize).BeginInit()
-        Panel4.SuspendLayout()
-        CType(PictureBox4, ComponentModel.ISupportInitialize).BeginInit()
-        Panel3.SuspendLayout()
-        Panel2.SuspendLayout()
+        facgradepnl.SuspendLayout()
+        CType(gradingicon, ComponentModel.ISupportInitialize).BeginInit()
+        facvisitlog.SuspendLayout()
+        CType(visiticon, ComponentModel.ISupportInitialize).BeginInit()
+        facannouncementspnl.SuspendLayout()
+        CType(announcementsicon, ComponentModel.ISupportInitialize).BeginInit()
+        factimeinpnl.SuspendLayout()
+        facstudentspnl.SuspendLayout()
         CType(PictureBox3, ComponentModel.ISupportInitialize).BeginInit()
-        Panel1.SuspendLayout()
-        CType(PictureBox2, ComponentModel.ISupportInitialize).BeginInit()
+        factaskspnl.SuspendLayout()
+        CType(tasksicon, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox7, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -81,113 +81,113 @@ Partial Class facultyDashboard
         PictureBox1.TabIndex = 65
         PictureBox1.TabStop = False
         ' 
-        ' Panel6
+        ' facgradepnl
         ' 
-        Panel6.BackColor = Color.White
-        Panel6.Controls.Add(Button5)
-        Panel6.Controls.Add(PictureBox6)
-        Panel6.Controls.Add(Label10)
-        Panel6.Location = New Point(1252, 670)
-        Panel6.Margin = New Padding(3, 2, 3, 2)
-        Panel6.Name = "Panel6"
-        Panel6.Size = New Size(546, 380)
-        Panel6.TabIndex = 80
+        facgradepnl.BackColor = Color.White
+        facgradepnl.Controls.Add(gradestudentslbl)
+        facgradepnl.Controls.Add(gradingicon)
+        facgradepnl.Controls.Add(gradinglbl)
+        facgradepnl.Location = New Point(1252, 670)
+        facgradepnl.Margin = New Padding(3, 2, 3, 2)
+        facgradepnl.Name = "facgradepnl"
+        facgradepnl.Size = New Size(546, 380)
+        facgradepnl.TabIndex = 80
         ' 
-        ' Button5
+        ' gradestudentslbl
         ' 
-        Button5.BackColor = Color.Indigo
-        Button5.Font = New Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button5.ForeColor = Color.White
-        Button5.Location = New Point(35, 165)
-        Button5.Margin = New Padding(3, 2, 3, 2)
-        Button5.Name = "Button5"
-        Button5.Size = New Size(474, 87)
-        Button5.TabIndex = 68
-        Button5.Text = "GRADE STUDENTS"
-        Button5.UseVisualStyleBackColor = False
+        gradestudentslbl.BackColor = Color.Indigo
+        gradestudentslbl.Font = New Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        gradestudentslbl.ForeColor = Color.White
+        gradestudentslbl.Location = New Point(35, 165)
+        gradestudentslbl.Margin = New Padding(3, 2, 3, 2)
+        gradestudentslbl.Name = "gradestudentslbl"
+        gradestudentslbl.Size = New Size(474, 87)
+        gradestudentslbl.TabIndex = 68
+        gradestudentslbl.Text = "GRADE STUDENTS"
+        gradestudentslbl.UseVisualStyleBackColor = False
         ' 
-        ' PictureBox6
+        ' gradingicon
         ' 
-        PictureBox6.Image = My.Resources.Resources.icons8_rating_52
-        PictureBox6.Location = New Point(23, 27)
-        PictureBox6.Margin = New Padding(3, 2, 3, 2)
-        PictureBox6.Name = "PictureBox6"
-        PictureBox6.Size = New Size(56, 55)
-        PictureBox6.SizeMode = PictureBoxSizeMode.StretchImage
-        PictureBox6.TabIndex = 68
-        PictureBox6.TabStop = False
+        gradingicon.Image = My.Resources.Resources.icons8_rating_52
+        gradingicon.Location = New Point(23, 27)
+        gradingicon.Margin = New Padding(3, 2, 3, 2)
+        gradingicon.Name = "gradingicon"
+        gradingicon.Size = New Size(56, 55)
+        gradingicon.SizeMode = PictureBoxSizeMode.StretchImage
+        gradingicon.TabIndex = 68
+        gradingicon.TabStop = False
         ' 
-        ' Label10
+        ' gradinglbl
         ' 
-        Label10.AutoSize = True
-        Label10.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label10.ForeColor = Color.Indigo
-        Label10.Location = New Point(85, 31)
-        Label10.Name = "Label10"
-        Label10.Size = New Size(141, 45)
-        Label10.TabIndex = 67
-        Label10.Text = "Grading"
+        gradinglbl.AutoSize = True
+        gradinglbl.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        gradinglbl.ForeColor = Color.Indigo
+        gradinglbl.Location = New Point(85, 31)
+        gradinglbl.Name = "gradinglbl"
+        gradinglbl.Size = New Size(141, 45)
+        gradinglbl.TabIndex = 67
+        gradinglbl.Text = "Grading"
         ' 
-        ' Panel5
+        ' facvisitlog
         ' 
-        Panel5.BackColor = Color.White
-        Panel5.Controls.Add(Button4)
-        Panel5.Controls.Add(PictureBox5)
-        Panel5.Controls.Add(Label9)
-        Panel5.Location = New Point(1252, 262)
-        Panel5.Margin = New Padding(3, 2, 3, 2)
-        Panel5.Name = "Panel5"
-        Panel5.Size = New Size(546, 380)
-        Panel5.TabIndex = 79
+        facvisitlog.BackColor = Color.White
+        facvisitlog.Controls.Add(viewvisitbtn)
+        facvisitlog.Controls.Add(visiticon)
+        facvisitlog.Controls.Add(visitlbl)
+        facvisitlog.Location = New Point(1252, 262)
+        facvisitlog.Margin = New Padding(3, 2, 3, 2)
+        facvisitlog.Name = "facvisitlog"
+        facvisitlog.Size = New Size(546, 380)
+        facvisitlog.TabIndex = 79
         ' 
-        ' Button4
+        ' viewvisitbtn
         ' 
-        Button4.BackColor = Color.Indigo
-        Button4.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button4.ForeColor = Color.White
-        Button4.Location = New Point(198, 294)
-        Button4.Margin = New Padding(3, 2, 3, 2)
-        Button4.Name = "Button4"
-        Button4.Size = New Size(155, 61)
-        Button4.TabIndex = 73
-        Button4.Text = "View All"
-        Button4.UseVisualStyleBackColor = False
+        viewvisitbtn.BackColor = Color.Indigo
+        viewvisitbtn.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        viewvisitbtn.ForeColor = Color.White
+        viewvisitbtn.Location = New Point(198, 294)
+        viewvisitbtn.Margin = New Padding(3, 2, 3, 2)
+        viewvisitbtn.Name = "viewvisitbtn"
+        viewvisitbtn.Size = New Size(155, 61)
+        viewvisitbtn.TabIndex = 73
+        viewvisitbtn.Text = "View All"
+        viewvisitbtn.UseVisualStyleBackColor = False
         ' 
-        ' PictureBox5
+        ' visiticon
         ' 
-        PictureBox5.Image = My.Resources.Resources.icons8_book_90
-        PictureBox5.Location = New Point(15, 22)
-        PictureBox5.Margin = New Padding(3, 2, 3, 2)
-        PictureBox5.Name = "PictureBox5"
-        PictureBox5.Size = New Size(73, 71)
-        PictureBox5.SizeMode = PictureBoxSizeMode.StretchImage
-        PictureBox5.TabIndex = 67
-        PictureBox5.TabStop = False
+        visiticon.Image = My.Resources.Resources.icons8_book_90
+        visiticon.Location = New Point(15, 22)
+        visiticon.Margin = New Padding(3, 2, 3, 2)
+        visiticon.Name = "visiticon"
+        visiticon.Size = New Size(73, 71)
+        visiticon.SizeMode = PictureBoxSizeMode.StretchImage
+        visiticon.TabIndex = 67
+        visiticon.TabStop = False
         ' 
-        ' Label9
+        ' visitlbl
         ' 
-        Label9.AutoSize = True
-        Label9.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label9.ForeColor = Color.Indigo
-        Label9.Location = New Point(94, 38)
-        Label9.Name = "Label9"
-        Label9.Size = New Size(241, 45)
-        Label9.TabIndex = 67
-        Label9.Text = "Visitation Logs"
+        visitlbl.AutoSize = True
+        visitlbl.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        visitlbl.ForeColor = Color.Indigo
+        visitlbl.Location = New Point(94, 38)
+        visitlbl.Name = "visitlbl"
+        visitlbl.Size = New Size(241, 45)
+        visitlbl.TabIndex = 67
+        visitlbl.Text = "Visitation Logs"
         ' 
-        ' Panel4
+        ' facannouncementspnl
         ' 
-        Panel4.BackColor = Color.White
-        Panel4.Controls.Add(CheckBox4)
-        Panel4.Controls.Add(Label8)
-        Panel4.Controls.Add(CheckBox5)
-        Panel4.Controls.Add(PictureBox4)
-        Panel4.Controls.Add(CheckBox6)
-        Panel4.Location = New Point(113, 670)
-        Panel4.Margin = New Padding(3, 2, 3, 2)
-        Panel4.Name = "Panel4"
-        Panel4.Size = New Size(546, 380)
-        Panel4.TabIndex = 78
+        facannouncementspnl.BackColor = Color.White
+        facannouncementspnl.Controls.Add(CheckBox4)
+        facannouncementspnl.Controls.Add(announcementslbl)
+        facannouncementspnl.Controls.Add(CheckBox5)
+        facannouncementspnl.Controls.Add(announcementsicon)
+        facannouncementspnl.Controls.Add(CheckBox6)
+        facannouncementspnl.Location = New Point(113, 670)
+        facannouncementspnl.Margin = New Padding(3, 2, 3, 2)
+        facannouncementspnl.Name = "facannouncementspnl"
+        facannouncementspnl.Size = New Size(546, 380)
+        facannouncementspnl.TabIndex = 78
         ' 
         ' CheckBox4
         ' 
@@ -202,16 +202,16 @@ Partial Class facultyDashboard
         CheckBox4.Text = "Coffee Machine is broken"
         CheckBox4.UseVisualStyleBackColor = True
         ' 
-        ' Label8
+        ' announcementslbl
         ' 
-        Label8.AutoSize = True
-        Label8.Font = New Font("Segoe UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label8.ForeColor = Color.Indigo
-        Label8.Location = New Point(92, 36)
-        Label8.Name = "Label8"
-        Label8.Size = New Size(287, 47)
-        Label8.TabIndex = 74
-        Label8.Text = "Announcements"
+        announcementslbl.AutoSize = True
+        announcementslbl.Font = New Font("Segoe UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        announcementslbl.ForeColor = Color.Indigo
+        announcementslbl.Location = New Point(92, 36)
+        announcementslbl.Name = "announcementslbl"
+        announcementslbl.Size = New Size(287, 47)
+        announcementslbl.TabIndex = 74
+        announcementslbl.Text = "Announcements"
         ' 
         ' CheckBox5
         ' 
@@ -226,16 +226,16 @@ Partial Class facultyDashboard
         CheckBox5.Text = "Meeting tomorrow"
         CheckBox5.UseVisualStyleBackColor = True
         ' 
-        ' PictureBox4
+        ' announcementsicon
         ' 
-        PictureBox4.Image = My.Resources.Resources.icons8_announcement_90
-        PictureBox4.Location = New Point(17, 22)
-        PictureBox4.Margin = New Padding(3, 2, 3, 2)
-        PictureBox4.Name = "PictureBox4"
-        PictureBox4.Size = New Size(69, 71)
-        PictureBox4.SizeMode = PictureBoxSizeMode.StretchImage
-        PictureBox4.TabIndex = 73
-        PictureBox4.TabStop = False
+        announcementsicon.Image = My.Resources.Resources.icons8_announcement_90
+        announcementsicon.Location = New Point(17, 22)
+        announcementsicon.Margin = New Padding(3, 2, 3, 2)
+        announcementsicon.Name = "announcementsicon"
+        announcementsicon.Size = New Size(69, 71)
+        announcementsicon.SizeMode = PictureBoxSizeMode.StretchImage
+        announcementsicon.TabIndex = 73
+        announcementsicon.TabStop = False
         ' 
         ' CheckBox6
         ' 
@@ -250,18 +250,18 @@ Partial Class facultyDashboard
         CheckBox6.Text = "Company Event at 3:00PM"
         CheckBox6.UseVisualStyleBackColor = True
         ' 
-        ' Panel3
+        ' factimeinpnl
         ' 
-        Panel3.BackColor = Color.White
-        Panel3.Controls.Add(Label7)
-        Panel3.Controls.Add(Label6)
-        Panel3.Controls.Add(Label5)
-        Panel3.Controls.Add(Button2)
-        Panel3.Location = New Point(113, 262)
-        Panel3.Margin = New Padding(3, 2, 3, 2)
-        Panel3.Name = "Panel3"
-        Panel3.Size = New Size(546, 380)
-        Panel3.TabIndex = 77
+        factimeinpnl.BackColor = Color.White
+        factimeinpnl.Controls.Add(Label7)
+        factimeinpnl.Controls.Add(timeoutlbl)
+        factimeinpnl.Controls.Add(timetodaylbl)
+        factimeinpnl.Controls.Add(timeinbtn)
+        factimeinpnl.Location = New Point(113, 262)
+        factimeinpnl.Margin = New Padding(3, 2, 3, 2)
+        factimeinpnl.Name = "factimeinpnl"
+        factimeinpnl.Size = New Size(546, 380)
+        factimeinpnl.TabIndex = 77
         ' 
         ' Label7
         ' 
@@ -273,50 +273,50 @@ Partial Class facultyDashboard
         Label7.TabIndex = 3
         Label7.Text = "October 29, 2025 - 5:01 PM"
         ' 
-        ' Label6
+        ' timeoutlbl
         ' 
-        Label6.AutoSize = True
-        Label6.Font = New Font("Segoe UI", 26.25F, FontStyle.Bold)
-        Label6.Location = New Point(144, 251)
-        Label6.Name = "Label6"
-        Label6.Size = New Size(259, 47)
-        Label6.TabIndex = 2
-        Label6.Text = "Last Time Out:"
+        timeoutlbl.AutoSize = True
+        timeoutlbl.Font = New Font("Segoe UI", 26.25F, FontStyle.Bold)
+        timeoutlbl.Location = New Point(144, 251)
+        timeoutlbl.Name = "timeoutlbl"
+        timeoutlbl.Size = New Size(259, 47)
+        timeoutlbl.TabIndex = 2
+        timeoutlbl.Text = "Last Time Out:"
         ' 
-        ' Label5
+        ' timetodaylbl
         ' 
-        Label5.AutoSize = True
-        Label5.Font = New Font("Segoe UI", 32.25F, FontStyle.Bold)
-        Label5.Location = New Point(31, 64)
-        Label5.Name = "Label5"
-        Label5.Size = New Size(471, 59)
-        Label5.TabIndex = 1
-        Label5.Text = "Time Today: 12:30 PM"
+        timetodaylbl.AutoSize = True
+        timetodaylbl.Font = New Font("Segoe UI", 32.25F, FontStyle.Bold)
+        timetodaylbl.Location = New Point(31, 64)
+        timetodaylbl.Name = "timetodaylbl"
+        timetodaylbl.Size = New Size(471, 59)
+        timetodaylbl.TabIndex = 1
+        timetodaylbl.Text = "Time Today: 12:30 PM"
         ' 
-        ' Button2
+        ' timeinbtn
         ' 
-        Button2.BackColor = Color.Indigo
-        Button2.Font = New Font("Segoe UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button2.ForeColor = Color.White
-        Button2.Location = New Point(172, 146)
-        Button2.Margin = New Padding(3, 2, 3, 2)
-        Button2.Name = "Button2"
-        Button2.Size = New Size(207, 87)
-        Button2.TabIndex = 0
-        Button2.Text = "TIME IN"
-        Button2.UseVisualStyleBackColor = False
+        timeinbtn.BackColor = Color.Indigo
+        timeinbtn.Font = New Font("Segoe UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        timeinbtn.ForeColor = Color.White
+        timeinbtn.Location = New Point(172, 146)
+        timeinbtn.Margin = New Padding(3, 2, 3, 2)
+        timeinbtn.Name = "timeinbtn"
+        timeinbtn.Size = New Size(207, 87)
+        timeinbtn.TabIndex = 0
+        timeinbtn.Text = "TIME IN"
+        timeinbtn.UseVisualStyleBackColor = False
         ' 
-        ' Panel2
+        ' facstudentspnl
         ' 
-        Panel2.BackColor = Color.White
-        Panel2.Controls.Add(Button6)
-        Panel2.Controls.Add(PictureBox3)
-        Panel2.Controls.Add(Label11)
-        Panel2.Location = New Point(686, 261)
-        Panel2.Margin = New Padding(3, 2, 3, 2)
-        Panel2.Name = "Panel2"
-        Panel2.Size = New Size(546, 380)
-        Panel2.TabIndex = 76
+        facstudentspnl.BackColor = Color.White
+        facstudentspnl.Controls.Add(Button6)
+        facstudentspnl.Controls.Add(PictureBox3)
+        facstudentspnl.Controls.Add(Label11)
+        facstudentspnl.Location = New Point(686, 261)
+        facstudentspnl.Margin = New Padding(3, 2, 3, 2)
+        facstudentspnl.Name = "facstudentspnl"
+        facstudentspnl.Size = New Size(546, 380)
+        facstudentspnl.TabIndex = 76
         ' 
         ' Button6
         ' 
@@ -353,66 +353,66 @@ Partial Class facultyDashboard
         Label11.TabIndex = 73
         Label11.Text = "Students"
         ' 
-        ' Panel1
+        ' factaskspnl
         ' 
-        Panel1.BackColor = Color.White
-        Panel1.Controls.Add(Button3)
-        Panel1.Controls.Add(PictureBox2)
-        Panel1.Controls.Add(Button1)
-        Panel1.Controls.Add(Label2)
-        Panel1.Location = New Point(687, 670)
-        Panel1.Margin = New Padding(3, 2, 3, 2)
-        Panel1.Name = "Panel1"
-        Panel1.Size = New Size(546, 380)
-        Panel1.TabIndex = 75
+        factaskspnl.BackColor = Color.White
+        factaskspnl.Controls.Add(completetasksbtn)
+        factaskspnl.Controls.Add(tasksicon)
+        factaskspnl.Controls.Add(addtasksbtn)
+        factaskspnl.Controls.Add(taskslbl)
+        factaskspnl.Location = New Point(687, 670)
+        factaskspnl.Margin = New Padding(3, 2, 3, 2)
+        factaskspnl.Name = "factaskspnl"
+        factaskspnl.Size = New Size(546, 380)
+        factaskspnl.TabIndex = 75
         ' 
-        ' Button3
+        ' completetasksbtn
         ' 
-        Button3.BackColor = Color.Indigo
-        Button3.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button3.ForeColor = Color.White
-        Button3.Location = New Point(281, 301)
-        Button3.Margin = New Padding(3, 2, 3, 2)
-        Button3.Name = "Button3"
-        Button3.Size = New Size(222, 61)
-        Button3.TabIndex = 72
-        Button3.Text = "Complete Tasks"
-        Button3.UseVisualStyleBackColor = False
+        completetasksbtn.BackColor = Color.Indigo
+        completetasksbtn.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        completetasksbtn.ForeColor = Color.White
+        completetasksbtn.Location = New Point(281, 301)
+        completetasksbtn.Margin = New Padding(3, 2, 3, 2)
+        completetasksbtn.Name = "completetasksbtn"
+        completetasksbtn.Size = New Size(222, 61)
+        completetasksbtn.TabIndex = 72
+        completetasksbtn.Text = "Complete Tasks"
+        completetasksbtn.UseVisualStyleBackColor = False
         ' 
-        ' PictureBox2
+        ' tasksicon
         ' 
-        PictureBox2.Image = My.Resources.Resources.icons8_tasks_48
-        PictureBox2.Location = New Point(15, 22)
-        PictureBox2.Margin = New Padding(3, 2, 3, 2)
-        PictureBox2.Name = "PictureBox2"
-        PictureBox2.Size = New Size(69, 71)
-        PictureBox2.SizeMode = PictureBoxSizeMode.StretchImage
-        PictureBox2.TabIndex = 67
-        PictureBox2.TabStop = False
+        tasksicon.Image = My.Resources.Resources.icons8_tasks_48
+        tasksicon.Location = New Point(15, 22)
+        tasksicon.Margin = New Padding(3, 2, 3, 2)
+        tasksicon.Name = "tasksicon"
+        tasksicon.Size = New Size(69, 71)
+        tasksicon.SizeMode = PictureBoxSizeMode.StretchImage
+        tasksicon.TabIndex = 67
+        tasksicon.TabStop = False
         ' 
-        ' Button1
+        ' addtasksbtn
         ' 
-        Button1.BackColor = Color.Indigo
-        Button1.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button1.ForeColor = Color.White
-        Button1.Location = New Point(38, 301)
-        Button1.Margin = New Padding(3, 2, 3, 2)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(155, 61)
-        Button1.TabIndex = 68
-        Button1.Text = "Add Tasks"
-        Button1.UseVisualStyleBackColor = False
+        addtasksbtn.BackColor = Color.Indigo
+        addtasksbtn.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        addtasksbtn.ForeColor = Color.White
+        addtasksbtn.Location = New Point(38, 301)
+        addtasksbtn.Margin = New Padding(3, 2, 3, 2)
+        addtasksbtn.Name = "addtasksbtn"
+        addtasksbtn.Size = New Size(155, 61)
+        addtasksbtn.TabIndex = 68
+        addtasksbtn.Text = "Add Tasks"
+        addtasksbtn.UseVisualStyleBackColor = False
         ' 
-        ' Label2
+        ' taskslbl
         ' 
-        Label2.AutoSize = True
-        Label2.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label2.ForeColor = Color.Indigo
-        Label2.Location = New Point(77, 36)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(231, 45)
-        Label2.TabIndex = 67
-        Label2.Text = "Pending Tasks"
+        taskslbl.AutoSize = True
+        taskslbl.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        taskslbl.ForeColor = Color.Indigo
+        taskslbl.Location = New Point(77, 36)
+        taskslbl.Name = "taskslbl"
+        taskslbl.Size = New Size(231, 45)
+        taskslbl.TabIndex = 67
+        taskslbl.Text = "Pending Tasks"
         ' 
         ' Label1
         ' 
@@ -445,68 +445,68 @@ Partial Class facultyDashboard
         ClientSize = New Size(1904, 1041)
         Controls.Add(PictureBox7)
         Controls.Add(Label1)
-        Controls.Add(Panel6)
-        Controls.Add(Panel5)
-        Controls.Add(Panel4)
-        Controls.Add(Panel3)
-        Controls.Add(Panel2)
-        Controls.Add(Panel1)
+        Controls.Add(facgradepnl)
+        Controls.Add(facvisitlog)
+        Controls.Add(facannouncementspnl)
+        Controls.Add(factimeinpnl)
+        Controls.Add(facstudentspnl)
+        Controls.Add(factaskspnl)
         Controls.Add(PictureBox1)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "facultyDashboard"
         Text = "Faculty Dashboard"
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
-        Panel6.ResumeLayout(False)
-        Panel6.PerformLayout()
-        CType(PictureBox6, ComponentModel.ISupportInitialize).EndInit()
-        Panel5.ResumeLayout(False)
-        Panel5.PerformLayout()
-        CType(PictureBox5, ComponentModel.ISupportInitialize).EndInit()
-        Panel4.ResumeLayout(False)
-        Panel4.PerformLayout()
-        CType(PictureBox4, ComponentModel.ISupportInitialize).EndInit()
-        Panel3.ResumeLayout(False)
-        Panel3.PerformLayout()
-        Panel2.ResumeLayout(False)
-        Panel2.PerformLayout()
+        facgradepnl.ResumeLayout(False)
+        facgradepnl.PerformLayout()
+        CType(gradingicon, ComponentModel.ISupportInitialize).EndInit()
+        facvisitlog.ResumeLayout(False)
+        facvisitlog.PerformLayout()
+        CType(visiticon, ComponentModel.ISupportInitialize).EndInit()
+        facannouncementspnl.ResumeLayout(False)
+        facannouncementspnl.PerformLayout()
+        CType(announcementsicon, ComponentModel.ISupportInitialize).EndInit()
+        factimeinpnl.ResumeLayout(False)
+        factimeinpnl.PerformLayout()
+        facstudentspnl.ResumeLayout(False)
+        facstudentspnl.PerformLayout()
         CType(PictureBox3, ComponentModel.ISupportInitialize).EndInit()
-        Panel1.ResumeLayout(False)
-        Panel1.PerformLayout()
-        CType(PictureBox2, ComponentModel.ISupportInitialize).EndInit()
+        factaskspnl.ResumeLayout(False)
+        factaskspnl.PerformLayout()
+        CType(tasksicon, ComponentModel.ISupportInitialize).EndInit()
         CType(PictureBox7, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
 
     Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents Panel6 As Panel
-    Friend WithEvents Button5 As Button
-    Friend WithEvents PictureBox6 As PictureBox
-    Friend WithEvents Label10 As Label
-    Friend WithEvents Panel5 As Panel
-    Friend WithEvents PictureBox5 As PictureBox
-    Friend WithEvents Label9 As Label
-    Friend WithEvents Panel4 As Panel
+    Friend WithEvents facgradepnl As Panel
+    Friend WithEvents gradestudentslbl As Button
+    Friend WithEvents gradingicon As PictureBox
+    Friend WithEvents gradinglbl As Label
+    Friend WithEvents facvisitlog As Panel
+    Friend WithEvents visiticon As PictureBox
+    Friend WithEvents visitlbl As Label
+    Friend WithEvents facannouncementspnl As Panel
     Friend WithEvents CheckBox4 As CheckBox
-    Friend WithEvents Label8 As Label
+    Friend WithEvents announcementslbl As Label
     Friend WithEvents CheckBox5 As CheckBox
-    Friend WithEvents PictureBox4 As PictureBox
+    Friend WithEvents announcementsicon As PictureBox
     Friend WithEvents CheckBox6 As CheckBox
-    Friend WithEvents Panel3 As Panel
-    Friend WithEvents Label7 As Label
-    Friend WithEvents Label6 As Label
-    Friend WithEvents Label5 As Label
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Panel2 As Panel
-    Friend WithEvents Panel1 As Panel
-    Friend WithEvents Button3 As Button
-    Friend WithEvents PictureBox2 As PictureBox
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Label2 As Label
+    Friend WithEvents factimeinpnl As Panel
+    Friend WithEvents timeoutlbl As Label
+    Friend WithEvents timetodaylbl As Label
+    Friend WithEvents timeinbtn As Button
+    Friend WithEvents facstudentspnl As Panel
+    Friend WithEvents factaskspnl As Panel
+    Friend WithEvents completetasksbtn As Button
+    Friend WithEvents tasksicon As PictureBox
+    Friend WithEvents addtasksbtn As Button
+    Friend WithEvents taskslbl As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents PictureBox7 As PictureBox
-    Friend WithEvents Button4 As Button
+    Friend WithEvents viewvisitbtn As Button
     Friend WithEvents PictureBox3 As PictureBox
     Friend WithEvents Label11 As Label
     Friend WithEvents Button6 As Button
+    Friend WithEvents Label7 As Label
 End Class

@@ -58,6 +58,8 @@ Public Class supervisorDashboard
         Label7.TextAlign = ContentAlignment.MiddleCenter
         CenterTimeLabels()
         AddHandler Panel3.Resize, AddressOf Panel3_Resize
+
+
     End Sub
 
     ' ---------------- CLOCK ----------------

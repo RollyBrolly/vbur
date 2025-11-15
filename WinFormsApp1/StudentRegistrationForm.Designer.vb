@@ -133,7 +133,7 @@ Partial Class StudentRegistrationForm
         studgenderlbl.AutoSize = True
         studgenderlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         studgenderlbl.ForeColor = Color.Indigo
-        studgenderlbl.Location = New Point(215, 543)
+        studgenderlbl.Location = New Point(107, 543)
         studgenderlbl.Name = "studgenderlbl"
         studgenderlbl.Size = New Size(110, 37)
         studgenderlbl.TabIndex = 9
@@ -145,7 +145,7 @@ Partial Class StudentRegistrationForm
         studgendercb.Font = New Font("Segoe UI Semibold", 20.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         studgendercb.FormattingEnabled = True
         studgendercb.Items.AddRange(New Object() {"Male", "Female"})
-        studgendercb.Location = New Point(215, 588)
+        studgendercb.Location = New Point(107, 588)
         studgendercb.Margin = New Padding(3, 2, 3, 2)
         studgendercb.Name = "studgendercb"
         studgendercb.Size = New Size(110, 45)
@@ -156,7 +156,7 @@ Partial Class StudentRegistrationForm
         studemaillbl.AutoSize = True
         studemaillbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         studemaillbl.ForeColor = Color.Indigo
-        studemaillbl.Location = New Point(348, 543)
+        studemaillbl.Location = New Point(260, 539)
         studemaillbl.Name = "studemaillbl"
         studemaillbl.Size = New Size(87, 37)
         studemaillbl.TabIndex = 11
@@ -165,18 +165,18 @@ Partial Class StudentRegistrationForm
         ' studemailtxt
         ' 
         studemailtxt.BackColor = Color.Silver
-        studemailtxt.Font = New Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        studemailtxt.Location = New Point(348, 590)
+        studemailtxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        studemailtxt.Location = New Point(260, 586)
         studemailtxt.Margin = New Padding(3, 2, 3, 2)
         studemailtxt.Name = "studemailtxt"
-        studemailtxt.Size = New Size(345, 33)
+        studemailtxt.Size = New Size(437, 46)
         studemailtxt.TabIndex = 12
         ' 
         ' studsuffixtxt
         ' 
         studsuffixtxt.BackColor = Color.Silver
         studsuffixtxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
-        studsuffixtxt.Location = New Point(107, 589)
+        studsuffixtxt.Location = New Point(831, 167)
         studsuffixtxt.Margin = New Padding(3, 2, 3, 2)
         studsuffixtxt.Name = "studsuffixtxt"
         studsuffixtxt.Size = New Size(68, 46)
@@ -187,7 +187,7 @@ Partial Class StudentRegistrationForm
         suffixlbl.AutoSize = True
         suffixlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         suffixlbl.ForeColor = Color.Indigo
-        suffixlbl.Location = New Point(107, 543)
+        suffixlbl.Location = New Point(831, 121)
         suffixlbl.Name = "suffixlbl"
         suffixlbl.Size = New Size(91, 37)
         suffixlbl.TabIndex = 14
@@ -256,7 +256,7 @@ Partial Class StudentRegistrationForm
         studnolbl.AutoSize = True
         studnolbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         studnolbl.ForeColor = Color.Indigo
-        studnolbl.Location = New Point(429, 121)
+        studnolbl.Location = New Point(449, 121)
         studnolbl.Name = "studnolbl"
         studnolbl.Size = New Size(229, 37)
         studnolbl.TabIndex = 21
@@ -270,7 +270,7 @@ Partial Class StudentRegistrationForm
         studnotxt.Margin = New Padding(3, 2, 3, 2)
         studnotxt.Mask = "0 0  -  0 0 0 0 0"
         studnotxt.Name = "studnotxt"
-        studnotxt.Size = New Size(170, 46)
+        studnotxt.Size = New Size(210, 46)
         studnotxt.TabIndex = 22
         ' 
         ' studregbtn
@@ -372,7 +372,7 @@ Partial Class StudentRegistrationForm
         sectionlbl.AutoSize = True
         sectionlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         sectionlbl.ForeColor = Color.Indigo
-        sectionlbl.Location = New Point(688, 121)
+        sectionlbl.Location = New Point(703, 122)
         sectionlbl.Name = "sectionlbl"
         sectionlbl.Size = New Size(112, 37)
         sectionlbl.TabIndex = 34
@@ -385,10 +385,10 @@ Partial Class StudentRegistrationForm
         studsectioncb.Font = New Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         studsectioncb.FormattingEnabled = True
         studsectioncb.Items.AddRange(New Object() {"COLLEGE OF COMPUTER STUDIES", "COLLEGE OF EDUCATION", "COLLEGE OF ENGINEERING", "COLLEGE OF NURSING", "COLLEGE OF ARTS AND SCIENCE", "COLLEGE OF BUSINESS AND ACCOUNTANCY", "COLLEGE OF HOSPITALITY MANAGEMENT"})
-        studsectioncb.Location = New Point(688, 169)
+        studsectioncb.Location = New Point(716, 169)
         studsectioncb.Margin = New Padding(3, 2, 3, 2)
         studsectioncb.Name = "studsectioncb"
-        studsectioncb.Size = New Size(211, 45)
+        studsectioncb.Size = New Size(71, 45)
         studsectioncb.TabIndex = 33
         ' 
         ' StudentRegistrationForm

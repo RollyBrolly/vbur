@@ -18,8 +18,8 @@ Public Class studentDashboard
         Me.WindowState = FormWindowState.Maximized
 
         ' Wire buttons (always present)
-        AddHandler Button1.Click, AddressOf ButtonAddTask_Click
-        AddHandler Button3.Click, AddressOf ButtonCompleteSelected_Click
+        AddHandler addtasks.Click, AddressOf ButtonAddTask_Click
+        AddHandler completetasks.Click, AddressOf ButtonCompleteSelected_Click
 
         ' Attempt to wire up any design-time checkboxes if they exist.
         ' Use Controls.Find so we don't get compile errors if those controls were removed from designer.
@@ -34,7 +34,7 @@ Public Class studentDashboard
         ReflowTasks()
 
         ' Initialize time system
-        Button2.Text = If(String.IsNullOrWhiteSpace(Button2.Text), "TIME IN", Button2.Text)
+        timeinbtn.Text = If(String.IsNullOrWhiteSpace(timeinbtn.Text), "TIME IN", timeinbtn.Text)
 
         ' Start clock for "Time Today"
         AddHandler clockTimer.Tick, AddressOf UpdateTimeToday
@@ -53,13 +53,13 @@ Public Class studentDashboard
         Label7.AutoSize = False
         Label7.TextAlign = ContentAlignment.MiddleCenter
         CenterTimeLabels()
-        AddHandler Panel3.Resize, AddressOf Panel3_Resize
+        AddHandler studtimeinpnl.Resize, AddressOf Panel3_Resize
     End Sub
 
     ' ---------------- CLOCK ----------------
     Private Sub UpdateTimeToday(sender As Object, e As EventArgs)
         ' Update with seconds so it visibly changes
-        Label5.Text = $"Time Today: {DateTime.Now.ToString("h:mm:ss tt", CultureInfo.InvariantCulture)}"
+        timetodatlbl.Text = $"Time Today: {DateTime.Now.ToString("h:mm:ss tt", CultureInfo.InvariantCulture)}"
     End Sub
 
     ' ---------------- CREATE/CONFIGURE AMPM LABEL ----------------
@@ -74,7 +74,7 @@ Public Class studentDashboard
                 .Text = ""
             }
             ' Add to the same parent as Label7 (Panel3 assumed)
-            Panel3.Controls.Add(lastOutAmPm)
+            studtimeinpnl.Controls.Add(lastOutAmPm)
         Else
             ' Ensure visual consistency
             lastOutAmPm.Font = New Font(Label7.Font.FontFamily, 18.0F, FontStyle.Bold)
@@ -90,10 +90,10 @@ Public Class studentDashboard
 
     Private Sub CenterTimeLabels()
         ' Center "Time Today"
-        If Label5 IsNot Nothing Then
-            Label5.AutoSize = True
-            Label5.Left = (Panel3.ClientSize.Width - Label5.Width) \ 2
-            Label5.Top = 70 ' adjust as needed
+        If timetodatlbl IsNot Nothing Then
+            timetodatlbl.AutoSize = True
+            timetodatlbl.Left = (studtimeinpnl.ClientSize.Width - timetodatlbl.Width) \ 2
+            timetodatlbl.Top = 70 ' adjust as needed
         End If
 
         ' --- Center "Last Time Out" + AM/PM ---
@@ -115,7 +115,7 @@ Public Class studentDashboard
         Dim combinedWidth As Integer = Label7.PreferredWidth + spacing + ampmWidth
 
         ' Center the pair horizontally within Panel3
-        Dim groupLeft As Integer = Math.Max(0, (Panel3.ClientSize.Width - combinedWidth) \ 2)
+        Dim groupLeft As Integer = Math.Max(0, (studtimeinpnl.ClientSize.Width - combinedWidth) \ 2)
 
         ' Position Label7
         Label7.Left = groupLeft
@@ -129,7 +129,7 @@ Public Class studentDashboard
 
     ' ---------------- ADD TASK ----------------
     Private Sub ButtonAddTask_Click(sender As Object, e As EventArgs)
-        Dim currentTasks = Panel1.Controls.OfType(Of CheckBox)().ToList()
+        Dim currentTasks = studtaskpnl.Controls.OfType(Of CheckBox)().ToList()
         If currentTasks.Count >= MaxTasks Then
             MessageBox.Show($"You can only have up to {MaxTasks} pending tasks.", "Task Limit", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
@@ -151,7 +151,7 @@ Public Class studentDashboard
             .UseVisualStyleBackColor = True
         }
         AddHandler cb.CheckedChanged, AddressOf TaskCheckChanged
-        Panel1.Controls.Add(cb)
+        studtaskpnl.Controls.Add(cb)
         ReflowTasks()
     End Sub
 
@@ -161,7 +161,7 @@ Public Class studentDashboard
         If cb Is Nothing OrElse Not cb.Checked Then Return
 
         If MessageBox.Show("Complete this task?", "Complete Task", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-            Panel1.Controls.Remove(cb)
+            studtaskpnl.Controls.Remove(cb)
             cb.Dispose()
             ReflowTasks()
         Else
@@ -171,7 +171,7 @@ Public Class studentDashboard
 
     ' ---------------- COMPLETE ALL TASKS ----------------
     Private Sub ButtonCompleteSelected_Click(sender As Object, e As EventArgs)
-        Dim tasks = Panel1.Controls.OfType(Of CheckBox)().ToList()
+        Dim tasks = studtaskpnl.Controls.OfType(Of CheckBox)().ToList()
         If tasks.Count = 0 Then
             MessageBox.Show("There are no tasks to complete.", "Complete Tasks", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Return
@@ -179,7 +179,7 @@ Public Class studentDashboard
 
         If MessageBox.Show($"Complete and erase all {tasks.Count} task(s)?", "Complete All Tasks", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
             For Each cb In tasks
-                Panel1.Controls.Remove(cb)
+                studtaskpnl.Controls.Remove(cb)
                 cb.Dispose()
             Next
             ReflowTasks()
@@ -188,7 +188,7 @@ Public Class studentDashboard
 
     ' ---------------- REFLOW TASKS ----------------
     Private Sub ReflowTasks()
-        Dim tasks = Panel1.Controls.OfType(Of CheckBox)().ToList()
+        Dim tasks = studtaskpnl.Controls.OfType(Of CheckBox)().ToList()
         For i As Integer = 0 To tasks.Count - 1
             Dim cb = tasks(i)
             cb.Left = TaskLeft
@@ -206,15 +206,15 @@ Public Class studentDashboard
     End Sub
 
     ' ---------------- TIME IN / TIME OUT ----------------
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles timeinbtn.Click
         Dim now As DateTime = DateTime.Now
         Dim timeOnly As String = now.ToString("h:mm tt", CultureInfo.InvariantCulture)
 
-        If String.Equals(Button2.Text.Trim(), "TIME IN", StringComparison.OrdinalIgnoreCase) Then
+        If String.Equals(timeinbtn.Text.Trim(), "TIME IN", StringComparison.OrdinalIgnoreCase) Then
             ' TIME IN
-            Label5.Text = $"Time Today: {timeOnly}"
+            timetodatlbl.Text = $"Time Today: {timeOnly}"
             MessageBox.Show($"You are timed in at {timeOnly}", "Time In", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Button2.Text = "TIME OUT"
+            timeinbtn.Text = "TIME OUT"
         Else
             ' TIME OUT - set label text and show AM/PM next to it
             Label7.Text = now.ToString("MMMM dd, yyyy - h:mm", CultureInfo.InvariantCulture)
@@ -223,23 +223,23 @@ Public Class studentDashboard
             lastOutAmPm.Visible = True
 
             MessageBox.Show($"You are timed out at {timeOnly}", "Time Out", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Button2.Text = "TIME IN"
+            timeinbtn.Text = "TIME IN"
         End If
 
         CenterTimeLabels()
     End Sub
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles viewschedpnl.Click
         Dim schedule As New studentScheduleForm()
         schedule.ShowDialog()
 
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles addtasks.Click
 
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles completetasks.Click
 
     End Sub
 End Class

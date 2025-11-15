@@ -19,8 +19,8 @@ Public Class facultyDashboard
         Me.WindowState = FormWindowState.Maximized
 
         ' Wire buttons (always present)
-        AddHandler Button1.Click, AddressOf ButtonAddTask_Click
-        AddHandler Button3.Click, AddressOf ButtonCompleteSelected_Click
+        AddHandler addtasksbtn.Click, AddressOf ButtonAddTask_Click
+        AddHandler completetasksbtn.Click, AddressOf ButtonCompleteSelected_Click
 
         ' Attempt to wire up any design-time checkboxes if they exist.
         ' Use Controls.Find so we don't get compile errors if those controls were removed from designer.
@@ -39,7 +39,7 @@ Public Class facultyDashboard
         ReflowAnnouncements()
 
         ' Initialize time system
-        Button2.Text = If(String.IsNullOrWhiteSpace(Button2.Text), "TIME IN", Button2.Text)
+        timeinbtn.Text = If(String.IsNullOrWhiteSpace(timeinbtn.Text), "TIME IN", timeinbtn.Text)
 
         ' Start clock for "Time Today"
         AddHandler clockTimer.Tick, AddressOf UpdateTimeToday
@@ -58,26 +58,26 @@ Public Class facultyDashboard
         Label7.AutoSize = False
         Label7.TextAlign = ContentAlignment.MiddleCenter
         CenterTimeLabels()
-        AddHandler Panel3.Resize, AddressOf Panel3_Resize
+        AddHandler factimeinpnl.Resize, AddressOf Panel3_Resize
         ' Also keep announcement panel centered when form resizes
-        AddHandler Panel4.Resize, AddressOf Panel4_Resize
+        AddHandler facannouncementspnl.Resize, AddressOf Panel4_Resize
     End Sub
 
     ' ---------------- ANNOUNCEMENTS: style and layout to match pending tasks ----------------
     Private Sub ConfigureAnnouncements()
         ' Find Panel4 (Announcements) and style its checkboxes and label similar to pending tasks
-        If Panel4 Is Nothing Then Return
+        If facannouncementspnl Is Nothing Then Return
 
         ' Ensure the announcement header (Label8) uses the same visual style as pending tasks header
         Try
-            Label8.Font = New Font("Segoe UI", 26.25F, FontStyle.Bold)
-            Label8.ForeColor = Color.Indigo
+            announcementslbl.Font = New Font("Segoe UI", 26.25F, FontStyle.Bold)
+            announcementslbl.ForeColor = Color.Indigo
         Catch
             ' ignore if Label8 doesn't exist or font assignment fails
         End Try
 
         ' Style each CheckBox inside Panel4 to match pending tasks and wire the checked handler
-        Dim announceCheckboxes = Panel4.Controls.OfType(Of CheckBox)().OrderBy(Function(c) c.TabIndex).ToList()
+        Dim announceCheckboxes = facannouncementspnl.Controls.OfType(Of CheckBox)().OrderBy(Function(c) c.TabIndex).ToList()
         For Each cb In announceCheckboxes
             cb.AutoSize = True
             cb.Font = New Font("Segoe UI", 24.0F, FontStyle.Bold)
@@ -92,9 +92,9 @@ Public Class facultyDashboard
     End Sub
 
     Private Sub ReflowAnnouncements()
-        If Panel4 Is Nothing Then Return
+        If facannouncementspnl Is Nothing Then Return
 
-        Dim announceCheckboxes = Panel4.Controls.OfType(Of CheckBox)().OrderBy(Function(c) c.TabIndex).ToList()
+        Dim announceCheckboxes = facannouncementspnl.Controls.OfType(Of CheckBox)().OrderBy(Function(c) c.TabIndex).ToList()
         ' Start under the announcement header — pick a start top that matches visual spacing used for tasks
         Dim announcementStartTop As Integer = 130
         For i As Integer = 0 To announceCheckboxes.Count - 1
@@ -103,11 +103,11 @@ Public Class facultyDashboard
         Next
 
         ' Center the announcement header (Label8) horizontally in the panel
-        If Label8 IsNot Nothing Then
-            Label8.AutoSize = False
-            Label8.TextAlign = ContentAlignment.MiddleCenter
-            Label8.Width = Math.Max(100, Panel4.ClientSize.Width - 40)
-            Label8.Left = (Panel4.ClientSize.Width - Label8.Width) \ 2
+        If announcementslbl IsNot Nothing Then
+            announcementslbl.AutoSize = False
+            announcementslbl.TextAlign = ContentAlignment.MiddleCenter
+            announcementslbl.Width = Math.Max(100, facannouncementspnl.ClientSize.Width - 40)
+            announcementslbl.Left = (facannouncementspnl.ClientSize.Width - announcementslbl.Width) \ 2
         End If
     End Sub
 
@@ -118,7 +118,7 @@ Public Class facultyDashboard
     ' ---------------- CLOCK ----------------
     Private Sub UpdateTimeToday(sender As Object, e As EventArgs)
         ' Update with seconds so it visibly changes
-        Label5.Text = $"Time Today: {DateTime.Now.ToString("h:mm:ss tt", CultureInfo.InvariantCulture)}"
+        timetodaylbl.Text = $"Time Today: {DateTime.Now.ToString("h:mm:ss tt", CultureInfo.InvariantCulture)}"
     End Sub
 
     ' ---------------- CREATE/CONFIGURE AMPM LABEL ----------------
@@ -133,7 +133,7 @@ Public Class facultyDashboard
                 .Text = ""
             }
             ' Add to the same parent as Label7 (Panel3 assumed)
-            Panel3.Controls.Add(lastOutAmPm)
+            factimeinpnl.Controls.Add(lastOutAmPm)
         Else
             ' Ensure visual consistency
             lastOutAmPm.Font = New Font(Label7.Font.FontFamily, 18.0F, FontStyle.Bold)
@@ -149,10 +149,10 @@ Public Class facultyDashboard
 
     Private Sub CenterTimeLabels()
         ' Center "Time Today"
-        If Label5 IsNot Nothing Then
-            Label5.AutoSize = True
-            Label5.Left = (Panel3.ClientSize.Width - Label5.Width) \ 2
-            Label5.Top = 70 ' adjust as needed
+        If timetodaylbl IsNot Nothing Then
+            timetodaylbl.AutoSize = True
+            timetodaylbl.Left = (factimeinpnl.ClientSize.Width - timetodaylbl.Width) \ 2
+            timetodaylbl.Top = 70 ' adjust as needed
         End If
 
         ' --- Center "Last Time Out" + AM/PM ---
@@ -174,7 +174,7 @@ Public Class facultyDashboard
         Dim combinedWidth As Integer = Label7.PreferredWidth + spacing + ampmWidth
 
         ' Center the pair horizontally within Panel3
-        Dim groupLeft As Integer = Math.Max(0, (Panel3.ClientSize.Width - combinedWidth) \ 2)
+        Dim groupLeft As Integer = Math.Max(0, (factimeinpnl.ClientSize.Width - combinedWidth) \ 2)
 
         ' Position Label7
         Label7.Left = groupLeft
@@ -188,7 +188,7 @@ Public Class facultyDashboard
 
     ' ---------------- ADD TASK ----------------
     Private Sub ButtonAddTask_Click(sender As Object, e As EventArgs)
-        Dim currentTasks = Panel1.Controls.OfType(Of CheckBox)().ToList()
+        Dim currentTasks = factaskspnl.Controls.OfType(Of CheckBox)().ToList()
         If currentTasks.Count >= MaxTasks Then
             MessageBox.Show($"You can only have up to {MaxTasks} pending tasks.", "Task Limit", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
@@ -210,7 +210,7 @@ Public Class facultyDashboard
             .UseVisualStyleBackColor = True
         }
         AddHandler cb.CheckedChanged, AddressOf TaskCheckChanged
-        Panel1.Controls.Add(cb)
+        factaskspnl.Controls.Add(cb)
         ReflowTasks()
     End Sub
 
@@ -220,7 +220,7 @@ Public Class facultyDashboard
         If cb Is Nothing OrElse Not cb.Checked Then Return
 
         If MessageBox.Show("Complete this task?", "Complete Task", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-            Panel1.Controls.Remove(cb)
+            factaskspnl.Controls.Remove(cb)
             cb.Dispose()
             ReflowTasks()
         Else
@@ -234,7 +234,7 @@ Public Class facultyDashboard
         If cb Is Nothing OrElse Not cb.Checked Then Return
 
         If MessageBox.Show("Mark this announcement as handled and remove it?", "Announcements", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-            Panel4.Controls.Remove(cb)
+            facannouncementspnl.Controls.Remove(cb)
             cb.Dispose()
             ReflowAnnouncements()
         Else
@@ -244,7 +244,7 @@ Public Class facultyDashboard
 
     ' ---------------- COMPLETE ALL TASKS ----------------
     Private Sub ButtonCompleteSelected_Click(sender As Object, e As EventArgs)
-        Dim tasks = Panel1.Controls.OfType(Of CheckBox)().ToList()
+        Dim tasks = factaskspnl.Controls.OfType(Of CheckBox)().ToList()
         If tasks.Count = 0 Then
             MessageBox.Show("There are no tasks to complete.", "Complete Tasks", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Return
@@ -252,7 +252,7 @@ Public Class facultyDashboard
 
         If MessageBox.Show($"Complete and erase all {tasks.Count} task(s)?", "Complete All Tasks", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
             For Each cb In tasks
-                Panel1.Controls.Remove(cb)
+                factaskspnl.Controls.Remove(cb)
                 cb.Dispose()
             Next
             ReflowTasks()
@@ -261,7 +261,7 @@ Public Class facultyDashboard
 
     ' ---------------- REFLOW TASKS ----------------
     Private Sub ReflowTasks()
-        Dim tasks = Panel1.Controls.OfType(Of CheckBox)().ToList()
+        Dim tasks = factaskspnl.Controls.OfType(Of CheckBox)().ToList()
         For i As Integer = 0 To tasks.Count - 1
             Dim cb = tasks(i)
             cb.Left = TaskLeft
@@ -279,15 +279,15 @@ Public Class facultyDashboard
     End Sub
 
     ' ---------------- TIME IN / TIME OUT ----------------
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles timeinbtn.Click
         Dim now As DateTime = DateTime.Now
         Dim timeOnly As String = now.ToString("h:mm tt", CultureInfo.InvariantCulture)
 
-        If String.Equals(Button2.Text.Trim(), "TIME IN", StringComparison.OrdinalIgnoreCase) Then
+        If String.Equals(timeinbtn.Text.Trim(), "TIME IN", StringComparison.OrdinalIgnoreCase) Then
             ' TIME IN
-            Label5.Text = $"Time Today: {timeOnly}"
+            timetodaylbl.Text = $"Time Today: {timeOnly}"
             MessageBox.Show($"You are timed in at {timeOnly}", "Time In", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Button2.Text = "TIME OUT"
+            timeinbtn.Text = "TIME OUT"
         Else
             ' TIME OUT - set label text and show AM/PM next to it
             Label7.Text = now.ToString("MMMM dd, yyyy - h:mm", CultureInfo.InvariantCulture)
@@ -296,13 +296,13 @@ Public Class facultyDashboard
             lastOutAmPm.Visible = True
 
             MessageBox.Show($"You are timed out at {timeOnly}", "Time Out", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Button2.Text = "TIME IN"
+            timeinbtn.Text = "TIME IN"
         End If
 
         CenterTimeLabels()
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles addtasksbtn.Click
 
     End Sub
 End Class

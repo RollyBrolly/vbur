@@ -12,22 +12,22 @@ Public Class TeacherRegistrationForm
         {"College of Nursing", "CON"}
     }
 
-    Private ReadOnly genders As String() = {"Male", "Female")
+    Private ReadOnly genders As String() = {"Male", "Female"}
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.FormBorderStyle = FormBorderStyle.None
         Me.WindowState = FormWindowState.Maximized
 
+        tcdeptcb.Enabled = True
+
         tcdeptcb.Items.Clear()
         For Each dept As String In departmentDict.Keys
             tcdeptcb.Items.Add(dept)
         Next
-        tcdeptcb.DropDownStyle = ComboBoxStyle.DropDownList
         tcdeptcb.SelectedIndex = -1
 
         tcgendercb.Items.Clear()
         tcgendercb.Items.AddRange(genders)
-        tcgendercb.DropDownStyle = ComboBoxStyle.DropDownList
         tcgendercb.SelectedIndex = -1
 
         tcfnumbertxt.Text = GenerateFacultyID()
@@ -77,61 +77,60 @@ Public Class TeacherRegistrationForm
        tcdeptcb.SelectedIndex = -1 OrElse
        String.IsNullOrWhiteSpace(tcemailtxt.Text) Then
 
-        MessageBox.Show("Please fill out all required fields.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        Return
-    End If
+            MessageBox.Show("Please fill out all required fields.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
 
-    Try
-        conn.Open()
+        Try
+            conn.Open()
 
 
-        Dim cmd As New MySqlCommand("
+            Dim cmd As New MySqlCommand("
                 INSERT INTO faculty 
                 (FacultyID, FacultyFirstName, FacultyLastName, FacultyEmail, IsEvaluator, DeptID)
                 VALUES 
                 (@FacultyID, @FirstName, @LastName, @Email, @IsEvaluator, @DeptID)", conn)
 
-        Dim facultyID As String = tcfnumbertxt.Text.Trim()
-        Dim deptID As String = departmentDict(tcdeptcb.SelectedItem.ToString())
+            Dim facultyID As String = tcfnumbertxt.Text.Trim()
+            Dim deptID As String = departmentDict(tcdeptcb.SelectedItem.ToString())
 
-        cmd.Parameters.AddWithValue("@FacultyID", facultyID)
-        cmd.Parameters.AddWithValue("@FirstName", tcfnametxt.Text.Trim())
-        cmd.Parameters.AddWithValue("@LastName", tclastnametxt.Text.Trim())
-        cmd.Parameters.AddWithValue("@Email", tcemailtxt.Text.Trim())
-        cmd.Parameters.AddWithValue("@IsEvaluator", 0)
-        cmd.Parameters.AddWithValue("@DeptID", deptID)
+            cmd.Parameters.AddWithValue("@FacultyID", facultyID)
+            cmd.Parameters.AddWithValue("@FirstName", tcfnametxt.Text.Trim())
+            cmd.Parameters.AddWithValue("@LastName", tclastnametxt.Text.Trim())
+            cmd.Parameters.AddWithValue("@Email", tcemailtxt.Text.Trim())
+            cmd.Parameters.AddWithValue("@IsEvaluator", 0)
+            cmd.Parameters.AddWithValue("@DeptID", deptID)
 
-        cmd.ExecuteNonQuery()
+            cmd.ExecuteNonQuery()
 
-        '=========================
-        ' CREATE ACCOUNT
-        ' Username = FacultyID
-        ' Password = lastname_firstname
-        '=========================
-        Dim username As String = facultyID
-        Dim password As String = tclastnametxt.Text.Trim() & "_" & tcfnametxt.Text.Trim()
+            '=========================
+            ' CREATE ACCOUNT
+            ' Username = FacultyID
+            ' Password = lastname_firstname
+            '=========================
+            Dim username As String = facultyID
+            Dim password As String = tclastnametxt.Text.Trim() & "_" & tcfnametxt.Text.Trim()
 
-        If CreateUserAccount(username, password, "Faculty", Nothing, facultyID, Nothing) Then
-            MessageBox.Show(
-                "Teacher registered successfully!" & vbCrLf &
+            If CreateUserAccount(username, password, "Faculty", Nothing, facultyID, Nothing) Then
+                MessageBox.Show("Teacher registered successfully!" & vbCrLf &
                 "Faculty ID: " & facultyID & vbCrLf &
                 "Username: " & username & vbCrLf &
                 "Password: " & password,
                 "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        Else
-            MessageBox.Show("Teacher saved, but account creation failed.", "Warning",  MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        End If
+            Else
+                MessageBox.Show("Teacher saved, but account creation failed.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            End If
 
-        ClearAllText(Me)
-        tcdeptcb.SelectedIndex = -1
-        tcgendercb.SelectedIndex = -1
-        tcfnumbertxt.Text = GenerateFacultyID()
+            ClearAllText(Me)
+            tcdeptcb.SelectedIndex = -1
+            tcgendercb.SelectedIndex = -1
+            tcfnumbertxt.Text = GenerateFacultyID()
 
-    Catch ex As MySqlException
-        MessageBox.Show("Database error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-    Finally
-        conn.Close()
-    End Try
+        Catch ex As MySqlException
+            MessageBox.Show("Database error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            conn.Close()
+        End Try
     End Sub
     Private Sub Button3_Click(sender As Object, e As EventArgs)
         ClearAllText(Me)
@@ -161,6 +160,10 @@ Public Class TeacherRegistrationForm
             regForm.Show()
             Me.Hide()
         End If
+    End Sub
+
+    Private Sub tcdeptcb_SelectedIndexChanged(sender As Object, e As EventArgs) Handles tcdeptcb.SelectedIndexChanged
+
     End Sub
 
     'to fix

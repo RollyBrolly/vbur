@@ -22,8 +22,8 @@
         ShowStaffForm()
     End Sub
 
-    Private Sub ButtonAdd_Click(sender As Object, e As EventArgs) Handles ButtonAdd.Click
-        If String.IsNullOrWhiteSpace(companyNameBox.Text) OrElse String.IsNullOrWhiteSpace(addressBox.Text) Then
+    Private Sub ButtonAdd_Click(sender As Object, e As EventArgs) Handles addcompantbtn.Click
+        If String.IsNullOrWhiteSpace(companynametxtbx.Text) OrElse String.IsNullOrWhiteSpace(addresstxtbox.Text) Then
             MessageBox.Show("Please fill out all required fields before adding the company.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
@@ -32,7 +32,7 @@
     End Sub
 
 
-    Private Sub ButtonBack_Click(sender As Object, e As EventArgs) Handles ButtonBack.Click
+    Private Sub ButtonBack_Click(sender As Object, e As EventArgs) Handles returnbtm.Click
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to exit? Unsaved changes will be lost. Proceed?", "Confirm Return", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.Yes Then
 
