@@ -42,13 +42,13 @@ Partial Class StudentRegistrationForm
         studdeptcb = New ComboBox()
         deptlbl = New Label()
         studnolbl = New Label()
-        studnotxt = New MaskedTextBox()
         studregbtn = New Button()
         studreternbtn = New Button()
         studclearbtn = New Button()
         PictureBox1 = New PictureBox()
         studcourlbl = New Label()
         Panel1 = New Panel()
+        studnotxt = New TextBox()
         sectionlbl = New Label()
         studsectioncb = New ComboBox()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
@@ -144,7 +144,6 @@ Partial Class StudentRegistrationForm
         studgendercb.BackColor = Color.Silver
         studgendercb.Font = New Font("Segoe UI Semibold", 20.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         studgendercb.FormattingEnabled = True
-        studgendercb.Items.AddRange(New Object() {"Male", "Female"})
         studgendercb.Location = New Point(107, 588)
         studgendercb.Margin = New Padding(3, 2, 3, 2)
         studgendercb.Name = "studgendercb"
@@ -217,10 +216,8 @@ Partial Class StudentRegistrationForm
         ' studcourcb
         ' 
         studcourcb.BackColor = Color.Silver
-        studcourcb.Enabled = False
         studcourcb.Font = New Font("Segoe UI", 15.75F)
         studcourcb.FormattingEnabled = True
-        studcourcb.Items.AddRange(New Object() {"Bachelor of Science in Information Technology", "Bachelor of Science in Computer Science"})
         studcourcb.Location = New Point(470, 461)
         studcourcb.Margin = New Padding(3, 2, 3, 2)
         studcourcb.Name = "studcourcb"
@@ -230,10 +227,8 @@ Partial Class StudentRegistrationForm
         ' studdeptcb
         ' 
         studdeptcb.BackColor = Color.Silver
-        studdeptcb.Enabled = False
         studdeptcb.Font = New Font("Segoe UI", 15.75F)
         studdeptcb.FormattingEnabled = True
-        studdeptcb.Items.AddRange(New Object() {"COLLEGE OF COMPUTER STUDIES", "COLLEGE OF EDUCATION", "COLLEGE OF ENGINEERING", "COLLEGE OF NURSING", "COLLEGE OF ARTS AND SCIENCE", "COLLEGE OF BUSINESS AND ACCOUNTANCY", "COLLEGE OF HOSPITALITY MANAGEMENT"})
         studdeptcb.Location = New Point(470, 314)
         studdeptcb.Margin = New Padding(3, 2, 3, 2)
         studdeptcb.Name = "studdeptcb"
@@ -261,17 +256,6 @@ Partial Class StudentRegistrationForm
         studnolbl.Size = New Size(229, 37)
         studnolbl.TabIndex = 21
         studnolbl.Text = "Student Number"
-        ' 
-        ' studnotxt
-        ' 
-        studnotxt.BackColor = Color.Silver
-        studnotxt.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        studnotxt.Location = New Point(468, 166)
-        studnotxt.Margin = New Padding(3, 2, 3, 2)
-        studnotxt.Mask = "0 0  -  0 0 0 0 0"
-        studnotxt.Name = "studnotxt"
-        studnotxt.Size = New Size(210, 46)
-        studnotxt.TabIndex = 22
         ' 
         ' studregbtn
         ' 
@@ -336,6 +320,7 @@ Partial Class StudentRegistrationForm
         ' 
         ' Panel1
         ' 
+        Panel1.Controls.Add(studnotxt)
         Panel1.Controls.Add(sectionlbl)
         Panel1.Controls.Add(studsectioncb)
         Panel1.Controls.Add(studtitlelbl)
@@ -343,7 +328,6 @@ Partial Class StudentRegistrationForm
         Panel1.Controls.Add(studcourcb)
         Panel1.Controls.Add(deptlbl)
         Panel1.Controls.Add(studdeptcb)
-        Panel1.Controls.Add(studnotxt)
         Panel1.Controls.Add(studlastntxt)
         Panel1.Controls.Add(studnolbl)
         Panel1.Controls.Add(studgendercb)
@@ -367,6 +351,19 @@ Partial Class StudentRegistrationForm
         Panel1.Size = New Size(1024, 767)
         Panel1.TabIndex = 33
         ' 
+        ' studnotxt
+        ' 
+        studnotxt.BackColor = Color.Silver
+        studnotxt.Enabled = False
+        studnotxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
+        studnotxt.Location = New Point(484, 173)
+        studnotxt.Margin = New Padding(3, 2, 3, 2)
+        studnotxt.Name = "studnotxt"
+        studnotxt.ReadOnly = True
+        studnotxt.Size = New Size(145, 46)
+        studnotxt.TabIndex = 35
+        studnotxt.TextAlign = HorizontalAlignment.Center
+        ' 
         ' sectionlbl
         ' 
         sectionlbl.AutoSize = True
@@ -381,10 +378,8 @@ Partial Class StudentRegistrationForm
         ' studsectioncb
         ' 
         studsectioncb.BackColor = Color.Silver
-        studsectioncb.Enabled = False
         studsectioncb.Font = New Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         studsectioncb.FormattingEnabled = True
-        studsectioncb.Items.AddRange(New Object() {"COLLEGE OF COMPUTER STUDIES", "COLLEGE OF EDUCATION", "COLLEGE OF ENGINEERING", "COLLEGE OF NURSING", "COLLEGE OF ARTS AND SCIENCE", "COLLEGE OF BUSINESS AND ACCOUNTANCY", "COLLEGE OF HOSPITALITY MANAGEMENT"})
         studsectioncb.Location = New Point(716, 169)
         studsectioncb.Margin = New Padding(3, 2, 3, 2)
         studsectioncb.Name = "studsectioncb"
@@ -427,7 +422,6 @@ Partial Class StudentRegistrationForm
     Friend WithEvents studdeptcb As ComboBox
     Friend WithEvents deptlbl As Label
     Friend WithEvents studnolbl As Label
-    Friend WithEvents studnotxt As MaskedTextBox
     Friend WithEvents studregbtn As Button
     Friend WithEvents studreternbtn As Button
     Friend WithEvents studclearbtn As Button
@@ -436,5 +430,6 @@ Partial Class StudentRegistrationForm
     Friend WithEvents Panel1 As Panel
     Friend WithEvents sectionlbl As Label
     Friend WithEvents studsectioncb As ComboBox
+    Friend WithEvents studnotxt As TextBox
 
 End Class

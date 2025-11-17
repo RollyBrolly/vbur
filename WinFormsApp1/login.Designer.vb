@@ -34,7 +34,7 @@ Partial Class Login
         Panel1 = New Panel()
         welcomelbl = New Label()
         signinbtn = New Button()
-        passbtn = New TextBox()
+        passtxt = New TextBox()
         exitbtn = New Button()
         Panel2.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
@@ -53,7 +53,7 @@ Partial Class Login
         Panel2.Controls.Add(PictureBox1)
         Panel2.Controls.Add(Panel1)
         Panel2.Controls.Add(signinbtn)
-        Panel2.Controls.Add(passbtn)
+        Panel2.Controls.Add(passtxt)
         Panel2.Location = New Point(699, 202)
         Panel2.Name = "Panel2"
         Panel2.Size = New Size(523, 677)
@@ -66,7 +66,7 @@ Partial Class Login
         showpasschkb.Location = New Point(76, 459)
         showpasschkb.Margin = New Padding(3, 2, 3, 2)
         showpasschkb.Name = "showpasschkb"
-        showpasschkb.Size = New Size(180, 32)
+        showpasschkb.Size = New Size(147, 25)
         showpasschkb.TabIndex = 21
         showpasschkb.Text = "Show Password"
         showpasschkb.UseVisualStyleBackColor = True
@@ -91,7 +91,7 @@ Partial Class Login
         donthaveacclbl.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         donthaveacclbl.Location = New Point(159, 568)
         donthaveacclbl.Name = "donthaveacclbl"
-        donthaveacclbl.Size = New Size(280, 32)
+        donthaveacclbl.Size = New Size(218, 25)
         donthaveacclbl.TabIndex = 19
         donthaveacclbl.Text = "Don't have an account?"
         ' 
@@ -101,7 +101,7 @@ Partial Class Login
         passlbl.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         passlbl.Location = New Point(70, 360)
         passlbl.Name = "passlbl"
-        passlbl.Size = New Size(166, 37)
+        passlbl.Size = New Size(130, 30)
         passlbl.TabIndex = 18
         passlbl.Text = "PASSWORD"
         ' 
@@ -111,7 +111,7 @@ Partial Class Login
         userlbl.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         userlbl.Location = New Point(70, 265)
         userlbl.Name = "userlbl"
-        userlbl.Size = New Size(164, 37)
+        userlbl.Size = New Size(128, 30)
         userlbl.TabIndex = 17
         userlbl.Text = "USERNAME"
         ' 
@@ -122,7 +122,7 @@ Partial Class Login
         usertxt.Location = New Point(76, 309)
         usertxt.Margin = New Padding(3, 2, 3, 2)
         usertxt.Name = "usertxt"
-        usertxt.Size = New Size(378, 47)
+        usertxt.Size = New Size(378, 39)
         usertxt.TabIndex = 12
         ' 
         ' PictureBox1
@@ -153,7 +153,7 @@ Partial Class Login
         welcomelbl.Font = New Font("Segoe UI Black", 36F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         welcomelbl.Location = New Point(126, 17)
         welcomelbl.Name = "welcomelbl"
-        welcomelbl.Size = New Size(339, 81)
+        welcomelbl.Size = New Size(271, 65)
         welcomelbl.TabIndex = 0
         welcomelbl.Text = "WELCOME"
         ' 
@@ -171,15 +171,15 @@ Partial Class Login
         signinbtn.Text = "SIGN IN"
         signinbtn.UseVisualStyleBackColor = False
         ' 
-        ' passbtn
+        ' passtxt
         ' 
-        passbtn.BackColor = Color.Silver
-        passbtn.Font = New Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        passbtn.Location = New Point(76, 400)
-        passbtn.Margin = New Padding(3, 2, 3, 2)
-        passbtn.Name = "passbtn"
-        passbtn.Size = New Size(378, 47)
-        passbtn.TabIndex = 13
+        passtxt.BackColor = Color.Silver
+        passtxt.Font = New Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        passtxt.Location = New Point(76, 400)
+        passtxt.Margin = New Padding(3, 2, 3, 2)
+        passtxt.Name = "passtxt"
+        passtxt.Size = New Size(378, 39)
+        passtxt.TabIndex = 13
         ' 
         ' exitbtn
         ' 
@@ -229,7 +229,7 @@ Partial Class Login
     Friend WithEvents Panel1 As Panel
     Friend WithEvents welcomelbl As Label
     Friend WithEvents signinbtn As Button
-    Friend WithEvents passbtn As TextBox
+    Friend WithEvents passtxt As TextBox
     Friend WithEvents exitbtn As Button
 
 End Class

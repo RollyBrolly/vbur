@@ -41,8 +41,10 @@ Public Class studentDashboard
         clockTimer.Start()
         UpdateTimeToday(Nothing, EventArgs.Empty)
 
+        ' Ensure Label7 exists (some designer variants can omit it)
+        EnsureLabel7()
+
         ' Initialize Last Time Out (start blank and hide AM/PM)
-        Label7.Text = ""
         CreateOrConfigureLastOutAmPmLabel()
         If lastOutAmPm IsNot Nothing Then
             lastOutAmPm.Text = ""
@@ -50,8 +52,10 @@ Public Class studentDashboard
         End If
 
         ' Label alignment and centering
-        Label7.AutoSize = False
-        Label7.TextAlign = ContentAlignment.MiddleCenter
+        If Label7 IsNot Nothing Then
+            Label7.AutoSize = False
+            Label7.TextAlign = ContentAlignment.MiddleCenter
+        End If
         CenterTimeLabels()
         AddHandler studtimeinpnl.Resize, AddressOf Panel3_Resize
     End Sub
@@ -62,23 +66,69 @@ Public Class studentDashboard
         timetodatlbl.Text = $"Time Today: {DateTime.Now.ToString("h:mm:ss tt", CultureInfo.InvariantCulture)}"
     End Sub
 
-    ' ---------------- CREATE/CONFIGURE AMPM LABEL ----------------
-    Private Sub CreateOrConfigureLastOutAmPmLabel()
-        If lastOutAmPm Is Nothing Then
-            lastOutAmPm = New Label() With {
-                .Name = "LabelLastOutAMPM",
+    ' Ensure Label7 exists and is parented to studtimeinpnl if the designer did not create it
+    Private Sub EnsureLabel7()
+        If Label7 Is Nothing Then
+            Label7 = New Label() With {
+                .Name = "Label7",
                 .AutoSize = True,
-                .Font = New Font(Label7.Font.FontFamily, 18.0F, FontStyle.Bold),
-                .ForeColor = Label7.ForeColor,
+                .Font = New Font("Segoe UI", 26.25F, FontStyle.Bold),
+                .ForeColor = Color.Indigo,
                 .BackColor = Color.Transparent,
                 .Text = ""
             }
-            ' Add to the same parent as Label7 (Panel3 assumed)
-            studtimeinpnl.Controls.Add(lastOutAmPm)
+            ' If there's a timeout label defined in the designer, use its Top to align initial placement.
+            Try
+                If timeoutlbl IsNot Nothing Then
+                    Label7.Top = timeoutlbl.Top
+                    Label7.Left = timeoutlbl.Left + timeoutlbl.Width + 8
+                End If
+            Catch
+                ' ignore positioning exceptions; CenterTimeLabels will reposition correctly
+            End Try
+
+            If studtimeinpnl IsNot Nothing Then
+                studtimeinpnl.Controls.Add(Label7)
+            Else
+                ' As a fallback, add to the form so the control exists (rare)
+                Me.Controls.Add(Label7)
+            End If
+        End If
+    End Sub
+
+    ' ---------------- CREATE/CONFIGURE AMPM LABEL ----------------
+    Private Sub CreateOrConfigureLastOutAmPmLabel()
+        ' Ensure Label7 exists before referencing its properties
+        EnsureLabel7()
+
+        ' If Label7 still isn't available, create lastOutAmPm with reasonable defaults
+        If lastOutAmPm Is Nothing Then
+            Dim baseFontFamily = If(Label7 IsNot Nothing AndAlso Label7.Font IsNot Nothing, Label7.Font.FontFamily, New Font("Segoe UI", 10).FontFamily)
+            Dim baseForeColor = If(Label7 IsNot Nothing, Label7.ForeColor, Color.Black)
+
+            lastOutAmPm = New Label() With {
+                .Name = "LabelLastOutAMPM",
+                .AutoSize = True,
+                .Font = New Font(baseFontFamily, 18.0F, FontStyle.Bold),
+                .ForeColor = baseForeColor,
+                .BackColor = Color.Transparent,
+                .Text = ""
+            }
+
+            ' Add to the same parent as Label7 (Panel assumed)
+            If studtimeinpnl IsNot Nothing Then
+                studtimeinpnl.Controls.Add(lastOutAmPm)
+            ElseIf Label7 IsNot Nothing AndAlso Label7.Parent IsNot Nothing Then
+                Label7.Parent.Controls.Add(lastOutAmPm)
+            Else
+                Me.Controls.Add(lastOutAmPm)
+            End If
         Else
             ' Ensure visual consistency
-            lastOutAmPm.Font = New Font(Label7.Font.FontFamily, 18.0F, FontStyle.Bold)
-            lastOutAmPm.ForeColor = Label7.ForeColor
+            If Label7 IsNot Nothing AndAlso Label7.Font IsNot Nothing Then
+                lastOutAmPm.Font = New Font(Label7.Font.FontFamily, 18.0F, FontStyle.Bold)
+            End If
+            If Label7 IsNot Nothing Then lastOutAmPm.ForeColor = Label7.ForeColor
             lastOutAmPm.BackColor = Color.Transparent
         End If
     End Sub
@@ -89,6 +139,8 @@ Public Class studentDashboard
     End Sub
 
     Private Sub CenterTimeLabels()
+        If studtimeinpnl Is Nothing Then Return
+
         ' Center "Time Today"
         If timetodatlbl IsNot Nothing Then
             timetodatlbl.AutoSize = True
@@ -96,9 +148,11 @@ Public Class studentDashboard
             timetodatlbl.Top = 70 ' adjust as needed
         End If
 
+        ' Require Label7 for the rest of centering; otherwise nothing to center
+        If Label7 Is Nothing Then Return
+
         ' --- Center "Last Time Out" + AM/PM ---
         Dim spacing As Integer = 3 ' tighter gap
-        Dim horizontalPadding As Integer = 20
 
         ' Measure Label7 based on its actual content
         Label7.AutoSize = True
@@ -217,10 +271,13 @@ Public Class studentDashboard
             timeinbtn.Text = "TIME OUT"
         Else
             ' TIME OUT - set label text and show AM/PM next to it
+            EnsureLabel7()
             Label7.Text = now.ToString("MMMM dd, yyyy - h:mm", CultureInfo.InvariantCulture)
             CreateOrConfigureLastOutAmPmLabel()
-            lastOutAmPm.Text = now.ToString("tt", CultureInfo.InvariantCulture).ToUpperInvariant()
-            lastOutAmPm.Visible = True
+            If lastOutAmPm IsNot Nothing Then
+                lastOutAmPm.Text = now.ToString("tt", CultureInfo.InvariantCulture).ToUpperInvariant()
+                lastOutAmPm.Visible = True
+            End If
 
             MessageBox.Show($"You are timed out at {timeOnly}", "Time Out", MessageBoxButtons.OK, MessageBoxIcon.Information)
             timeinbtn.Text = "TIME IN"

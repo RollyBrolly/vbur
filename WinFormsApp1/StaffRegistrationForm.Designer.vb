@@ -144,7 +144,6 @@ Partial Class StaffRegistrationForm
         staffgendercb.BackColor = Color.Silver
         staffgendercb.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         staffgendercb.FormattingEnabled = True
-        staffgendercb.Items.AddRange(New Object() {"Male", "Female"})
         staffgendercb.Location = New Point(540, 166)
         staffgendercb.Margin = New Padding(3, 2, 3, 2)
         staffgendercb.Name = "staffgendercb"
@@ -364,11 +363,13 @@ Partial Class StaffRegistrationForm
         ' 
         ' staffidtxt
         ' 
-        staffidtxt.BackColor = Color.Silver
+        staffidtxt.BackColor = Color.White
+        staffidtxt.Enabled = False
         staffidtxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
         staffidtxt.Location = New Point(753, 168)
         staffidtxt.Margin = New Padding(3, 2, 3, 2)
         staffidtxt.Name = "staffidtxt"
+        staffidtxt.ReadOnly = True
         staffidtxt.Size = New Size(122, 46)
         staffidtxt.TabIndex = 98
         ' 
