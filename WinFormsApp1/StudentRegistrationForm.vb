@@ -245,6 +245,10 @@ Public Class StudentRegistrationForm
 
     End Sub
 
+    Private Sub studlastntxt_TextChanged(sender As Object, e As EventArgs) Handles studlastntxt.TextChanged
+
+    End Sub
+
     'to fix
     'wala sa sql
     'suffix
