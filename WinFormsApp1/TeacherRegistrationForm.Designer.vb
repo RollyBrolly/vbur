@@ -128,7 +128,6 @@ Partial Class TeacherRegistrationForm
         tcdeptcb.Enabled = False
         tcdeptcb.Font = New Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         tcdeptcb.FormattingEnabled = True
-        tcdeptcb.Items.AddRange(New Object() {"COLLEGE OF COMPUTER STUDIES", "COLLEGE OF EDUCATION", "COLLEGE OF ENGINEERING", "COLLEGE OF NURSING", "COLLEGE OF ARTS AND SCIENCE", "COLLEGE OF BUSINESS AND ACCOUNTANCY", "COLLEGE OF HOSPITALITY MANAGEMENT"})
         tcdeptcb.Location = New Point(508, 401)
         tcdeptcb.Margin = New Padding(3, 2, 3, 2)
         tcdeptcb.Name = "tcdeptcb"
@@ -203,7 +202,6 @@ Partial Class TeacherRegistrationForm
         tcgendercb.BackColor = Color.Silver
         tcgendercb.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         tcgendercb.FormattingEnabled = True
-        tcgendercb.Items.AddRange(New Object() {"Male", "Female"})
         tcgendercb.Location = New Point(533, 171)
         tcgendercb.Margin = New Padding(3, 2, 3, 2)
         tcgendercb.Name = "tcgendercb"
@@ -296,11 +294,13 @@ Partial Class TeacherRegistrationForm
         ' 
         ' tcfnumbertxt
         ' 
-        tcfnumbertxt.BackColor = Color.Silver
+        tcfnumbertxt.BackColor = Color.White
+        tcfnumbertxt.Enabled = False
         tcfnumbertxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         tcfnumbertxt.Location = New Point(735, 173)
         tcfnumbertxt.Margin = New Padding(3, 2, 3, 2)
         tcfnumbertxt.Name = "tcfnumbertxt"
+        tcfnumbertxt.ReadOnly = True
         tcfnumbertxt.Size = New Size(122, 46)
         tcfnumbertxt.TabIndex = 90
         ' 
