@@ -1,6 +1,7 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Imports System.Linq
+Imports System.Text.RegularExpressions
 Imports System.Windows.Forms.VisualStyles
-Imports System.Linq
+Imports MySql.Data.MySqlClient
 
 Public Class StudentRegistrationForm
 
@@ -112,7 +113,15 @@ Public Class StudentRegistrationForm
         Return yearprefix & "-" & nextid.ToString("D5")
     End Function
 
+    Private Function IsValidEmail(email As String) As Boolean
+        If String.IsNullOrWhiteSpace(email) Then Return False
+
+        Dim pattern As String = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
+        Return Regex.IsMatch(email, pattern)
+    End Function
+
     Private Sub studregbtn_Click(sender As Object, e As EventArgs) Handles studregbtn.Click
+        'check if empty
         If String.IsNullOrWhiteSpace(studfnametxt.Text) OrElse
            String.IsNullOrWhiteSpace(studlastntxt.Text) OrElse
            studgendercb.SelectedIndex = -1 OrElse
@@ -122,7 +131,15 @@ Public Class StudentRegistrationForm
            String.IsNullOrWhiteSpace(studnumtxt.Text) OrElse
            String.IsNullOrWhiteSpace(studemailtxt.Text) Then
 
-            MessageBox.Show("Please fill in all required fields.")
+            MessageBox.Show("Please fill in all required fields.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        'email validation
+        If Not IsValidEmail(studemailtxt.Text.Trim()) Then
+            MessageBox.Show("Please enter a valid email address before submitting.",
+                            "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            studemailtxt.Focus()
             Return
         End If
 
@@ -203,6 +220,9 @@ Public Class StudentRegistrationForm
         Finally
             conn.Close()
         End Try
+
+
+
     End Sub
 
     Private Sub studclearbtn_Click(sender As Object, e As EventArgs) Handles studclearbtn.Click
@@ -241,6 +261,36 @@ Public Class StudentRegistrationForm
                 Dim regForm As New Registration()
                 regForm.ShowDialog()
             End If
+        End If
+    End Sub
+
+    Private Sub studlastntxt_TextChanged(sender As Object, e As EventArgs) Handles studlastntxt.TextChanged
+
+    End Sub
+
+    Private Sub studnumtxt_KeyPress(sender As Object, e As KeyPressEventArgs) Handles studnumtxt.KeyPress
+        If Not Char.IsDigit(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
+            e.Handled = True
+        End If
+
+        If Char.IsDigit(e.KeyChar) AndAlso studnumtxt.Text.Length >= 11 Then
+            MessageBox.Show("Maximum of 11 digits allowed.", "Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub studemailtxt_TextChanged(sender As Object, e As EventArgs) Handles studemailtxt.TextChanged
+        If studemailtxt.Text.Contains("@") Then
+            studemailtxt.BackColor = Color.Silver   ' valid
+        Else
+            studemailtxt.BackColor = Color.DarkGray   ' invalid
+        End If
+    End Sub
+
+    Private Sub studsuffixtxt_KeyPress(sender As Object, e As KeyPressEventArgs) Handles studsuffixtxt.KeyPress
+        If studsuffixtxt.Text.Length >= 3 AndAlso Not Char.IsControl(e.KeyChar) Then
+            MessageBox.Show("Suffix can only be up to 3 characters.", "Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            e.Handled = True
         End If
     End Sub
 

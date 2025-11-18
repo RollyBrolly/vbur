@@ -121,11 +121,11 @@ Partial Class StaffRegistrationForm
         ' staffemailtxt
         ' 
         staffemailtxt.BackColor = Color.Silver
-        staffemailtxt.Font = New Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        staffemailtxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         staffemailtxt.Location = New Point(325, 585)
         staffemailtxt.Margin = New Padding(3, 2, 3, 2)
         staffemailtxt.Name = "staffemailtxt"
-        staffemailtxt.Size = New Size(345, 33)
+        staffemailtxt.Size = New Size(345, 46)
         staffemailtxt.TabIndex = 74
         ' 
         ' staffemaillbl
@@ -142,7 +142,7 @@ Partial Class StaffRegistrationForm
         ' staffgendercb
         ' 
         staffgendercb.BackColor = Color.Silver
-        staffgendercb.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        staffgendercb.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         staffgendercb.FormattingEnabled = True
         staffgendercb.Location = New Point(540, 166)
         staffgendercb.Margin = New Padding(3, 2, 3, 2)
@@ -340,7 +340,7 @@ Partial Class StaffRegistrationForm
         ' staffcomptxt
         ' 
         staffcomptxt.BackColor = Color.Silver
-        staffcomptxt.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        staffcomptxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         staffcomptxt.FormattingEnabled = True
         staffcomptxt.Location = New Point(545, 315)
         staffcomptxt.Name = "staffcomptxt"

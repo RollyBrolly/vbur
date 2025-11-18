@@ -57,7 +57,7 @@ Partial Class TeacherRegistrationForm
         PictureBox1.Location = New Point(0, 0)
         PictureBox1.Margin = New Padding(3, 2, 3, 2)
         PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New Size(1914, 159)
+        PictureBox1.Size = New Size(1914, 177)
         PictureBox1.TabIndex = 62
         PictureBox1.TabStop = False
         ' 
@@ -179,11 +179,11 @@ Partial Class TeacherRegistrationForm
         ' tcemailtxt
         ' 
         tcemailtxt.BackColor = Color.Silver
-        tcemailtxt.Font = New Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        tcemailtxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         tcemailtxt.Location = New Point(299, 586)
         tcemailtxt.Margin = New Padding(3, 2, 3, 2)
         tcemailtxt.Name = "tcemailtxt"
-        tcemailtxt.Size = New Size(345, 35)
+        tcemailtxt.Size = New Size(345, 46)
         tcemailtxt.TabIndex = 76
         ' 
         ' tcemaillbl
@@ -200,7 +200,7 @@ Partial Class TeacherRegistrationForm
         ' tcgendercb
         ' 
         tcgendercb.BackColor = Color.Silver
-        tcgendercb.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        tcgendercb.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         tcgendercb.FormattingEnabled = True
         tcgendercb.Location = New Point(533, 171)
         tcgendercb.Margin = New Padding(3, 2, 3, 2)

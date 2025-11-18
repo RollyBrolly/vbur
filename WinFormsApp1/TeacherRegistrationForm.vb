@@ -1,5 +1,6 @@
-﻿Imports MySql.Data.MySqlClient
-Imports System.Linq
+﻿Imports System.Linq
+Imports System.Text.RegularExpressions
+Imports MySql.Data.MySqlClient
 
 Public Class TeacherRegistrationForm
     Private conn As New MySqlConnection(connectdb.connstring)
@@ -84,7 +85,15 @@ Public Class TeacherRegistrationForm
         Next
     End Sub
 
+    Private Function IsValidEmail(email As String) As Boolean
+        If String.IsNullOrWhiteSpace(email) Then Return False
+
+        Dim pattern As String = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
+        Return Regex.IsMatch(email, pattern)
+    End Function
+
     Private Sub tcregbtn_Click(sender As Object, e As EventArgs) Handles tcregbtn.Click
+        'check if empty
         If String.IsNullOrWhiteSpace(tcfnametxt.Text) OrElse
            String.IsNullOrWhiteSpace(tclastnametxt.Text) OrElse
            tcdeptcb.SelectedIndex = -1 OrElse
@@ -92,9 +101,19 @@ Public Class TeacherRegistrationForm
            String.IsNullOrWhiteSpace(tcfnumbertxt.Text) OrElse
            tcgendercb.SelectedIndex = -1 Then
 
-            MessageBox.Show("Please fill out all required fields.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("Please fill in all required fields.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
+
+        'email validation
+        If Not IsValidEmail(tcemailtxt.Text.Trim()) Then
+            MessageBox.Show("Please enter a valid email address before submitting.",
+                            "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            tcemailtxt.Focus()
+            Return
+        End If
+
+
 
         Try
             conn.Open()
@@ -192,6 +211,32 @@ Public Class TeacherRegistrationForm
             Catch
             End Try
             Me.Close()
+        End If
+    End Sub
+
+    Private Sub tcnumtxt_KeyPRess(sender As Object, e As KeyPressEventArgs) Handles tcnumtxt.KeyPress
+        If Not Char.IsDigit(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
+            e.Handled = True
+        End If
+
+        If Char.IsDigit(e.KeyChar) AndAlso tcnumtxt.Text.Length >= 11 Then
+            MessageBox.Show("Maximum of 11 digits allowed.", "Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub tcemailtxt_TextChanged(sender As Object, e As EventArgs) Handles tcemailtxt.TextChanged
+        If tcemailtxt.Text.Contains("@") Then
+            tcemailtxt.BackColor = Color.Silver   ' valid
+        Else
+            tcemailtxt.BackColor = Color.DarkGray   ' invalid
+        End If
+    End Sub
+
+    Private Sub tcsuffixtxt_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tcsuffixtxt.KeyPress
+        If tcsuffixtxt.Text.Length >= 3 AndAlso Not Char.IsControl(e.KeyChar) Then
+            MessageBox.Show("Suffix can only be up to 3 characters.", "Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            e.Handled = True
         End If
     End Sub
 End Class

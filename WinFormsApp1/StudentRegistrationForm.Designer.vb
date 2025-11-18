@@ -144,7 +144,7 @@ Partial Class StudentRegistrationForm
         studgendercb.BackColor = Color.Silver
         studgendercb.Font = New Font("Segoe UI Semibold", 20.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         studgendercb.FormattingEnabled = True
-        studgendercb.Location = New Point(107, 588)
+        studgendercb.Location = New Point(107, 592)
         studgendercb.Margin = New Padding(3, 2, 3, 2)
         studgendercb.Name = "studgendercb"
         studgendercb.Size = New Size(110, 45)
@@ -155,7 +155,7 @@ Partial Class StudentRegistrationForm
         studemaillbl.AutoSize = True
         studemaillbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         studemaillbl.ForeColor = Color.Indigo
-        studemaillbl.Location = New Point(260, 539)
+        studemaillbl.Location = New Point(260, 543)
         studemaillbl.Name = "studemaillbl"
         studemaillbl.Size = New Size(87, 37)
         studemaillbl.TabIndex = 11
@@ -165,7 +165,7 @@ Partial Class StudentRegistrationForm
         ' 
         studemailtxt.BackColor = Color.Silver
         studemailtxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        studemailtxt.Location = New Point(260, 586)
+        studemailtxt.Location = New Point(260, 590)
         studemailtxt.Margin = New Padding(3, 2, 3, 2)
         studemailtxt.Name = "studemailtxt"
         studemailtxt.Size = New Size(437, 46)
@@ -378,12 +378,12 @@ Partial Class StudentRegistrationForm
         ' studsectioncb
         ' 
         studsectioncb.BackColor = Color.Silver
-        studsectioncb.Font = New Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        studsectioncb.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         studsectioncb.FormattingEnabled = True
         studsectioncb.Location = New Point(716, 169)
         studsectioncb.Margin = New Padding(3, 2, 3, 2)
         studsectioncb.Name = "studsectioncb"
-        studsectioncb.Size = New Size(71, 45)
+        studsectioncb.Size = New Size(71, 48)
         studsectioncb.TabIndex = 33
         ' 
         ' StudentRegistrationForm
