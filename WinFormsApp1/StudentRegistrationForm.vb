@@ -95,22 +95,40 @@ Public Class StudentRegistrationForm
 
     Private Function GeneratedStudentID() As String
         Dim yearprefix As String = (DateTime.Now.Year Mod 100).ToString("D2")
-        Dim nextid As Integer = 1
+        Dim nextID As Integer = 1
+
         Using conn As New MySqlConnection(connectdb.connstring)
             Try
                 conn.Open()
-                Dim cmd As New MySqlCommand("SELECT StudentID FROM student WHERE StudentID LIKE @YearPrefix ORDER BY StudentID DESC LIMIT 1", conn)
+                Dim cmd As New MySqlCommand("
+            SELECT StudentID FROM student
+            WHERE StudentID LIKE @YearPrefix
+            ORDER BY StudentID
+        ", conn)
                 cmd.Parameters.AddWithValue("@YearPrefix", yearprefix & "-%")
-                Dim result = cmd.ExecuteScalar()
-                If result IsNot Nothing Then
-                    Dim lastid As String = New String(result.ToString().Where(Function(c) Not Char.IsWhiteSpace(c)).ToArray()).Split("-"c)(1)
-                    nextid = Integer.Parse(lastid) + 1
-                End If
+
+                Dim reader As MySqlDataReader = cmd.ExecuteReader()
+                Dim ids As New List(Of Integer)
+
+                While reader.Read()
+                    Dim parts = reader("StudentID").ToString().Split("-"c)
+                    If parts.Length = 2 Then
+                        ids.Add(Integer.Parse(parts(1))) 
+                    End If
+                End While
+                reader.Close()
+
+                While ids.Contains(nextID)
+                    nextID += 1
+                End While
+
             Catch ex As MySqlException
-                MessageBox.Show("Database error: " & ex.Message)
+                MessageBox.Show("Database error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End Using
-        Return yearprefix & "-" & nextid.ToString("D5")
+
+        Return yearprefix & "-" & nextID.ToString("D5")
+
     End Function
 
     Private Function IsValidEmail(email As String) As Boolean

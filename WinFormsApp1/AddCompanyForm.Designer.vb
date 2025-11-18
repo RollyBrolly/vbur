@@ -23,78 +23,80 @@ Partial Class AddCompanyForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AddCompanyForm))
-        lnametxtbox = New TextBox()
-        companynametxtbx = New TextBox()
-        addresstxtbox = New TextBox()
-        Label1 = New Label()
-        Label2 = New Label()
-        Label3 = New Label()
+        compidtxt = New TextBox()
+        compntxt = New TextBox()
+        compaddtxt = New TextBox()
+        compidlbl = New Label()
+        compnlbl = New Label()
+        compaddlbl = New Label()
         returnbtm = New Button()
         addcompantbtn = New Button()
         SuspendLayout()
         ' 
-        ' lnametxtbox
+        ' compidtxt
         ' 
-        lnametxtbox.BackColor = Color.Silver
-        lnametxtbox.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
-        lnametxtbox.Location = New Point(41, 82)
-        lnametxtbox.Margin = New Padding(3, 2, 3, 2)
-        lnametxtbox.Name = "lnametxtbox"
-        lnametxtbox.Size = New Size(130, 46)
-        lnametxtbox.TabIndex = 65
+        compidtxt.BackColor = Color.Silver
+        compidtxt.Enabled = False
+        compidtxt.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        compidtxt.Location = New Point(41, 82)
+        compidtxt.Margin = New Padding(3, 2, 3, 2)
+        compidtxt.Name = "compidtxt"
+        compidtxt.ReadOnly = True
+        compidtxt.Size = New Size(130, 46)
+        compidtxt.TabIndex = 65
         ' 
-        ' companynametxtbx
+        ' compntxt
         ' 
-        companynametxtbx.BackColor = Color.Silver
-        companynametxtbx.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
-        companynametxtbx.Location = New Point(205, 82)
-        companynametxtbx.Margin = New Padding(3, 2, 3, 2)
-        companynametxtbx.Name = "companynametxtbx"
-        companynametxtbx.Size = New Size(283, 46)
-        companynametxtbx.TabIndex = 66
+        compntxt.BackColor = Color.Silver
+        compntxt.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        compntxt.Location = New Point(205, 82)
+        compntxt.Margin = New Padding(3, 2, 3, 2)
+        compntxt.Name = "compntxt"
+        compntxt.Size = New Size(283, 46)
+        compntxt.TabIndex = 66
         ' 
-        ' addresstxtbox
+        ' compaddtxt
         ' 
-        addresstxtbox.BackColor = Color.Silver
-        addresstxtbox.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
-        addresstxtbox.Location = New Point(517, 82)
-        addresstxtbox.Margin = New Padding(3, 2, 3, 2)
-        addresstxtbox.Name = "addresstxtbox"
-        addresstxtbox.Size = New Size(347, 46)
-        addresstxtbox.TabIndex = 67
+        compaddtxt.BackColor = Color.Silver
+        compaddtxt.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        compaddtxt.Location = New Point(517, 82)
+        compaddtxt.Margin = New Padding(3, 2, 3, 2)
+        compaddtxt.Name = "compaddtxt"
+        compaddtxt.Size = New Size(347, 46)
+        compaddtxt.TabIndex = 67
         ' 
-        ' Label1
+        ' compidlbl
         ' 
-        Label1.AutoSize = True
-        Label1.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label1.ForeColor = Color.Indigo
-        Label1.Location = New Point(41, 35)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(155, 32)
-        Label1.TabIndex = 69
-        Label1.Text = "Company ID"
+        compidlbl.AutoSize = True
+        compidlbl.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        compidlbl.ForeColor = Color.Indigo
+        compidlbl.Location = New Point(41, 35)
+        compidlbl.Name = "compidlbl"
+        compidlbl.Size = New Size(155, 32)
+        compidlbl.TabIndex = 69
+        compidlbl.Text = "Company ID"
         ' 
-        ' Label2
+        ' compnlbl
         ' 
-        Label2.AutoSize = True
-        Label2.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label2.ForeColor = Color.Indigo
-        Label2.Location = New Point(205, 35)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(196, 32)
-        Label2.TabIndex = 70
-        Label2.Text = "Company Name"
+        compnlbl.AutoSize = True
+        compnlbl.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        compnlbl.ForeColor = Color.Indigo
+        compnlbl.Location = New Point(205, 35)
+        compnlbl.Name = "compnlbl"
+        compnlbl.Size = New Size(196, 32)
+        compnlbl.TabIndex = 70
+        compnlbl.Text = "Company Name"
         ' 
-        ' Label3
+        ' compaddlbl
         ' 
-        Label3.AutoSize = True
-        Label3.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label3.ForeColor = Color.Indigo
-        Label3.Location = New Point(517, 35)
-        Label3.Name = "Label3"
-        Label3.Size = New Size(221, 32)
-        Label3.TabIndex = 71
-        Label3.Text = "Company Address"
+        compaddlbl.AutoSize = True
+        compaddlbl.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        compaddlbl.ForeColor = Color.Indigo
+        compaddlbl.Location = New Point(517, 35)
+        compaddlbl.Name = "compaddlbl"
+        compaddlbl.Size = New Size(221, 32)
+        compaddlbl.TabIndex = 71
+        compaddlbl.Text = "Company Address"
         ' 
         ' returnbtm
         ' 
@@ -129,12 +131,12 @@ Partial Class AddCompanyForm
         ClientSize = New Size(911, 221)
         Controls.Add(addcompantbtn)
         Controls.Add(returnbtm)
-        Controls.Add(Label3)
-        Controls.Add(Label2)
-        Controls.Add(Label1)
-        Controls.Add(addresstxtbox)
-        Controls.Add(companynametxtbx)
-        Controls.Add(lnametxtbox)
+        Controls.Add(compaddlbl)
+        Controls.Add(compnlbl)
+        Controls.Add(compidlbl)
+        Controls.Add(compaddtxt)
+        Controls.Add(compntxt)
+        Controls.Add(compidtxt)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "AddCompanyForm"
         Text = "Add Company Form"
@@ -142,12 +144,12 @@ Partial Class AddCompanyForm
         PerformLayout()
     End Sub
 
-    Friend WithEvents lnametxtbox As TextBox
-    Friend WithEvents companynametxtbx As TextBox
-    Friend WithEvents addresstxtbox As TextBox
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label3 As Label
+    Friend WithEvents compidtxt As TextBox
+    Friend WithEvents compntxt As TextBox
+    Friend WithEvents compaddtxt As TextBox
+    Friend WithEvents compidlbl As Label
+    Friend WithEvents compnlbl As Label
+    Friend WithEvents compaddlbl As Label
     Friend WithEvents returnbtm As Button
     Friend WithEvents addcompantbtn As Button
 End Class
