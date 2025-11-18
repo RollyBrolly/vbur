@@ -47,20 +47,28 @@ Public Class TeacherRegistrationForm
 
     Private Function GenerateFacultyID() As String
         Dim nextID As Integer = 1
+
         Try
             conn.Open()
-            Dim cmd As New MySqlCommand("SELECT FacultyID FROM faculty ORDER BY FacultyID DESC LIMIT 1", conn)
-            Dim result = cmd.ExecuteScalar()
+            Dim cmd As New MySqlCommand("SELECT FacultyID FROM faculty ORDER BY FacultyID", conn)
+            Dim reader = cmd.ExecuteReader()
+            Dim ids As New List(Of Integer)
 
-            If result IsNot Nothing Then
-                Dim lastID As String = result.ToString().Substring(1)
-                nextID = Integer.Parse(lastID) + 1
-            End If
+            While reader.Read()
+                ids.Add(Integer.Parse(reader("FacultyID").ToString().Substring(1)))
+            End While
+            reader.Close()
+
+            While ids.Contains(nextID)
+                nextID += 1
+            End While
+
         Catch ex As MySqlException
             MessageBox.Show("Database error: " & ex.Message)
         Finally
             conn.Close()
         End Try
+
         Return "F" & nextID.ToString("D3")
     End Function
 

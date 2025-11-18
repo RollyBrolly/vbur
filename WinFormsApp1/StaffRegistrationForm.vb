@@ -21,15 +21,22 @@ Public Class StaffRegistrationForm
 
     Private Function GenerateSupervisorID() As String
         Dim nextID As Integer = 1
+
         Try
             conn.Open()
-            Dim cmd As New MySqlCommand("SELECT SupervisorID FROM companycontact ORDER BY SupervisorID DESC LIMIT 1", conn)
-            Dim result = cmd.ExecuteScalar()
+            Dim cmd As New MySqlCommand("SELECT SupervisorID FROM companycontact ORDER BY SupervisorID", conn)
+            Dim reader = cmd.ExecuteReader()
+            Dim ids As New List(Of Integer)
 
-            If result IsNot Nothing Then
-                Dim lastID As String = result.ToString().Substring(1)
-                nextID = Integer.Parse(lastID) + 1
-            End If
+            While reader.Read()
+                ids.Add(Integer.Parse(reader("SupervisorID").ToString().Substring(1)))
+            End While
+            reader.Close()
+
+            While ids.Contains(nextID)
+                nextID += 1
+            End While
+
         Catch ex As MySqlException
             MessageBox.Show("Database error: " & ex.Message)
         Finally
@@ -194,57 +201,13 @@ Public Class StaffRegistrationForm
             staffidtxt.Text = GenerateSupervisorID()
         End If
     End Sub
-
-    'comment to muna to kulang isa textbox for company address
-
-    'Private Sub staffaddcompbtn_Click(sender As Object, e As EventArgs) Handles staffaddcompbtn.Click
-    '    Dim companyName = staffcomptxt.Text.Trim()
-    '    Dim companyAddress = staffnewcompaddtxt.Text.Trim() 'walapa
-
-    '    If String.IsNullOrWhiteSpace(companyName) OrElse String.IsNullOrWhiteSpace(companyAddress) Then
-    '        MessageBox.Show("Enter Company Name and Address", "Missing Info", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-    '        Return
-    '    End If
-
-    '    Dim companyID = GenerateCompanyID()
-
-    '    Try
-    '        conn.Open()
-    '        Dim cmd As New MySqlCommand("INSERT INTO company (CompanyID, CompanyName, CompanyAddress) VALUES (@id, @name, @address)", conn)
-    '        cmd.Parameters.AddWithValue("@id", companyID)
-    '        cmd.Parameters.AddWithValue("@name", companyName)
-    '        cmd.Parameters.AddWithValue("@address", companyAddress)
-    '        cmd.ExecuteNonQuery()
-
-    '        MessageBox.Show("Company added successfully! ID: " & companyID)
-    '        staffcomptxt.Text.Trim()
-    '        staffnewcompaddtxt.Clear() ' walapa
-    '    Catch ex As Exception
-    '        MessageBox.Show("Error adding company: " & ex.Message)
-    '    Finally
-    '        conn.Close()
-    '    End Try
-    'End Sub
-
-    'Private Function GenerateCompanyID() As String
-    '    Dim nextID As Integer = 1
-    '    Try
-    '        conn.Open()
-    '        Dim cmd As New MySqlCommand("SELECT CompanyID FROM company ORDER BY CompanyID DESC LIMIT 1", conn)
-    '        Dim result = cmd.ExecuteScalar()
-
-    '        If result IsNot Nothing Then
-    '            Dim lastNumber As String = result.ToString().Substring(2)
-    '            nextID = Integer.Parse(lastNumber) + 1
-    '        End If
-
-    '    Catch ex As MySqlException
-    '        MessageBox.Show("Database error: " & ex.Message)
-    '    Finally
-    '        conn.Close()
-    '    End Try
-
-    '    Return "CO" & nextID.ToString("D3")
-    'End Function
-
+    Private Sub staffaddcompbtn_Click(sender As Object, e As EventArgs) Handles staffaddcompbtn.Click
+        Dim addForm As New AddCompanyForm()
+        addForm.FormBorderStyle = FormBorderStyle.None
+        addForm.ShowInTaskbar = False
+        addForm.StartPosition = FormStartPosition.CenterParent
+        addForm.TopMost = True
+        addForm.ShowDialog()
+    End Sub
 End Class
+
