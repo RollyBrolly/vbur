@@ -113,7 +113,7 @@ Public Class StudentRegistrationForm
                 While reader.Read()
                     Dim parts = reader("StudentID").ToString().Split("-"c)
                     If parts.Length = 2 Then
-                        ids.Add(Integer.Parse(parts(1))) 
+                        ids.Add(Integer.Parse(parts(1)))
                     End If
                 End While
                 reader.Close()

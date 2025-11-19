@@ -123,4 +123,5 @@ Public Class AddCompanyForm
         Dim staffForm As New StaffRegistrationForm()
         staffForm.Show()
     End Sub
+    'test
 End Class
