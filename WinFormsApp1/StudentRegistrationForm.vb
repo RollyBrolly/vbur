@@ -130,7 +130,6 @@ Public Class StudentRegistrationForm
         Return yearprefix & "-" & nextID.ToString("D5")
 
     End Function
-
     Private Function IsValidEmail(email As String) As Boolean
         If String.IsNullOrWhiteSpace(email) Then Return False
 
@@ -238,9 +237,6 @@ Public Class StudentRegistrationForm
         Finally
             conn.Close()
         End Try
-
-
-
     End Sub
 
     Private Sub studclearbtn_Click(sender As Object, e As EventArgs) Handles studclearbtn.Click
@@ -311,5 +307,6 @@ Public Class StudentRegistrationForm
             e.Handled = True
         End If
     End Sub
+
 
 End Class

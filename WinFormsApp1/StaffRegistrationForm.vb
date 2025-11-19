@@ -1,6 +1,5 @@
-﻿Imports System.Linq
-Imports System.Text.RegularExpressions
-Imports MySql.Data.MySqlClient
+﻿Imports MySql.Data.MySqlClient
+Imports System.Linq
 
 Public Class StaffRegistrationForm
     Private conn As New MySqlConnection(connectdb.connstring)
@@ -81,15 +80,7 @@ Public Class StaffRegistrationForm
         staffcomptxt.SelectedIndex = -1
     End Sub
 
-    Private Function IsValidEmail(email As String) As Boolean
-        If String.IsNullOrWhiteSpace(email) Then Return False
-
-        Dim pattern As String = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
-        Return Regex.IsMatch(email, pattern)
-    End Function
-
     Private Sub staffregbtn_Click(sender As Object, e As EventArgs) Handles staffregbtn.Click
-        'check if empty
         If String.IsNullOrWhiteSpace(stafffnametxt.Text) OrElse
            String.IsNullOrWhiteSpace(stafflnametxt.Text) OrElse
            String.IsNullOrWhiteSpace(staffcompostxt.Text) OrElse
@@ -97,17 +88,10 @@ Public Class StaffRegistrationForm
            staffgendercb.SelectedIndex = -1 OrElse
            staffcomptxt.SelectedIndex = -1 Then
 
-            MessageBox.Show("Please fill in all required fields.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("Please fill out all required fields.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
 
-        'email validation
-        If Not IsValidEmail(staffemailtxt.Text.Trim()) Then
-            MessageBox.Show("Please enter a valid email address before submitting.",
-                            "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            staffemailtxt.Focus()
-            Return
-        End If
         Try
             conn.Open()
             Dim supID As String = GenerateSupervisorID()
@@ -217,17 +201,39 @@ Public Class StaffRegistrationForm
             staffidtxt.Text = GenerateSupervisorID()
         End If
     End Sub
+    Private Sub staffaddcompbtn_Click(sender As Object, e As EventArgs) Handles staffaddcompbtn.Click
+        Dim addForm As New AddCompanyForm()
+        addForm.FormBorderStyle = FormBorderStyle.None
+        addForm.ShowInTaskbar = False
+        addForm.StartPosition = FormStartPosition.CenterParent
+        addForm.TopMost = True
+        addForm.ShowDialog()
+    End Sub
 
-    'comment to muna to kulang isa textbox for company address
+    Private Sub staffcompnumtxt_KeyPress(sender As Object, e As KeyPressEventArgs) Handles staffcompnumtxt.KeyPress
+        If Not Char.IsDigit(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
+            e.Handled = True
+        End If
 
-'Private Sub staffaddcompbtn_Click(sender As Object, e As EventArgs) Handles staffaddcompbtn.Click
-'    Dim companyName = staffcomptxt.Text.Trim()
-'    Dim companyAddress = staffnewcompaddtxt.Text.Trim() 'walapa
+        If Char.IsDigit(e.KeyChar) AndAlso staffcompnumtxt.Text.Length >= 11 Then
+            MessageBox.Show("Maximum of 11 digits allowed.", "Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            e.Handled = True
+        End If
+    End Sub
 
-'    If String.IsNullOrWhiteSpace(companyName) OrElse String.IsNullOrWhiteSpace(companyAddress) Then
-'        MessageBox.Show("Enter Company Name and Address", "Missing Info", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-'        Return
-'    End If
+    Private Sub staffemailtxt_TextChanged(sender As Object, e As EventArgs) Handles staffemailtxt.TextChanged
+        If staffemailtxt.Text.Contains("@") Then
+            staffemailtxt.BackColor = Color.Silver   ' valid
+        Else
+            staffemailtxt.BackColor = Color.DarkGray   ' invalid
+        End If
+    End Sub
 
-'    Dim companyID = GenerateCompanyID()
+    Private Sub staffsuffixtxt_KeyPress(sender As Object, e As KeyPressEventArgs) Handles staffsuffixtxt.KeyPress
+        If staffsuffixtxt.Text.Length >= 3 AndAlso Not Char.IsControl(e.KeyChar) Then
+            MessageBox.Show("Suffix can only be up to 3 characters.", "Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            e.Handled = True
+        End If
+    End Sub
+End Class
 

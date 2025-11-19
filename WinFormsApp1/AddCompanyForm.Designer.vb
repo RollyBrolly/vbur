@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class AddCompanyForm
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class AddCompanyForm
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AddCompanyForm))
         compidtxt = New TextBox()
@@ -68,7 +68,7 @@ Partial Class AddCompanyForm
         ' compidlbl
         ' 
         compidlbl.AutoSize = True
-        compidlbl.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        compidlbl.Font = New Font("Segoe UI", 18.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         compidlbl.ForeColor = Color.Indigo
         compidlbl.Location = New Point(41, 35)
         compidlbl.Name = "compidlbl"
@@ -79,7 +79,7 @@ Partial Class AddCompanyForm
         ' compnlbl
         ' 
         compnlbl.AutoSize = True
-        compnlbl.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        compnlbl.Font = New Font("Segoe UI", 18.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         compnlbl.ForeColor = Color.Indigo
         compnlbl.Location = New Point(205, 35)
         compnlbl.Name = "compnlbl"
@@ -90,7 +90,7 @@ Partial Class AddCompanyForm
         ' compaddlbl
         ' 
         compaddlbl.AutoSize = True
-        compaddlbl.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        compaddlbl.Font = New Font("Segoe UI", 18.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         compaddlbl.ForeColor = Color.Indigo
         compaddlbl.Location = New Point(517, 35)
         compaddlbl.Name = "compaddlbl"
@@ -126,7 +126,7 @@ Partial Class AddCompanyForm
         ' 
         ' AddCompanyForm
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(911, 221)
         Controls.Add(addcompantbtn)

@@ -121,8 +121,6 @@ Public Class TeacherRegistrationForm
             Return
         End If
 
-
-
         Try
             conn.Open()
             Dim cmd As New MySqlCommand("
@@ -221,7 +219,6 @@ Public Class TeacherRegistrationForm
             Me.Close()
         End If
     End Sub
-
     Private Sub tcnumtxt_KeyPRess(sender As Object, e As KeyPressEventArgs) Handles tcnumtxt.KeyPress
         If Not Char.IsDigit(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
             e.Handled = True
@@ -248,3 +245,4 @@ Public Class TeacherRegistrationForm
         End If
     End Sub
 End Class
+

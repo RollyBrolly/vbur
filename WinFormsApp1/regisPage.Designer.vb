@@ -78,11 +78,10 @@ Partial Class Registration
         ' PictureBox7
         ' 
         PictureBox7.BackColor = SystemColors.ActiveBorder
-        PictureBox7.Image = My.Resources.Resources.regisheader
+        PictureBox7.Image = My.Resources.Resources.regisheader_resize
         PictureBox7.Location = New Point(0, 0)
         PictureBox7.Name = "PictureBox7"
-        PictureBox7.Size = New Size(1920, 121)
-        PictureBox7.SizeMode = PictureBoxSizeMode.StretchImage
+        PictureBox7.Size = New Size(1920, 177)
         PictureBox7.TabIndex = 27
         PictureBox7.TabStop = False
         ' 
