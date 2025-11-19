@@ -294,10 +294,26 @@ Public Class StudentRegistrationForm
     End Sub
 
     Private Sub studemailtxt_TextChanged(sender As Object, e As EventArgs) Handles studemailtxt.TextChanged
-        If studemailtxt.Text.Contains("@") Then
-            studemailtxt.BackColor = Color.Silver   ' valid
+        Dim email As String = studemailtxt.Text.Trim()
+
+        'hide at first if no input
+        If email = "" Then
+            lblemailInvalid.Visible = False
+            studemailtxt.BackColor = Color.DarkGray
+            Return
+        End If
+
+        'check for valid format using IsValidEmail function
+        If IsValidEmail(email) Then
+            lblemailInvalid.Text = "Valid email address"
+            lblemailInvalid.ForeColor = Color.Green
+            lblemailInvalid.Visible = True
+            studemailtxt.BackColor = Color.Silver
         Else
-            studemailtxt.BackColor = Color.DarkGray   ' invalid
+            lblemailInvalid.Text = "Invalid email address"
+            lblemailInvalid.ForeColor = Color.Red
+            lblemailInvalid.Visible = True
+            studemailtxt.BackColor = Color.DarkGray
         End If
     End Sub
 

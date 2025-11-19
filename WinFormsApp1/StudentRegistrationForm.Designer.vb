@@ -51,6 +51,7 @@ Partial Class StudentRegistrationForm
         studnotxt = New TextBox()
         sectionlbl = New Label()
         studsectioncb = New ComboBox()
+        lblemailInvalid = New Label()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
         SuspendLayout()
@@ -155,7 +156,7 @@ Partial Class StudentRegistrationForm
         studemaillbl.AutoSize = True
         studemaillbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         studemaillbl.ForeColor = Color.Indigo
-        studemaillbl.Location = New Point(260, 543)
+        studemaillbl.Location = New Point(240, 543)
         studemaillbl.Name = "studemaillbl"
         studemaillbl.Size = New Size(87, 37)
         studemaillbl.TabIndex = 11
@@ -165,7 +166,7 @@ Partial Class StudentRegistrationForm
         ' 
         studemailtxt.BackColor = Color.Silver
         studemailtxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        studemailtxt.Location = New Point(260, 590)
+        studemailtxt.Location = New Point(240, 592)
         studemailtxt.Margin = New Padding(3, 2, 3, 2)
         studemailtxt.Name = "studemailtxt"
         studemailtxt.Size = New Size(437, 46)
@@ -196,7 +197,7 @@ Partial Class StudentRegistrationForm
         ' 
         studnumtxt.BackColor = Color.Silver
         studnumtxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold)
-        studnumtxt.Location = New Point(716, 590)
+        studnumtxt.Location = New Point(714, 592)
         studnumtxt.Margin = New Padding(3, 2, 3, 2)
         studnumtxt.Name = "studnumtxt"
         studnumtxt.Size = New Size(231, 46)
@@ -207,7 +208,7 @@ Partial Class StudentRegistrationForm
         studcontlbl.AutoSize = True
         studcontlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         studcontlbl.ForeColor = Color.Indigo
-        studcontlbl.Location = New Point(716, 540)
+        studcontlbl.Location = New Point(714, 543)
         studcontlbl.Name = "studcontlbl"
         studcontlbl.Size = New Size(229, 37)
         studcontlbl.TabIndex = 15
@@ -320,6 +321,7 @@ Partial Class StudentRegistrationForm
         ' 
         ' Panel1
         ' 
+        Panel1.Controls.Add(lblemailInvalid)
         Panel1.Controls.Add(studnotxt)
         Panel1.Controls.Add(sectionlbl)
         Panel1.Controls.Add(studsectioncb)
@@ -386,6 +388,18 @@ Partial Class StudentRegistrationForm
         studsectioncb.Size = New Size(71, 48)
         studsectioncb.TabIndex = 33
         ' 
+        ' lblemailInvalid
+        ' 
+        lblemailInvalid.AutoSize = True
+        lblemailInvalid.Font = New Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblemailInvalid.ForeColor = Color.Maroon
+        lblemailInvalid.Location = New Point(535, 554)
+        lblemailInvalid.Name = "lblemailInvalid"
+        lblemailInvalid.Size = New Size(18, 17)
+        lblemailInvalid.TabIndex = 103
+        lblemailInvalid.Text = "tt"
+        lblemailInvalid.Visible = False
+        ' 
         ' StudentRegistrationForm
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -431,5 +445,6 @@ Partial Class StudentRegistrationForm
     Friend WithEvents sectionlbl As Label
     Friend WithEvents studsectioncb As ComboBox
     Friend WithEvents studnotxt As TextBox
+    Friend WithEvents lblemailInvalid As Label
 
 End Class

@@ -1,5 +1,6 @@
-﻿Imports MySql.Data.MySqlClient
-Imports System.Linq
+﻿Imports System.Linq
+Imports System.Text.RegularExpressions
+Imports MySql.Data.MySqlClient
 
 Public Class StaffRegistrationForm
     Private conn As New MySqlConnection(connectdb.connstring)
@@ -80,7 +81,15 @@ Public Class StaffRegistrationForm
         staffcomptxt.SelectedIndex = -1
     End Sub
 
+    Private Function IsValidEmail(email As String) As Boolean
+        If String.IsNullOrWhiteSpace(email) Then Return False
+
+        Dim pattern As String = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
+        Return Regex.IsMatch(email, pattern)
+    End Function
+
     Private Sub staffregbtn_Click(sender As Object, e As EventArgs) Handles staffregbtn.Click
+        'check if empty
         If String.IsNullOrWhiteSpace(stafffnametxt.Text) OrElse
            String.IsNullOrWhiteSpace(stafflnametxt.Text) OrElse
            String.IsNullOrWhiteSpace(staffcompostxt.Text) OrElse
@@ -88,7 +97,15 @@ Public Class StaffRegistrationForm
            staffgendercb.SelectedIndex = -1 OrElse
            staffcomptxt.SelectedIndex = -1 Then
 
-            MessageBox.Show("Please fill out all required fields.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("Please fill in all required fields.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        'email validation
+        If Not IsValidEmail(staffemailtxt.Text.Trim()) Then
+            MessageBox.Show("Please enter a valid email address before submitting.",
+                            "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            staffemailtxt.Focus()
             Return
         End If
 
@@ -222,10 +239,26 @@ Public Class StaffRegistrationForm
     End Sub
 
     Private Sub staffemailtxt_TextChanged(sender As Object, e As EventArgs) Handles staffemailtxt.TextChanged
-        If staffemailtxt.Text.Contains("@") Then
-            staffemailtxt.BackColor = Color.Silver   ' valid
+        Dim email As String = staffemailtxt.Text.Trim()
+
+        'hide at first if no input
+        If email = "" Then
+            lblemailInvalid.Visible = False
+            staffemailtxt.BackColor = Color.DarkGray
+            Return
+        End If
+
+        'check for valid format using IsValidEmail function
+        If IsValidEmail(email) Then
+            lblemailInvalid.Text = "Valid email address"
+            lblemailInvalid.ForeColor = Color.Green
+            lblemailInvalid.Visible = True
+            staffemailtxt.BackColor = Color.Silver
         Else
-            staffemailtxt.BackColor = Color.DarkGray   ' invalid
+            lblemailInvalid.Text = "Invalid email address"
+            lblemailInvalid.ForeColor = Color.Maroon
+            lblemailInvalid.Visible = True
+            staffemailtxt.BackColor = Color.DarkGray
         End If
     End Sub
 

@@ -47,6 +47,7 @@ Partial Class TeacherRegistrationForm
         tclastnametxt = New TextBox()
         tcfnumbertxt = New TextBox()
         Panel1 = New Panel()
+        lblemailInvalid = New Label()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
         SuspendLayout()
@@ -180,10 +181,10 @@ Partial Class TeacherRegistrationForm
         ' 
         tcemailtxt.BackColor = Color.Silver
         tcemailtxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        tcemailtxt.Location = New Point(299, 586)
+        tcemailtxt.Location = New Point(254, 585)
         tcemailtxt.Margin = New Padding(3, 2, 3, 2)
         tcemailtxt.Name = "tcemailtxt"
-        tcemailtxt.Size = New Size(345, 46)
+        tcemailtxt.Size = New Size(437, 46)
         tcemailtxt.TabIndex = 76
         ' 
         ' tcemaillbl
@@ -191,7 +192,7 @@ Partial Class TeacherRegistrationForm
         tcemaillbl.AutoSize = True
         tcemaillbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         tcemaillbl.ForeColor = Color.Indigo
-        tcemaillbl.Location = New Point(299, 536)
+        tcemaillbl.Location = New Point(254, 536)
         tcemaillbl.Name = "tcemaillbl"
         tcemaillbl.Size = New Size(87, 37)
         tcemaillbl.TabIndex = 75
@@ -222,7 +223,7 @@ Partial Class TeacherRegistrationForm
         ' tcmidnamelbl
         ' 
         tcmidnamelbl.AutoSize = True
-        tcmidnamelbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
+        tcmidnamelbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         tcmidnamelbl.ForeColor = Color.Indigo
         tcmidnamelbl.Location = New Point(107, 408)
         tcmidnamelbl.Name = "tcmidnamelbl"
@@ -306,6 +307,7 @@ Partial Class TeacherRegistrationForm
         ' 
         ' Panel1
         ' 
+        Panel1.Controls.Add(lblemailInvalid)
         Panel1.Controls.Add(tcdeptlbl)
         Panel1.Controls.Add(tcfnumbertxt)
         Panel1.Controls.Add(tcdeptcb)
@@ -332,6 +334,18 @@ Partial Class TeacherRegistrationForm
         Panel1.Name = "Panel1"
         Panel1.Size = New Size(1024, 767)
         Panel1.TabIndex = 91
+        ' 
+        ' lblemailInvalid
+        ' 
+        lblemailInvalid.AutoSize = True
+        lblemailInvalid.Font = New Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblemailInvalid.ForeColor = Color.Maroon
+        lblemailInvalid.Location = New Point(535, 554)
+        lblemailInvalid.Name = "lblemailInvalid"
+        lblemailInvalid.Size = New Size(18, 17)
+        lblemailInvalid.TabIndex = 102
+        lblemailInvalid.Text = "tt"
+        lblemailInvalid.Visible = False
         ' 
         ' TeacherRegistrationForm
         ' 
@@ -374,5 +388,6 @@ Partial Class TeacherRegistrationForm
     Friend WithEvents tclastnametxt As TextBox
     Friend WithEvents tcfnumbertxt As TextBox
     Friend WithEvents Panel1 As Panel
+    Friend WithEvents lblemailInvalid As Label
 
 End Class

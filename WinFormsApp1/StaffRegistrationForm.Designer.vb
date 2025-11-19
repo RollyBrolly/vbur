@@ -47,6 +47,7 @@ Partial Class StaffRegistrationForm
         staffclearbtn = New Button()
         staffreturnbtn = New Button()
         Panel1 = New Panel()
+        lblemailInvalid = New Label()
         staffcomptxt = New ComboBox()
         staffaddcompbtn = New Button()
         staffidtxt = New TextBox()
@@ -68,11 +69,11 @@ Partial Class StaffRegistrationForm
         ' staffidlbl
         ' 
         staffidlbl.AutoSize = True
-        staffidlbl.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        staffidlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         staffidlbl.ForeColor = Color.Indigo
         staffidlbl.Location = New Point(735, 121)
         staffidlbl.Name = "staffidlbl"
-        staffidlbl.Size = New Size(203, 40)
+        staffidlbl.Size = New Size(191, 37)
         staffidlbl.TabIndex = 81
         staffidlbl.Text = "Supervisor ID"
         ' 
@@ -89,22 +90,22 @@ Partial Class StaffRegistrationForm
         ' staffcontlbl
         ' 
         staffcontlbl.AutoSize = True
-        staffcontlbl.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        staffcontlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         staffcontlbl.ForeColor = Color.Indigo
         staffcontlbl.Location = New Point(718, 536)
         staffcontlbl.Name = "staffcontlbl"
-        staffcontlbl.Size = New Size(245, 40)
+        staffcontlbl.Size = New Size(229, 37)
         staffcontlbl.TabIndex = 77
         staffcontlbl.Text = "Contact Number"
         ' 
         ' staffsuffixlbl
         ' 
         staffsuffixlbl.AutoSize = True
-        staffsuffixlbl.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        staffsuffixlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         staffsuffixlbl.ForeColor = Color.Indigo
         staffsuffixlbl.Location = New Point(107, 536)
         staffsuffixlbl.Name = "staffsuffixlbl"
-        staffsuffixlbl.Size = New Size(97, 40)
+        staffsuffixlbl.Size = New Size(91, 37)
         staffsuffixlbl.TabIndex = 76
         staffsuffixlbl.Text = "Suffix"
         ' 
@@ -122,20 +123,20 @@ Partial Class StaffRegistrationForm
         ' 
         staffemailtxt.BackColor = Color.Silver
         staffemailtxt.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        staffemailtxt.Location = New Point(325, 585)
+        staffemailtxt.Location = New Point(240, 585)
         staffemailtxt.Margin = New Padding(3, 2, 3, 2)
         staffemailtxt.Name = "staffemailtxt"
-        staffemailtxt.Size = New Size(345, 46)
+        staffemailtxt.Size = New Size(437, 46)
         staffemailtxt.TabIndex = 74
         ' 
         ' staffemaillbl
         ' 
         staffemaillbl.AutoSize = True
-        staffemaillbl.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        staffemaillbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         staffemaillbl.ForeColor = Color.Indigo
-        staffemaillbl.Location = New Point(325, 535)
+        staffemaillbl.Location = New Point(240, 536)
         staffemaillbl.Name = "staffemaillbl"
-        staffemaillbl.Size = New Size(91, 40)
+        staffemaillbl.Size = New Size(87, 37)
         staffemaillbl.TabIndex = 73
         staffemaillbl.Text = "Email"
         ' 
@@ -153,44 +154,44 @@ Partial Class StaffRegistrationForm
         ' staffgenderlbl
         ' 
         staffgenderlbl.AutoSize = True
-        staffgenderlbl.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        staffgenderlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         staffgenderlbl.ForeColor = Color.Indigo
         staffgenderlbl.Location = New Point(540, 121)
         staffgenderlbl.Name = "staffgenderlbl"
-        staffgenderlbl.Size = New Size(118, 40)
+        staffgenderlbl.Size = New Size(110, 37)
         staffgenderlbl.TabIndex = 71
         staffgenderlbl.Text = "Gender"
         ' 
         ' staffmidnamelbl
         ' 
         staffmidnamelbl.AutoSize = True
-        staffmidnamelbl.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        staffmidnamelbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         staffmidnamelbl.ForeColor = Color.Indigo
         staffmidnamelbl.Location = New Point(107, 408)
         staffmidnamelbl.Name = "staffmidnamelbl"
-        staffmidnamelbl.Size = New Size(203, 40)
+        staffmidnamelbl.Size = New Size(191, 37)
         staffmidnamelbl.TabIndex = 70
         staffmidnamelbl.Text = "Middle Name"
         ' 
         ' stafffnamelbl
         ' 
         stafffnamelbl.AutoSize = True
-        stafffnamelbl.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        stafffnamelbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         stafffnamelbl.ForeColor = Color.Indigo
         stafffnamelbl.Location = New Point(107, 265)
         stafffnamelbl.Name = "stafffnamelbl"
-        stafffnamelbl.Size = New Size(166, 40)
+        stafffnamelbl.Size = New Size(156, 37)
         stafffnamelbl.TabIndex = 69
         stafffnamelbl.Text = "First Name"
         ' 
         ' stafflnamelbl
         ' 
         stafflnamelbl.AutoSize = True
-        stafflnamelbl.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        stafflnamelbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         stafflnamelbl.ForeColor = Color.Indigo
         stafflnamelbl.Location = New Point(107, 121)
         stafflnamelbl.Name = "stafflnamelbl"
-        stafflnamelbl.Size = New Size(162, 40)
+        stafflnamelbl.Size = New Size(152, 37)
         stafflnamelbl.TabIndex = 68
         stafflnamelbl.Text = "Last Name"
         ' 
@@ -237,11 +238,11 @@ Partial Class StaffRegistrationForm
         ' staffcompnametxt
         ' 
         staffcompnametxt.AutoSize = True
-        staffcompnametxt.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        staffcompnametxt.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         staffcompnametxt.ForeColor = Color.Indigo
         staffcompnametxt.Location = New Point(540, 265)
         staffcompnametxt.Name = "staffcompnametxt"
-        staffcompnametxt.Size = New Size(238, 40)
+        staffcompnametxt.Size = New Size(222, 37)
         staffcompnametxt.TabIndex = 91
         staffcompnametxt.Text = "Company Name"
         ' 
@@ -258,11 +259,11 @@ Partial Class StaffRegistrationForm
         ' staffcomposlbl
         ' 
         staffcomposlbl.AutoSize = True
-        staffcomposlbl.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold)
+        staffcomposlbl.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         staffcomposlbl.ForeColor = Color.Indigo
         staffcomposlbl.Location = New Point(545, 408)
         staffcomposlbl.Name = "staffcomposlbl"
-        staffcomposlbl.Size = New Size(267, 40)
+        staffcomposlbl.Size = New Size(251, 37)
         staffcomposlbl.TabIndex = 93
         staffcomposlbl.Text = "Company Position"
         ' 
@@ -307,6 +308,7 @@ Partial Class StaffRegistrationForm
         ' 
         ' Panel1
         ' 
+        Panel1.Controls.Add(lblemailInvalid)
         Panel1.Controls.Add(staffcomptxt)
         Panel1.Controls.Add(staffaddcompbtn)
         Panel1.Controls.Add(staffidtxt)
@@ -332,10 +334,22 @@ Partial Class StaffRegistrationForm
         Panel1.Controls.Add(staffidlbl)
         Panel1.Controls.Add(staffgendercb)
         Panel1.Controls.Add(staffgenderlbl)
+        Panel1.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         Panel1.Location = New Point(488, 226)
         Panel1.Name = "Panel1"
         Panel1.Size = New Size(1024, 767)
         Panel1.TabIndex = 98
+        ' 
+        ' lblemailInvalid
+        ' 
+        lblemailInvalid.AutoSize = True
+        lblemailInvalid.Font = New Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblemailInvalid.ForeColor = Color.Maroon
+        lblemailInvalid.Location = New Point(535, 554)
+        lblemailInvalid.Name = "lblemailInvalid"
+        lblemailInvalid.Size = New Size(0, 17)
+        lblemailInvalid.TabIndex = 101
+        lblemailInvalid.Visible = False
         ' 
         ' staffcomptxt
         ' 
@@ -418,4 +432,5 @@ Partial Class StaffRegistrationForm
     Friend WithEvents staffidtxt As TextBox
     Friend WithEvents staffcomptxt As ComboBox
     Friend WithEvents staffaddcompbtn As Button
+    Friend WithEvents lblemailInvalid As Label
 End Class
