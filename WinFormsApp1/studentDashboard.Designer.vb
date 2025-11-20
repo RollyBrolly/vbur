@@ -43,16 +43,26 @@ Partial Class studentDashboard
         CheckBox5 = New CheckBox()
         announcementsicon = New PictureBox()
         CheckBox6 = New CheckBox()
-        studschedpnl = New Panel()
-        viewschedpnl = New Button()
-        schedicon = New PictureBox()
-        schedlbl = New Label()
         studevalpnl = New Panel()
         viewgrades = New Button()
         evalicon = New PictureBox()
-        evallbl = New Label()
         PictureBox7 = New PictureBox()
         ColorDialog1 = New ColorDialog()
+        schedicon = New PictureBox()
+        viewschedpnl = New Button()
+        studschedpnl = New Panel()
+        Panel1 = New Panel()
+        Label7 = New Label()
+        Label6 = New Label()
+        Label5 = New Label()
+        Label4 = New Label()
+        Label3 = New Label()
+        Label2 = New Label()
+        btnSelectPhoto = New PictureBox()
+        Label8 = New Label()
+        Label9 = New Label()
+        Label10 = New Label()
+        Label11 = New Label()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         studtaskpnl.SuspendLayout()
         CType(tasksicon, ComponentModel.ISupportInitialize).BeginInit()
@@ -61,17 +71,19 @@ Partial Class studentDashboard
         studtimeinpnl.SuspendLayout()
         studannouncepnl.SuspendLayout()
         CType(announcementsicon, ComponentModel.ISupportInitialize).BeginInit()
-        studschedpnl.SuspendLayout()
-        CType(schedicon, ComponentModel.ISupportInitialize).BeginInit()
         studevalpnl.SuspendLayout()
         CType(evalicon, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox7, ComponentModel.ISupportInitialize).BeginInit()
+        CType(schedicon, ComponentModel.ISupportInitialize).BeginInit()
+        studschedpnl.SuspendLayout()
+        Panel1.SuspendLayout()
+        CType(btnSelectPhoto, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' PictureBox1
         ' 
         PictureBox1.Image = My.Resources.Resources.studentdashboardHeader3
-        PictureBox1.Location = New Point(-2, 1)
+        PictureBox1.Location = New Point(-2, 0)
         PictureBox1.Margin = New Padding(3, 2, 3, 2)
         PictureBox1.Name = "PictureBox1"
         PictureBox1.Size = New Size(1928, 180)
@@ -82,11 +94,11 @@ Partial Class studentDashboard
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.Font = New Font("Segoe UI Black", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label1.ForeColor = SystemColors.ButtonHighlight
-        Label1.Location = New Point(749, 196)
+        Label1.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        Label1.ForeColor = SystemColors.ActiveCaptionText
+        Label1.Location = New Point(33, 222)
         Label1.Name = "Label1"
-        Label1.Size = New Size(420, 45)
+        Label1.Size = New Size(406, 45)
         Label1.TabIndex = 65
         Label1.Text = "Welcome [Student Name]"
         ' 
@@ -97,7 +109,7 @@ Partial Class studentDashboard
         studtaskpnl.Controls.Add(tasksicon)
         studtaskpnl.Controls.Add(addtasks)
         studtaskpnl.Controls.Add(pendingtaskslbl)
-        studtaskpnl.Location = New Point(687, 670)
+        studtaskpnl.Location = New Point(1305, 629)
         studtaskpnl.Margin = New Padding(3, 2, 3, 2)
         studtaskpnl.Name = "studtaskpnl"
         studtaskpnl.Size = New Size(546, 380)
@@ -156,7 +168,7 @@ Partial Class studentDashboard
         studhrspanel.BackColor = Color.White
         studhrspanel.Controls.Add(PictureBox3)
         studhrspanel.Controls.Add(hrsloglbl)
-        studhrspanel.Location = New Point(686, 261)
+        studhrspanel.Location = New Point(1304, 220)
         studhrspanel.Margin = New Padding(3, 2, 3, 2)
         studhrspanel.Name = "studhrspanel"
         studhrspanel.Size = New Size(546, 380)
@@ -165,7 +177,7 @@ Partial Class studentDashboard
         ' PictureBox3
         ' 
         PictureBox3.Image = My.Resources.Resources.hours_line_graph
-        PictureBox3.Location = New Point(34, 79)
+        PictureBox3.Location = New Point(34, 65)
         PictureBox3.Margin = New Padding(3, 2, 3, 2)
         PictureBox3.Name = "PictureBox3"
         PictureBox3.Size = New Size(470, 299)
@@ -190,7 +202,7 @@ Partial Class studentDashboard
         studtimeinpnl.Controls.Add(timeoutlbl)
         studtimeinpnl.Controls.Add(timetodatlbl)
         studtimeinpnl.Controls.Add(timeinbtn)
-        studtimeinpnl.Location = New Point(113, 262)
+        studtimeinpnl.Location = New Point(731, 221)
         studtimeinpnl.Margin = New Padding(3, 2, 3, 2)
         studtimeinpnl.Name = "studtimeinpnl"
         studtimeinpnl.Size = New Size(546, 380)
@@ -237,7 +249,7 @@ Partial Class studentDashboard
         studannouncepnl.Controls.Add(CheckBox5)
         studannouncepnl.Controls.Add(announcementsicon)
         studannouncepnl.Controls.Add(CheckBox6)
-        studannouncepnl.Location = New Point(113, 670)
+        studannouncepnl.Location = New Point(731, 629)
         studannouncepnl.Margin = New Padding(3, 2, 3, 2)
         studannouncepnl.Name = "studannouncepnl"
         studannouncepnl.Size = New Size(546, 380)
@@ -304,74 +316,26 @@ Partial Class studentDashboard
         CheckBox6.Text = "Company Event at 3:00PM"
         CheckBox6.UseVisualStyleBackColor = True
         ' 
-        ' studschedpnl
-        ' 
-        studschedpnl.BackColor = Color.White
-        studschedpnl.Controls.Add(viewschedpnl)
-        studschedpnl.Controls.Add(schedicon)
-        studschedpnl.Controls.Add(schedlbl)
-        studschedpnl.Location = New Point(1252, 262)
-        studschedpnl.Margin = New Padding(3, 2, 3, 2)
-        studschedpnl.Name = "studschedpnl"
-        studschedpnl.Size = New Size(546, 380)
-        studschedpnl.TabIndex = 73
-        ' 
-        ' viewschedpnl
-        ' 
-        viewschedpnl.BackColor = Color.Indigo
-        viewschedpnl.Font = New Font("Segoe UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        viewschedpnl.ForeColor = Color.White
-        viewschedpnl.Location = New Point(35, 158)
-        viewschedpnl.Margin = New Padding(3, 2, 3, 2)
-        viewschedpnl.Name = "viewschedpnl"
-        viewschedpnl.Size = New Size(474, 87)
-        viewschedpnl.TabIndex = 4
-        viewschedpnl.Text = "VIEW YOUR SCHEDULE"
-        viewschedpnl.UseVisualStyleBackColor = False
-        ' 
-        ' schedicon
-        ' 
-        schedicon.Image = My.Resources.Resources.icons8_schedule_96
-        schedicon.Location = New Point(15, 22)
-        schedicon.Margin = New Padding(3, 2, 3, 2)
-        schedicon.Name = "schedicon"
-        schedicon.Size = New Size(73, 71)
-        schedicon.SizeMode = PictureBoxSizeMode.StretchImage
-        schedicon.TabIndex = 67
-        schedicon.TabStop = False
-        ' 
-        ' schedlbl
-        ' 
-        schedlbl.AutoSize = True
-        schedlbl.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        schedlbl.ForeColor = Color.Indigo
-        schedlbl.Location = New Point(94, 38)
-        schedlbl.Name = "schedlbl"
-        schedlbl.Size = New Size(154, 45)
-        schedlbl.TabIndex = 67
-        schedlbl.Text = "Schedule"
-        ' 
         ' studevalpnl
         ' 
         studevalpnl.BackColor = Color.White
         studevalpnl.Controls.Add(viewgrades)
         studevalpnl.Controls.Add(evalicon)
-        studevalpnl.Controls.Add(evallbl)
-        studevalpnl.Location = New Point(1252, 670)
+        studevalpnl.Location = New Point(37, 889)
         studevalpnl.Margin = New Padding(3, 2, 3, 2)
         studevalpnl.Name = "studevalpnl"
-        studevalpnl.Size = New Size(546, 380)
+        studevalpnl.Size = New Size(651, 116)
         studevalpnl.TabIndex = 74
         ' 
         ' viewgrades
         ' 
         viewgrades.BackColor = Color.Indigo
-        viewgrades.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        viewgrades.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         viewgrades.ForeColor = Color.White
-        viewgrades.Location = New Point(35, 165)
+        viewgrades.Location = New Point(95, 21)
         viewgrades.Margin = New Padding(3, 2, 3, 2)
         viewgrades.Name = "viewgrades"
-        viewgrades.Size = New Size(474, 87)
+        viewgrades.Size = New Size(538, 72)
         viewgrades.TabIndex = 68
         viewgrades.Text = " VIEW GRADES AND EVALUATION"
         viewgrades.UseVisualStyleBackColor = False
@@ -379,24 +343,13 @@ Partial Class studentDashboard
         ' evalicon
         ' 
         evalicon.Image = My.Resources.Resources.icons8_rating_52
-        evalicon.Location = New Point(23, 27)
+        evalicon.Location = New Point(15, 21)
         evalicon.Margin = New Padding(3, 2, 3, 2)
         evalicon.Name = "evalicon"
-        evalicon.Size = New Size(56, 55)
+        evalicon.Size = New Size(73, 72)
         evalicon.SizeMode = PictureBoxSizeMode.StretchImage
         evalicon.TabIndex = 68
         evalicon.TabStop = False
-        ' 
-        ' evallbl
-        ' 
-        evallbl.AutoSize = True
-        evallbl.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        evallbl.ForeColor = Color.Indigo
-        evallbl.Location = New Point(85, 31)
-        evallbl.Name = "evallbl"
-        evallbl.Size = New Size(188, 45)
-        evallbl.TabIndex = 67
-        evallbl.Text = "Evalutation"
         ' 
         ' PictureBox7
         ' 
@@ -410,11 +363,188 @@ Partial Class studentDashboard
         PictureBox7.TabIndex = 68
         PictureBox7.TabStop = False
         ' 
+        ' schedicon
+        ' 
+        schedicon.Image = My.Resources.Resources.icons8_schedule_96
+        schedicon.Location = New Point(15, 22)
+        schedicon.Margin = New Padding(3, 2, 3, 2)
+        schedicon.Name = "schedicon"
+        schedicon.Size = New Size(73, 71)
+        schedicon.SizeMode = PictureBoxSizeMode.StretchImage
+        schedicon.TabIndex = 67
+        schedicon.TabStop = False
+        ' 
+        ' viewschedpnl
+        ' 
+        viewschedpnl.BackColor = Color.Indigo
+        viewschedpnl.Font = New Font("Segoe UI", 30F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        viewschedpnl.ForeColor = Color.White
+        viewschedpnl.Location = New Point(94, 22)
+        viewschedpnl.Margin = New Padding(3, 2, 3, 2)
+        viewschedpnl.Name = "viewschedpnl"
+        viewschedpnl.Size = New Size(539, 71)
+        viewschedpnl.TabIndex = 4
+        viewschedpnl.Text = "VIEW YOUR SCHEDULE"
+        viewschedpnl.UseVisualStyleBackColor = False
+        ' 
+        ' studschedpnl
+        ' 
+        studschedpnl.BackColor = Color.White
+        studschedpnl.Controls.Add(viewschedpnl)
+        studschedpnl.Controls.Add(schedicon)
+        studschedpnl.Location = New Point(37, 759)
+        studschedpnl.Margin = New Padding(3, 2, 3, 2)
+        studschedpnl.Name = "studschedpnl"
+        studschedpnl.Size = New Size(651, 114)
+        studschedpnl.TabIndex = 73
+        ' 
+        ' Panel1
+        ' 
+        Panel1.BackColor = Color.White
+        Panel1.Controls.Add(Label11)
+        Panel1.Controls.Add(Label10)
+        Panel1.Controls.Add(Label8)
+        Panel1.Controls.Add(Label9)
+        Panel1.Controls.Add(Label7)
+        Panel1.Controls.Add(Label6)
+        Panel1.Controls.Add(Label5)
+        Panel1.Controls.Add(Label4)
+        Panel1.Controls.Add(Label3)
+        Panel1.Controls.Add(Label2)
+        Panel1.Controls.Add(btnSelectPhoto)
+        Panel1.Controls.Add(Label1)
+        Panel1.Location = New Point(37, 221)
+        Panel1.Name = "Panel1"
+        Panel1.Size = New Size(651, 515)
+        Panel1.TabIndex = 75
+        ' 
+        ' Label7
+        ' 
+        Label7.AutoSize = True
+        Label7.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        Label7.ForeColor = SystemColors.ActiveCaptionText
+        Label7.Location = New Point(31, 397)
+        Label7.Name = "Label7"
+        Label7.Size = New Size(151, 45)
+        Label7.TabIndex = 78
+        Label7.Text = "Program"
+        ' 
+        ' Label6
+        ' 
+        Label6.AutoSize = True
+        Label6.Font = New Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label6.ForeColor = SystemColors.ActiveCaptionText
+        Label6.Location = New Point(31, 442)
+        Label6.Name = "Label6"
+        Label6.Size = New Size(519, 32)
+        Label6.TabIndex = 77
+        Label6.Text = "Bachelor of Science in Information Technology"
+        ' 
+        ' Label5
+        ' 
+        Label5.AutoSize = True
+        Label5.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label5.ForeColor = SystemColors.ActiveCaptionText
+        Label5.Location = New Point(33, 339)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(392, 40)
+        Label5.TabIndex = 76
+        Label5.Text = "College of Computer Studies"
+        ' 
+        ' Label4
+        ' 
+        Label4.AutoSize = True
+        Label4.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        Label4.ForeColor = SystemColors.ActiveCaptionText
+        Label4.Location = New Point(31, 294)
+        Label4.Name = "Label4"
+        Label4.Size = New Size(201, 45)
+        Label4.TabIndex = 68
+        Label4.Text = "Department"
+        ' 
+        ' Label3
+        ' 
+        Label3.AutoSize = True
+        Label3.Font = New Font("Segoe UI Semibold", 14.25F, FontStyle.Bold)
+        Label3.ForeColor = SystemColors.ActiveCaptionText
+        Label3.Location = New Point(251, 62)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(97, 25)
+        Label3.TabIndex = 67
+        Label3.Text = "25-00000"
+        ' 
+        ' Label2
+        ' 
+        Label2.AutoSize = True
+        Label2.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic)
+        Label2.ForeColor = SystemColors.ActiveCaptionText
+        Label2.Location = New Point(241, 30)
+        Label2.Name = "Label2"
+        Label2.Size = New Size(197, 32)
+        Label2.TabIndex = 66
+        Label2.Text = "Student Number"
+        ' 
+        ' btnSelectPhoto
+        ' 
+        btnSelectPhoto.Cursor = Cursors.Hand
+        btnSelectPhoto.Image = My.Resources.Resources.user_square
+        btnSelectPhoto.Location = New Point(31, 24)
+        btnSelectPhoto.Name = "btnSelectPhoto"
+        btnSelectPhoto.Size = New Size(191, 184)
+        btnSelectPhoto.SizeMode = PictureBoxSizeMode.StretchImage
+        btnSelectPhoto.TabIndex = 0
+        btnSelectPhoto.TabStop = False
+        ' 
+        ' Label8
+        ' 
+        Label8.AutoSize = True
+        Label8.Font = New Font("Segoe UI Semibold", 14.25F, FontStyle.Bold)
+        Label8.ForeColor = SystemColors.ActiveCaptionText
+        Label8.Location = New Point(251, 122)
+        Label8.Name = "Label8"
+        Label8.Size = New Size(129, 25)
+        Label8.TabIndex = 80
+        Label8.Text = "09123456789"
+        ' 
+        ' Label9
+        ' 
+        Label9.AutoSize = True
+        Label9.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic)
+        Label9.ForeColor = SystemColors.ActiveCaptionText
+        Label9.Location = New Point(241, 90)
+        Label9.Name = "Label9"
+        Label9.Size = New Size(198, 32)
+        Label9.TabIndex = 79
+        Label9.Text = "Contact Number"
+        ' 
+        ' Label10
+        ' 
+        Label10.AutoSize = True
+        Label10.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic)
+        Label10.ForeColor = SystemColors.ActiveCaptionText
+        Label10.Location = New Point(241, 147)
+        Label10.Name = "Label10"
+        Label10.Size = New Size(79, 32)
+        Label10.TabIndex = 81
+        Label10.Text = "Email"
+        ' 
+        ' Label11
+        ' 
+        Label11.AutoSize = True
+        Label11.Font = New Font("Segoe UI Semibold", 14.25F, FontStyle.Bold)
+        Label11.ForeColor = SystemColors.ActiveCaptionText
+        Label11.Location = New Point(251, 179)
+        Label11.Name = "Label11"
+        Label11.Size = New Size(197, 25)
+        Label11.TabIndex = 82
+        Label11.Text = "jdelacruz@gmail.com"
+        ' 
         ' studentDashboard
         ' 
         AutoScaleMode = AutoScaleMode.None
         BackColor = Color.DarkGray
         ClientSize = New Size(1904, 1041)
+        Controls.Add(Panel1)
         Controls.Add(PictureBox7)
         Controls.Add(studevalpnl)
         Controls.Add(studschedpnl)
@@ -422,7 +552,6 @@ Partial Class studentDashboard
         Controls.Add(studtimeinpnl)
         Controls.Add(studhrspanel)
         Controls.Add(studtaskpnl)
-        Controls.Add(Label1)
         Controls.Add(PictureBox1)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Margin = New Padding(3, 2, 3, 2)
@@ -440,15 +569,15 @@ Partial Class studentDashboard
         studannouncepnl.ResumeLayout(False)
         studannouncepnl.PerformLayout()
         CType(announcementsicon, ComponentModel.ISupportInitialize).EndInit()
-        studschedpnl.ResumeLayout(False)
-        studschedpnl.PerformLayout()
-        CType(schedicon, ComponentModel.ISupportInitialize).EndInit()
         studevalpnl.ResumeLayout(False)
-        studevalpnl.PerformLayout()
         CType(evalicon, ComponentModel.ISupportInitialize).EndInit()
         CType(PictureBox7, ComponentModel.ISupportInitialize).EndInit()
+        CType(schedicon, ComponentModel.ISupportInitialize).EndInit()
+        studschedpnl.ResumeLayout(False)
+        Panel1.ResumeLayout(False)
+        Panel1.PerformLayout()
+        CType(btnSelectPhoto, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
-        PerformLayout()
     End Sub
 
     Friend WithEvents PictureBox1 As PictureBox
@@ -473,14 +602,22 @@ Partial Class studentDashboard
     Friend WithEvents CheckBox5 As CheckBox
     Friend WithEvents announcementsicon As PictureBox
     Friend WithEvents CheckBox6 As CheckBox
-    Friend WithEvents studschedpnl As Panel
-    Friend WithEvents schedicon As PictureBox
-    Friend WithEvents schedlbl As Label
     Friend WithEvents studevalpnl As Panel
-    Friend WithEvents evallbl As Label
     Friend WithEvents evalicon As PictureBox
     Friend WithEvents PictureBox7 As PictureBox
-    Friend WithEvents viewschedpnl As Button
     Friend WithEvents viewgrades As Button
     Friend WithEvents ColorDialog1 As ColorDialog
+    Friend WithEvents schedicon As PictureBox
+    Friend WithEvents viewschedpnl As Button
+    Friend WithEvents studschedpnl As Panel
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents btnSelectPhoto As PictureBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label3 As Label
+    Friend WithEvents Label6 As Label
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents Label9 As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Label11 As Label
 End Class

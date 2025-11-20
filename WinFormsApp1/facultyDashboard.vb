@@ -305,4 +305,8 @@ Public Class facultyDashboard
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles addtasksbtn.Click
 
     End Sub
+
+    Private Sub Label18_Click(sender As Object, e As EventArgs) Handles Label18.Click
+
+    End Sub
 End Class

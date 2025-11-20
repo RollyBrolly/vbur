@@ -298,4 +298,12 @@ Public Class supervisorDashboard
         Dim evalform As New supervisorEvaluation
         evalform.ShowDialog()
     End Sub
+
+    Private Sub btnSelectPhoto_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub Panel7_Paint(sender As Object, e As PaintEventArgs) Handles Panel7.Paint
+
+    End Sub
 End Class

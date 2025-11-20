@@ -28,11 +28,9 @@ Partial Class supervisorDashboard
         Panel6 = New Panel()
         Button5 = New Button()
         PictureBox6 = New PictureBox()
-        Label10 = New Label()
         Panel5 = New Panel()
         Button4 = New Button()
         PictureBox5 = New PictureBox()
-        Label9 = New Label()
         Panel4 = New Panel()
         Button6 = New Button()
         CheckBox4 = New CheckBox()
@@ -46,6 +44,7 @@ Partial Class supervisorDashboard
         Label5 = New Label()
         Button2 = New Button()
         Panel2 = New Panel()
+        Button7 = New Button()
         Button8 = New Button()
         PictureBox3 = New PictureBox()
         Label11 = New Label()
@@ -54,7 +53,19 @@ Partial Class supervisorDashboard
         PictureBox2 = New PictureBox()
         Button1 = New Button()
         Label2 = New Label()
-        Label1 = New Label()
+        Panel7 = New Panel()
+        Label3 = New Label()
+        Label10 = New Label()
+        Label4 = New Label()
+        Label9 = New Label()
+        Label12 = New Label()
+        Label13 = New Label()
+        Label14 = New Label()
+        Label15 = New Label()
+        Label16 = New Label()
+        Label17 = New Label()
+        btnSelectPhoto = New PictureBox()
+        Label18 = New Label()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox7, ComponentModel.ISupportInitialize).BeginInit()
         Panel6.SuspendLayout()
@@ -68,6 +79,8 @@ Partial Class supervisorDashboard
         CType(PictureBox3, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
         CType(PictureBox2, ComponentModel.ISupportInitialize).BeginInit()
+        Panel7.SuspendLayout()
+        CType(btnSelectPhoto, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' PictureBox1
@@ -99,11 +112,10 @@ Partial Class supervisorDashboard
         Panel6.BackColor = Color.White
         Panel6.Controls.Add(Button5)
         Panel6.Controls.Add(PictureBox6)
-        Panel6.Controls.Add(Label10)
-        Panel6.Location = New Point(1252, 671)
+        Panel6.Location = New Point(37, 897)
         Panel6.Margin = New Padding(3, 2, 3, 2)
         Panel6.Name = "Panel6"
-        Panel6.Size = New Size(546, 380)
+        Panel6.Size = New Size(651, 111)
         Panel6.TabIndex = 80
         ' 
         ' Button5
@@ -111,59 +123,47 @@ Partial Class supervisorDashboard
         Button5.BackColor = Color.Indigo
         Button5.Font = New Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Button5.ForeColor = Color.White
-        Button5.Location = New Point(35, 165)
+        Button5.Location = New Point(96, 22)
         Button5.Margin = New Padding(3, 2, 3, 2)
         Button5.Name = "Button5"
-        Button5.Size = New Size(474, 87)
+        Button5.Size = New Size(537, 69)
         Button5.TabIndex = 68
-        Button5.Text = "Evaluate Students"
+        Button5.Text = "EVALUATE STUDENTS"
         Button5.UseVisualStyleBackColor = False
         ' 
         ' PictureBox6
         ' 
         PictureBox6.Image = My.Resources.Resources.icons8_rating_52
-        PictureBox6.Location = New Point(23, 27)
+        PictureBox6.Location = New Point(17, 22)
         PictureBox6.Margin = New Padding(3, 2, 3, 2)
         PictureBox6.Name = "PictureBox6"
-        PictureBox6.Size = New Size(56, 55)
+        PictureBox6.Size = New Size(73, 69)
         PictureBox6.SizeMode = PictureBoxSizeMode.StretchImage
         PictureBox6.TabIndex = 68
         PictureBox6.TabStop = False
-        ' 
-        ' Label10
-        ' 
-        Label10.AutoSize = True
-        Label10.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label10.ForeColor = Color.Indigo
-        Label10.Location = New Point(85, 31)
-        Label10.Name = "Label10"
-        Label10.Size = New Size(188, 45)
-        Label10.TabIndex = 67
-        Label10.Text = "Evalutation"
         ' 
         ' Panel5
         ' 
         Panel5.BackColor = Color.White
         Panel5.Controls.Add(Button4)
         Panel5.Controls.Add(PictureBox5)
-        Panel5.Controls.Add(Label9)
-        Panel5.Location = New Point(1252, 263)
+        Panel5.Location = New Point(37, 767)
         Panel5.Margin = New Padding(3, 2, 3, 2)
         Panel5.Name = "Panel5"
-        Panel5.Size = New Size(546, 380)
+        Panel5.Size = New Size(651, 109)
         Panel5.TabIndex = 79
         ' 
         ' Button4
         ' 
         Button4.BackColor = Color.Indigo
-        Button4.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Button4.Font = New Font("Segoe UI", 30F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Button4.ForeColor = Color.White
-        Button4.Location = New Point(193, 294)
+        Button4.Location = New Point(96, 22)
         Button4.Margin = New Padding(3, 2, 3, 2)
         Button4.Name = "Button4"
-        Button4.Size = New Size(155, 61)
+        Button4.Size = New Size(537, 71)
         Button4.TabIndex = 74
-        Button4.Text = "View All"
+        Button4.Text = "VIEW VISITATION LOGS"
         Button4.UseVisualStyleBackColor = False
         ' 
         ' PictureBox5
@@ -177,17 +177,6 @@ Partial Class supervisorDashboard
         PictureBox5.TabIndex = 68
         PictureBox5.TabStop = False
         ' 
-        ' Label9
-        ' 
-        Label9.AutoSize = True
-        Label9.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label9.ForeColor = Color.Indigo
-        Label9.Location = New Point(94, 38)
-        Label9.Name = "Label9"
-        Label9.Size = New Size(241, 45)
-        Label9.TabIndex = 67
-        Label9.Text = "Visitation Logs"
-        ' 
         ' Panel4
         ' 
         Panel4.BackColor = Color.White
@@ -197,7 +186,7 @@ Partial Class supervisorDashboard
         Panel4.Controls.Add(CheckBox5)
         Panel4.Controls.Add(PictureBox4)
         Panel4.Controls.Add(CheckBox6)
-        Panel4.Location = New Point(113, 671)
+        Panel4.Location = New Point(738, 629)
         Panel4.Margin = New Padding(3, 2, 3, 2)
         Panel4.Name = "Panel4"
         Panel4.Size = New Size(546, 380)
@@ -284,7 +273,7 @@ Partial Class supervisorDashboard
         Panel3.Controls.Add(Label6)
         Panel3.Controls.Add(Label5)
         Panel3.Controls.Add(Button2)
-        Panel3.Location = New Point(113, 263)
+        Panel3.Location = New Point(738, 221)
         Panel3.Margin = New Padding(3, 2, 3, 2)
         Panel3.Name = "Panel3"
         Panel3.Size = New Size(546, 380)
@@ -336,26 +325,40 @@ Partial Class supervisorDashboard
         ' Panel2
         ' 
         Panel2.BackColor = Color.White
+        Panel2.Controls.Add(Button7)
         Panel2.Controls.Add(Button8)
         Panel2.Controls.Add(PictureBox3)
         Panel2.Controls.Add(Label11)
-        Panel2.Location = New Point(686, 262)
+        Panel2.Location = New Point(1311, 220)
         Panel2.Margin = New Padding(3, 2, 3, 2)
         Panel2.Name = "Panel2"
         Panel2.Size = New Size(546, 380)
         Panel2.TabIndex = 76
+        ' 
+        ' Button7
+        ' 
+        Button7.BackColor = Color.Indigo
+        Button7.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Button7.ForeColor = Color.White
+        Button7.Location = New Point(135, 295)
+        Button7.Margin = New Padding(3, 2, 3, 2)
+        Button7.Name = "Button7"
+        Button7.Size = New Size(196, 61)
+        Button7.TabIndex = 77
+        Button7.Text = "View Students"
+        Button7.UseVisualStyleBackColor = False
         ' 
         ' Button8
         ' 
         Button8.BackColor = Color.Indigo
         Button8.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Button8.ForeColor = Color.White
-        Button8.Location = New Point(368, 295)
+        Button8.Location = New Point(348, 295)
         Button8.Margin = New Padding(3, 2, 3, 2)
         Button8.Name = "Button8"
-        Button8.Size = New Size(155, 61)
+        Button8.Size = New Size(175, 61)
         Button8.TabIndex = 76
-        Button8.Text = "View All"
+        Button8.Text = "View Interns"
         Button8.UseVisualStyleBackColor = False
         ' 
         ' PictureBox3
@@ -387,7 +390,7 @@ Partial Class supervisorDashboard
         Panel1.Controls.Add(PictureBox2)
         Panel1.Controls.Add(Button1)
         Panel1.Controls.Add(Label2)
-        Panel1.Location = New Point(687, 671)
+        Panel1.Location = New Point(1312, 629)
         Panel1.Margin = New Padding(3, 2, 3, 2)
         Panel1.Name = "Panel1"
         Panel1.Size = New Size(546, 380)
@@ -441,16 +444,157 @@ Partial Class supervisorDashboard
         Label2.TabIndex = 67
         Label2.Text = "Pending Tasks"
         ' 
-        ' Label1
+        ' Panel7
         ' 
-        Label1.AutoSize = True
-        Label1.Font = New Font("Segoe UI Black", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label1.ForeColor = SystemColors.ButtonHighlight
-        Label1.Location = New Point(749, 200)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(460, 45)
-        Label1.TabIndex = 81
-        Label1.Text = "Welcome [Supervisor name]"
+        Panel7.BackColor = Color.White
+        Panel7.Controls.Add(Label3)
+        Panel7.Controls.Add(Label10)
+        Panel7.Controls.Add(Label4)
+        Panel7.Controls.Add(Label9)
+        Panel7.Controls.Add(Label12)
+        Panel7.Controls.Add(Label13)
+        Panel7.Controls.Add(Label14)
+        Panel7.Controls.Add(Label15)
+        Panel7.Controls.Add(Label16)
+        Panel7.Controls.Add(Label17)
+        Panel7.Controls.Add(btnSelectPhoto)
+        Panel7.Controls.Add(Label18)
+        Panel7.Location = New Point(37, 221)
+        Panel7.Name = "Panel7"
+        Panel7.Size = New Size(651, 515)
+        Panel7.TabIndex = 82
+        ' 
+        ' Label3
+        ' 
+        Label3.AutoSize = True
+        Label3.Font = New Font("Segoe UI Semibold", 14.25F, FontStyle.Bold)
+        Label3.ForeColor = SystemColors.ActiveCaptionText
+        Label3.Location = New Point(251, 179)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(197, 25)
+        Label3.TabIndex = 82
+        Label3.Text = "jdelacruz@gmail.com"
+        ' 
+        ' Label10
+        ' 
+        Label10.AutoSize = True
+        Label10.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic)
+        Label10.ForeColor = SystemColors.ActiveCaptionText
+        Label10.Location = New Point(241, 147)
+        Label10.Name = "Label10"
+        Label10.Size = New Size(79, 32)
+        Label10.TabIndex = 81
+        Label10.Text = "Email"
+        ' 
+        ' Label4
+        ' 
+        Label4.AutoSize = True
+        Label4.Font = New Font("Segoe UI Semibold", 14.25F, FontStyle.Bold)
+        Label4.ForeColor = SystemColors.ActiveCaptionText
+        Label4.Location = New Point(251, 122)
+        Label4.Name = "Label4"
+        Label4.Size = New Size(129, 25)
+        Label4.TabIndex = 80
+        Label4.Text = "09123456789"
+        ' 
+        ' Label9
+        ' 
+        Label9.AutoSize = True
+        Label9.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic)
+        Label9.ForeColor = SystemColors.ActiveCaptionText
+        Label9.Location = New Point(241, 90)
+        Label9.Name = "Label9"
+        Label9.Size = New Size(198, 32)
+        Label9.TabIndex = 79
+        Label9.Text = "Contact Number"
+        ' 
+        ' Label12
+        ' 
+        Label12.AutoSize = True
+        Label12.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        Label12.ForeColor = SystemColors.ActiveCaptionText
+        Label12.Location = New Point(31, 397)
+        Label12.Name = "Label12"
+        Label12.Size = New Size(141, 45)
+        Label12.TabIndex = 78
+        Label12.Text = "Position"
+        ' 
+        ' Label13
+        ' 
+        Label13.AutoSize = True
+        Label13.Font = New Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label13.ForeColor = SystemColors.ActiveCaptionText
+        Label13.Location = New Point(31, 442)
+        Label13.Name = "Label13"
+        Label13.Size = New Size(131, 32)
+        Label13.TabIndex = 77
+        Label13.Text = "Missionary"
+        ' 
+        ' Label14
+        ' 
+        Label14.AutoSize = True
+        Label14.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label14.ForeColor = SystemColors.ActiveCaptionText
+        Label14.Location = New Point(33, 339)
+        Label14.Name = "Label14"
+        Label14.Size = New Size(108, 40)
+        Label14.TabIndex = 76
+        Label14.Text = "Adonis"
+        ' 
+        ' Label15
+        ' 
+        Label15.AutoSize = True
+        Label15.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        Label15.ForeColor = SystemColors.ActiveCaptionText
+        Label15.Location = New Point(31, 294)
+        Label15.Name = "Label15"
+        Label15.Size = New Size(161, 45)
+        Label15.TabIndex = 68
+        Label15.Text = "Company"
+        ' 
+        ' Label16
+        ' 
+        Label16.AutoSize = True
+        Label16.Font = New Font("Segoe UI Semibold", 14.25F, FontStyle.Bold)
+        Label16.ForeColor = SystemColors.ActiveCaptionText
+        Label16.Location = New Point(251, 62)
+        Label16.Name = "Label16"
+        Label16.Size = New Size(52, 25)
+        Label16.TabIndex = 67
+        Label16.Text = "S001"
+        ' 
+        ' Label17
+        ' 
+        Label17.AutoSize = True
+        Label17.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic)
+        Label17.ForeColor = SystemColors.ActiveCaptionText
+        Label17.Location = New Point(241, 30)
+        Label17.Name = "Label17"
+        Label17.Size = New Size(166, 32)
+        Label17.TabIndex = 66
+        Label17.Text = "Supervisor ID"
+        ' 
+        ' btnSelectPhoto
+        ' 
+        btnSelectPhoto.Cursor = Cursors.Hand
+        btnSelectPhoto.Image = My.Resources.Resources.user_square
+        btnSelectPhoto.Location = New Point(31, 24)
+        btnSelectPhoto.Name = "btnSelectPhoto"
+        btnSelectPhoto.Size = New Size(191, 184)
+        btnSelectPhoto.SizeMode = PictureBoxSizeMode.StretchImage
+        btnSelectPhoto.TabIndex = 0
+        btnSelectPhoto.TabStop = False
+        ' 
+        ' Label18
+        ' 
+        Label18.AutoSize = True
+        Label18.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        Label18.ForeColor = SystemColors.ActiveCaptionText
+        Label18.Location = New Point(33, 222)
+        Label18.Name = "Label18"
+        Label18.Size = New Size(448, 45)
+        Label18.TabIndex = 65
+        Label18.Text = "Welcome [Supervisor Name]"
         ' 
         ' supervisorDashboard
         ' 
@@ -458,7 +602,7 @@ Partial Class supervisorDashboard
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.DarkGray
         ClientSize = New Size(1904, 1041)
-        Controls.Add(Label1)
+        Controls.Add(Panel7)
         Controls.Add(Panel6)
         Controls.Add(Panel5)
         Controls.Add(Panel4)
@@ -473,10 +617,8 @@ Partial Class supervisorDashboard
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         CType(PictureBox7, ComponentModel.ISupportInitialize).EndInit()
         Panel6.ResumeLayout(False)
-        Panel6.PerformLayout()
         CType(PictureBox6, ComponentModel.ISupportInitialize).EndInit()
         Panel5.ResumeLayout(False)
-        Panel5.PerformLayout()
         CType(PictureBox5, ComponentModel.ISupportInitialize).EndInit()
         Panel4.ResumeLayout(False)
         Panel4.PerformLayout()
@@ -489,8 +631,10 @@ Partial Class supervisorDashboard
         Panel1.ResumeLayout(False)
         Panel1.PerformLayout()
         CType(PictureBox2, ComponentModel.ISupportInitialize).EndInit()
+        Panel7.ResumeLayout(False)
+        Panel7.PerformLayout()
+        CType(btnSelectPhoto, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
-        PerformLayout()
     End Sub
 
     Friend WithEvents PictureBox1 As PictureBox
@@ -498,9 +642,7 @@ Partial Class supervisorDashboard
     Friend WithEvents Panel6 As Panel
     Friend WithEvents Button5 As Button
     Friend WithEvents PictureBox6 As PictureBox
-    Friend WithEvents Label10 As Label
     Friend WithEvents Panel5 As Panel
-    Friend WithEvents Label9 As Label
     Friend WithEvents Panel4 As Panel
     Friend WithEvents CheckBox4 As CheckBox
     Friend WithEvents Label8 As Label
@@ -518,11 +660,24 @@ Partial Class supervisorDashboard
     Friend WithEvents PictureBox2 As PictureBox
     Friend WithEvents Button1 As Button
     Friend WithEvents Label2 As Label
-    Friend WithEvents Label1 As Label
     Friend WithEvents Button6 As Button
     Friend WithEvents Button8 As Button
     Friend WithEvents PictureBox3 As PictureBox
     Friend WithEvents Label11 As Label
     Friend WithEvents PictureBox5 As PictureBox
     Friend WithEvents Button4 As Button
+    Friend WithEvents Button7 As Button
+    Friend WithEvents Panel7 As Panel
+    Friend WithEvents Label3 As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Label9 As Label
+    Friend WithEvents Label12 As Label
+    Friend WithEvents Label13 As Label
+    Friend WithEvents Label14 As Label
+    Friend WithEvents Label15 As Label
+    Friend WithEvents Label16 As Label
+    Friend WithEvents Label17 As Label
+    Friend WithEvents btnSelectPhoto As PictureBox
+    Friend WithEvents Label18 As Label
 End Class

@@ -342,9 +342,8 @@ Partial Class TeacherRegistrationForm
         lblemailInvalid.ForeColor = Color.Maroon
         lblemailInvalid.Location = New Point(535, 554)
         lblemailInvalid.Name = "lblemailInvalid"
-        lblemailInvalid.Size = New Size(18, 17)
+        lblemailInvalid.Size = New Size(0, 17)
         lblemailInvalid.TabIndex = 102
-        lblemailInvalid.Text = "tt"
         lblemailInvalid.Visible = False
         ' 
         ' TeacherRegistrationForm

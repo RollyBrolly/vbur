@@ -212,7 +212,7 @@ Partial Class StaffRegistrationForm
         staffmidnametxt.Location = New Point(107, 460)
         staffmidnametxt.Margin = New Padding(3, 2, 3, 2)
         staffmidnametxt.Name = "staffmidnametxt"
-        staffmidnametxt.Size = New Size(231, 46)
+        staffmidnametxt.Size = New Size(307, 46)
         staffmidnametxt.TabIndex = 66
         ' 
         ' stafffnametxt
@@ -222,7 +222,7 @@ Partial Class StaffRegistrationForm
         stafffnametxt.Location = New Point(107, 316)
         stafffnametxt.Margin = New Padding(3, 2, 3, 2)
         stafffnametxt.Name = "stafffnametxt"
-        stafffnametxt.Size = New Size(231, 46)
+        stafffnametxt.Size = New Size(307, 46)
         stafffnametxt.TabIndex = 65
         ' 
         ' stafflnametxt
@@ -232,7 +232,7 @@ Partial Class StaffRegistrationForm
         stafflnametxt.Location = New Point(107, 173)
         stafflnametxt.Margin = New Padding(3, 2, 3, 2)
         stafflnametxt.Name = "stafflnametxt"
-        stafflnametxt.Size = New Size(231, 46)
+        stafflnametxt.Size = New Size(307, 46)
         stafflnametxt.TabIndex = 64
         ' 
         ' staffcompnametxt

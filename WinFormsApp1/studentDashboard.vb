@@ -299,4 +299,41 @@ Public Class studentDashboard
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles completetasks.Click
 
     End Sub
+
+    Private Sub viewgrades_Click(sender As Object, e As EventArgs) Handles viewgrades.Click
+
+    End Sub
+
+    'custom photo
+    Private Sub btnSelectPhoto_Click(sender As Object, e As EventArgs) Handles btnSelectPhoto.Click
+
+        Dim result As DialogResult = MessageBox.Show(
+            "Do you want to change display photo? 1x1 only",
+            "Change Photo",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question
+        )
+
+        If result = DialogResult.No Then
+            Exit Sub ' user canceled
+        End If
+
+
+        Dim ofd As New OpenFileDialog()
+        ofd.Title = "Select a Photo"
+        ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif"
+
+        If ofd.ShowDialog() = DialogResult.OK Then
+            btnSelectPhoto.Image = Image.FromFile(ofd.FileName)
+            btnSelectPhoto.SizeMode = PictureBoxSizeMode.Zoom
+        End If
+    End Sub
+
+    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs)
+
+    End Sub
+
+    Private Sub Label7_Click(sender As Object, e As PaintEventArgs)
+
+    End Sub
 End Class
