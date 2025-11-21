@@ -58,6 +58,10 @@ Partial Class facultyDashboard
         Label17 = New Label()
         btnSelectPhoto = New PictureBox()
         Label18 = New Label()
+        Panel1 = New Panel()
+        viewschedpnl = New Button()
+        schedicon = New PictureBox()
+        Label1 = New Label()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         facgradepnl.SuspendLayout()
         CType(gradingicon, ComponentModel.ISupportInitialize).BeginInit()
@@ -71,6 +75,8 @@ Partial Class facultyDashboard
         CType(PictureBox7, ComponentModel.ISupportInitialize).BeginInit()
         Panel7.SuspendLayout()
         CType(btnSelectPhoto, ComponentModel.ISupportInitialize).BeginInit()
+        Panel1.SuspendLayout()
+        CType(schedicon, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' PictureBox1
@@ -272,7 +278,7 @@ Partial Class facultyDashboard
         Button6.Name = "Button6"
         Button6.Size = New Size(533, 72)
         Button6.TabIndex = 74
-        Button6.Text = "VIEW STUDENTS"
+        Button6.Text = "STUDENT RECORD"
         Button6.UseVisualStyleBackColor = False
         ' 
         ' PictureBox3
@@ -487,12 +493,60 @@ Partial Class facultyDashboard
         Label18.TabIndex = 65
         Label18.Text = "Welcome [Faculty Name]"
         ' 
+        ' Panel1
+        ' 
+        Panel1.BackColor = Color.White
+        Panel1.Controls.Add(viewschedpnl)
+        Panel1.Controls.Add(schedicon)
+        Panel1.Controls.Add(Label1)
+        Panel1.Location = New Point(1303, 220)
+        Panel1.Margin = New Padding(3, 2, 3, 2)
+        Panel1.Name = "Panel1"
+        Panel1.Size = New Size(546, 380)
+        Panel1.TabIndex = 76
+        ' 
+        ' viewschedpnl
+        ' 
+        viewschedpnl.BackColor = Color.Indigo
+        viewschedpnl.Font = New Font("Segoe UI", 30F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        viewschedpnl.ForeColor = Color.White
+        viewschedpnl.Location = New Point(25, 158)
+        viewschedpnl.Margin = New Padding(3, 2, 3, 2)
+        viewschedpnl.Name = "viewschedpnl"
+        viewschedpnl.Size = New Size(491, 97)
+        viewschedpnl.TabIndex = 68
+        viewschedpnl.Text = "VIEW SCHEDULE"
+        viewschedpnl.UseVisualStyleBackColor = False
+        ' 
+        ' schedicon
+        ' 
+        schedicon.Image = My.Resources.Resources.icons8_schedule_96
+        schedicon.Location = New Point(11, 17)
+        schedicon.Margin = New Padding(3, 2, 3, 2)
+        schedicon.Name = "schedicon"
+        schedicon.Size = New Size(73, 71)
+        schedicon.SizeMode = PictureBoxSizeMode.StretchImage
+        schedicon.TabIndex = 69
+        schedicon.TabStop = False
+        ' 
+        ' Label1
+        ' 
+        Label1.AutoSize = True
+        Label1.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label1.ForeColor = Color.Indigo
+        Label1.Location = New Point(90, 31)
+        Label1.Name = "Label1"
+        Label1.Size = New Size(154, 45)
+        Label1.TabIndex = 67
+        Label1.Text = "Schedule"
+        ' 
         ' facultyDashboard
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.DarkGray
         ClientSize = New Size(1904, 1041)
+        Controls.Add(Panel1)
         Controls.Add(Panel7)
         Controls.Add(PictureBox7)
         Controls.Add(facgradepnl)
@@ -521,6 +575,9 @@ Partial Class facultyDashboard
         Panel7.ResumeLayout(False)
         Panel7.PerformLayout()
         CType(btnSelectPhoto, ComponentModel.ISupportInitialize).EndInit()
+        Panel1.ResumeLayout(False)
+        Panel1.PerformLayout()
+        CType(schedicon, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
     End Sub
 
@@ -559,4 +616,8 @@ Partial Class facultyDashboard
     Friend WithEvents Label17 As Label
     Friend WithEvents btnSelectPhoto As PictureBox
     Friend WithEvents Label18 As Label
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents Label1 As Label
+    Friend WithEvents viewschedpnl As Button
+    Friend WithEvents schedicon As PictureBox
 End Class

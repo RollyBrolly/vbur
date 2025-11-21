@@ -287,7 +287,7 @@ Public Class studentDashboard
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles viewschedpnl.Click
-        Dim schedule As New studentScheduleForm()
+        Dim schedule As New scheduleForm()
         schedule.ShowDialog()
 
     End Sub

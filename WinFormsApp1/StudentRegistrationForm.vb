@@ -324,5 +324,7 @@ Public Class StudentRegistrationForm
         End If
     End Sub
 
+    Private Sub studsectioncb_SelectedIndexChanged(sender As Object, e As EventArgs) Handles studsectioncb.SelectedIndexChanged
 
+    End Sub
 End Class

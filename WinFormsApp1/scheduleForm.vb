@@ -1,4 +1,4 @@
-﻿Public Class studentScheduleForm
+﻿Public Class scheduleForm
 
     ' Load the time slots into the DataGridView
     Private Sub studentScheduleForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load

@@ -48,10 +48,10 @@ Partial Class StudentRegistrationForm
         PictureBox1 = New PictureBox()
         studcourlbl = New Label()
         Panel1 = New Panel()
+        lblemailInvalid = New Label()
         studnotxt = New TextBox()
         sectionlbl = New Label()
         studsectioncb = New ComboBox()
-        lblemailInvalid = New Label()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
         SuspendLayout()
@@ -315,9 +315,9 @@ Partial Class StudentRegistrationForm
         studcourlbl.ForeColor = Color.Indigo
         studcourlbl.Location = New Point(470, 408)
         studcourlbl.Name = "studcourlbl"
-        studcourlbl.Size = New Size(105, 37)
+        studcourlbl.Size = New Size(130, 37)
         studcourlbl.TabIndex = 32
-        studcourlbl.Text = "Course"
+        studcourlbl.Text = "Program"
         ' 
         ' Panel1
         ' 
@@ -353,6 +353,17 @@ Partial Class StudentRegistrationForm
         Panel1.Size = New Size(1024, 767)
         Panel1.TabIndex = 33
         ' 
+        ' lblemailInvalid
+        ' 
+        lblemailInvalid.AutoSize = True
+        lblemailInvalid.Font = New Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblemailInvalid.ForeColor = Color.Maroon
+        lblemailInvalid.Location = New Point(535, 554)
+        lblemailInvalid.Name = "lblemailInvalid"
+        lblemailInvalid.Size = New Size(0, 17)
+        lblemailInvalid.TabIndex = 103
+        lblemailInvalid.Visible = False
+        ' 
         ' studnotxt
         ' 
         studnotxt.BackColor = Color.Silver
@@ -387,18 +398,6 @@ Partial Class StudentRegistrationForm
         studsectioncb.Name = "studsectioncb"
         studsectioncb.Size = New Size(71, 48)
         studsectioncb.TabIndex = 33
-        ' 
-        ' lblemailInvalid
-        ' 
-        lblemailInvalid.AutoSize = True
-        lblemailInvalid.Font = New Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblemailInvalid.ForeColor = Color.Maroon
-        lblemailInvalid.Location = New Point(535, 554)
-        lblemailInvalid.Name = "lblemailInvalid"
-        lblemailInvalid.Size = New Size(18, 17)
-        lblemailInvalid.TabIndex = 103
-        lblemailInvalid.Text = "tt"
-        lblemailInvalid.Visible = False
         ' 
         ' StudentRegistrationForm
         ' 

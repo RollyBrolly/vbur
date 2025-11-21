@@ -128,7 +128,7 @@ Partial Class supervisorDashboard
         Button5.Name = "Button5"
         Button5.Size = New Size(537, 69)
         Button5.TabIndex = 68
-        Button5.Text = "EVALUATE STUDENTS"
+        Button5.Text = "EVALUATE INTERNS"
         Button5.UseVisualStyleBackColor = False
         ' 
         ' PictureBox6

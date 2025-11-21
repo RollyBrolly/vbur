@@ -309,4 +309,16 @@ Public Class facultyDashboard
     Private Sub Label18_Click(sender As Object, e As EventArgs) Handles Label18.Click
 
     End Sub
+
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+        Dim viewstudent As New facultyStudentRecord()
+        viewstudent.Show()
+        Me.Hide()
+    End Sub
+
+    Private Sub viewschedpnl_Click(sender As Object, e As EventArgs) Handles viewschedpnl.Click
+        Dim viewschedule As New scheduleForm()
+        viewschedule.Show()
+        Me.Hide()
+    End Sub
 End Class
