@@ -54,18 +54,18 @@ Partial Class supervisorDashboard
         Button1 = New Button()
         Label2 = New Label()
         Panel7 = New Panel()
-        Label3 = New Label()
-        Label10 = New Label()
-        Label4 = New Label()
-        Label9 = New Label()
-        Label12 = New Label()
-        Label13 = New Label()
-        Label14 = New Label()
-        Label15 = New Label()
-        Label16 = New Label()
-        Label17 = New Label()
+        elbl = New Label()
+        emaillbl = New Label()
+        contlbl = New Label()
+        conatactlbl = New Label()
+        pisitionlbl = New Label()
+        poslbl = New Label()
+        camplbl = New Label()
+        companylbl = New Label()
+        idlbl = New Label()
+        sidlbl = New Label()
         btnSelectPhoto = New PictureBox()
-        Label18 = New Label()
+        welcomelbl = New Label()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox7, ComponentModel.ISupportInitialize).BeginInit()
         Panel6.SuspendLayout()
@@ -447,132 +447,132 @@ Partial Class supervisorDashboard
         ' Panel7
         ' 
         Panel7.BackColor = Color.White
-        Panel7.Controls.Add(Label3)
-        Panel7.Controls.Add(Label10)
-        Panel7.Controls.Add(Label4)
-        Panel7.Controls.Add(Label9)
-        Panel7.Controls.Add(Label12)
-        Panel7.Controls.Add(Label13)
-        Panel7.Controls.Add(Label14)
-        Panel7.Controls.Add(Label15)
-        Panel7.Controls.Add(Label16)
-        Panel7.Controls.Add(Label17)
+        Panel7.Controls.Add(elbl)
+        Panel7.Controls.Add(emaillbl)
+        Panel7.Controls.Add(contlbl)
+        Panel7.Controls.Add(conatactlbl)
+        Panel7.Controls.Add(pisitionlbl)
+        Panel7.Controls.Add(poslbl)
+        Panel7.Controls.Add(camplbl)
+        Panel7.Controls.Add(companylbl)
+        Panel7.Controls.Add(idlbl)
+        Panel7.Controls.Add(sidlbl)
         Panel7.Controls.Add(btnSelectPhoto)
-        Panel7.Controls.Add(Label18)
+        Panel7.Controls.Add(welcomelbl)
         Panel7.Location = New Point(37, 221)
         Panel7.Name = "Panel7"
         Panel7.Size = New Size(651, 515)
         Panel7.TabIndex = 82
         ' 
-        ' Label3
+        ' elbl
         ' 
-        Label3.AutoSize = True
-        Label3.Font = New Font("Segoe UI Semibold", 14.25F, FontStyle.Bold)
-        Label3.ForeColor = SystemColors.ActiveCaptionText
-        Label3.Location = New Point(251, 179)
-        Label3.Name = "Label3"
-        Label3.Size = New Size(197, 25)
-        Label3.TabIndex = 82
-        Label3.Text = "jdelacruz@gmail.com"
+        elbl.AutoSize = True
+        elbl.Font = New Font("Segoe UI Semibold", 14.25F, FontStyle.Bold)
+        elbl.ForeColor = SystemColors.ActiveCaptionText
+        elbl.Location = New Point(251, 179)
+        elbl.Name = "elbl"
+        elbl.Size = New Size(197, 25)
+        elbl.TabIndex = 82
+        elbl.Text = "jdelacruz@gmail.com"
         ' 
-        ' Label10
+        ' emaillbl
         ' 
-        Label10.AutoSize = True
-        Label10.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic)
-        Label10.ForeColor = SystemColors.ActiveCaptionText
-        Label10.Location = New Point(241, 147)
-        Label10.Name = "Label10"
-        Label10.Size = New Size(79, 32)
-        Label10.TabIndex = 81
-        Label10.Text = "Email"
+        emaillbl.AutoSize = True
+        emaillbl.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic)
+        emaillbl.ForeColor = SystemColors.ActiveCaptionText
+        emaillbl.Location = New Point(241, 147)
+        emaillbl.Name = "emaillbl"
+        emaillbl.Size = New Size(79, 32)
+        emaillbl.TabIndex = 81
+        emaillbl.Text = "Email"
         ' 
-        ' Label4
+        ' contlbl
         ' 
-        Label4.AutoSize = True
-        Label4.Font = New Font("Segoe UI Semibold", 14.25F, FontStyle.Bold)
-        Label4.ForeColor = SystemColors.ActiveCaptionText
-        Label4.Location = New Point(251, 122)
-        Label4.Name = "Label4"
-        Label4.Size = New Size(129, 25)
-        Label4.TabIndex = 80
-        Label4.Text = "09123456789"
+        contlbl.AutoSize = True
+        contlbl.Font = New Font("Segoe UI Semibold", 14.25F, FontStyle.Bold)
+        contlbl.ForeColor = SystemColors.ActiveCaptionText
+        contlbl.Location = New Point(251, 122)
+        contlbl.Name = "contlbl"
+        contlbl.Size = New Size(129, 25)
+        contlbl.TabIndex = 80
+        contlbl.Text = "09123456789"
         ' 
-        ' Label9
+        ' conatactlbl
         ' 
-        Label9.AutoSize = True
-        Label9.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic)
-        Label9.ForeColor = SystemColors.ActiveCaptionText
-        Label9.Location = New Point(241, 90)
-        Label9.Name = "Label9"
-        Label9.Size = New Size(198, 32)
-        Label9.TabIndex = 79
-        Label9.Text = "Contact Number"
+        conatactlbl.AutoSize = True
+        conatactlbl.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic)
+        conatactlbl.ForeColor = SystemColors.ActiveCaptionText
+        conatactlbl.Location = New Point(241, 90)
+        conatactlbl.Name = "conatactlbl"
+        conatactlbl.Size = New Size(198, 32)
+        conatactlbl.TabIndex = 79
+        conatactlbl.Text = "Contact Number"
         ' 
-        ' Label12
+        ' pisitionlbl
         ' 
-        Label12.AutoSize = True
-        Label12.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label12.ForeColor = SystemColors.ActiveCaptionText
-        Label12.Location = New Point(31, 397)
-        Label12.Name = "Label12"
-        Label12.Size = New Size(141, 45)
-        Label12.TabIndex = 78
-        Label12.Text = "Position"
+        pisitionlbl.AutoSize = True
+        pisitionlbl.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        pisitionlbl.ForeColor = SystemColors.ActiveCaptionText
+        pisitionlbl.Location = New Point(31, 397)
+        pisitionlbl.Name = "pisitionlbl"
+        pisitionlbl.Size = New Size(141, 45)
+        pisitionlbl.TabIndex = 78
+        pisitionlbl.Text = "Position"
         ' 
-        ' Label13
+        ' poslbl
         ' 
-        Label13.AutoSize = True
-        Label13.Font = New Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label13.ForeColor = SystemColors.ActiveCaptionText
-        Label13.Location = New Point(31, 442)
-        Label13.Name = "Label13"
-        Label13.Size = New Size(131, 32)
-        Label13.TabIndex = 77
-        Label13.Text = "Missionary"
+        poslbl.AutoSize = True
+        poslbl.Font = New Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        poslbl.ForeColor = SystemColors.ActiveCaptionText
+        poslbl.Location = New Point(31, 442)
+        poslbl.Name = "poslbl"
+        poslbl.Size = New Size(131, 32)
+        poslbl.TabIndex = 77
+        poslbl.Text = "Missionary"
         ' 
-        ' Label14
+        ' camplbl
         ' 
-        Label14.AutoSize = True
-        Label14.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label14.ForeColor = SystemColors.ActiveCaptionText
-        Label14.Location = New Point(33, 339)
-        Label14.Name = "Label14"
-        Label14.Size = New Size(108, 40)
-        Label14.TabIndex = 76
-        Label14.Text = "Adonis"
+        camplbl.AutoSize = True
+        camplbl.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        camplbl.ForeColor = SystemColors.ActiveCaptionText
+        camplbl.Location = New Point(33, 339)
+        camplbl.Name = "camplbl"
+        camplbl.Size = New Size(108, 40)
+        camplbl.TabIndex = 76
+        camplbl.Text = "Adonis"
         ' 
-        ' Label15
+        ' companylbl
         ' 
-        Label15.AutoSize = True
-        Label15.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label15.ForeColor = SystemColors.ActiveCaptionText
-        Label15.Location = New Point(31, 294)
-        Label15.Name = "Label15"
-        Label15.Size = New Size(161, 45)
-        Label15.TabIndex = 68
-        Label15.Text = "Company"
+        companylbl.AutoSize = True
+        companylbl.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        companylbl.ForeColor = SystemColors.ActiveCaptionText
+        companylbl.Location = New Point(31, 294)
+        companylbl.Name = "companylbl"
+        companylbl.Size = New Size(161, 45)
+        companylbl.TabIndex = 68
+        companylbl.Text = "Company"
         ' 
-        ' Label16
+        ' idlbl
         ' 
-        Label16.AutoSize = True
-        Label16.Font = New Font("Segoe UI Semibold", 14.25F, FontStyle.Bold)
-        Label16.ForeColor = SystemColors.ActiveCaptionText
-        Label16.Location = New Point(251, 62)
-        Label16.Name = "Label16"
-        Label16.Size = New Size(52, 25)
-        Label16.TabIndex = 67
-        Label16.Text = "S001"
+        idlbl.AutoSize = True
+        idlbl.Font = New Font("Segoe UI Semibold", 14.25F, FontStyle.Bold)
+        idlbl.ForeColor = SystemColors.ActiveCaptionText
+        idlbl.Location = New Point(251, 62)
+        idlbl.Name = "idlbl"
+        idlbl.Size = New Size(52, 25)
+        idlbl.TabIndex = 67
+        idlbl.Text = "S001"
         ' 
-        ' Label17
+        ' sidlbl
         ' 
-        Label17.AutoSize = True
-        Label17.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic)
-        Label17.ForeColor = SystemColors.ActiveCaptionText
-        Label17.Location = New Point(241, 30)
-        Label17.Name = "Label17"
-        Label17.Size = New Size(166, 32)
-        Label17.TabIndex = 66
-        Label17.Text = "Supervisor ID"
+        sidlbl.AutoSize = True
+        sidlbl.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic)
+        sidlbl.ForeColor = SystemColors.ActiveCaptionText
+        sidlbl.Location = New Point(241, 30)
+        sidlbl.Name = "sidlbl"
+        sidlbl.Size = New Size(166, 32)
+        sidlbl.TabIndex = 66
+        sidlbl.Text = "Supervisor ID"
         ' 
         ' btnSelectPhoto
         ' 
@@ -585,16 +585,16 @@ Partial Class supervisorDashboard
         btnSelectPhoto.TabIndex = 0
         btnSelectPhoto.TabStop = False
         ' 
-        ' Label18
+        ' welcomelbl
         ' 
-        Label18.AutoSize = True
-        Label18.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label18.ForeColor = SystemColors.ActiveCaptionText
-        Label18.Location = New Point(33, 222)
-        Label18.Name = "Label18"
-        Label18.Size = New Size(448, 45)
-        Label18.TabIndex = 65
-        Label18.Text = "Welcome [Supervisor Name]"
+        welcomelbl.AutoSize = True
+        welcomelbl.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        welcomelbl.ForeColor = SystemColors.ActiveCaptionText
+        welcomelbl.Location = New Point(33, 222)
+        welcomelbl.Name = "welcomelbl"
+        welcomelbl.Size = New Size(448, 45)
+        welcomelbl.TabIndex = 65
+        welcomelbl.Text = "Welcome [Supervisor Name]"
         ' 
         ' supervisorDashboard
         ' 
@@ -668,16 +668,16 @@ Partial Class supervisorDashboard
     Friend WithEvents Button4 As Button
     Friend WithEvents Button7 As Button
     Friend WithEvents Panel7 As Panel
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label10 As Label
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Label9 As Label
-    Friend WithEvents Label12 As Label
-    Friend WithEvents Label13 As Label
-    Friend WithEvents Label14 As Label
-    Friend WithEvents Label15 As Label
-    Friend WithEvents Label16 As Label
-    Friend WithEvents Label17 As Label
+    Friend WithEvents elbl As Label
+    Friend WithEvents emaillbl As Label
+    Friend WithEvents contlbl As Label
+    Friend WithEvents conatactlbl As Label
+    Friend WithEvents pisitionlbl As Label
+    Friend WithEvents poslbl As Label
+    Friend WithEvents camplbl As Label
+    Friend WithEvents companylbl As Label
+    Friend WithEvents idlbl As Label
+    Friend WithEvents sidlbl As Label
     Friend WithEvents btnSelectPhoto As PictureBox
-    Friend WithEvents Label18 As Label
+    Friend WithEvents welcomelbl As Label
 End Class
