@@ -2,37 +2,34 @@
 
 Module UserManager
 
-    Public Function CreateUserAccount(username As String, password As String, role As String, Optional studentID As String = Nothing, Optional facultyID As String = Nothing, Optional supervisorID As String = Nothing) As Boolean
+    Public Function CreateUserAccount(conn As MySqlConnection, transaction As MySqlTransaction,
+                                      username As String, password As String, role As String,
+                                      studentID As String, supervisorID As String) As Boolean
         Try
-            Using conn As New MySqlConnection(connstring)
-                conn.Open()
+            Using cmd As New MySqlCommand("INSERT INTO users (Username, PasswordHash, Role)
+                VALUES (@Username, @Password, @Role)", conn, transaction)
 
-                Dim newUserID As Integer
-                Dim insertUser As String =
-                    "INSERT INTO users (Username, PasswordHash, Role) VALUES (@u, @p, @r);
-                     SELECT LAST_INSERT_ID();"
-                Using cmd As New MySqlCommand(insertUser, conn)
-                    cmd.Parameters.AddWithValue("@u", username)
-                    cmd.Parameters.AddWithValue("@p", password)
-                    cmd.Parameters.AddWithValue("@r", role)
-                    newUserID = Convert.ToInt32(cmd.ExecuteScalar())
-                End Using
+                cmd.Parameters.AddWithValue("@Username", username)
+                cmd.Parameters.AddWithValue("@Password", password)
+                cmd.Parameters.AddWithValue("@Role", role)
 
-                Dim insertAccount As String =
-                    "INSERT INTO useraccounts(UserID, StudentID, FacultyID, SupervisorID)
-                     VALUES(@uid, @sid, @fid, @supid)"
-                Using cmdAcc As New MySqlCommand(insertAccount, conn)
-                    cmdAcc.Parameters.AddWithValue("@uid", newUserID)
-                    cmdAcc.Parameters.AddWithValue("@sid", If(studentID, DBNull.Value))
-                    cmdAcc.Parameters.AddWithValue("@fid", If(facultyID, DBNull.Value))
-                    cmdAcc.Parameters.AddWithValue("@supid", If(supervisorID, DBNull.Value))
-                    cmdAcc.ExecuteNonQuery()
+                cmd.ExecuteNonQuery()
+
+                Dim userID As Long = cmd.LastInsertedId
+
+                Using cmd2 As New MySqlCommand("INSERT INTO useraccounts (UserID, StudentID, SupervisorID)
+                    VALUES (@UserID, @StudentID, @SupervisorID)", conn, transaction)
+
+                    cmd2.Parameters.AddWithValue("@UserID", userID)
+                    cmd2.Parameters.AddWithValue("@StudentID", If(String.IsNullOrWhiteSpace(studentID), DBNull.Value, studentID))
+                    cmd2.Parameters.AddWithValue("@SupervisorID", If(String.IsNullOrWhiteSpace(supervisorID), DBNull.Value, supervisorID))
+
+                    Return cmd2.ExecuteNonQuery() > 0
                 End Using
             End Using
 
-            Return True
-        Catch ex As Exception
-            MessageBox.Show("Error creating user account: " & ex.Message)
+        Catch ex As MySqlException
+            MessageBox.Show($"Account creation error: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function

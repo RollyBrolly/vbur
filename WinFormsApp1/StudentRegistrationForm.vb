@@ -143,7 +143,7 @@ Public Class StudentRegistrationForm
     Private Function IsValidEmail(email As String) As Boolean
         If String.IsNullOrWhiteSpace(email) Then Return False
         Dim pattern As String = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
-        Return Regex.IsMatch(email, pattern)
+        Return Regex.IsMatch(email, pattern, RegexOptions.IgnoreCase)
     End Function
 
     ' -------------------------- Required Fields Validation --------------------------
@@ -182,6 +182,13 @@ Public Class StudentRegistrationForm
         Dim courseID As String = CType(studcourcb.SelectedItem, KeyValuePair(Of String, String)).Key
         Dim section As String = studsectioncb.SelectedItem.ToString()
 
+        Dim username As String = studentID.Replace("-", "")
+        Dim fullname As String = $"{firstname} {middlename} {lastname}".Trim()
+        Dim initials As String = String.Concat(fullname.Split({" "c}, StringSplitOptions.RemoveEmptyEntries).Select(Function(n) n(0).ToString().ToUpper()))
+        Dim password As String = username & initials
+
+        studregbtn.Enabled = False
+
         Try
             Using conn As New MySqlConnection(connString)
                 conn.Open()
@@ -204,32 +211,30 @@ Public Class StudentRegistrationForm
                     cmd.ExecuteNonQuery()
                 End Using
             End Using
-        Catch ex As Exception
-            MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-        ' -------------------------- Create login credentials --------------------------
-        Try
-            Dim cleanStudentID As String = studentID.Replace("-", "")
-            Dim fullname As String = $"{firstname} {middlename} {lastname}"
-            Dim initials As String = String.Concat(fullname.Split(" "c).Select(Function(n) n(0).ToString().ToUpper()))
-            Dim username As String = cleanStudentID
-            Dim password As String = cleanStudentID & initials
 
-            If CreateUserAccount(username, password, "Student", cleanStudentID, Nothing, Nothing) Then
-                SendStudentEmail(fullname, cleanStudentID, username, password, email)
-                skipCloseConfirmation = True
-                ReturnToLogin()
-            Else
-                MessageBox.Show("Student saved, but failed to create login account.", "Account Creation Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            End If
+            ' -------------------------- Create login credentials --------------------------
+            Try
+                Dim cleanStudentID As String = studentID.Replace("-", "")
+                Dim fullname As String = $"{firstname} {middlename} {lastname}"
+                Dim initials As String = String.Concat(fullname.Split(" "c).Select(Function(n) n(0).ToString().ToUpper()))
+                Dim username As String = cleanStudentID
+                Dim password As String = cleanStudentID & initials
 
-        Catch ex As MySqlException
-            MessageBox.Show($"Database error: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        Catch ex As Exception
-            MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
+                If CreateUserAccount(username, password, "Student", cleanStudentID, Nothing, Nothing) Then
+                    SendStudentEmail(fullname, cleanStudentID, username, password, email)
+                    skipCloseConfirmation = True
+                    ReturnToLogin()
+                Else
+                    MessageBox.Show("Student saved, but failed to create login account.", "Account Creation Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                End If
 
+            Catch ex As MySqlException
+                MessageBox.Show($"Database error: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Catch ex As Exception
+                MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
     End Sub
+
 
     ' -------------------------- Send Student Email --------------------------
     Private Sub SendStudentEmail(fullname As String, studentID As String, username As String, password As String, useremail As String)
@@ -303,35 +308,20 @@ Public Class StudentRegistrationForm
 
     ' -------------------------- Return to Login -------------------------- 
     Private Sub ReturnToLogin()
+        For Each regForm In Application.OpenForms.OfType(Of StudentRegistrationForm)().ToList()
+            regForm.Hide()
+        Next
+
+        Me.Hide()
+
         Dim loginForm = Application.OpenForms.OfType(Of Login)().FirstOrDefault()
-        If loginForm IsNot Nothing Then
+        If loginForm Is Nothing Then
+            loginForm = New Login()
             loginForm.Show()
-            loginForm.BringToFront()
         Else
-            Dim lf As New Login()
-            lf.Show()
+            loginForm.Show()
+            loginForm.Activate()
         End If
-
-        If TypeOf Me.Owner Is Registration Then
-            Try
-                CType(Me.Owner, Registration).CloseWithoutPrompt()
-            Catch
-            End Try
-        Else
-            For Each rf In Application.OpenForms.OfType(Of Registration)().ToList()
-                Try
-                    rf.Close()
-                Catch
-                    rf.Hide()
-                End Try
-            Next
-        End If
-
-        Try
-            Me.DialogResult = DialogResult.OK
-        Catch
-        End Try
-        Me.Close()
     End Sub
 
     ' -------------------------- Clear Form --------------------------
@@ -375,38 +365,56 @@ Public Class StudentRegistrationForm
 
     ' -------------------------- Input Validation --------------------------
     Private Sub studnumtxt_KeyPress(sender As Object, e As KeyPressEventArgs) Handles studnumtxt.KeyPress
-        If Not Char.IsDigit(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then e.Handled = True
-        If Char.IsDigit(e.KeyChar) AndAlso studnumtxt.Text.Length >= 11 Then
+        If Not Char.IsDigit(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
+            e.Handled = True
+            Return
+        End If
+    End Sub
+
+    Private Sub studnumtxt_TextChanged(sender As Object, e As EventArgs) Handles studnumtxt.TextChanged
+        If studnumtxt.Text.Length > 11 Then
+            studnumtxt.Text = studnumtxt.Text.Substring(0, 11)
+            studnumtxt.SelectionStart = studnumtxt.Text.Length
             MessageBox.Show("Maximum of 11 digits allowed.", "Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
+    End Sub
+
+    ' ---------- Suffix ----------
+    Private Sub studsuffixtxt_KeyPress(sender As Object, e As KeyPressEventArgs) Handles studsuffixtxt.KeyPress
+        If Not Char.IsLetter(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
             e.Handled = True
         End If
     End Sub
 
-    Private Sub studsuffixtxt_KeyPress(sender As Object, e As KeyPressEventArgs) Handles studsuffixtxt.KeyPress
-        If studsuffixtxt.Text.Length >= 3 AndAlso Not Char.IsControl(e.KeyChar) Then
+    Private Sub studsuffixtxt_TextChanged(sender As Object, e As EventArgs) Handles studsuffixtxt.TextChanged
+        If studsuffixtxt.Text.Length > 3 Then
+            studsuffixtxt.Text = studsuffixtxt.Text.Substring(0, 3)
+            studsuffixtxt.SelectionStart = studsuffixtxt.Text.Length
             MessageBox.Show("Suffix can only be up to 3 characters.", "Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            e.Handled = True
         End If
     End Sub
 
     Private Sub studemailtxt_TextChanged(sender As Object, e As EventArgs) Handles studemailtxt.TextChanged
-        Dim email = studemailtxt.Text.Trim()
+        Dim email As String = studemailtxt.Text.Trim()
+
         If String.IsNullOrEmpty(email) Then
             lblemailInvalid.Visible = False
-            studemailtxt.BackColor = Color.DarkGray
+            studemailtxt.BackColor = Color.WhiteSmoke
             Return
         End If
 
         If IsValidEmail(email) Then
             lblemailInvalid.Text = "Valid email address"
             lblemailInvalid.ForeColor = Color.Green
-            studemailtxt.BackColor = Color.Silver
+            studemailtxt.BackColor = Color.White
         Else
             lblemailInvalid.Text = "Invalid email address"
             lblemailInvalid.ForeColor = Color.Red
-            studemailtxt.BackColor = Color.DarkGray
+            studemailtxt.BackColor = Color.MistyRose
         End If
+
         lblemailInvalid.Visible = True
     End Sub
+
 
 End Class

@@ -98,85 +98,91 @@ Public Class StaffRegistrationForm
     Private Function IsValidEmail(email As String) As Boolean
         If String.IsNullOrWhiteSpace(email) Then Return False
         Dim pattern As String = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
-        Return Regex.IsMatch(email, pattern)
+        Return Regex.IsMatch(email, pattern, RegexOptions.IgnoreCase)
     End Function
 
     ' -------------------------- Register Supervisor --------------------------
     Private Sub staffregbtn_Click(sender As Object, e As EventArgs) Handles staffregbtn.Click
-        ' Check required fields
+        '-------------------- VALIDATION --------------------
         If String.IsNullOrWhiteSpace(stafffnametxt.Text) OrElse
-           String.IsNullOrWhiteSpace(stafflnametxt.Text) OrElse
-           String.IsNullOrWhiteSpace(staffcompostxt.Text) OrElse
-           String.IsNullOrWhiteSpace(staffemailtxt.Text) OrElse
-           staffgendercb.SelectedIndex = -1 OrElse
-           staffcomptxt.SelectedIndex = -1 Then
+       String.IsNullOrWhiteSpace(stafflnametxt.Text) OrElse
+       String.IsNullOrWhiteSpace(staffcompostxt.Text) OrElse
+       String.IsNullOrWhiteSpace(staffemailtxt.Text) OrElse
+       staffgendercb.SelectedIndex = -1 OrElse
+       staffcomptxt.SelectedIndex = -1 Then
 
-            MessageBox.Show("Please fill in all required fields.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("Please fill in all required fields.", "Missing Information",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
 
-        ' Validate email
         If Not IsValidEmail(staffemailtxt.Text.Trim()) Then
-            MessageBox.Show("Please enter a valid email address.", "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("Please enter a valid email address.", "Invalid Email",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning)
             staffemailtxt.Focus()
             Return
         End If
 
+        '-------------------- PROCESS --------------------
         Try
             Dim supID As String = GenerateSupervisorID()
             Dim companyID As String = CType(staffcomptxt.SelectedItem, KeyValuePair(Of String, String)).Key
 
             Using conn As New MySqlConnection(connectdb.connstring)
                 conn.Open()
-                Using cmd As New MySqlCommand("
+                Dim transaction As MySqlTransaction = conn.BeginTransaction()
+
+                Try
+                    '-------------------- SAVE SUPERVISOR --------------------
+                    Using cmd As New MySqlCommand("
                     INSERT INTO companycontact
-                    (SupervisorID, SupervisorFirstName, MiddleName, SupervisorLastName, Suffix, SupervisorPosition,
-                     SupervisorEmail, ContactNumber, Gender, CompanyID, CompanyContact)
+                    (SupervisorID, SupervisorFirstName, MiddleName, SupervisorLastName, Suffix, 
+                     SupervisorPosition, SupervisorEmail, ContactNumber, Gender, CompanyID, CompanyContact)
                     VALUES
-                    (@ID, @FirstName, @MiddleName, @LastName, @Suffix, @Position,
-                     @Email, @ContactNumber, @Gender, @CompanyID, @CompanyContact)
-                ", conn)
-                    cmd.Parameters.AddWithValue("@ID", supID)
-                    cmd.Parameters.AddWithValue("@FirstName", stafffnametxt.Text.Trim())
-                    cmd.Parameters.AddWithValue("@MiddleName", If(String.IsNullOrWhiteSpace(staffmidnametxt.Text), DBNull.Value, staffmidnametxt.Text.Trim()))
-                    cmd.Parameters.AddWithValue("@LastName", stafflnametxt.Text.Trim())
-                    cmd.Parameters.AddWithValue("@Suffix", If(String.IsNullOrWhiteSpace(staffsuffixtxt.Text), DBNull.Value, staffsuffixtxt.Text.Trim()))
-                    cmd.Parameters.AddWithValue("@Position", staffcompostxt.Text.Trim())
-                    cmd.Parameters.AddWithValue("@Email", staffemailtxt.Text.Trim())
-                    cmd.Parameters.AddWithValue("@ContactNumber", If(String.IsNullOrWhiteSpace(staffcompnumtxt.Text), DBNull.Value, staffcompnumtxt.Text.Trim()))
-                    cmd.Parameters.AddWithValue("@Gender", staffgendercb.SelectedItem.ToString())
-                    cmd.Parameters.AddWithValue("@CompanyID", companyID)
-                    cmd.Parameters.AddWithValue("@CompanyContact", staffcompnametxt.Text.Trim())
-                    cmd.ExecuteNonQuery()
-                End Using
-            End Using
+                    (@ID, @FirstName, @MiddleName, @LastName, @Suffix, 
+                     @Position, @Email, @ContactNumber, @Gender, @CompanyID, @CompanyContact)
+                ", conn, transaction)
 
-            ' -------------------------- Create Account --------------------------
-            Try
+                        cmd.Parameters.AddWithValue("@ID", supID)
+                        cmd.Parameters.AddWithValue("@FirstName", stafffnametxt.Text.Trim())
+                        cmd.Parameters.AddWithValue("@MiddleName", If(String.IsNullOrWhiteSpace(staffmidnametxt.Text), DBNull.Value, staffmidnametxt.Text.Trim()))
+                        cmd.Parameters.AddWithValue("@LastName", stafflnametxt.Text.Trim())
+                        cmd.Parameters.AddWithValue("@Suffix", If(String.IsNullOrWhiteSpace(staffsuffixtxt.Text), DBNull.Value, staffsuffixtxt.Text.Trim()))
+                        cmd.Parameters.AddWithValue("@Position", staffcompostxt.Text.Trim())
+                        cmd.Parameters.AddWithValue("@Email", staffemailtxt.Text.Trim())
+                        cmd.Parameters.AddWithValue("@ContactNumber", If(String.IsNullOrWhiteSpace(staffcompnumtxt.Text), DBNull.Value, staffcompnumtxt.Text.Trim()))
+                        cmd.Parameters.AddWithValue("@Gender", staffgendercb.SelectedItem.ToString())
+                        cmd.Parameters.AddWithValue("@CompanyID", companyID)
+                        cmd.Parameters.AddWithValue("@CompanyContact", staffcompnametxt.Text.Trim())
 
-                Dim cleanstaff As String = supID.Replace("-", "")
-                Dim fullname As String = $"{stafffnametxt.Text.Trim()} {staffmidnametxt.Text.Trim()} {stafflnametxt.Text.Trim()}"
-                Dim initials As String = String.Concat(fullname.Split(" "c).Select(Function(n) n(0).ToString().ToUpper()))
-                Dim username As String = cleanstaff
-                Dim password As String = cleanstaff & initials
+                        cmd.ExecuteNonQuery()
+                    End Using
 
-                If CreateUserAccount(username, password, "Faculty", cleanstaff, Nothing, Nothing) Then
-                    SendStaffEmail(fullname, cleanstaff, username, password, staffemailtxt.Text.Trim())
-                    skipCloseConfirmation = True
-                    ReturnToLogin()
-                Else
-                    MessageBox.Show("Supervisor saved, but failed to create login account.", "Account Creation Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                End If
+                    '-------------------- CREATE ACCOUNT --------------------
+                    Dim cleanID As String = supID.Replace("-", "")
+                    Dim fullname As String = $"{stafffnametxt.Text.Trim()} {staffmidnametxt.Text.Trim()} {stafflnametxt.Text.Trim()}".Trim()
+                    Dim initials As String = String.Concat(fullname.Split({" "c}, StringSplitOptions.RemoveEmptyEntries).Select(Function(n) n(0).ToString().ToUpper()))
+                    Dim username As String = cleanID
+                    Dim password As String = cleanID & initials
 
-            Catch ex As MySqlException
-                MessageBox.Show($"Database error: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Catch ex As Exception
-                MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            End Try
-        Catch ex As MySqlException
-        End Try
+                    If CreateUserAccount(conn, transaction, username, password, "Faculty", Nothing, Nothing) Then
+                        transaction.Commit()
+                        SendStaffEmail(fullname, cleanID, username, password, staffemailtxt.Text.Trim())
+                        skipCloseConfirmation = True
+                        ReturnToLogin()
+                    Else
+                        transaction.Rollback()
+                        MessageBox.Show("Supervisor saved, but failed to create login account.", "Account Creation Failed",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    End If
 
+                Catch ex As MySqlException
+                    MessageBox.Show($"Database error: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Catch ex As Exception
+                    MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End Try
     End Sub
+
 
     ' -------------------------- Send Staff Email --------------------------
     Private Sub SendStaffEmail(fullname As String, supID As String, username As String, password As String, useremail As String)
@@ -250,36 +256,20 @@ Public Class StaffRegistrationForm
 
     ' -------------------------- Return to Login --------------------------
     Private Sub ReturnToLogin()
+        For Each regForm In Application.OpenForms.OfType(Of StaffRegistrationForm)().ToList()
+            regForm.Hide()
+        Next
+
+        Me.Hide()
+
         Dim loginForm = Application.OpenForms.OfType(Of Login)().FirstOrDefault()
-        If loginForm IsNot Nothing Then
+        If loginForm Is Nothing Then
+            loginForm = New Login()
             loginForm.Show()
-            loginForm.BringToFront()
         Else
-            Dim lf As New Login()
-            lf.Show()
+            loginForm.Show()
+            loginForm.Activate()
         End If
-
-        If TypeOf Me.Owner Is Registration Then
-            Try
-                CType(Me.Owner, Registration).CloseWithoutPrompt()
-            Catch
-            End Try
-        Else
-            For Each rf In Application.OpenForms.OfType(Of Registration)().ToList()
-                Try
-                    rf.Close()
-                Catch
-                    rf.Hide()
-                End Try
-            Next
-        End If
-
-        Try
-            Me.DialogResult = DialogResult.OK
-        Catch
-        End Try
-
-        Me.Close()
     End Sub
 
     ' -------------------------- Buttons --------------------------
@@ -307,37 +297,49 @@ Public Class StaffRegistrationForm
 
     ' -------------------------- Input Validations --------------------------
     Private Sub staffcompnumtxt_KeyPress(sender As Object, e As KeyPressEventArgs) Handles staffcompnumtxt.KeyPress
-        If Not Char.IsDigit(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then e.Handled = True
-        If Char.IsDigit(e.KeyChar) AndAlso staffcompnumtxt.Text.Length >= 11 Then
-            MessageBox.Show("Maximum of 11 digits allowed.", "Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        If Not Char.IsDigit(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
             e.Handled = True
+            Return
         End If
     End Sub
-
+    Private Sub staffcompnumtxt_TextChanged(sender As Object, e As EventArgs) Handles staffcompnumtxt.TextChanged
+        If staffcompnumtxt.Text.Length > 11 Then
+            staffcompnumtxt.Text = staffcompnumtxt.Text.Substring(0, 11)
+            staffcompnumtxt.SelectionStart = staffcompnumtxt.Text.Length
+            MessageBox.Show("Maximum of 11 digits allowed.", "Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
+    End Sub
     Private Sub staffemailtxt_TextChanged(sender As Object, e As EventArgs) Handles staffemailtxt.TextChanged
         Dim email As String = staffemailtxt.Text.Trim()
-        If email = "" Then
+        If String.IsNullOrEmpty(email) Then
             lblemailInvalid.Visible = False
-            staffemailtxt.BackColor = Color.DarkGray
+            staffemailtxt.BackColor = Color.WhiteSmoke
             Return
         End If
 
         If IsValidEmail(email) Then
             lblemailInvalid.Text = "Valid email address"
             lblemailInvalid.ForeColor = Color.Green
-            staffemailtxt.BackColor = Color.Silver
+            staffemailtxt.BackColor = Color.White
         Else
             lblemailInvalid.Text = "Invalid email address"
-            lblemailInvalid.ForeColor = Color.Maroon
-            staffemailtxt.BackColor = Color.DarkGray
+            lblemailInvalid.ForeColor = Color.Red
+            staffemailtxt.BackColor = Color.MistyRose
         End If
         lblemailInvalid.Visible = True
     End Sub
 
     Private Sub staffsuffixtxt_KeyPress(sender As Object, e As KeyPressEventArgs) Handles staffsuffixtxt.KeyPress
-        If staffsuffixtxt.Text.Length >= 3 AndAlso Not Char.IsControl(e.KeyChar) Then
-            MessageBox.Show("Suffix can only be up to 3 characters.", "Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        If Not Char.IsLetter(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
             e.Handled = True
+        End If
+    End Sub
+
+    Private Sub staffsuffixtxt_TextChanged(sender As Object, e As EventArgs) Handles staffsuffixtxt.TextChanged
+        If staffsuffixtxt.Text.Length > 3 Then
+            staffsuffixtxt.Text = staffsuffixtxt.Text.Substring(0, 3)
+            staffsuffixtxt.SelectionStart = staffsuffixtxt.Text.Length
+            MessageBox.Show("Suffix can only be up to 3 characters.", "Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 

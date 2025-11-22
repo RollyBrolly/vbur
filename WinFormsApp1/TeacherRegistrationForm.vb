@@ -83,7 +83,7 @@ Public Class TeacherRegistrationForm
     Private Function IsValidEmail(email As String) As Boolean
         If String.IsNullOrWhiteSpace(email) Then Return False
         Dim pattern As String = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
-        Return Regex.IsMatch(email, pattern)
+        Return Regex.IsMatch(email, pattern, RegexOptions.IgnoreCase)
     End Function
 
     ' -------------------------- Required Fields Validation --------------------------
@@ -98,18 +98,24 @@ Public Class TeacherRegistrationForm
 
     ' -------------------------- Register Teacher --------------------------
     Private Sub tcregbtn_Click(sender As Object, e As EventArgs) Handles tcregbtn.Click
+        '-------------------- VALIDATION --------------------
         If Not AreRequiredFieldsFilled() Then
-            MessageBox.Show("Please fill in all required fields.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("Please fill in all required fields.", "Missing Information",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
 
         If Not IsValidEmail(tcemailtxt.Text.Trim()) Then
-            MessageBox.Show("Please enter a valid email address.", "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("Please enter a valid email address.", "Invalid Email",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning)
             tcemailtxt.Focus()
             Return
         End If
 
+        '-------------------- DEFINE FIELDS --------------------
         Dim facultyID As String = tcfnumbertxt.Text.Trim()
+        Dim cleanFacultyID As String = facultyID.Replace("-", "")
+
         Dim firstname As String = tcfnametxt.Text.Trim()
         Dim middlename As String = tcmidnametxt.Text.Trim()
         Dim lastname As String = tclastnametxt.Text.Trim()
@@ -122,52 +128,54 @@ Public Class TeacherRegistrationForm
         Try
             Using conn As New MySqlConnection(connectdb.connstring)
                 conn.Open()
-                Using cmd As New MySqlCommand("
+                Dim transaction As MySqlTransaction = conn.BeginTransaction()
+
+                Try
+                    '-------------------- SAVE TEACHER --------------------
+                    Using cmd As New MySqlCommand("
                     INSERT INTO faculty 
-                    (FacultyID, FacultyFirstName, MiddleName, FacultyLastName, Suffix, ContactNumber, Gender, FacultyEmail, IsEvaluator, DeptID)
+                    (FacultyID, FacultyFirstName, MiddleName, FacultyLastName, Suffix,
+                     ContactNumber, Gender, FacultyEmail, IsEvaluator, DeptID)
                     VALUES 
                     (@FacultyID, @FirstName, @MiddleName, @LastName, @Suffix, @ContactNumber, @Gender, @Email, @IsEvaluator, @DeptID)
                 ", conn)
-                    cmd.Parameters.AddWithValue("@FacultyID", facultyID)
-                    cmd.Parameters.AddWithValue("@FirstName", firstname)
-                    cmd.Parameters.AddWithValue("@MiddleName", If(String.IsNullOrWhiteSpace(middlename), DBNull.Value, middlename))
-                    cmd.Parameters.AddWithValue("@LastName", lastname)
-                    cmd.Parameters.AddWithValue("@Suffix", If(String.IsNullOrWhiteSpace(suffix), DBNull.Value, suffix))
-                    cmd.Parameters.AddWithValue("@ContactNumber", contact)
-                    cmd.Parameters.AddWithValue("@Gender", gender)
-                    cmd.Parameters.AddWithValue("@Email", email)
-                    cmd.Parameters.AddWithValue("@IsEvaluator", 0)
-                    cmd.Parameters.AddWithValue("@DeptID", deptID)
-                    cmd.ExecuteNonQuery()
-                End Using
+                        cmd.Parameters.AddWithValue("@FacultyID", facultyID)
+                        cmd.Parameters.AddWithValue("@FirstName", firstname)
+                        cmd.Parameters.AddWithValue("@MiddleName", If(String.IsNullOrWhiteSpace(middlename), DBNull.Value, middlename))
+                        cmd.Parameters.AddWithValue("@LastName", lastname)
+                        cmd.Parameters.AddWithValue("@Suffix", If(String.IsNullOrWhiteSpace(suffix), DBNull.Value, suffix))
+                        cmd.Parameters.AddWithValue("@ContactNumber", contact)
+                        cmd.Parameters.AddWithValue("@Gender", gender)
+                        cmd.Parameters.AddWithValue("@Email", email)
+                        cmd.Parameters.AddWithValue("@IsEvaluator", 0)
+                        cmd.Parameters.AddWithValue("@DeptID", deptID)
+                        cmd.ExecuteNonQuery()
+                    End Using
             End Using
-        Catch ex As Exception
-            MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
 
-        ' -------------------------- Create Account --------------------------
-        Try
-            Dim cleanFacultyID As String = facultyID.Replace("-", "")
-            Dim fullname As String = $"{firstname} {middlename} {lastname}"
-            Dim initials As String = String.Concat(fullname.Split(" "c).Select(Function(n) n(0).ToString().ToUpper()))
-            Dim username As String = cleanFacultyID
-            Dim password As String = cleanFacultyID & initials
+            ' -------------------------- Create Account --------------------------
+            Try
+                Dim cleanFacultyID As String = facultyID.Replace("-", "")
+                Dim fullname As String = $"{firstname} {middlename} {lastname}"
+                Dim initials As String = String.Concat(fullname.Split(" "c).Select(Function(n) n(0).ToString().ToUpper()))
+                Dim username As String = cleanFacultyID
+                Dim password As String = cleanFacultyID & initials
 
-            If CreateUserAccount(username, password, "Faculty", cleanFacultyID, Nothing, Nothing) Then
-                SendTeacherEmail(fullname, cleanFacultyID, username, password, email)
-                skipCloseConfirmation = True
-                ReturnToLogin()
-            Else
-                MessageBox.Show("Teacher saved, but failed to create login account.", "Account Creation Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            End If
+                If CreateUserAccount(username, password, "Faculty", cleanFacultyID, Nothing, Nothing) Then
+                    SendTeacherEmail(fullname, cleanFacultyID, username, password, email)
+                    skipCloseConfirmation = True
+                    ReturnToLogin()
+                Else
+                    MessageBox.Show("Teacher saved, but failed to create login account.", "Account Creation Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                End If
 
-        Catch ex As MySqlException
-            MessageBox.Show($"Database error: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        Catch ex As Exception
-            MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-
+            Catch ex As MySqlException
+                MessageBox.Show($"Database error: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Catch ex As Exception
+                MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
     End Sub
+
 
     ' -------------------------- Send Teacher Email --------------------------
     Private Sub SendTeacherEmail(fullname As String, facultyID As String, username As String, password As String, useremail As String)
@@ -240,35 +248,20 @@ Public Class TeacherRegistrationForm
 
     ' -------------------------- Return to Login --------------------------
     Private Sub ReturnToLogin()
+        For Each regForm In Application.OpenForms.OfType(Of TeacherRegistrationForm)().ToList()
+            regForm.Hide()
+        Next
+
+        Me.Hide()
+
         Dim loginForm = Application.OpenForms.OfType(Of Login)().FirstOrDefault()
-        If loginForm IsNot Nothing Then
+        If loginForm Is Nothing Then
+            loginForm = New Login()
             loginForm.Show()
-            loginForm.BringToFront()
         Else
-            Dim lf As New Login()
-            lf.Show()
+            loginForm.Show()
+            loginForm.Activate()
         End If
-
-        If TypeOf Me.Owner Is Registration Then
-            Try
-                CType(Me.Owner, Registration).CloseWithoutPrompt()
-            Catch
-            End Try
-        Else
-            For Each rf In Application.OpenForms.OfType(Of Registration)().ToList()
-                Try
-                    rf.Close()
-                Catch
-                    rf.Hide()
-                End Try
-            Next
-        End If
-
-        Try
-            Me.DialogResult = DialogResult.OK
-        Catch
-        End Try
-        Me.Close()
     End Sub
 
     ' -------------------------- Clear Form --------------------------
@@ -306,32 +299,51 @@ Public Class TeacherRegistrationForm
 
     ' -------------------------- Input Validation --------------------------
     Private Sub tcnumtxt_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tcnumtxt.KeyPress
-        If Not Char.IsDigit(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then e.Handled = True
-        If Char.IsDigit(e.KeyChar) AndAlso tcnumtxt.Text.Length >= 11 Then
-            MessageBox.Show("Maximum of 11 digits allowed.", "Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        If Not Char.IsDigit(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
             e.Handled = True
+            Return
+        End If
+    End Sub
+
+    Private Sub tcnumtxt_TextChanged(sender As Object, e As EventArgs) Handles tcnumtxt.TextChanged
+        If tcnumtxt.Text.Length > 11 Then
+            tcnumtxt.Text = tcnumtxt.Text.Substring(0, 11)
+            tcnumtxt.SelectionStart = tcnumtxt.Text.Length
+            MessageBox.Show("Maximum of 11 digits allowed.", "Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
     Private Sub tcsuffixtxt_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tcsuffixtxt.KeyPress
-        If tcsuffixtxt.Text.Length >= 3 AndAlso Not Char.IsControl(e.KeyChar) Then
-            MessageBox.Show("Suffix can only be up to 3 characters.", "Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        If Not Char.IsLetter(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
             e.Handled = True
         End If
     End Sub
 
-    Private Sub tcemailtxt_TextChanged(sender As Object, e As EventArgs) Handles tcemailtxt.TextChanged
-        If IsValidEmail(tcemailtxt.Text.Trim()) Then
-            lblemailInvalid.Text = "Valid email address"
-            lblemailInvalid.ForeColor = Color.Green
-            lblemailInvalid.Visible = True
-            tcemailtxt.BackColor = Color.Silver
-        Else
-            lblemailInvalid.Text = "Invalid email address"
-            lblemailInvalid.ForeColor = Color.Red
-            lblemailInvalid.Visible = True
-            tcemailtxt.BackColor = Color.DarkGray
+    Private Sub tcsuffixtxt_TextChanged(sender As Object, e As EventArgs) Handles tcsuffixtxt.TextChanged
+        If tcsuffixtxt.Text.Length > 3 Then
+            tcsuffixtxt.Text = tcsuffixtxt.Text.Substring(0, 3)
+            tcsuffixtxt.SelectionStart = tcsuffixtxt.Text.Length
+            MessageBox.Show("Suffix can only be up to 3 characters.", "Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
+    Private Sub tcemailtxt_TextChanged(sender As Object, e As EventArgs) Handles tcemailtxt.TextChanged
+        Dim email As String = tcemailtxt.Text.Trim()
+        If String.IsNullOrEmpty(email) Then
+            lblemailInvalid.Visible = False
+            tcemailtxt.BackColor = Color.WhiteSmoke
+            Return
+        End If
+
+        If IsValidEmail(email) Then
+            lblemailInvalid.Text = "Valid email address"
+            lblemailInvalid.ForeColor = Color.Green
+            tcemailtxt.BackColor = Color.White
+        Else
+            lblemailInvalid.Text = "Invalid email address"
+            lblemailInvalid.ForeColor = Color.Red
+            tcemailtxt.BackColor = Color.MistyRose
+        End If
+        lblemailInvalid.Visible = True
+    End Sub
 End Class
