@@ -173,6 +173,9 @@ Public Class StaffRegistrationForm
             Catch ex As Exception
                 MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
+        Catch ex As MySqlException
+        End Try
+
     End Sub
 
     ' -------------------------- Send Staff Email --------------------------

@@ -321,4 +321,28 @@ Public Class facultyDashboard
         viewschedule.Show()
         Me.Hide()
     End Sub
+
+    Private Sub btnSelectPhoto_Click(sender As Object, e As EventArgs) Handles btnSelectPhoto.Click
+
+        Dim result As DialogResult = MessageBox.Show(
+            "Do you want to change display photo? 1x1 only",
+            "Change Photo",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question
+        )
+
+        If result = DialogResult.No Then
+            Exit Sub ' user canceled
+        End If
+
+
+        Dim ofd As New OpenFileDialog()
+        ofd.Title = "Select a Photo"
+        ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif"
+
+        If ofd.ShowDialog() = DialogResult.OK Then
+            btnSelectPhoto.Image = Image.FromFile(ofd.FileName)
+            btnSelectPhoto.SizeMode = PictureBoxSizeMode.Zoom
+        End If
+    End Sub
 End Class

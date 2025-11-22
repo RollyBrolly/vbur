@@ -96,7 +96,7 @@ Partial Class facultyGradeStudents
         gradebtn.BackColor = Color.Indigo
         gradebtn.Font = New Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         gradebtn.ForeColor = Color.White
-        gradebtn.Location = New Point(1654, 967)
+        gradebtn.Location = New Point(1644, 967)
         gradebtn.Margin = New Padding(3, 2, 3, 2)
         gradebtn.Name = "gradebtn"
         gradebtn.Size = New Size(192, 63)

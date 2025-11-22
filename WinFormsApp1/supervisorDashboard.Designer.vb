@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class supervisorDashboard
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class supervisorDashboard
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(supervisorDashboard))
         PictureBox1 = New PictureBox()
@@ -44,8 +44,7 @@ Partial Class supervisorDashboard
         Label5 = New Label()
         Button2 = New Button()
         Panel2 = New Panel()
-        Button7 = New Button()
-        Button8 = New Button()
+        viewinternsbtn = New Button()
         PictureBox3 = New PictureBox()
         Label11 = New Label()
         Panel1 = New Panel()
@@ -128,7 +127,7 @@ Partial Class supervisorDashboard
         Button5.Name = "Button5"
         Button5.Size = New Size(537, 69)
         Button5.TabIndex = 68
-        Button5.Text = "EVALUATE INTERNS"
+        Button5.Text = "EVALUATE STUDENTS"
         Button5.UseVisualStyleBackColor = False
         ' 
         ' PictureBox6
@@ -325,8 +324,7 @@ Partial Class supervisorDashboard
         ' Panel2
         ' 
         Panel2.BackColor = Color.White
-        Panel2.Controls.Add(Button7)
-        Panel2.Controls.Add(Button8)
+        Panel2.Controls.Add(viewinternsbtn)
         Panel2.Controls.Add(PictureBox3)
         Panel2.Controls.Add(Label11)
         Panel2.Location = New Point(1311, 220)
@@ -335,31 +333,18 @@ Partial Class supervisorDashboard
         Panel2.Size = New Size(546, 380)
         Panel2.TabIndex = 76
         ' 
-        ' Button7
+        ' viewinternsbtn
         ' 
-        Button7.BackColor = Color.Indigo
-        Button7.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button7.ForeColor = Color.White
-        Button7.Location = New Point(135, 295)
-        Button7.Margin = New Padding(3, 2, 3, 2)
-        Button7.Name = "Button7"
-        Button7.Size = New Size(196, 61)
-        Button7.TabIndex = 77
-        Button7.Text = "View Students"
-        Button7.UseVisualStyleBackColor = False
-        ' 
-        ' Button8
-        ' 
-        Button8.BackColor = Color.Indigo
-        Button8.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button8.ForeColor = Color.White
-        Button8.Location = New Point(348, 295)
-        Button8.Margin = New Padding(3, 2, 3, 2)
-        Button8.Name = "Button8"
-        Button8.Size = New Size(175, 61)
-        Button8.TabIndex = 76
-        Button8.Text = "View Interns"
-        Button8.UseVisualStyleBackColor = False
+        viewinternsbtn.BackColor = Color.Indigo
+        viewinternsbtn.Font = New Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        viewinternsbtn.ForeColor = Color.White
+        viewinternsbtn.Location = New Point(16, 158)
+        viewinternsbtn.Margin = New Padding(3, 2, 3, 2)
+        viewinternsbtn.Name = "viewinternsbtn"
+        viewinternsbtn.Size = New Size(504, 76)
+        viewinternsbtn.TabIndex = 76
+        viewinternsbtn.Text = "VIEW INTERNS"
+        viewinternsbtn.UseVisualStyleBackColor = False
         ' 
         ' PictureBox3
         ' 
@@ -661,12 +646,11 @@ Partial Class supervisorDashboard
     Friend WithEvents Button1 As Button
     Friend WithEvents Label2 As Label
     Friend WithEvents Button6 As Button
-    Friend WithEvents Button8 As Button
+    Friend WithEvents viewinternsbtn As Button
     Friend WithEvents PictureBox3 As PictureBox
     Friend WithEvents Label11 As Label
     Friend WithEvents PictureBox5 As PictureBox
     Friend WithEvents Button4 As Button
-    Friend WithEvents Button7 As Button
     Friend WithEvents Panel7 As Panel
     Friend WithEvents elbl As Label
     Friend WithEvents emaillbl As Label

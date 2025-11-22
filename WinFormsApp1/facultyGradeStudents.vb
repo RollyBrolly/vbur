@@ -7,6 +7,7 @@
             col.ReadOnly = True
         Next
 
+
         Dim editableCols As String() = {
             "Quiz1", "Quiz2", "Quiz3",
             "SW1", "SW2", "SW3",
@@ -152,5 +153,9 @@
             dashboard.Show()
             Me.Hide()
         End If
+    End Sub
+
+    Private Sub gradebtn_Click(sender As Object, e As EventArgs) Handles gradebtn.Click
+        MessageBox.Show("Grades saved!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 End Class

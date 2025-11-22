@@ -133,6 +133,7 @@ Public Class StudentRegistrationForm
             End Using
         Catch ex As MySqlException
             MessageBox.Show("Database error: " & ex.Message)
+
         End Try
 
         Return yearPrefix & "-" & (lastID + 1).ToString("D5")
@@ -203,28 +204,31 @@ Public Class StudentRegistrationForm
                     cmd.ExecuteNonQuery()
                 End Using
             End Using
+        Catch ex As Exception
+            MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+        ' -------------------------- Create login credentials --------------------------
+        Try
+            Dim cleanStudentID As String = studentID.Replace("-", "")
+            Dim fullname As String = $"{firstname} {middlename} {lastname}"
+            Dim initials As String = String.Concat(fullname.Split(" "c).Select(Function(n) n(0).ToString().ToUpper()))
+            Dim username As String = cleanStudentID
+            Dim password As String = cleanStudentID & initials
 
-            ' -------------------------- Create login credentials --------------------------
-            Try
-                Dim cleanStudentID As String = studentID.Replace("-", "")
-                Dim fullname As String = $"{firstname} {middlename} {lastname}"
-                Dim initials As String = String.Concat(fullname.Split(" "c).Select(Function(n) n(0).ToString().ToUpper()))
-                Dim username As String = cleanStudentID
-                Dim password As String = cleanStudentID & initials
+            If CreateUserAccount(username, password, "Student", cleanStudentID, Nothing, Nothing) Then
+                SendStudentEmail(fullname, cleanStudentID, username, password, email)
+                skipCloseConfirmation = True
+                ReturnToLogin()
+            Else
+                MessageBox.Show("Student saved, but failed to create login account.", "Account Creation Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            End If
 
-                If CreateUserAccount(username, password, "Student", cleanStudentID, Nothing, Nothing) Then
-                    SendStudentEmail(fullname, cleanStudentID, username, password, email)
-                    skipCloseConfirmation = True
-                    ReturnToLogin()
-                Else
-                    MessageBox.Show("Student saved, but failed to create login account.", "Account Creation Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                End If
+        Catch ex As MySqlException
+            MessageBox.Show($"Database error: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
 
-            Catch ex As MySqlException
-                MessageBox.Show($"Database error: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Catch ex As Exception
-                MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            End Try
     End Sub
 
     ' -------------------------- Send Student Email --------------------------
@@ -404,6 +408,5 @@ Public Class StudentRegistrationForm
         End If
         lblemailInvalid.Visible = True
     End Sub
-
 
 End Class

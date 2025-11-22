@@ -141,28 +141,32 @@ Public Class TeacherRegistrationForm
                     cmd.ExecuteNonQuery()
                 End Using
             End Using
+        Catch ex As Exception
+            MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
 
-            ' -------------------------- Create Account --------------------------
-            Try
-                Dim cleanFacultyID As String = facultyID.Replace("-", "")
-                Dim fullname As String = $"{firstname} {middlename} {lastname}"
-                Dim initials As String = String.Concat(fullname.Split(" "c).Select(Function(n) n(0).ToString().ToUpper()))
-                Dim username As String = cleanFacultyID
-                Dim password As String = cleanFacultyID & initials
+        ' -------------------------- Create Account --------------------------
+        Try
+            Dim cleanFacultyID As String = facultyID.Replace("-", "")
+            Dim fullname As String = $"{firstname} {middlename} {lastname}"
+            Dim initials As String = String.Concat(fullname.Split(" "c).Select(Function(n) n(0).ToString().ToUpper()))
+            Dim username As String = cleanFacultyID
+            Dim password As String = cleanFacultyID & initials
 
-                If CreateUserAccount(username, password, "Faculty", cleanFacultyID, Nothing, Nothing) Then
-                    SendTeacherEmail(fullname, cleanFacultyID, username, password, email)
-                    skipCloseConfirmation = True
-                    ReturnToLogin()
-                Else
-                    MessageBox.Show("Teacher saved, but failed to create login account.", "Account Creation Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                End If
+            If CreateUserAccount(username, password, "Faculty", cleanFacultyID, Nothing, Nothing) Then
+                SendTeacherEmail(fullname, cleanFacultyID, username, password, email)
+                skipCloseConfirmation = True
+                ReturnToLogin()
+            Else
+                MessageBox.Show("Teacher saved, but failed to create login account.", "Account Creation Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            End If
 
-            Catch ex As MySqlException
-                MessageBox.Show($"Database error: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Catch ex As Exception
-                MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            End Try
+        Catch ex As MySqlException
+            MessageBox.Show($"Database error: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
     End Sub
 
     ' -------------------------- Send Teacher Email --------------------------
