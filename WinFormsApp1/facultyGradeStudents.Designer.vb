@@ -25,25 +25,10 @@ Partial Class facultyGradeStudents
         Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(facultyGradeStudents))
-        PictureBox7 = New PictureBox()
-        filterbtn = New Button()
+        facultyexitbtn = New PictureBox()
         searchbox = New TextBox()
         gradebtn = New Button()
-        DataGridView1 = New DataGridView()
-        studentID = New DataGridViewTextBoxColumn()
-        Surname = New DataGridViewTextBoxColumn()
-        Firstname = New DataGridViewTextBoxColumn()
-        Midname = New DataGridViewTextBoxColumn()
-        Quiz1 = New DataGridViewTextBoxColumn()
-        Quiz2 = New DataGridViewTextBoxColumn()
-        Quiz3 = New DataGridViewTextBoxColumn()
-        SW1 = New DataGridViewTextBoxColumn()
-        SW2 = New DataGridViewTextBoxColumn()
-        SW3 = New DataGridViewTextBoxColumn()
-        MidtermExam = New DataGridViewTextBoxColumn()
-        FinalExam = New DataGridViewTextBoxColumn()
-        GWA = New DataGridViewTextBoxColumn()
-        Remarks = New DataGridViewTextBoxColumn()
+        gradeDGV = New DataGridView()
         PictureBox1 = New PictureBox()
         programlbl = New Label()
         programcbbox = New ComboBox()
@@ -52,35 +37,22 @@ Partial Class facultyGradeStudents
         sectioncbbox = New ComboBox()
         sectionlbl = New Label()
         computebtn = New Button()
-        CType(PictureBox7, ComponentModel.ISupportInitialize).BeginInit()
-        CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
+        CType(facultyexitbtn, ComponentModel.ISupportInitialize).BeginInit()
+        CType(gradeDGV, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
-        ' PictureBox7
+        ' facultyexitbtn
         ' 
-        PictureBox7.BackColor = Color.Transparent
-        PictureBox7.Image = My.Resources.Resources.icons8_log_out_96
-        PictureBox7.Location = New Point(1674, 35)
-        PictureBox7.Margin = New Padding(3, 2, 3, 2)
-        PictureBox7.Name = "PictureBox7"
-        PictureBox7.Size = New Size(114, 103)
-        PictureBox7.SizeMode = PictureBoxSizeMode.StretchImage
-        PictureBox7.TabIndex = 119
-        PictureBox7.TabStop = False
-        ' 
-        ' filterbtn
-        ' 
-        filterbtn.BackColor = Color.LightSlateGray
-        filterbtn.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        filterbtn.ForeColor = Color.White
-        filterbtn.Location = New Point(1753, 241)
-        filterbtn.Margin = New Padding(3, 2, 3, 2)
-        filterbtn.Name = "filterbtn"
-        filterbtn.Size = New Size(83, 39)
-        filterbtn.TabIndex = 114
-        filterbtn.Text = "SEARCH"
-        filterbtn.UseVisualStyleBackColor = False
+        facultyexitbtn.BackColor = Color.Transparent
+        facultyexitbtn.Image = My.Resources.Resources.icons8_log_out_96
+        facultyexitbtn.Location = New Point(1674, 35)
+        facultyexitbtn.Margin = New Padding(3, 2, 3, 2)
+        facultyexitbtn.Name = "facultyexitbtn"
+        facultyexitbtn.Size = New Size(114, 103)
+        facultyexitbtn.SizeMode = PictureBoxSizeMode.StretchImage
+        facultyexitbtn.TabIndex = 119
+        facultyexitbtn.TabStop = False
         ' 
         ' searchbox
         ' 
@@ -104,10 +76,12 @@ Partial Class facultyGradeStudents
         gradebtn.Text = "SAVE"
         gradebtn.UseVisualStyleBackColor = False
         ' 
-        ' DataGridView1
+        ' gradeDGV
         ' 
-        DataGridView1.AllowUserToOrderColumns = True
-        DataGridView1.BackgroundColor = Color.White
+        gradeDGV.AllowUserToAddRows = False
+        gradeDGV.AllowUserToOrderColumns = True
+        gradeDGV.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        gradeDGV.BackgroundColor = Color.White
         DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle1.BackColor = SystemColors.Control
         DataGridViewCellStyle1.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
@@ -115,9 +89,8 @@ Partial Class facultyGradeStudents
         DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
         DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
         DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
-        DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-        DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridView1.Columns.AddRange(New DataGridViewColumn() {studentID, Surname, Firstname, Midname, Quiz1, Quiz2, Quiz3, SW1, SW2, SW3, MidtermExam, FinalExam, GWA, Remarks})
+        gradeDGV.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        gradeDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle2.BackColor = SystemColors.Window
         DataGridViewCellStyle2.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
@@ -125,95 +98,13 @@ Partial Class facultyGradeStudents
         DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
         DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
         DataGridViewCellStyle2.WrapMode = DataGridViewTriState.False
-        DataGridView1.DefaultCellStyle = DataGridViewCellStyle2
-        DataGridView1.Location = New Point(54, 315)
-        DataGridView1.Name = "DataGridView1"
-        DataGridView1.Size = New Size(1782, 625)
-        DataGridView1.TabIndex = 94
-        ' 
-        ' studentID
-        ' 
-        studentID.HeaderText = "Student ID"
-        studentID.Name = "studentID"
-        studentID.Width = 150
-        ' 
-        ' Surname
-        ' 
-        Surname.HeaderText = "Surname"
-        Surname.Name = "Surname"
-        Surname.Width = 200
-        ' 
-        ' Firstname
-        ' 
-        Firstname.HeaderText = "First Name"
-        Firstname.Name = "Firstname"
-        Firstname.Width = 250
-        ' 
-        ' Midname
-        ' 
-        Midname.HeaderText = "Middle Name"
-        Midname.Name = "Midname"
-        Midname.Width = 200
-        ' 
-        ' Quiz1
-        ' 
-        Quiz1.HeaderText = "Q1 (20)"
-        Quiz1.Name = "Quiz1"
-        Quiz1.Width = 90
-        ' 
-        ' Quiz2
-        ' 
-        Quiz2.HeaderText = "Q2 (25)"
-        Quiz2.Name = "Quiz2"
-        Quiz2.Width = 90
-        ' 
-        ' Quiz3
-        ' 
-        Quiz3.HeaderText = "Q3 (35)"
-        Quiz3.Name = "Quiz3"
-        Quiz3.Width = 90
-        ' 
-        ' SW1
-        ' 
-        SW1.HeaderText = "SW1 (10)"
-        SW1.Name = "SW1"
-        SW1.Width = 90
-        ' 
-        ' SW2
-        ' 
-        SW2.HeaderText = "SW2 (10)"
-        SW2.Name = "SW2"
-        SW2.Width = 90
-        ' 
-        ' SW3
-        ' 
-        SW3.HeaderText = "SW3 (25)"
-        SW3.Name = "SW3"
-        SW3.Width = 90
-        ' 
-        ' MidtermExam
-        ' 
-        MidtermExam.HeaderText = "ME (50)"
-        MidtermExam.Name = "MidtermExam"
-        MidtermExam.Width = 90
-        ' 
-        ' FinalExam
-        ' 
-        FinalExam.HeaderText = "FE (70)"
-        FinalExam.Name = "FinalExam"
-        FinalExam.Width = 90
-        ' 
-        ' GWA
-        ' 
-        GWA.HeaderText = "GWA"
-        GWA.Name = "GWA"
-        GWA.Width = 90
-        ' 
-        ' Remarks
-        ' 
-        Remarks.HeaderText = "Remarks"
-        Remarks.Name = "Remarks"
-        Remarks.Width = 130
+        gradeDGV.DefaultCellStyle = DataGridViewCellStyle2
+        gradeDGV.Location = New Point(42, 315)
+        gradeDGV.Name = "gradeDGV"
+        gradeDGV.RowHeadersVisible = False
+        gradeDGV.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        gradeDGV.Size = New Size(1833, 625)
+        gradeDGV.TabIndex = 94
         ' 
         ' PictureBox1
         ' 
@@ -318,27 +209,25 @@ Partial Class facultyGradeStudents
         Controls.Add(deptcbbox)
         Controls.Add(sectioncbbox)
         Controls.Add(sectionlbl)
-        Controls.Add(PictureBox7)
-        Controls.Add(filterbtn)
+        Controls.Add(facultyexitbtn)
         Controls.Add(searchbox)
         Controls.Add(gradebtn)
-        Controls.Add(DataGridView1)
+        Controls.Add(gradeDGV)
         Controls.Add(PictureBox1)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "facultyGradeStudents"
         Text = "Grade Students Form"
-        CType(PictureBox7, ComponentModel.ISupportInitialize).EndInit()
-        CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
+        CType(facultyexitbtn, ComponentModel.ISupportInitialize).EndInit()
+        CType(gradeDGV, ComponentModel.ISupportInitialize).EndInit()
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
 
-    Friend WithEvents PictureBox7 As PictureBox
-    Friend WithEvents filterbtn As Button
+    Friend WithEvents facultyexitbtn As PictureBox
     Friend WithEvents searchbox As TextBox
     Friend WithEvents gradebtn As Button
-    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents gradeDGV As DataGridView
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents programlbl As Label
     Friend WithEvents programcbbox As ComboBox
@@ -347,18 +236,4 @@ Partial Class facultyGradeStudents
     Friend WithEvents sectioncbbox As ComboBox
     Friend WithEvents sectionlbl As Label
     Friend WithEvents computebtn As Button
-    Friend WithEvents studentID As DataGridViewTextBoxColumn
-    Friend WithEvents Surname As DataGridViewTextBoxColumn
-    Friend WithEvents Firstname As DataGridViewTextBoxColumn
-    Friend WithEvents Midname As DataGridViewTextBoxColumn
-    Friend WithEvents Quiz1 As DataGridViewTextBoxColumn
-    Friend WithEvents Quiz2 As DataGridViewTextBoxColumn
-    Friend WithEvents Quiz3 As DataGridViewTextBoxColumn
-    Friend WithEvents SW1 As DataGridViewTextBoxColumn
-    Friend WithEvents SW2 As DataGridViewTextBoxColumn
-    Friend WithEvents SW3 As DataGridViewTextBoxColumn
-    Friend WithEvents MidtermExam As DataGridViewTextBoxColumn
-    Friend WithEvents FinalExam As DataGridViewTextBoxColumn
-    Friend WithEvents GWA As DataGridViewTextBoxColumn
-    Friend WithEvents Remarks As DataGridViewTextBoxColumn
 End Class

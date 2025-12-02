@@ -22,59 +22,54 @@ Partial Class facultyDashboard
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        components = New ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(facultyDashboard))
         PictureBox1 = New PictureBox()
         facgradepnl = New Panel()
-        gradestudentslbl = New Button()
+        gradestudbtn = New Button()
         gradingicon = New PictureBox()
-        facannouncementspnl = New Panel()
-        CheckBox4 = New CheckBox()
-        announcementslbl = New Label()
-        CheckBox5 = New CheckBox()
-        announcementsicon = New PictureBox()
-        CheckBox6 = New CheckBox()
         factimeinpnl = New Panel()
-        Label7 = New Label()
         timeoutlbl = New Label()
-        timetodaylbl = New Label()
+        timetodatlbl = New Label()
         timeinbtn = New Button()
         facstudentspnl = New Panel()
-        Button6 = New Button()
+        studrecordbtn = New Button()
         PictureBox3 = New PictureBox()
         factaskspnl = New Panel()
-        completetasksbtn = New Button()
+        completaskbtn = New Button()
         tasksicon = New PictureBox()
         addtasksbtn = New Button()
         taskslbl = New Label()
-        PictureBox7 = New PictureBox()
+        logoutbtn = New PictureBox()
         Panel7 = New Panel()
-        Label3 = New Label()
-        Label10 = New Label()
-        Label4 = New Label()
-        Label9 = New Label()
-        Label14 = New Label()
-        Label15 = New Label()
-        Label16 = New Label()
-        Label17 = New Label()
-        btnSelectPhoto = New PictureBox()
-        Label18 = New Label()
+        studgender = New Label()
+        studgenderlbl = New Label()
+        femail = New Label()
+        femaillbl = New Label()
+        fcontact = New Label()
+        fcontactlbl = New Label()
+        fdept = New Label()
+        fdeptlbl = New Label()
+        fid = New Label()
+        fidlbl = New Label()
+        fprofile = New PictureBox()
+        fwelcome = New Label()
         Panel1 = New Panel()
-        viewschedpnl = New Button()
+        viewschedbtn = New Button()
         schedicon = New PictureBox()
         Label1 = New Label()
+        Timer = New Timer(components)
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         facgradepnl.SuspendLayout()
         CType(gradingicon, ComponentModel.ISupportInitialize).BeginInit()
-        facannouncementspnl.SuspendLayout()
-        CType(announcementsicon, ComponentModel.ISupportInitialize).BeginInit()
         factimeinpnl.SuspendLayout()
         facstudentspnl.SuspendLayout()
         CType(PictureBox3, ComponentModel.ISupportInitialize).BeginInit()
         factaskspnl.SuspendLayout()
         CType(tasksicon, ComponentModel.ISupportInitialize).BeginInit()
-        CType(PictureBox7, ComponentModel.ISupportInitialize).BeginInit()
+        CType(logoutbtn, ComponentModel.ISupportInitialize).BeginInit()
         Panel7.SuspendLayout()
-        CType(btnSelectPhoto, ComponentModel.ISupportInitialize).BeginInit()
+        CType(fprofile, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
         CType(schedicon, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -94,119 +89,43 @@ Partial Class facultyDashboard
         ' facgradepnl
         ' 
         facgradepnl.BackColor = Color.White
-        facgradepnl.Controls.Add(gradestudentslbl)
+        facgradepnl.Controls.Add(gradestudbtn)
         facgradepnl.Controls.Add(gradingicon)
-        facgradepnl.Location = New Point(37, 889)
+        facgradepnl.Location = New Point(732, 828)
         facgradepnl.Margin = New Padding(3, 2, 3, 2)
         facgradepnl.Name = "facgradepnl"
-        facgradepnl.Size = New Size(651, 109)
+        facgradepnl.Size = New Size(546, 181)
         facgradepnl.TabIndex = 80
         ' 
-        ' gradestudentslbl
+        ' gradestudbtn
         ' 
-        gradestudentslbl.BackColor = Color.Indigo
-        gradestudentslbl.Font = New Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        gradestudentslbl.ForeColor = Color.White
-        gradestudentslbl.Location = New Point(101, 22)
-        gradestudentslbl.Margin = New Padding(3, 2, 3, 2)
-        gradestudentslbl.Name = "gradestudentslbl"
-        gradestudentslbl.Size = New Size(533, 71)
-        gradestudentslbl.TabIndex = 68
-        gradestudentslbl.Text = "GRADE STUDENTS"
-        gradestudentslbl.UseVisualStyleBackColor = False
+        gradestudbtn.BackColor = Color.Indigo
+        gradestudbtn.Font = New Font("Segoe UI", 33.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        gradestudbtn.ForeColor = Color.White
+        gradestudbtn.Location = New Point(101, 38)
+        gradestudbtn.Margin = New Padding(3, 2, 3, 2)
+        gradestudbtn.Name = "gradestudbtn"
+        gradestudbtn.Size = New Size(429, 93)
+        gradestudbtn.TabIndex = 68
+        gradestudbtn.Text = "GRADE STUDENTS"
+        gradestudbtn.UseVisualStyleBackColor = False
         ' 
         ' gradingicon
         ' 
         gradingicon.Image = My.Resources.Resources.icons8_rating_52
-        gradingicon.Location = New Point(15, 25)
+        gradingicon.Location = New Point(10, 46)
         gradingicon.Margin = New Padding(3, 2, 3, 2)
         gradingicon.Name = "gradingicon"
-        gradingicon.Size = New Size(73, 68)
+        gradingicon.Size = New Size(85, 79)
         gradingicon.SizeMode = PictureBoxSizeMode.StretchImage
         gradingicon.TabIndex = 68
         gradingicon.TabStop = False
         ' 
-        ' facannouncementspnl
-        ' 
-        facannouncementspnl.BackColor = Color.White
-        facannouncementspnl.Controls.Add(CheckBox4)
-        facannouncementspnl.Controls.Add(announcementslbl)
-        facannouncementspnl.Controls.Add(CheckBox5)
-        facannouncementspnl.Controls.Add(announcementsicon)
-        facannouncementspnl.Controls.Add(CheckBox6)
-        facannouncementspnl.Location = New Point(729, 629)
-        facannouncementspnl.Margin = New Padding(3, 2, 3, 2)
-        facannouncementspnl.Name = "facannouncementspnl"
-        facannouncementspnl.Size = New Size(546, 380)
-        facannouncementspnl.TabIndex = 78
-        ' 
-        ' CheckBox4
-        ' 
-        CheckBox4.AutoSize = True
-        CheckBox4.Font = New Font("Segoe UI", 24F, FontStyle.Bold)
-        CheckBox4.ForeColor = Color.Indigo
-        CheckBox4.Location = New Point(41, 301)
-        CheckBox4.Margin = New Padding(3, 2, 3, 2)
-        CheckBox4.Name = "CheckBox4"
-        CheckBox4.Size = New Size(421, 49)
-        CheckBox4.TabIndex = 75
-        CheckBox4.Text = "Coffee Machine is broken"
-        CheckBox4.UseVisualStyleBackColor = True
-        ' 
-        ' announcementslbl
-        ' 
-        announcementslbl.AutoSize = True
-        announcementslbl.Font = New Font("Segoe UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        announcementslbl.ForeColor = Color.Indigo
-        announcementslbl.Location = New Point(92, 36)
-        announcementslbl.Name = "announcementslbl"
-        announcementslbl.Size = New Size(287, 47)
-        announcementslbl.TabIndex = 74
-        announcementslbl.Text = "Announcements"
-        ' 
-        ' CheckBox5
-        ' 
-        CheckBox5.AutoSize = True
-        CheckBox5.Font = New Font("Segoe UI", 24F, FontStyle.Bold)
-        CheckBox5.ForeColor = Color.Indigo
-        CheckBox5.Location = New Point(41, 214)
-        CheckBox5.Margin = New Padding(3, 2, 3, 2)
-        CheckBox5.Name = "CheckBox5"
-        CheckBox5.Size = New Size(326, 49)
-        CheckBox5.TabIndex = 74
-        CheckBox5.Text = "Meeting tomorrow"
-        CheckBox5.UseVisualStyleBackColor = True
-        ' 
-        ' announcementsicon
-        ' 
-        announcementsicon.Image = My.Resources.Resources.icons8_announcement_90
-        announcementsicon.Location = New Point(17, 22)
-        announcementsicon.Margin = New Padding(3, 2, 3, 2)
-        announcementsicon.Name = "announcementsicon"
-        announcementsicon.Size = New Size(69, 71)
-        announcementsicon.SizeMode = PictureBoxSizeMode.StretchImage
-        announcementsicon.TabIndex = 73
-        announcementsicon.TabStop = False
-        ' 
-        ' CheckBox6
-        ' 
-        CheckBox6.AutoSize = True
-        CheckBox6.Font = New Font("Segoe UI", 24F, FontStyle.Bold)
-        CheckBox6.ForeColor = Color.Indigo
-        CheckBox6.Location = New Point(41, 130)
-        CheckBox6.Margin = New Padding(3, 2, 3, 2)
-        CheckBox6.Name = "CheckBox6"
-        CheckBox6.Size = New Size(433, 49)
-        CheckBox6.TabIndex = 73
-        CheckBox6.Text = "Company Event at 3:00PM"
-        CheckBox6.UseVisualStyleBackColor = True
-        ' 
         ' factimeinpnl
         ' 
         factimeinpnl.BackColor = Color.White
-        factimeinpnl.Controls.Add(Label7)
         factimeinpnl.Controls.Add(timeoutlbl)
-        factimeinpnl.Controls.Add(timetodaylbl)
+        factimeinpnl.Controls.Add(timetodatlbl)
         factimeinpnl.Controls.Add(timeinbtn)
         factimeinpnl.Location = New Point(729, 221)
         factimeinpnl.Margin = New Padding(3, 2, 3, 2)
@@ -214,42 +133,30 @@ Partial Class facultyDashboard
         factimeinpnl.Size = New Size(546, 380)
         factimeinpnl.TabIndex = 77
         ' 
-        ' Label7
-        ' 
-        Label7.AutoSize = True
-        Label7.Font = New Font("Segoe UI", 26.25F, FontStyle.Bold)
-        Label7.Location = New Point(41, 308)
-        Label7.Name = "Label7"
-        Label7.Size = New Size(472, 47)
-        Label7.TabIndex = 3
-        Label7.Text = "October 29, 2025 - 5:01 PM"
-        ' 
         ' timeoutlbl
         ' 
-        timeoutlbl.AutoSize = True
-        timeoutlbl.Font = New Font("Segoe UI", 26.25F, FontStyle.Bold)
-        timeoutlbl.Location = New Point(144, 251)
+        timeoutlbl.Font = New Font("Segoe UI", 27F, FontStyle.Bold)
+        timeoutlbl.Location = New Point(3, 278)
         timeoutlbl.Name = "timeoutlbl"
-        timeoutlbl.Size = New Size(259, 47)
-        timeoutlbl.TabIndex = 2
-        timeoutlbl.Text = "Last Time Out:"
+        timeoutlbl.Size = New Size(540, 47)
+        timeoutlbl.TabIndex = 3
+        timeoutlbl.TextAlign = ContentAlignment.MiddleCenter
         ' 
-        ' timetodaylbl
+        ' timetodatlbl
         ' 
-        timetodaylbl.AutoSize = True
-        timetodaylbl.Font = New Font("Segoe UI", 32.25F, FontStyle.Bold)
-        timetodaylbl.Location = New Point(31, 64)
-        timetodaylbl.Name = "timetodaylbl"
-        timetodaylbl.Size = New Size(471, 59)
-        timetodaylbl.TabIndex = 1
-        timetodaylbl.Text = "Time Today: 12:30 PM"
+        timetodatlbl.Font = New Font("Segoe UI", 27F, FontStyle.Bold)
+        timetodatlbl.Location = New Point(3, 62)
+        timetodatlbl.Name = "timetodatlbl"
+        timetodatlbl.Size = New Size(540, 59)
+        timetodatlbl.TabIndex = 1
+        timetodatlbl.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' timeinbtn
         ' 
         timeinbtn.BackColor = Color.Indigo
         timeinbtn.Font = New Font("Segoe UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         timeinbtn.ForeColor = Color.White
-        timeinbtn.Location = New Point(172, 146)
+        timeinbtn.Location = New Point(160, 141)
         timeinbtn.Margin = New Padding(3, 2, 3, 2)
         timeinbtn.Name = "timeinbtn"
         timeinbtn.Size = New Size(207, 87)
@@ -260,34 +167,34 @@ Partial Class facultyDashboard
         ' facstudentspnl
         ' 
         facstudentspnl.BackColor = Color.White
-        facstudentspnl.Controls.Add(Button6)
+        facstudentspnl.Controls.Add(studrecordbtn)
         facstudentspnl.Controls.Add(PictureBox3)
-        facstudentspnl.Location = New Point(37, 759)
+        facstudentspnl.Location = New Point(729, 631)
         facstudentspnl.Margin = New Padding(3, 2, 3, 2)
         facstudentspnl.Name = "facstudentspnl"
-        facstudentspnl.Size = New Size(651, 109)
+        facstudentspnl.Size = New Size(546, 180)
         facstudentspnl.TabIndex = 76
         ' 
-        ' Button6
+        ' studrecordbtn
         ' 
-        Button6.BackColor = Color.Indigo
-        Button6.Font = New Font("Segoe UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button6.ForeColor = Color.White
-        Button6.Location = New Point(101, 21)
-        Button6.Margin = New Padding(3, 2, 3, 2)
-        Button6.Name = "Button6"
-        Button6.Size = New Size(533, 72)
-        Button6.TabIndex = 74
-        Button6.Text = "STUDENT RECORD"
-        Button6.UseVisualStyleBackColor = False
+        studrecordbtn.BackColor = Color.Indigo
+        studrecordbtn.Font = New Font("Segoe UI", 32.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        studrecordbtn.ForeColor = Color.White
+        studrecordbtn.Location = New Point(104, 45)
+        studrecordbtn.Margin = New Padding(3, 2, 3, 2)
+        studrecordbtn.Name = "studrecordbtn"
+        studrecordbtn.Size = New Size(429, 93)
+        studrecordbtn.TabIndex = 74
+        studrecordbtn.Text = "STUDENT RECORD"
+        studrecordbtn.UseVisualStyleBackColor = False
         ' 
         ' PictureBox3
         ' 
         PictureBox3.Image = My.Resources.Resources.icons8_user_male_96
-        PictureBox3.Location = New Point(13, 21)
+        PictureBox3.Location = New Point(13, 45)
         PictureBox3.Margin = New Padding(3, 2, 3, 2)
         PictureBox3.Name = "PictureBox3"
-        PictureBox3.Size = New Size(73, 71)
+        PictureBox3.Size = New Size(85, 93)
         PictureBox3.SizeMode = PictureBoxSizeMode.StretchImage
         PictureBox3.TabIndex = 68
         PictureBox3.TabStop = False
@@ -295,7 +202,7 @@ Partial Class facultyDashboard
         ' factaskspnl
         ' 
         factaskspnl.BackColor = Color.White
-        factaskspnl.Controls.Add(completetasksbtn)
+        factaskspnl.Controls.Add(completaskbtn)
         factaskspnl.Controls.Add(tasksicon)
         factaskspnl.Controls.Add(addtasksbtn)
         factaskspnl.Controls.Add(taskslbl)
@@ -305,18 +212,18 @@ Partial Class facultyDashboard
         factaskspnl.Size = New Size(546, 380)
         factaskspnl.TabIndex = 75
         ' 
-        ' completetasksbtn
+        ' completaskbtn
         ' 
-        completetasksbtn.BackColor = Color.Indigo
-        completetasksbtn.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        completetasksbtn.ForeColor = Color.White
-        completetasksbtn.Location = New Point(281, 301)
-        completetasksbtn.Margin = New Padding(3, 2, 3, 2)
-        completetasksbtn.Name = "completetasksbtn"
-        completetasksbtn.Size = New Size(222, 61)
-        completetasksbtn.TabIndex = 72
-        completetasksbtn.Text = "Complete Tasks"
-        completetasksbtn.UseVisualStyleBackColor = False
+        completaskbtn.BackColor = Color.Indigo
+        completaskbtn.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        completaskbtn.ForeColor = Color.White
+        completaskbtn.Location = New Point(281, 301)
+        completaskbtn.Margin = New Padding(3, 2, 3, 2)
+        completaskbtn.Name = "completaskbtn"
+        completaskbtn.Size = New Size(222, 61)
+        completaskbtn.TabIndex = 72
+        completaskbtn.Text = "Complete Tasks"
+        completaskbtn.UseVisualStyleBackColor = False
         ' 
         ' tasksicon
         ' 
@@ -353,150 +260,174 @@ Partial Class facultyDashboard
         taskslbl.TabIndex = 67
         taskslbl.Text = "Pending Tasks"
         ' 
-        ' PictureBox7
+        ' logoutbtn
         ' 
-        PictureBox7.BackColor = Color.Transparent
-        PictureBox7.Image = My.Resources.Resources.icons8_log_out_96
-        PictureBox7.Location = New Point(1684, 34)
-        PictureBox7.Margin = New Padding(3, 2, 3, 2)
-        PictureBox7.Name = "PictureBox7"
-        PictureBox7.Size = New Size(114, 103)
-        PictureBox7.SizeMode = PictureBoxSizeMode.StretchImage
-        PictureBox7.TabIndex = 81
-        PictureBox7.TabStop = False
+        logoutbtn.BackColor = Color.Transparent
+        logoutbtn.Image = My.Resources.Resources.icons8_log_out_96
+        logoutbtn.Location = New Point(1684, 34)
+        logoutbtn.Margin = New Padding(3, 2, 3, 2)
+        logoutbtn.Name = "logoutbtn"
+        logoutbtn.Size = New Size(114, 103)
+        logoutbtn.SizeMode = PictureBoxSizeMode.StretchImage
+        logoutbtn.TabIndex = 81
+        logoutbtn.TabStop = False
         ' 
         ' Panel7
         ' 
         Panel7.BackColor = Color.White
-        Panel7.Controls.Add(Label3)
-        Panel7.Controls.Add(Label10)
-        Panel7.Controls.Add(Label4)
-        Panel7.Controls.Add(Label9)
-        Panel7.Controls.Add(Label14)
-        Panel7.Controls.Add(Label15)
-        Panel7.Controls.Add(Label16)
-        Panel7.Controls.Add(Label17)
-        Panel7.Controls.Add(btnSelectPhoto)
-        Panel7.Controls.Add(Label18)
+        Panel7.Controls.Add(studgender)
+        Panel7.Controls.Add(studgenderlbl)
+        Panel7.Controls.Add(femail)
+        Panel7.Controls.Add(femaillbl)
+        Panel7.Controls.Add(fcontact)
+        Panel7.Controls.Add(fcontactlbl)
+        Panel7.Controls.Add(fdept)
+        Panel7.Controls.Add(fdeptlbl)
+        Panel7.Controls.Add(fid)
+        Panel7.Controls.Add(fidlbl)
+        Panel7.Controls.Add(fprofile)
+        Panel7.Controls.Add(fwelcome)
         Panel7.Location = New Point(37, 221)
         Panel7.Name = "Panel7"
-        Panel7.Size = New Size(651, 515)
+        Panel7.Size = New Size(651, 788)
         Panel7.TabIndex = 83
         ' 
-        ' Label3
+        ' studgender
         ' 
-        Label3.AutoSize = True
-        Label3.Font = New Font("Segoe UI Semibold", 14.25F, FontStyle.Bold)
-        Label3.ForeColor = SystemColors.ActiveCaptionText
-        Label3.Location = New Point(251, 179)
-        Label3.Name = "Label3"
-        Label3.Size = New Size(197, 25)
-        Label3.TabIndex = 82
-        Label3.Text = "jdelacruz@gmail.com"
+        studgender.AutoSize = True
+        studgender.Font = New Font("Segoe UI Semibold", 14.25F, FontStyle.Bold)
+        studgender.ForeColor = SystemColors.ActiveCaptionText
+        studgender.Location = New Point(251, 125)
+        studgender.Name = "studgender"
+        studgender.Size = New Size(55, 25)
+        studgender.TabIndex = 90
+        studgender.Text = "Male"
         ' 
-        ' Label10
+        ' studgenderlbl
         ' 
-        Label10.AutoSize = True
-        Label10.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic)
-        Label10.ForeColor = SystemColors.ActiveCaptionText
-        Label10.Location = New Point(241, 147)
-        Label10.Name = "Label10"
-        Label10.Size = New Size(79, 32)
-        Label10.TabIndex = 81
-        Label10.Text = "Email"
+        studgenderlbl.AutoSize = True
+        studgenderlbl.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic)
+        studgenderlbl.ForeColor = SystemColors.ActiveCaptionText
+        studgenderlbl.Location = New Point(241, 93)
+        studgenderlbl.Name = "studgenderlbl"
+        studgenderlbl.Size = New Size(93, 32)
+        studgenderlbl.TabIndex = 89
+        studgenderlbl.Text = "Gender"
         ' 
-        ' Label4
+        ' femail
         ' 
-        Label4.AutoSize = True
-        Label4.Font = New Font("Segoe UI Semibold", 14.25F, FontStyle.Bold)
-        Label4.ForeColor = SystemColors.ActiveCaptionText
-        Label4.Location = New Point(251, 122)
-        Label4.Name = "Label4"
-        Label4.Size = New Size(129, 25)
-        Label4.TabIndex = 80
-        Label4.Text = "09123456789"
+        femail.AutoSize = True
+        femail.Font = New Font("Segoe UI Semibold", 20.25F, FontStyle.Bold)
+        femail.ForeColor = SystemColors.ActiveCaptionText
+        femail.Location = New Point(44, 573)
+        femail.Name = "femail"
+        femail.Size = New Size(281, 37)
+        femail.TabIndex = 82
+        femail.Text = "jdelacruz@gmail.com"
         ' 
-        ' Label9
+        ' femaillbl
         ' 
-        Label9.AutoSize = True
-        Label9.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic)
-        Label9.ForeColor = SystemColors.ActiveCaptionText
-        Label9.Location = New Point(241, 90)
-        Label9.Name = "Label9"
-        Label9.Size = New Size(198, 32)
-        Label9.TabIndex = 79
-        Label9.Text = "Contact Number"
+        femaillbl.AutoSize = True
+        femaillbl.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic)
+        femaillbl.ForeColor = SystemColors.ActiveCaptionText
+        femaillbl.Location = New Point(31, 528)
+        femaillbl.Name = "femaillbl"
+        femaillbl.Size = New Size(105, 45)
+        femaillbl.TabIndex = 81
+        femaillbl.Text = "Email"
         ' 
-        ' Label14
+        ' fcontact
         ' 
-        Label14.AutoSize = True
-        Label14.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label14.ForeColor = SystemColors.ActiveCaptionText
-        Label14.Location = New Point(33, 339)
-        Label14.Name = "Label14"
-        Label14.Size = New Size(392, 40)
-        Label14.TabIndex = 76
-        Label14.Text = "College of Computer Studies"
+        fcontact.AutoSize = True
+        fcontact.Font = New Font("Segoe UI Semibold", 20.25F, FontStyle.Bold)
+        fcontact.ForeColor = SystemColors.ActiveCaptionText
+        fcontact.Location = New Point(44, 455)
+        fcontact.Name = "fcontact"
+        fcontact.Size = New Size(178, 37)
+        fcontact.TabIndex = 80
+        fcontact.Text = "09123456789"
         ' 
-        ' Label15
+        ' fcontactlbl
         ' 
-        Label15.AutoSize = True
-        Label15.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label15.ForeColor = SystemColors.ActiveCaptionText
-        Label15.Location = New Point(31, 294)
-        Label15.Name = "Label15"
-        Label15.Size = New Size(201, 45)
-        Label15.TabIndex = 68
-        Label15.Text = "Department"
+        fcontactlbl.AutoSize = True
+        fcontactlbl.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic)
+        fcontactlbl.ForeColor = SystemColors.ActiveCaptionText
+        fcontactlbl.Location = New Point(31, 410)
+        fcontactlbl.Name = "fcontactlbl"
+        fcontactlbl.Size = New Size(267, 45)
+        fcontactlbl.TabIndex = 79
+        fcontactlbl.Text = "Contact Number"
         ' 
-        ' Label16
+        ' fdept
         ' 
-        Label16.AutoSize = True
-        Label16.Font = New Font("Segoe UI Semibold", 14.25F, FontStyle.Bold)
-        Label16.ForeColor = SystemColors.ActiveCaptionText
-        Label16.Location = New Point(251, 62)
-        Label16.Name = "Label16"
-        Label16.Size = New Size(52, 25)
-        Label16.TabIndex = 67
-        Label16.Text = "F001"
+        fdept.AutoSize = True
+        fdept.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        fdept.ForeColor = SystemColors.ActiveCaptionText
+        fdept.Location = New Point(33, 339)
+        fdept.Name = "fdept"
+        fdept.Size = New Size(392, 40)
+        fdept.TabIndex = 76
+        fdept.Text = "College of Computer Studies"
         ' 
-        ' Label17
+        ' fdeptlbl
         ' 
-        Label17.AutoSize = True
-        Label17.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic)
-        Label17.ForeColor = SystemColors.ActiveCaptionText
-        Label17.Location = New Point(241, 30)
-        Label17.Name = "Label17"
-        Label17.Size = New Size(129, 32)
-        Label17.TabIndex = 66
-        Label17.Text = "Faculty ID"
+        fdeptlbl.AutoSize = True
+        fdeptlbl.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        fdeptlbl.ForeColor = SystemColors.ActiveCaptionText
+        fdeptlbl.Location = New Point(31, 294)
+        fdeptlbl.Name = "fdeptlbl"
+        fdeptlbl.Size = New Size(201, 45)
+        fdeptlbl.TabIndex = 68
+        fdeptlbl.Text = "Department"
         ' 
-        ' btnSelectPhoto
+        ' fid
         ' 
-        btnSelectPhoto.Cursor = Cursors.Hand
-        btnSelectPhoto.Image = My.Resources.Resources.user_square
-        btnSelectPhoto.Location = New Point(31, 24)
-        btnSelectPhoto.Name = "btnSelectPhoto"
-        btnSelectPhoto.Size = New Size(191, 184)
-        btnSelectPhoto.SizeMode = PictureBoxSizeMode.StretchImage
-        btnSelectPhoto.TabIndex = 0
-        btnSelectPhoto.TabStop = False
+        fid.AutoSize = True
+        fid.Font = New Font("Segoe UI Semibold", 14.25F, FontStyle.Bold)
+        fid.ForeColor = SystemColors.ActiveCaptionText
+        fid.Location = New Point(251, 62)
+        fid.Name = "fid"
+        fid.Size = New Size(52, 25)
+        fid.TabIndex = 67
+        fid.Text = "F001"
         ' 
-        ' Label18
+        ' fidlbl
         ' 
-        Label18.AutoSize = True
-        Label18.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label18.ForeColor = SystemColors.ActiveCaptionText
-        Label18.Location = New Point(33, 222)
-        Label18.Name = "Label18"
-        Label18.Size = New Size(400, 45)
-        Label18.TabIndex = 65
-        Label18.Text = "Welcome [Faculty Name]"
+        fidlbl.AutoSize = True
+        fidlbl.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic)
+        fidlbl.ForeColor = SystemColors.ActiveCaptionText
+        fidlbl.Location = New Point(241, 30)
+        fidlbl.Name = "fidlbl"
+        fidlbl.Size = New Size(129, 32)
+        fidlbl.TabIndex = 66
+        fidlbl.Text = "Faculty ID"
+        ' 
+        ' fprofile
+        ' 
+        fprofile.Cursor = Cursors.Hand
+        fprofile.Image = My.Resources.Resources.user_square
+        fprofile.Location = New Point(31, 24)
+        fprofile.Name = "fprofile"
+        fprofile.Size = New Size(191, 184)
+        fprofile.SizeMode = PictureBoxSizeMode.StretchImage
+        fprofile.TabIndex = 0
+        fprofile.TabStop = False
+        ' 
+        ' fwelcome
+        ' 
+        fwelcome.AutoSize = True
+        fwelcome.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        fwelcome.ForeColor = SystemColors.ActiveCaptionText
+        fwelcome.Location = New Point(33, 222)
+        fwelcome.Name = "fwelcome"
+        fwelcome.Size = New Size(400, 45)
+        fwelcome.TabIndex = 65
+        fwelcome.Text = "Welcome [Faculty Name]"
         ' 
         ' Panel1
         ' 
         Panel1.BackColor = Color.White
-        Panel1.Controls.Add(viewschedpnl)
+        Panel1.Controls.Add(viewschedbtn)
         Panel1.Controls.Add(schedicon)
         Panel1.Controls.Add(Label1)
         Panel1.Location = New Point(1303, 220)
@@ -505,18 +436,18 @@ Partial Class facultyDashboard
         Panel1.Size = New Size(546, 380)
         Panel1.TabIndex = 76
         ' 
-        ' viewschedpnl
+        ' viewschedbtn
         ' 
-        viewschedpnl.BackColor = Color.Indigo
-        viewschedpnl.Font = New Font("Segoe UI", 30F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        viewschedpnl.ForeColor = Color.White
-        viewschedpnl.Location = New Point(25, 158)
-        viewschedpnl.Margin = New Padding(3, 2, 3, 2)
-        viewschedpnl.Name = "viewschedpnl"
-        viewschedpnl.Size = New Size(491, 97)
-        viewschedpnl.TabIndex = 68
-        viewschedpnl.Text = "VIEW SCHEDULE"
-        viewschedpnl.UseVisualStyleBackColor = False
+        viewschedbtn.BackColor = Color.Indigo
+        viewschedbtn.Font = New Font("Segoe UI", 30F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        viewschedbtn.ForeColor = Color.White
+        viewschedbtn.Location = New Point(25, 158)
+        viewschedbtn.Margin = New Padding(3, 2, 3, 2)
+        viewschedbtn.Name = "viewschedbtn"
+        viewschedbtn.Size = New Size(491, 97)
+        viewschedbtn.TabIndex = 68
+        viewschedbtn.Text = "VIEW SCHEDULE"
+        viewschedbtn.UseVisualStyleBackColor = False
         ' 
         ' schedicon
         ' 
@@ -548,9 +479,8 @@ Partial Class facultyDashboard
         ClientSize = New Size(1904, 1041)
         Controls.Add(Panel1)
         Controls.Add(Panel7)
-        Controls.Add(PictureBox7)
+        Controls.Add(logoutbtn)
         Controls.Add(facgradepnl)
-        Controls.Add(facannouncementspnl)
         Controls.Add(factimeinpnl)
         Controls.Add(facstudentspnl)
         Controls.Add(factaskspnl)
@@ -561,20 +491,16 @@ Partial Class facultyDashboard
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         facgradepnl.ResumeLayout(False)
         CType(gradingicon, ComponentModel.ISupportInitialize).EndInit()
-        facannouncementspnl.ResumeLayout(False)
-        facannouncementspnl.PerformLayout()
-        CType(announcementsicon, ComponentModel.ISupportInitialize).EndInit()
         factimeinpnl.ResumeLayout(False)
-        factimeinpnl.PerformLayout()
         facstudentspnl.ResumeLayout(False)
         CType(PictureBox3, ComponentModel.ISupportInitialize).EndInit()
         factaskspnl.ResumeLayout(False)
         factaskspnl.PerformLayout()
         CType(tasksicon, ComponentModel.ISupportInitialize).EndInit()
-        CType(PictureBox7, ComponentModel.ISupportInitialize).EndInit()
+        CType(logoutbtn, ComponentModel.ISupportInitialize).EndInit()
         Panel7.ResumeLayout(False)
         Panel7.PerformLayout()
-        CType(btnSelectPhoto, ComponentModel.ISupportInitialize).EndInit()
+        CType(fprofile, ComponentModel.ISupportInitialize).EndInit()
         Panel1.ResumeLayout(False)
         Panel1.PerformLayout()
         CType(schedicon, ComponentModel.ISupportInitialize).EndInit()
@@ -583,41 +509,37 @@ Partial Class facultyDashboard
 
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents facgradepnl As Panel
-    Friend WithEvents gradestudentslbl As Button
+    Friend WithEvents gradestudbtn As Button
     Friend WithEvents gradingicon As PictureBox
-    Friend WithEvents facannouncementspnl As Panel
-    Friend WithEvents CheckBox4 As CheckBox
-    Friend WithEvents announcementslbl As Label
-    Friend WithEvents CheckBox5 As CheckBox
-    Friend WithEvents announcementsicon As PictureBox
-    Friend WithEvents CheckBox6 As CheckBox
     Friend WithEvents factimeinpnl As Panel
-    Friend WithEvents timeoutlbl As Label
-    Friend WithEvents timetodaylbl As Label
+    Friend WithEvents timetodatlbl As Label
     Friend WithEvents timeinbtn As Button
     Friend WithEvents facstudentspnl As Panel
     Friend WithEvents factaskspnl As Panel
-    Friend WithEvents completetasksbtn As Button
+    Friend WithEvents completaskbtn As Button
     Friend WithEvents tasksicon As PictureBox
     Friend WithEvents addtasksbtn As Button
     Friend WithEvents taskslbl As Label
-    Friend WithEvents PictureBox7 As PictureBox
+    Friend WithEvents logoutbtn As PictureBox
     Friend WithEvents PictureBox3 As PictureBox
-    Friend WithEvents Button6 As Button
-    Friend WithEvents Label7 As Label
+    Friend WithEvents studrecordbtn As Button
+    Friend WithEvents timeoutlbl As Label
     Friend WithEvents Panel7 As Panel
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label10 As Label
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Label9 As Label
-    Friend WithEvents Label14 As Label
-    Friend WithEvents Label15 As Label
-    Friend WithEvents Label16 As Label
-    Friend WithEvents Label17 As Label
-    Friend WithEvents btnSelectPhoto As PictureBox
-    Friend WithEvents Label18 As Label
+    Friend WithEvents femail As Label
+    Friend WithEvents femaillbl As Label
+    Friend WithEvents fcontact As Label
+    Friend WithEvents fcontactlbl As Label
+    Friend WithEvents fdept As Label
+    Friend WithEvents fdeptlbl As Label
+    Friend WithEvents fid As Label
+    Friend WithEvents fidlbl As Label
+    Friend WithEvents fprofile As PictureBox
+    Friend WithEvents fwelcome As Label
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Label1 As Label
-    Friend WithEvents viewschedpnl As Button
+    Friend WithEvents viewschedbtn As Button
     Friend WithEvents schedicon As PictureBox
+    Friend WithEvents Timer As Timer
+    Friend WithEvents studgender As Label
+    Friend WithEvents studgenderlbl As Label
 End Class

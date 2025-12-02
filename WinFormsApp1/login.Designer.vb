@@ -35,10 +35,11 @@ Partial Class Login
         welcomelbl = New Label()
         signinbtn = New Button()
         passtxt = New TextBox()
-        exitbtn = New Button()
+        systemexitbtn = New PictureBox()
         Panel2.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
+        CType(systemexitbtn, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' Panel2
@@ -181,20 +182,16 @@ Partial Class Login
         passtxt.Size = New Size(378, 39)
         passtxt.TabIndex = 13
         ' 
-        ' exitbtn
+        ' systemexitbtn
         ' 
-        exitbtn.BackColor = Color.Indigo
-        exitbtn.FlatStyle = FlatStyle.Popup
-        exitbtn.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        exitbtn.ForeColor = SystemColors.ControlLightLight
-        exitbtn.Location = New Point(1831, -3)
-        exitbtn.Margin = New Padding(3, 2, 3, 2)
-        exitbtn.Name = "exitbtn"
-        exitbtn.Size = New Size(103, 55)
-        exitbtn.TabIndex = 22
-        exitbtn.Text = "X"
-        exitbtn.TextAlign = ContentAlignment.TopCenter
-        exitbtn.UseVisualStyleBackColor = False
+        systemexitbtn.BackColor = Color.Transparent
+        systemexitbtn.Image = My.Resources.Resources.icons8_power_off_64
+        systemexitbtn.Location = New Point(1827, 1)
+        systemexitbtn.Name = "systemexitbtn"
+        systemexitbtn.Size = New Size(75, 75)
+        systemexitbtn.SizeMode = PictureBoxSizeMode.StretchImage
+        systemexitbtn.TabIndex = 23
+        systemexitbtn.TabStop = False
         ' 
         ' Login
         ' 
@@ -203,7 +200,7 @@ Partial Class Login
         BackgroundImage = My.Resources.Resources.regisformsBG_bw
         BackgroundImageLayout = ImageLayout.None
         ClientSize = New Size(1904, 1041)
-        Controls.Add(exitbtn)
+        Controls.Add(systemexitbtn)
         Controls.Add(Panel2)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Margin = New Padding(3, 2, 3, 2)
@@ -215,6 +212,7 @@ Partial Class Login
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         Panel1.ResumeLayout(False)
         Panel1.PerformLayout()
+        CType(systemexitbtn, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
     End Sub
 
@@ -230,6 +228,6 @@ Partial Class Login
     Friend WithEvents welcomelbl As Label
     Friend WithEvents signinbtn As Button
     Friend WithEvents passtxt As TextBox
-    Friend WithEvents exitbtn As Button
+    Friend WithEvents systemexitbtn As PictureBox
 
 End Class

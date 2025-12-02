@@ -68,7 +68,7 @@ Partial Class Registration
         returnbtn.BackColor = Color.SlateGray
         returnbtn.Font = New Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         returnbtn.ForeColor = Color.White
-        returnbtn.Location = New Point(1707, 24)
+        returnbtn.Location = New Point(1707, 53)
         returnbtn.Name = "returnbtn"
         returnbtn.Size = New Size(167, 74)
         returnbtn.TabIndex = 12
@@ -102,7 +102,7 @@ Partial Class Registration
         staffbtn.BackColor = Color.Black
         staffbtn.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         staffbtn.ForeColor = SystemColors.ControlLightLight
-        staffbtn.Location = New Point(1557, 887)
+        staffbtn.Location = New Point(1557, 897)
         staffbtn.Margin = New Padding(3, 2, 3, 2)
         staffbtn.Name = "staffbtn"
         staffbtn.Size = New Size(158, 62)
@@ -113,7 +113,7 @@ Partial Class Registration
         ' PictureBox5
         ' 
         PictureBox5.Image = My.Resources.Resources.staffCover
-        PictureBox5.Location = New Point(1300, 116)
+        PictureBox5.Location = New Point(1300, 174)
         PictureBox5.Name = "PictureBox5"
         PictureBox5.Size = New Size(608, 964)
         PictureBox5.SizeMode = PictureBoxSizeMode.StretchImage
@@ -124,7 +124,7 @@ Partial Class Registration
         ' 
         PictureBox3.BackColor = Color.Transparent
         PictureBox3.Image = My.Resources.Resources.icons8_teacher_64
-        PictureBox3.Location = New Point(885, 747)
+        PictureBox3.Location = New Point(887, 747)
         PictureBox3.Margin = New Padding(3, 2, 3, 2)
         PictureBox3.Name = "PictureBox3"
         PictureBox3.Size = New Size(131, 114)
@@ -137,7 +137,7 @@ Partial Class Registration
         faculbtn.BackColor = Color.Black
         faculbtn.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold)
         faculbtn.ForeColor = SystemColors.ControlLightLight
-        faculbtn.Location = New Point(872, 887)
+        faculbtn.Location = New Point(872, 897)
         faculbtn.Margin = New Padding(3, 2, 3, 2)
         faculbtn.Name = "faculbtn"
         faculbtn.Size = New Size(158, 62)
@@ -147,8 +147,8 @@ Partial Class Registration
         ' 
         ' PictureBox2
         ' 
-        PictureBox2.Image = My.Resources.Resources.teacherCover
-        PictureBox2.Location = New Point(651, 116)
+        PictureBox2.Image = My.Resources.Resources.sirRedCover
+        PictureBox2.Location = New Point(651, 168)
         PictureBox2.Name = "PictureBox2"
         PictureBox2.Size = New Size(640, 967)
         PictureBox2.SizeMode = PictureBoxSizeMode.StretchImage
@@ -183,7 +183,7 @@ Partial Class Registration
         ' PictureBox1
         ' 
         PictureBox1.Image = My.Resources.Resources.studentsCover
-        PictureBox1.Location = New Point(2, 116)
+        PictureBox1.Location = New Point(2, 175)
         PictureBox1.Name = "PictureBox1"
         PictureBox1.Size = New Size(640, 966)
         PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage

@@ -1,8 +1,57 @@
-﻿Public Class scheduleForm
+﻿Imports MySql.Data.MySqlClient
+Imports System.Windows.Forms
 
-    ' Load the time slots into the DataGridView
-    Private Sub studentScheduleForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Set up the columns
+Public Class scheduleForm
+
+    '---------------- PROPERTIES ----------------
+    Public Property StudentID As String
+    Public Property FacultyID As String
+    Public Property ReadOnlyMode As Boolean = True
+
+    Private conn As MySqlConnection
+    Private timeSlots As String() = {
+        "8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM",
+        "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM",
+        "6:00 PM", "7:00 PM", "8:00 PM", "9:00 PM"
+    }
+
+    ' ---------------- FORM LOAD ----------------
+    Private Sub scheduleForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.FormBorderStyle = FormBorderStyle.FixedDialog
+        Me.StartPosition = FormStartPosition.CenterScreen
+
+        SetupDataGridView()
+
+        ' Hide buttons if student
+        btnAddItem.Visible = Not ReadOnlyMode
+        btnEditItem.Visible = Not ReadOnlyMode
+        btnDeleteItem.Visible = Not ReadOnlyMode
+
+        ' Hide course/section filters if student
+        coursecb.Visible = Not ReadOnlyMode
+        sectioncb.Visible = Not ReadOnlyMode
+        courselbl.Visible = Not ReadOnlyMode
+        sectionlbl.Visible = Not ReadOnlyMode
+
+        ' Initialize rows
+        dgvSchedule.Rows.Clear()
+        For Each t As String In timeSlots
+            dgvSchedule.Rows.Add(t, "", "", "", "", "", "", "")
+        Next
+
+        conn = New MySqlConnection(connectdb.connstring)
+
+        ' Faculty mode
+        If Not ReadOnlyMode Then
+            PopulateCourses()
+            PopulateSections()
+        End If
+
+        LoadScheduleFromDB()
+    End Sub
+
+    ' ---------------- DATA GRID SETUP ----------------
+    Private Sub SetupDataGridView()
         With dgvSchedule
             .ColumnCount = 8
             .Columns(0).Name = "Time"
@@ -13,149 +62,297 @@
             .Columns(5).Name = "Friday"
             .Columns(6).Name = "Saturday"
             .Columns(7).Name = "Sunday"
-
-            ' Lock down the Time column and prevent row modifications
             .Columns(0).ReadOnly = True
             .AllowUserToAddRows = False
             .AllowUserToDeleteRows = False
         End With
-
-        Dim times As String() = {
-            "8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM",
-            "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM",
-            "6:00 PM", "7:00 PM", "8:00 PM", "9:00 PM"
-        }
-
-        ' Add the times and empty cells for each day
-        For Each t As String In times
-            dgvSchedule.Rows.Add(t, "", "", "", "", "", "", "")
-        Next
     End Sub
 
-    ' Block editing of the Time column
-    Private Sub dgvSchedule_CellBeginEdit(sender As Object, e As DataGridViewCellCancelEventArgs) Handles dgvSchedule.CellBeginEdit
-        If e.ColumnIndex = 0 Then
-            e.Cancel = True
+    ' ---------------- POPULATE COURSES (FACULTY DEPARTMENT FILTER) ----------------
+    Private Sub PopulateCourses()
+        coursecb.Items.Clear()
+
+        If String.IsNullOrEmpty(FacultyID) Then
+            MessageBox.Show("FacultyID not set!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
         End If
+
+        Try
+            Using tempConn As New MySqlConnection(connectdb.connstring)
+                tempConn.Open()
+
+                ' 1. Get the faculty department
+                Dim deptCmd As New MySqlCommand("SELECT DeptID FROM faculty WHERE FacultyID=@fid", tempConn)
+                deptCmd.Parameters.AddWithValue("@fid", FacultyID.Trim())
+                Dim deptIDObj = deptCmd.ExecuteScalar()
+
+                If deptIDObj Is Nothing Then
+                    MessageBox.Show("Department not found for this faculty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
+
+                Dim deptID As String = deptIDObj.ToString().Trim()
+
+                ' 2. Get courses for that department
+                Dim cmd As New MySqlCommand("SELECT CourseID, CourseName FROM course WHERE DepartmentID=@did ORDER BY CourseName", tempConn)
+                cmd.Parameters.AddWithValue("@did", deptID)
+                Using dr As MySqlDataReader = cmd.ExecuteReader()
+                    While dr.Read()
+                        coursecb.Items.Add(New KeyValuePair(Of String, String)(
+                        dr("CourseID").ToString(),
+                        dr("CourseName").ToString()
+                    ))
+                    End While
+                End Using
+
+                ' 3. Set ComboBox selection
+                If coursecb.Items.Count > 0 Then
+                    coursecb.DisplayMember = "Value"
+                    coursecb.ValueMember = "Key"
+                    coursecb.SelectedIndex = 0
+                Else
+                    MessageBox.Show("No courses found for your department.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                End If
+            End Using
+
+        Catch ex As Exception
+            MessageBox.Show("Error loading courses: " & ex.Message)
+        End Try
     End Sub
 
-    Private Sub btnAddItem_Click(sender As Object, e As EventArgs) Handles btnAddItem.Click
-        If dgvSchedule.SelectedCells.Count > 0 Then
-            Dim selectedCell As DataGridViewCell = dgvSchedule.SelectedCells(0)
 
-            ' Do not allow adding items in the Time column
-            If selectedCell.ColumnIndex = 0 Then Exit Sub
 
-            If String.IsNullOrEmpty(selectedCell.Value?.ToString()) Then
-                Dim description As String = InputBox("Enter the description for this item:", "Add Schedule Item")
-                If Not String.IsNullOrWhiteSpace(description) Then
-                    selectedCell.Value = description
-                End If
+    ' ---------------- POPULATE SECTIONS ----------------
+    Private Sub PopulateSections()
+        sectioncb.Items.Clear()
+        Dim sections As String() = {"4A", "4B", "4C", "4D", "4E", "4F"}
+        sectioncb.Items.AddRange(sections)
+        If sectioncb.Items.Count > 0 Then sectioncb.SelectedIndex = 0
+    End Sub
+
+    Public Sub LoadScheduleFromDB()
+        Try
+            conn.Open()
+            Dim courseID As String = ""
+            Dim section As String = ""
+
+            ' ---------------- STUDENT VIEW ----------------
+            If Not String.IsNullOrEmpty(StudentID) Then
+                Dim cmd As New MySqlCommand("SELECT CourseID, section FROM student WHERE StudentID=@sid LIMIT 1", conn)
+                cmd.Parameters.AddWithValue("@sid", StudentID)
+
+                Using dr As MySqlDataReader = cmd.ExecuteReader()
+                    If dr.Read() Then
+                        courseID = dr("CourseID").ToString()
+                        section = dr("section").ToString()
+                    Else
+                        Exit Sub
+                    End If
+                End Using
+
+                ' Set ComboBoxes to the student's course & section
+                SetComboBoxSelection(coursecb, courseID)
+                SetComboBoxSelection(sectioncb, section)
+
             Else
-                MessageBox.Show("This cell already contains an item. You can edit it instead.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                ' ---------------- FACULTY VIEW ----------------
+                If coursecb.SelectedItem Is Nothing OrElse sectioncb.SelectedItem Is Nothing Then Exit Sub
+                courseID = CType(coursecb.SelectedItem, KeyValuePair(Of String, String)).Key
+                section = sectioncb.SelectedItem.ToString()
             End If
-        Else
-            MessageBox.Show("Please select a cell to add an item to.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+            ' Clear old schedule
+            For i As Integer = 0 To dgvSchedule.Rows.Count - 1
+                For j As Integer = 1 To 7
+                    dgvSchedule.Rows(i).Cells(j).Value = ""
+                Next
+            Next
+
+            ' Load schedule per course + section
+            Dim schedCmd As New MySqlCommand("SELECT * FROM schedule WHERE CourseID=@course AND Section=@section", conn)
+            schedCmd.Parameters.AddWithValue("@course", courseID)
+            schedCmd.Parameters.AddWithValue("@section", section)
+
+            Using dr As MySqlDataReader = schedCmd.ExecuteReader()
+                While dr.Read()
+                    Dim rowIndex As Integer = GetRowIndexFromTime(dr("Time").ToString())
+                    If rowIndex >= 0 Then
+                        dgvSchedule.Rows(rowIndex).Cells("Monday").Value = dr("Monday").ToString()
+                        dgvSchedule.Rows(rowIndex).Cells("Tuesday").Value = dr("Tuesday").ToString()
+                        dgvSchedule.Rows(rowIndex).Cells("Wednesday").Value = dr("Wednesday").ToString()
+                        dgvSchedule.Rows(rowIndex).Cells("Thursday").Value = dr("Thursday").ToString()
+                        dgvSchedule.Rows(rowIndex).Cells("Friday").Value = dr("Friday").ToString()
+                        dgvSchedule.Rows(rowIndex).Cells("Saturday").Value = dr("Saturday").ToString()
+                        dgvSchedule.Rows(rowIndex).Cells("Sunday").Value = dr("Sunday").ToString()
+                    End If
+                End While
+            End Using
+
+        Catch ex As Exception
+            MessageBox.Show("Error loading schedule: " & ex.Message)
+        Finally
+            conn.Close()
+        End Try
+    End Sub
+
+
+    ' ---------------- BUTTON EVENTS ----------------
+    Private Sub btnAddItem_Click(sender As Object, e As EventArgs) Handles btnAddItem.Click
+        If ReadOnlyMode Or dgvSchedule.SelectedCells.Count = 0 Then Exit Sub
+        Dim cell = dgvSchedule.SelectedCells(0)
+        If cell.ColumnIndex = 0 Then Exit Sub
+        Dim desc = InputBox("Enter description:", "Add Schedule Item")
+        If Not String.IsNullOrWhiteSpace(desc) Then
+            cell.Value = desc
+            SaveScheduleToDB()
         End If
     End Sub
 
     Private Sub btnEditItem_Click(sender As Object, e As EventArgs) Handles btnEditItem.Click
-        If dgvSchedule.SelectedCells.Count > 0 Then
-            Dim selectedCell As DataGridViewCell = dgvSchedule.SelectedCells(0)
-
-            ' Prevent editing the Time column
-            If selectedCell.ColumnIndex = 0 Then Exit Sub
-
-            ' Show prompt if empty
-            If String.IsNullOrEmpty(selectedCell.Value?.ToString()) Then
-                MessageBox.Show("Please select a cell that contains an item to edit.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Else
-                Dim existingDescription As String = selectedCell.Value.ToString()
-                Dim newDescription As String = InputBox("Edit the description (Current: " & existingDescription & "):", "Edit Schedule Item", existingDescription)
-                If Not String.IsNullOrWhiteSpace(newDescription) Then
-                    selectedCell.Value = newDescription
-                End If
-            End If
-        Else
-            MessageBox.Show("Please select a cell to edit.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        If ReadOnlyMode Or dgvSchedule.SelectedCells.Count = 0 Then Exit Sub
+        Dim cell = dgvSchedule.SelectedCells(0)
+        If cell.ColumnIndex = 0 Then Exit Sub
+        Dim currentVal = cell.Value?.ToString()
+        If String.IsNullOrWhiteSpace(currentVal) Then Exit Sub
+        Dim newVal = InputBox("Edit description:", "Edit Schedule Item", currentVal)
+        If Not String.IsNullOrWhiteSpace(newVal) Then
+            cell.Value = newVal
+            SaveScheduleToDB()
         End If
     End Sub
 
     Private Sub btnDeleteItem_Click(sender As Object, e As EventArgs) Handles btnDeleteItem.Click
-        If dgvSchedule.SelectedCells.Count > 0 Then
-            Dim selectedCell As DataGridViewCell = dgvSchedule.SelectedCells(0)
+        If ReadOnlyMode Or dgvSchedule.SelectedCells.Count = 0 Then Exit Sub
+        Dim cell = dgvSchedule.SelectedCells(0)
+        If cell.ColumnIndex = 0 Then Exit Sub
+        If MessageBox.Show("Delete this item?", "Confirm", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+            cell.Value = ""
+            SaveScheduleToDB()
+        End If
+    End Sub
 
-            ' Prevent deleting the Time column
-            If selectedCell.ColumnIndex = 0 Then Exit Sub
+    Private Sub dgvSchedule_CellBeginEdit(sender As Object, e As DataGridViewCellCancelEventArgs) Handles dgvSchedule.CellBeginEdit
+        If e.ColumnIndex = 0 Or ReadOnlyMode Then e.Cancel = True
+    End Sub
 
-            ' Show prompt if empty
-            If String.IsNullOrEmpty(selectedCell.Value?.ToString()) Then
-                MessageBox.Show("Please select a cell that contains an item to delete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Else
-                Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete this item?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                If result = DialogResult.Yes Then
-                    selectedCell.Value = Nothing
+    ' ---------------- COMBOBOX EVENTS ----------------
+    Private Sub coursecb_SelectedIndexChanged(sender As Object, e As EventArgs) Handles coursecb.SelectedIndexChanged
+        PopulateSections()
+        LoadScheduleFromDB()
+    End Sub
+
+    Private Sub sectioncb_SelectedIndexChanged(sender As Object, e As EventArgs) Handles sectioncb.SelectedIndexChanged
+        LoadScheduleFromDB()
+    End Sub
+
+    ' ---------------- HELPER ----------------
+    Private Function GetRowIndexFromTime(time As String) As Integer
+        For i As Integer = 0 To timeSlots.Length - 1
+            If timeSlots(i) = time Then Return i
+        Next
+        Return -1
+    End Function
+
+    Private Sub SaveScheduleToDB()
+        If ReadOnlyMode Then Exit Sub
+        If coursecb.SelectedItem Is Nothing OrElse sectioncb.SelectedItem Is Nothing Then Exit Sub
+
+        Dim courseID As String = CType(coursecb.SelectedItem, KeyValuePair(Of String, String)).Key
+        Dim section As String = sectioncb.SelectedItem.ToString()
+
+        Try
+            conn.Open()
+
+            ' Loop through all time rows
+            For i As Integer = 0 To dgvSchedule.Rows.Count - 1
+                Dim rowTime As String = dgvSchedule.Rows(i).Cells("Time").Value?.ToString()
+                If String.IsNullOrEmpty(rowTime) Then Continue For
+
+                ' Check if schedule already exists
+                Dim checkCmd As New MySqlCommand("
+                SELECT ScheduleID FROM schedule 
+                WHERE CourseID=@course AND Section=@section AND Time=@time 
+                LIMIT 1", conn)
+
+                checkCmd.Parameters.AddWithValue("@course", courseID)
+                checkCmd.Parameters.AddWithValue("@section", section)
+                checkCmd.Parameters.AddWithValue("@time", rowTime)
+
+                Dim schedIDObj = checkCmd.ExecuteScalar()
+
+                If schedIDObj Is Nothing Then
+                    ' INSERT
+                    Dim insertCmd As New MySqlCommand("
+                    INSERT INTO schedule
+                        (CourseID, Section, Time, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday)
+                    VALUES
+                        (@course, @section, @time, @mon, @tue, @wed, @thu, @fri, @sat, @sun)", conn)
+
+                    insertCmd.Parameters.AddWithValue("@course", courseID)
+                    insertCmd.Parameters.AddWithValue("@section", section)
+                    insertCmd.Parameters.AddWithValue("@time", rowTime)
+                    insertCmd.Parameters.AddWithValue("@mon", dgvSchedule.Rows(i).Cells("Monday").Value?.ToString())
+                    insertCmd.Parameters.AddWithValue("@tue", dgvSchedule.Rows(i).Cells("Tuesday").Value?.ToString())
+                    insertCmd.Parameters.AddWithValue("@wed", dgvSchedule.Rows(i).Cells("Wednesday").Value?.ToString())
+                    insertCmd.Parameters.AddWithValue("@thu", dgvSchedule.Rows(i).Cells("Thursday").Value?.ToString())
+                    insertCmd.Parameters.AddWithValue("@fri", dgvSchedule.Rows(i).Cells("Friday").Value?.ToString())
+                    insertCmd.Parameters.AddWithValue("@sat", dgvSchedule.Rows(i).Cells("Saturday").Value?.ToString())
+                    insertCmd.Parameters.AddWithValue("@sun", dgvSchedule.Rows(i).Cells("Sunday").Value?.ToString())
+
+                    insertCmd.ExecuteNonQuery()
+
+                Else
+                    ' UPDATE
+                    Dim updateCmd As New MySqlCommand("
+                    UPDATE schedule SET
+                        Monday=@mon,
+                        Tuesday=@tue,
+                        Wednesday=@wed,
+                        Thursday=@thu,
+                        Friday=@fri,
+                        Saturday=@sat,
+                        Sunday=@sun
+                    WHERE ScheduleID=@id", conn)
+
+                    updateCmd.Parameters.AddWithValue("@id", schedIDObj)
+                    updateCmd.Parameters.AddWithValue("@mon", dgvSchedule.Rows(i).Cells("Monday").Value?.ToString())
+                    updateCmd.Parameters.AddWithValue("@tue", dgvSchedule.Rows(i).Cells("Tuesday").Value?.ToString())
+                    updateCmd.Parameters.AddWithValue("@wed", dgvSchedule.Rows(i).Cells("Wednesday").Value?.ToString())
+                    updateCmd.Parameters.AddWithValue("@thu", dgvSchedule.Rows(i).Cells("Thursday").Value?.ToString())
+                    updateCmd.Parameters.AddWithValue("@fri", dgvSchedule.Rows(i).Cells("Friday").Value?.ToString())
+                    updateCmd.Parameters.AddWithValue("@sat", dgvSchedule.Rows(i).Cells("Saturday").Value?.ToString())
+                    updateCmd.Parameters.AddWithValue("@sun", dgvSchedule.Rows(i).Cells("Sunday").Value?.ToString())
+
+                    updateCmd.ExecuteNonQuery()
+                End If
+            Next
+
+            MessageBox.Show("Schedule saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        Catch ex As Exception
+            MessageBox.Show("Error saving schedule: " & ex.Message)
+
+        Finally
+            conn.Close()
+        End Try
+    End Sub
+
+
+    Private Sub SetComboBoxSelection(cb As ComboBox, value As String)
+        For i As Integer = 0 To cb.Items.Count - 1
+            Dim item = cb.Items(i)
+            If TypeOf item Is KeyValuePair(Of String, String) Then
+                If CType(item, KeyValuePair(Of String, String)).Key = value Then
+                    cb.SelectedIndex = i
+                    Exit For
+                End If
+            ElseIf TypeOf item Is String Then
+                If item.ToString() = value Then
+                    cb.SelectedIndex = i
+                    Exit For
                 End If
             End If
-        Else
-            MessageBox.Show("Please select a cell to delete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End If
+        Next
     End Sub
-
-    Private Sub dgvSchedule_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvSchedule.CellDoubleClick
-        ' Ignore header clicks or invalid cells
-        If e.RowIndex < 0 OrElse e.ColumnIndex < 0 Then Exit Sub
-
-        ' Get the clicked cell
-        Dim selectedCell As DataGridViewCell = dgvSchedule.Rows(e.RowIndex).Cells(e.ColumnIndex)
-
-        ' Skip empty cells and the Time column
-        If e.ColumnIndex = 0 OrElse String.IsNullOrWhiteSpace(selectedCell.Value?.ToString()) Then Exit Sub
-
-        Dim description As String = selectedCell.Value.ToString()
-
-        ' Measure if the text is longer than what fits in the cell
-        Dim displayedWidth As Integer = dgvSchedule.Columns(e.ColumnIndex).Width
-        Dim textWidth As Integer = TextRenderer.MeasureText(description, dgvSchedule.Font).Width
-
-        ' If text doesn’t fit, show full description
-        If textWidth > displayedWidth Then
-            MessageBox.Show(description, "Full Description", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        End If
-    End Sub
-
-
-    Private Function GetRowIndexFromTime(time As String) As Integer
-        Select Case time
-            Case "8:00 AM" : Return 0
-            Case "9:00 AM" : Return 1
-            Case "10:00 AM" : Return 2
-            Case "11:00 AM" : Return 3
-            Case "12:00 PM" : Return 4
-            Case "1:00 PM" : Return 5
-            Case "2:00 PM" : Return 6
-            Case "3:00 PM" : Return 7
-            Case "4:00 PM" : Return 8
-            Case "5:00 PM" : Return 9
-            Case "6:00 PM" : Return 10
-            Case "7:00 PM" : Return 11
-            Case "8:00 PM" : Return 12
-            Case "9:00 PM" : Return 13
-            Case Else : Return -1
-        End Select
-    End Function
-
-    Private Function GetColumnIndexFromDay(day As String) As Integer
-        Select Case day
-            Case "Monday" : Return 1
-            Case "Tuesday" : Return 2
-            Case "Wednesday" : Return 3
-            Case "Thursday" : Return 4
-            Case "Friday" : Return 5
-            Case "Saturday" : Return 6
-            Case "Sunday" : Return 7
-            Case Else : Return -1
-        End Select
-    End Function
 
 End Class

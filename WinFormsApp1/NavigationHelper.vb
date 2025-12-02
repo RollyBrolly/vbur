@@ -1,4 +1,4 @@
-﻿Module ExitModule
+﻿Module NavigationHelper
 
     Public Sub ConfirmExit(e As FormClosingEventArgs)
         ' Only show the confirmation when the user explicitly closes a form (e.g. clicking the window's X
@@ -15,6 +15,23 @@
             End If
         End If
     End Sub
+
+    Public Sub OpenFormOnce(Of T As {Form, New})(currentForm As Form)
+        Dim existingForm As Form = Application.OpenForms.OfType(Of T)().FirstOrDefault()
+
+        If existingForm Is Nothing Then
+            Dim f As New T()
+            f.StartPosition = FormStartPosition.CenterScreen
+            f.Show()
+            currentForm.Hide()   ' Hide current form
+        Else
+            existingForm.WindowState = FormWindowState.Normal
+            existingForm.BringToFront()
+            existingForm.Activate()
+        End If
+    End Sub
+
+
 
 End Module
 

@@ -3,6 +3,8 @@
 Public Class AddCompanyForm
     Private conn As New MySqlConnection(connectdb.connstring)
     Private skipCloseConfirmation As Boolean = False
+    Public Property ParentStaffForm As StaffRegistrationForm
+
 
     Private Sub AddCompanyForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         compidtxt.Text = GenerateCompanyID()
@@ -24,7 +26,8 @@ Public Class AddCompanyForm
             Return
         End If
 
-        ShowStaffForm()
+        ParentStaffForm?.Show()
+        ParentStaffForm?.BringToFront()
     End Sub
 
     Private Function GenerateCompanyID() As String
@@ -58,6 +61,7 @@ Public Class AddCompanyForm
         Dim companyName As String = compntxt.Text.Trim()
         Dim companyAddress As String = compaddtxt.Text.Trim()
 
+
         If String.IsNullOrWhiteSpace(companyName) OrElse String.IsNullOrWhiteSpace(companyAddress) Then
             MessageBox.Show("Enter Company Name and Address", "Missing Info", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
@@ -78,7 +82,13 @@ Public Class AddCompanyForm
 
             MessageBox.Show("Company added successfully! ID: " & companyID, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-            ClearAllText(Me)
+            ParentStaffForm?.Refreshcompanies()
+
+            skipCloseConfirmation = True
+            ParentStaffForm?.Show()
+            ParentStaffForm?.BringToFront()
+
+            Me.Close()
         Catch ex As MySqlException
             MessageBox.Show("Error adding company: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
@@ -106,21 +116,9 @@ Public Class AddCompanyForm
 
         If result = DialogResult.Yes Then
             skipCloseConfirmation = True
-            ShowStaffForm()
+            ParentStaffForm?.Show()
+            ParentStaffForm?.BringToFront()
             Me.Close()
         End If
-    End Sub
-
-    Private Sub ShowStaffForm()
-        For Each f As Form In Application.OpenForms
-            If TypeOf f Is StaffRegistrationForm Then
-                f.Show()
-                f.BringToFront()
-                Return
-            End If
-        Next
-
-        Dim staffForm As New StaffRegistrationForm()
-        staffForm.Show()
     End Sub
 End Class

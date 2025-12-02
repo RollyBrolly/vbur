@@ -39,6 +39,10 @@ Partial Class scheduleForm
         btnAddItem = New Button()
         btnEditItem = New Button()
         btnDeleteItem = New Button()
+        sectionlbl = New Label()
+        courselbl = New Label()
+        coursecb = New ComboBox()
+        sectioncb = New ComboBox()
         CType(PictureBox5, ComponentModel.ISupportInitialize).BeginInit()
         CType(dgvSchedule, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -180,11 +184,53 @@ Partial Class scheduleForm
         btnDeleteItem.Text = "Delete Item"
         btnDeleteItem.UseVisualStyleBackColor = False
         ' 
-        ' studentScheduleForm
+        ' sectionlbl
+        ' 
+        sectionlbl.AutoSize = True
+        sectionlbl.Font = New Font("Segoe UI", 15F)
+        sectionlbl.Location = New Point(1053, 523)
+        sectionlbl.Name = "sectionlbl"
+        sectionlbl.Size = New Size(81, 28)
+        sectionlbl.TabIndex = 78
+        sectionlbl.Text = "Section:"
+        ' 
+        ' courselbl
+        ' 
+        courselbl.AutoSize = True
+        courselbl.Font = New Font("Segoe UI", 15F)
+        courselbl.Location = New Point(561, 523)
+        courselbl.Name = "courselbl"
+        courselbl.Size = New Size(76, 28)
+        courselbl.TabIndex = 80
+        courselbl.Text = "Course:"
+        ' 
+        ' coursecb
+        ' 
+        coursecb.Font = New Font("Segoe UI", 15F)
+        coursecb.FormattingEnabled = True
+        coursecb.Location = New Point(643, 520)
+        coursecb.Name = "coursecb"
+        coursecb.Size = New Size(377, 36)
+        coursecb.TabIndex = 81
+        ' 
+        ' sectioncb
+        ' 
+        sectioncb.Font = New Font("Segoe UI", 15F)
+        sectioncb.FormattingEnabled = True
+        sectioncb.Location = New Point(1140, 520)
+        sectioncb.Name = "sectioncb"
+        sectioncb.Size = New Size(81, 36)
+        sectioncb.TabIndex = 82
+        ' 
+        ' scheduleForm
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1264, 575)
+        Controls.Add(sectioncb)
+        Controls.Add(coursecb)
+        Controls.Add(courselbl)
+        Controls.Add(sectionlbl)
         Controls.Add(btnDeleteItem)
         Controls.Add(btnEditItem)
         Controls.Add(btnAddItem)
@@ -192,7 +238,7 @@ Partial Class scheduleForm
         Controls.Add(PictureBox5)
         Controls.Add(Label9)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
-        Name = "studentScheduleForm"
+        Name = "scheduleForm"
         Text = "Student Schedule Form"
         CType(PictureBox5, ComponentModel.ISupportInitialize).EndInit()
         CType(dgvSchedule, ComponentModel.ISupportInitialize).EndInit()
@@ -214,4 +260,8 @@ Partial Class scheduleForm
     Friend WithEvents Friday As DataGridViewTextBoxColumn
     Friend WithEvents Saturday As DataGridViewTextBoxColumn
     Friend WithEvents Sunday As DataGridViewTextBoxColumn
+    Friend WithEvents sectionlbl As Label
+    Friend WithEvents courselbl As Label
+    Friend WithEvents coursecb As ComboBox
+    Friend WithEvents sectioncb As ComboBox
 End Class

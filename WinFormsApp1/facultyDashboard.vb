@@ -1,220 +1,378 @@
 ﻿Imports System.Globalization
-Imports System.Linq
+Imports System.IO
+Imports System.Windows.Forms
+Imports MySql.Data.MySqlClient
 
 Public Class facultyDashboard
+    ' ---------------- PROPERTIES ----------------
+    ' Login UserID passed from Login form
+    Public Property UserID As Integer
 
-    Private Const MaxTasks As Integer = 3
-    Private Const MaxTaskTextLength As Integer = 20
-    Private ReadOnly TaskStartTop As Integer = 119
+    ' FacultyID retrieved from useraccounts based on UserID
+    Private _facultyID As String
+    Private Property FacultyID As String
+        Get
+            Return _facultyID
+        End Get
+        Set(value As String)
+            _facultyID = value
+        End Set
+    End Property
+
+    ' Database connection objects
+    Private conn As MySqlConnection
+    Private cmd As MySqlCommand
+    Private dr As MySqlDataReader
+
+    ' ---------------- TASKS ----------------
+    Private Const MaxTasks As Integer = 5
+    Private Const MaxTaskTextLength As Integer = 50
+    Private ReadOnly TaskStartTop As Integer = 101
     Private ReadOnly TaskLeft As Integer = 33
-    Private ReadOnly TaskSpacing As Integer = 67
+    Private ReadOnly TaskSpacing As Integer = 40
 
-    ' runtime-only label for AM/PM of last timeout
-    Private lastOutAmPm As Label
-    Private ReadOnly clockTimer As New Timer() With {.Interval = 1000} ' updates every second
-
+    Private ReadOnly Property TasksFile As String
+        Get
+            Dim folder As String = Path.Combine(Application.StartupPath, "Tasks", "Student")
+            If Not Directory.Exists(folder) Then Directory.CreateDirectory(folder)
+            Return Path.Combine(folder, $"{FacultyID}.txt")
+        End Get
+    End Property
     ' ---------------- FORM LOAD ----------------
-    Private Sub studentDashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub facultyDashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.FormBorderStyle = FormBorderStyle.None
         Me.WindowState = FormWindowState.Maximized
 
-        ' Wire buttons (always present)
-        AddHandler addtasksbtn.Click, AddressOf ButtonAddTask_Click
-        AddHandler completetasksbtn.Click, AddressOf ButtonCompleteSelected_Click
+        ' Initialize connection
+        conn = New MySqlConnection(connectdb.connstring)
+        GetFacultyIDFromUserID()
+        LoadFacultyData()
 
-        ' Attempt to wire up any design-time checkboxes if they exist.
-        ' Use Controls.Find so we don't get compile errors if those controls were removed from designer.
-        For i As Integer = 1 To 3
-            Dim found() As Control = Me.Controls.Find($"CheckBox{i}", True)
-            If found IsNot Nothing AndAlso found.Length > 0 AndAlso TypeOf found(0) Is CheckBox Then
-                AddHandler DirectCast(found(0), CheckBox).CheckedChanged, AddressOf TaskCheckChanged
-            End If
-        Next
+        LoadTasks()
 
-        ' Do NOT clear Panel1 here — keep any design-time tasks if present.
-        ReflowTasks()
+        Dim userID As String = FacultyID
+        Dim userType As String = "Faculty"
 
-        ' Configure announcements to match pending tasks visually and layout
-        ConfigureAnnouncements()
-        ReflowAnnouncements()
-
-        ' Initialize time system
-        timeinbtn.Text = If(String.IsNullOrWhiteSpace(timeinbtn.Text), "TIME IN", timeinbtn.Text)
-
-        ' Start clock for "Time Today"
-        AddHandler clockTimer.Tick, AddressOf UpdateTimeToday
-        clockTimer.Start()
-        UpdateTimeToday(Nothing, EventArgs.Empty)
-
-        ' Initialize Last Time Out (start blank and hide AM/PM)
-        Label7.Text = ""
-        CreateOrConfigureLastOutAmPmLabel()
-        If lastOutAmPm IsNot Nothing Then
-            lastOutAmPm.Text = ""
-            lastOutAmPm.Visible = False
-        End If
-
-        ' Label alignment and centering
-        Label7.AutoSize = False
-        Label7.TextAlign = ContentAlignment.MiddleCenter
-        CenterTimeLabels()
-        AddHandler factimeinpnl.Resize, AddressOf Panel3_Resize
-        ' Also keep announcement panel centered when form resizes
-        AddHandler facannouncementspnl.Resize, AddressOf Panel4_Resize
+        UpdateTimeInOutButton(userID, userType)
+        UpdateTimeOutLabel(userID, userType)
     End Sub
 
-    ' ---------------- ANNOUNCEMENTS: style and layout to match pending tasks ----------------
-    Private Sub ConfigureAnnouncements()
-        ' Find Panel4 (Announcements) and style its checkboxes and label similar to pending tasks
-        If facannouncementspnl Is Nothing Then Return
-
-        ' Ensure the announcement header (Label8) uses the same visual style as pending tasks header
+    ' ---------------- GET FACULTYID ----------------
+    Private Sub GetFacultyIDFromUserID()
         Try
-            announcementslbl.Font = New Font("Segoe UI", 26.25F, FontStyle.Bold)
-            announcementslbl.ForeColor = Color.Indigo
-        Catch
-            ' ignore if Label8 doesn't exist or font assignment fails
+            conn.Open()
+            ' Query useraccounts table
+            Dim query As String = "SELECT FacultyID From useraccounts WHERE UserID = @uid"
+            cmd = New MySqlCommand(query, conn)
+            cmd.Parameters.AddWithValue("@uid", UserID)
+            Dim result = cmd.ExecuteScalar()
+
+            'Assign FacultyID or Show error 
+            If result IsNot Nothing AndAlso Not IsDBNull(result) Then
+                FacultyID = result.ToString()
+            Else
+                MessageBox.Show("Facaulty account not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Me.Close()
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error retrieving faculty ID: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Me.Close()
+        Finally
+            conn.Close()
         End Try
-
-        ' Style each CheckBox inside Panel4 to match pending tasks and wire the checked handler
-        Dim announceCheckboxes = facannouncementspnl.Controls.OfType(Of CheckBox)().OrderBy(Function(c) c.TabIndex).ToList()
-        For Each cb In announceCheckboxes
-            cb.AutoSize = True
-            cb.Font = New Font("Segoe UI", 24.0F, FontStyle.Bold)
-            cb.ForeColor = Color.Indigo
-            cb.UseVisualStyleBackColor = True
-            cb.Left = TaskLeft
-
-            ' Attach checked handler so announcements behave like pending tasks
-            RemoveHandler cb.CheckedChanged, AddressOf AnnouncementCheckChanged
-            AddHandler cb.CheckedChanged, AddressOf AnnouncementCheckChanged
-        Next
     End Sub
 
-    Private Sub ReflowAnnouncements()
-        If facannouncementspnl Is Nothing Then Return
+    ' ---------------- LOAD FACULTY DATA ----------------
+    Private Sub LoadFacultyData()
+        If String.IsNullOrEmpty(FacultyID) Then Return
 
-        Dim announceCheckboxes = facannouncementspnl.Controls.OfType(Of CheckBox)().OrderBy(Function(c) c.TabIndex).ToList()
-        ' Start under the announcement header — pick a start top that matches visual spacing used for tasks
-        Dim announcementStartTop As Integer = 130
-        For i As Integer = 0 To announceCheckboxes.Count - 1
-            Dim cb = announceCheckboxes(i)
-            cb.Top = announcementStartTop + (i * TaskSpacing)
-        Next
+        Try
+            conn.Open()
+            ' Join Faculty -> course -> department
+            Dim query As String = "
+                    SELECT f.FacultyID, f.FacultyFirstName, f.FacultyLastName, 
+                    f.FacultyEmail, f.MiddleName, f.Suffix, 
+                    f.ContactNumber, d.DeptName
+                    FROM faculty f
+                    JOIN department d ON f.DeptID = d.DepartmentID
+                    WHERE f.FacultyID = @fid
+                    "
 
-        ' Center the announcement header (Label8) horizontally in the panel
-        If announcementslbl IsNot Nothing Then
-            announcementslbl.AutoSize = False
-            announcementslbl.TextAlign = ContentAlignment.MiddleCenter
-            announcementslbl.Width = Math.Max(100, facannouncementspnl.ClientSize.Width - 40)
-            announcementslbl.Left = (facannouncementspnl.ClientSize.Width - announcementslbl.Width) \ 2
+            cmd = New MySqlCommand(query, conn)
+            cmd.Parameters.AddWithValue("@fid", FacultyID)
+            dr = cmd.ExecuteReader()
+
+            ' Populate labels
+            If dr.Read() Then
+                fid.Text = dr("FacultyID").ToString()
+                femail.Text = dr("FacultyEmail").ToString()
+                fcontact.Text = dr("ContactNumber").ToString()
+                fdept.Text = dr("DeptName").ToString()
+
+                Dim ti As TextInfo = CultureInfo.CurrentCulture.TextInfo
+                ' First name
+                Dim firstName As String = dr("FacultyFirstName").ToString().Trim()
+                If firstName <> "" Then firstName = ti.ToTitleCase(firstName.ToLower())
+
+                ' Last name
+                Dim lastName As String = dr("FacultyLastName").ToString().Trim()
+                If lastName <> "" Then lastName = ti.ToTitleCase(lastName.ToLower())
+
+                ' Middle initial
+                Dim middleInitial As String = ""
+                Dim middleName As String = dr("MiddleName").ToString().Trim()
+                If middleName <> "" Then middleInitial = " " & Char.ToUpper(middleName(0))
+
+                ' Suffix
+                Dim suffix As String = If(dr("Suffix").ToString() <> "", " " & dr("Suffix").ToString(), "")
+
+                fwelcome.Text = "Welcome, " & firstName & middleInitial & " " & lastName & suffix
+                '' Load photo if exists
+                'Dim photoPath As String = "images/Facultys/" & dr("FacultyID").ToString() & ".jpg"
+                'If System.IO.File.Exists(photoPath) Then
+                '    studpb.Image = Image.FromFile(photoPath)
+                'End If
+            Else
+                MessageBox.Show("Faculty data not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Me.Close()
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error loading faculty data: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            conn.Close()
+        End Try
+    End Sub
+
+    Private Sub dashboardTimer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        timetodatlbl.Text = "Today: " & DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
+
+        Dim timer As New Timer()
+        AddHandler timer.Tick, AddressOf Timer_Tick
+        timer.Interval = 1000
+        timer.Start()
+    End Sub
+
+    ' ---------------- TIMER ----------------
+    Private Sub Timer_Tick(sender As Object, e As EventArgs)
+        timetodatlbl.Text = "Today: " & DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
+    End Sub
+
+    ' ---------------- TIME IN / TIME OUT ----------------
+    Private Sub timeinbtn_Click(sender As Object, e As EventArgs) Handles timeinbtn.Click
+        If String.IsNullOrEmpty(FacultyID) Then Return
+
+        Dim userID As String = FacultyID
+        Dim userType As String = "Faculty"
+
+        If Not UserExists(userID, userType) Then
+            MessageBox.Show($"{userType} ID not found.")
+            Return
         End If
+
+        Dim lastAction As String = GetLastActionToday(userID, userType)
+        Dim nowTime As DateTime = DateTime.Now
+
+        Select Case lastAction
+            Case "IN"
+                If HasTimeOutToday(userID, userType) Then
+                    MessageBox.Show("You have already timed out today.")
+                Else
+                    RecordAttendance(userID, userType, "OUT", nowTime)
+                    timeoutlbl.Text = $"Time Out at {nowTime:HH:mm:ss}"
+                End If
+            Case "OUT"
+                MessageBox.Show("You have already completed your attendance today.")
+            Case Else
+                RecordAttendance(userID, userType, "IN", nowTime)
+                timeoutlbl.Text = $"Time In at {nowTime:HH:mm:ss}"
+        End Select
+
+        UpdateTimeInOutButton(userID, userType)
     End Sub
 
-    Private Sub Panel4_Resize(sender As Object, e As EventArgs)
-        ReflowAnnouncements()
-    End Sub
+    ' ---------------- UPDATE BUTTON / LABEL ----------------
+    Private Sub UpdateTimeOutLabel(userID As String, userType As String)
+        Dim lastAction As String = GetLastActionToday(userID, userType)
+        Dim lastTime As DateTime? = GetLastActionTime(userID, userType)
 
-    ' ---------------- CLOCK ----------------
-    Private Sub UpdateTimeToday(sender As Object, e As EventArgs)
-        ' Update with seconds so it visibly changes
-        timetodaylbl.Text = $"Time Today: {DateTime.Now.ToString("h:mm:ss tt", CultureInfo.InvariantCulture)}"
-    End Sub
-
-    ' ---------------- CREATE/CONFIGURE AMPM LABEL ----------------
-    Private Sub CreateOrConfigureLastOutAmPmLabel()
-        If lastOutAmPm Is Nothing Then
-            lastOutAmPm = New Label() With {
-                .Name = "LabelLastOutAMPM",
-                .AutoSize = True,
-                .Font = New Font(Label7.Font.FontFamily, 18.0F, FontStyle.Bold),
-                .ForeColor = Label7.ForeColor,
-                .BackColor = Color.Transparent,
-                .Text = ""
-            }
-            ' Add to the same parent as Label7 (Panel3 assumed)
-            factimeinpnl.Controls.Add(lastOutAmPm)
+        If lastAction <> "" AndAlso lastTime.HasValue Then
+            timeoutlbl.Text = $"Last Action: {lastAction} at {lastTime:HH:mm:ss}"
         Else
-            ' Ensure visual consistency
-            lastOutAmPm.Font = New Font(Label7.Font.FontFamily, 18.0F, FontStyle.Bold)
-            lastOutAmPm.ForeColor = Label7.ForeColor
-            lastOutAmPm.BackColor = Color.Transparent
+            timeinbtn.Text = "Time In"
         End If
     End Sub
 
-    ' ---------------- CENTER LABELS ----------------
-    Private Sub Panel3_Resize(sender As Object, e As EventArgs)
-        CenterTimeLabels()
+    Private Sub UpdateTimeInOutButton(userID As String, userType As String)
+        Dim lastAction As String = GetLastActionToday(userID, userType)
+        timeinbtn.Text = If(lastAction = "IN", "Time Out", "Time In")
     End Sub
 
-    Private Sub CenterTimeLabels()
-        ' Center "Time Today"
-        If timetodaylbl IsNot Nothing Then
-            timetodaylbl.AutoSize = True
-            timetodaylbl.Left = (factimeinpnl.ClientSize.Width - timetodaylbl.Width) \ 2
-            timetodaylbl.Top = 70 ' adjust as needed
+    ' ---------------- DATABASE FUNCTIONS ----------------
+    Private Sub RecordAttendance(userID As String, userType As String, action As String, actionTime As DateTime)
+        Try
+            conn.Open()
+            Dim query As String = "INSERT INTO attendance (UserID, UserType, ActionType, ActionTime) 
+                                   VALUES (@uid, @utype, @action, @time)"
+            cmd = New MySqlCommand(query, conn)
+            cmd.Parameters.AddWithValue("@uid", userID)
+            cmd.Parameters.AddWithValue("@utype", userType)
+            cmd.Parameters.AddWithValue("@action", action)
+            cmd.Parameters.AddWithValue("@time", actionTime)
+            cmd.ExecuteNonQuery()
+        Catch ex As Exception
+            MessageBox.Show("Error recording attendance: " & ex.Message)
+        Finally
+            conn.Close()
+        End Try
+    End Sub
+
+    Private Function GetLastActionToday(userID As String, userType As String) As String
+        Return ExecuteScalarQuery($"SELECT ActionType FROM attendance WHERE UserID=@uid AND UserType=@utype AND DATE(ActionTime) = 
+                                    CURDATE() ORDER BY ActionTime DESC LIMIT 1", userID, userType)
+    End Function
+
+    Private Function GetLastActionTime(userID As String, userType As String) As DateTime?
+        Dim result As Object = ExecuteScalarQueryObject($"SELECT ActionTime FROM attendance WHERE UserID=@uid AND UserType=@utype 
+                                                        ORDER BY ActionTime DESC LIMIT 1", userID, userType)
+        Return If(result IsNot Nothing, Convert.ToDateTime(result), Nothing)
+    End Function
+
+    Private Function HasTimeOutToday(userID As String, userType As String) As Boolean
+        Dim result As Object = ExecuteScalarQueryObject($"SELECT COUNT(*) FROM attendance WHERE UserID=@uid AND UserType=@utype 
+                                                          AND ActionType='OUT' AND DATE(ActionTime) = CURDATE()", userID, userType)
+        Return Convert.ToInt32(result) > 0
+    End Function
+
+    ' ---------------- GENERIC DB HELPERS ----------------
+    Private Function ExecuteScalarQuery(query As String, userID As String, userType As String) As String
+        Dim value As String = ""
+        Try
+            conn.Open()
+            cmd = New MySqlCommand(query, conn)
+            cmd.Parameters.AddWithValue("@uid", userID)
+            cmd.Parameters.AddWithValue("@utype", userType)
+            Dim result = cmd.ExecuteScalar()
+            If result IsNot Nothing Then value = result.ToString()
+        Catch ex As Exception
+            MessageBox.Show("Database error: " & ex.Message)
+        Finally
+            conn.Close()
+        End Try
+        Return value
+    End Function
+
+    Private Function ExecuteScalarQueryObject(query As String, userID As String, userType As String) As Object
+        Dim value As Object = Nothing
+        Try
+            conn.Open()
+            cmd = New MySqlCommand(query, conn)
+            cmd.Parameters.AddWithValue("@uid", userID)
+            cmd.Parameters.AddWithValue("@utype", userType)
+            value = cmd.ExecuteScalar()
+        Catch ex As Exception
+            MessageBox.Show("Database error: " & ex.Message)
+        Finally
+            conn.Close()
+        End Try
+        Return value
+    End Function
+
+    ' ---------------- USER VALIDATION ----------------
+    Private Function UserExists(userID As String, userType As String) As Boolean
+        Dim tableName As String = If(userType = "Student", "student", If(userType = "Faculty", "faculty", "supervisor"))
+        Dim exists As Boolean = False
+        Try
+            conn.Open()
+            Dim query As String = $"SELECT COUNT(*) FROM {tableName} WHERE {tableName}ID=@id"
+            cmd = New MySqlCommand(query, conn)
+            cmd.Parameters.AddWithValue("@id", userID)
+            exists = Convert.ToInt32(cmd.ExecuteScalar()) > 0
+        Finally
+            conn.Close()
+        End Try
+        Return exists
+    End Function
+
+    ' ---------------- viewsched ----------------
+    Private Sub viewschedbtn_Click(sender As Object, e As EventArgs) Handles viewschedbtn.Click
+        Dim scheduleForm As New scheduleForm()
+        scheduleForm.FacultyID = Me.FacultyID
+        scheduleForm.ReadOnlyMode = False
+        scheduleForm.ShowDialog()
+    End Sub
+
+    ' ---------------- Task ----------------
+    Private Sub completaskbtn_Click(sender As Object, e As EventArgs) Handles completaskbtn.Click
+        Dim tasks = factaskspnl.Controls.OfType(Of CheckBox)().ToList()
+        If tasks.Count = 0 Then
+            MessageBox.Show("No tasks to complete.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
         End If
 
-        ' --- Center "Last Time Out" + AM/PM ---
-        Dim spacing As Integer = 3 ' tighter gap
-        Dim horizontalPadding As Integer = 20
-
-        ' Measure Label7 based on its actual content
-        Label7.AutoSize = True
-        Label7.TextAlign = ContentAlignment.MiddleCenter
-
-        ' Match AM/PM label style and size
-        If lastOutAmPm IsNot Nothing Then
-            lastOutAmPm.Font = New Font(Label7.Font.FontFamily, Label7.Font.Size, FontStyle.Bold)
-            lastOutAmPm.AutoSize = True
-        End If
-
-        ' Calculate total width of both labels
-        Dim ampmWidth As Integer = If(lastOutAmPm IsNot Nothing, lastOutAmPm.PreferredSize.Width, 0)
-        Dim combinedWidth As Integer = Label7.PreferredWidth + spacing + ampmWidth
-
-        ' Center the pair horizontally within Panel3
-        Dim groupLeft As Integer = Math.Max(0, (factimeinpnl.ClientSize.Width - combinedWidth) \ 2)
-
-        ' Position Label7
-        Label7.Left = groupLeft
-
-        ' Position AM/PM immediately after text (not blank area)
-        If lastOutAmPm IsNot Nothing Then
-            lastOutAmPm.Left = Label7.Left + Label7.PreferredWidth + spacing
-            lastOutAmPm.Top = Label7.Top + ((Label7.Height - lastOutAmPm.Height) \ 2)
+        If MessageBox.Show($"Complete all {tasks.Count} tasks?", "Complete Tasks", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+            For Each cb In tasks
+                factaskspnl.Controls.Remove(cb)
+                cb.Dispose()
+            Next
+            ReflowTasks()
+            UpdatePendingLabel()
+            SaveTasks()
         End If
     End Sub
 
-    ' ---------------- ADD TASK ----------------
-    Private Sub ButtonAddTask_Click(sender As Object, e As EventArgs)
+    Private Sub addtasksbtn_Click(sender As Object, e As EventArgs) Handles addtasksbtn.Click
         Dim currentTasks = factaskspnl.Controls.OfType(Of CheckBox)().ToList()
         If currentTasks.Count >= MaxTasks Then
-            MessageBox.Show($"You can only have up to {MaxTasks} pending tasks.", "Task Limit", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show($"You can only have up to {MaxTasks} tasks.", "Task Limit", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
 
         Dim taskText As String = Microsoft.VisualBasic.Interaction.InputBox("Enter task description:", "Add Task").Trim()
         If String.IsNullOrWhiteSpace(taskText) Then Return
         If taskText.Length > MaxTaskTextLength Then
-            MessageBox.Show($"Task description too long. Shorten it and try again.", "Task Too Long", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("Task description too long.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
 
         Dim cb As New CheckBox() With {
-            .AutoSize = True,
-            .Font = New Font("Segoe UI", 24.0F, FontStyle.Bold),
-            .ForeColor = Color.Indigo,
-            .Left = TaskLeft,
-            .Text = taskText,
-            .UseVisualStyleBackColor = True
-        }
+        .Text = taskText,
+        .AutoSize = True,
+        .Font = New Font("Segoe UI", 14, FontStyle.Bold),
+        .ForeColor = Color.Indigo,
+        .Left = TaskLeft
+    }
         AddHandler cb.CheckedChanged, AddressOf TaskCheckChanged
         factaskspnl.Controls.Add(cb)
         ReflowTasks()
+        UpdatePendingLabel()
+        SaveTasks()
     End Sub
 
-    ' ---------------- TASK CHECKED (PENDING TASKS) ----------------
+    ' ---------------- LOADTASKS ----------------
+    Private Sub LoadTasks()
+        For Each cb In factaskspnl.Controls.OfType(Of CheckBox)().ToList()
+            factaskspnl.Controls.Remove(cb)
+            cb.Dispose()
+        Next
+
+        If File.Exists(TasksFile) Then
+            For Each line In File.ReadAllLines(TasksFile)
+                Dim cb As New CheckBox() With {
+                .Text = line,
+                .AutoSize = True,
+                .Font = New Font("Segoe UI", 14, FontStyle.Bold),
+                .ForeColor = Color.Indigo,
+                .Left = TaskLeft
+            }
+                AddHandler cb.CheckedChanged, AddressOf TaskCheckChanged
+                factaskspnl.Controls.Add(cb)
+            Next
+        End If
+
+        ReflowTasks()
+        UpdatePendingLabel()
+    End Sub
+
     Private Sub TaskCheckChanged(sender As Object, e As EventArgs)
         Dim cb = TryCast(sender, CheckBox)
         If cb Is Nothing OrElse Not cb.Checked Then Return
@@ -223,126 +381,54 @@ Public Class facultyDashboard
             factaskspnl.Controls.Remove(cb)
             cb.Dispose()
             ReflowTasks()
+            UpdatePendingLabel()
+            SaveTasks()
         Else
+            RemoveHandler cb.CheckedChanged, AddressOf TaskCheckChanged
             cb.Checked = False
+            AddHandler cb.CheckedChanged, AddressOf TaskCheckChanged
         End If
     End Sub
 
-    ' ---------------- ANNOUNCEMENT CHECKED (acts like pending tasks) ----------------
-    Private Sub AnnouncementCheckChanged(sender As Object, e As EventArgs)
-        Dim cb = TryCast(sender, CheckBox)
-        If cb Is Nothing OrElse Not cb.Checked Then Return
-
-        If MessageBox.Show("Mark this announcement as handled and remove it?", "Announcements", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-            facannouncementspnl.Controls.Remove(cb)
-            cb.Dispose()
-            ReflowAnnouncements()
-        Else
-            cb.Checked = False
-        End If
-    End Sub
-
-    ' ---------------- COMPLETE ALL TASKS ----------------
-    Private Sub ButtonCompleteSelected_Click(sender As Object, e As EventArgs)
-        Dim tasks = factaskspnl.Controls.OfType(Of CheckBox)().ToList()
-        If tasks.Count = 0 Then
-            MessageBox.Show("There are no tasks to complete.", "Complete Tasks", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Return
-        End If
-
-        If MessageBox.Show($"Complete and erase all {tasks.Count} task(s)?", "Complete All Tasks", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-            For Each cb In tasks
-                factaskspnl.Controls.Remove(cb)
-                cb.Dispose()
-            Next
-            ReflowTasks()
-        End If
-    End Sub
-
-    ' ---------------- REFLOW TASKS ----------------
     Private Sub ReflowTasks()
         Dim tasks = factaskspnl.Controls.OfType(Of CheckBox)().ToList()
         For i As Integer = 0 To tasks.Count - 1
-            Dim cb = tasks(i)
-            cb.Left = TaskLeft
-            cb.Top = TaskStartTop + (i * TaskSpacing)
+            tasks(i).Top = TaskStartTop + (i * TaskSpacing)
         Next
     End Sub
 
-    ' ---------------- RETURN TO LOGIN ----------------
-    Private Sub PictureBox7_Click(sender As Object, e As EventArgs) Handles PictureBox7.Click
-        If MessageBox.Show("Return to login page?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+    Private Sub UpdatePendingLabel()
+        taskslbl.Text = $"Pending Tasks: {factaskspnl.Controls.OfType(Of CheckBox)().Count()}"
+    End Sub
+    ' ---------------- BUTTONS ----------------
+    ' You can edit these functions for actual features later
+    Private Sub studrecordbtn_Click(sender As Object, e As EventArgs) Handles studrecordbtn.Click
+        Dim studentRecord As New facultyStudentRecord()
+        studentRecord.FacultyID = Me.FacultyID
+        studentRecord.Show()
+        Me.Hide()
+    End Sub
+    Private Sub gradestudbtn_Click(sender As Object, e As EventArgs) Handles gradestudbtn.Click
+        Dim studentGrades As New facultyGradeStudents()
+        studentGrades.FacultyID = Me.FacultyID
+        studentGrades.Show()
+        Me.Hide()
+    End Sub
+    Private Sub SaveTasks()
+        Dim lines As New List(Of String)
+        For Each cb In factaskspnl.Controls.OfType(Of CheckBox)()
+            lines.Add(cb.Text)
+        Next
+        File.WriteAllLines(TasksFile, lines)
+    End Sub
+
+    Private Sub logoutbtn_Click(sender As Object, e As EventArgs) Handles logoutbtn.Click
+        If MessageBox.Show("Are you sure you want to logout?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+            Me.Close()
             Dim loginForm As New Login()
             loginForm.Show()
-            Me.Hide()
         End If
     End Sub
 
-    ' ---------------- TIME IN / TIME OUT ----------------
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles timeinbtn.Click
-        Dim now As DateTime = DateTime.Now
-        Dim timeOnly As String = now.ToString("h:mm tt", CultureInfo.InvariantCulture)
 
-        If String.Equals(timeinbtn.Text.Trim(), "TIME IN", StringComparison.OrdinalIgnoreCase) Then
-            ' TIME IN
-            timetodaylbl.Text = $"Time Today: {timeOnly}"
-            MessageBox.Show($"You are timed in at {timeOnly}", "Time In", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            timeinbtn.Text = "TIME OUT"
-        Else
-            ' TIME OUT - set label text and show AM/PM next to it
-            Label7.Text = now.ToString("MMMM dd, yyyy - h:mm", CultureInfo.InvariantCulture)
-            CreateOrConfigureLastOutAmPmLabel()
-            lastOutAmPm.Text = now.ToString("tt", CultureInfo.InvariantCulture).ToUpperInvariant()
-            lastOutAmPm.Visible = True
-
-            MessageBox.Show($"You are timed out at {timeOnly}", "Time Out", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            timeinbtn.Text = "TIME IN"
-        End If
-
-        CenterTimeLabels()
-    End Sub
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles addtasksbtn.Click
-
-    End Sub
-
-    Private Sub Label18_Click(sender As Object, e As EventArgs) Handles Label18.Click
-
-    End Sub
-
-    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
-        Dim viewstudent As New facultyStudentRecord()
-        viewstudent.Show()
-        Me.Hide()
-    End Sub
-
-    Private Sub viewschedpnl_Click(sender As Object, e As EventArgs) Handles viewschedpnl.Click
-        Dim viewschedule As New scheduleForm()
-        viewschedule.Show()
-        Me.Hide()
-    End Sub
-
-    Private Sub btnSelectPhoto_Click(sender As Object, e As EventArgs) Handles btnSelectPhoto.Click
-
-        Dim result As DialogResult = MessageBox.Show(
-            "Do you want to change display photo? 1x1 only",
-            "Change Photo",
-            MessageBoxButtons.YesNo,
-            MessageBoxIcon.Question
-        )
-
-        If result = DialogResult.No Then
-            Exit Sub ' user canceled
-        End If
-
-
-        Dim ofd As New OpenFileDialog()
-        ofd.Title = "Select a Photo"
-        ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif"
-
-        If ofd.ShowDialog() = DialogResult.OK Then
-            btnSelectPhoto.Image = Image.FromFile(ofd.FileName)
-            btnSelectPhoto.SizeMode = PictureBoxSizeMode.Zoom
-        End If
-    End Sub
 End Class

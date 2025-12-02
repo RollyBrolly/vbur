@@ -11,26 +11,16 @@ Public Class Login
         Me.WindowState = FormWindowState.Maximized
     End Sub
 
-    Private Sub Login_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        Dim result = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-        If result = DialogResult.No Then
-            e.Cancel = True
-        End If
-    End Sub
 
-    Private Sub exitbtn_Click(sender As Object, e As EventArgs) Handles exitbtn.Click
-        Me.Close()
-    End Sub
 
     Private Sub showpasschkb_CheckedChanged(sender As Object, e As EventArgs) Handles showpasschkb.CheckedChanged
         passtxt.UseSystemPasswordChar = Not showpasschkb.Checked
     End Sub
 
     Private Sub signupbtn_Click(sender As Object, e As EventArgs) Handles signupbtn.Click
+        Dim registrationForm As New Registration(Me)
+        registrationForm.Show()
         Me.Hide()
-        Dim regForm As New Registration()
-        regForm.ShowDialog()
-        Me.Show()
     End Sub
 
     Private Sub signinbtn_Click(sender As Object, e As EventArgs) Handles signinbtn.Click
@@ -56,15 +46,19 @@ Public Class Login
                             Select Case role
                                 'Case "Admin"
                                 '    Dim adminForm As New AdminDashboard()
+                                '    adminForm.userID = userID
                                 '    adminForm.Show()
                                 Case "Student"
                                     Dim studentForm As New studentDashboard()
+                                    studentForm.UserID = userID.ToString()
                                     studentForm.Show()
                                 Case "Faculty"
                                     Dim facultyForm As New facultyDashboard()
+                                    facultyForm.UserID = userID.ToString()
                                     facultyForm.Show()
                                 Case "Supervisor"
                                     Dim supervisorForm As New supervisorDashboard()
+                                    supervisorForm.UserID = userID.ToString()
                                     supervisorForm.Show()
                                 Case Else
                                     MessageBox.Show("Unknown role. Cannot open dashboard.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -86,7 +80,10 @@ Public Class Login
         End Try
     End Sub
 
-    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
-
+    Private Sub systemexitbtn_Click(sender As Object, e As EventArgs) Handles systemexitbtn.Click
+        Dim result = MessageBox.Show("Are you sure you want to shut down the system?", "Confirm Shutdown", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+        If result = DialogResult.Yes Then
+            Application.Exit()
+        End If
     End Sub
 End Class

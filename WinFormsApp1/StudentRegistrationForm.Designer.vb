@@ -52,6 +52,8 @@ Partial Class StudentRegistrationForm
         studnotxt = New TextBox()
         sectionlbl = New Label()
         studsectioncb = New ComboBox()
+        progressend = New ProgressBar()
+        statuslbl = New Label()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
         SuspendLayout()
@@ -321,7 +323,9 @@ Partial Class StudentRegistrationForm
         ' 
         ' Panel1
         ' 
+        Panel1.Controls.Add(progressend)
         Panel1.Controls.Add(lblemailInvalid)
+        Panel1.Controls.Add(statuslbl)
         Panel1.Controls.Add(studnotxt)
         Panel1.Controls.Add(sectionlbl)
         Panel1.Controls.Add(studsectioncb)
@@ -399,6 +403,25 @@ Partial Class StudentRegistrationForm
         studsectioncb.Size = New Size(71, 48)
         studsectioncb.TabIndex = 33
         ' 
+        ' progressend
+        ' 
+        progressend.Location = New Point(484, 75)
+        progressend.Name = "progressend"
+        progressend.Size = New Size(400, 30)
+        progressend.Style = ProgressBarStyle.Continuous
+        progressend.TabIndex = 103
+        progressend.Visible = False
+        ' 
+        ' statuslbl
+        ' 
+        statuslbl.Font = New Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        statuslbl.Location = New Point(484, 31)
+        statuslbl.Name = "statuslbl"
+        statuslbl.Size = New Size(400, 30)
+        statuslbl.TabIndex = 102
+        statuslbl.TextAlign = ContentAlignment.MiddleCenter
+        statuslbl.Visible = False
+        ' 
         ' StudentRegistrationForm
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -445,5 +468,7 @@ Partial Class StudentRegistrationForm
     Friend WithEvents studsectioncb As ComboBox
     Friend WithEvents studnotxt As TextBox
     Friend WithEvents lblemailInvalid As Label
+    Friend WithEvents progressend As ProgressBar
+    Friend WithEvents statuslbl As Label
 
 End Class

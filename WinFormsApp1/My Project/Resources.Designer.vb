@@ -263,6 +263,26 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property icons8_positive_dynamic_100() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("icons8-positive-dynamic-100", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property icons8_power_off_64() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("icons8-power-off-64", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property icons8_rating_52() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("icons8-rating-52", resourceCulture)
@@ -396,6 +416,16 @@ Namespace My.Resources
         Friend ReadOnly Property regisheader_resize() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("regisheader_resize", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property sirRedCover() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("sirRedCover", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

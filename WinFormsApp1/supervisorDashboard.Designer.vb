@@ -22,64 +22,64 @@ Partial Class supervisorDashboard
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        components = New ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(supervisorDashboard))
         PictureBox1 = New PictureBox()
-        PictureBox7 = New PictureBox()
+        logoutbtn = New PictureBox()
         Panel6 = New Panel()
-        Button5 = New Button()
+        evalstudbtn = New Button()
         PictureBox6 = New PictureBox()
         Panel5 = New Panel()
-        Button4 = New Button()
+        viewvisitlogbtn = New Button()
         PictureBox5 = New PictureBox()
-        Panel4 = New Panel()
-        Button6 = New Button()
-        CheckBox4 = New CheckBox()
-        Label8 = New Label()
-        CheckBox5 = New CheckBox()
-        PictureBox4 = New PictureBox()
-        CheckBox6 = New CheckBox()
         Panel3 = New Panel()
-        Label7 = New Label()
-        Label6 = New Label()
-        Label5 = New Label()
-        Button2 = New Button()
+        timeoutlbl = New Label()
+        timetodatlbl = New Label()
+        timeinbtn = New Button()
         Panel2 = New Panel()
-        viewinternsbtn = New Button()
+        vewinternbtn = New Button()
         PictureBox3 = New PictureBox()
-        Label11 = New Label()
-        Panel1 = New Panel()
-        Button3 = New Button()
+        staffstaskpnl = New Panel()
+        completetaskbtn = New Button()
         PictureBox2 = New PictureBox()
-        Button1 = New Button()
-        Label2 = New Label()
+        addtaskbtn = New Button()
+        pendinglbl = New Label()
         Panel7 = New Panel()
-        elbl = New Label()
-        emaillbl = New Label()
-        contlbl = New Label()
-        conatactlbl = New Label()
-        pisitionlbl = New Label()
-        poslbl = New Label()
-        camplbl = New Label()
-        companylbl = New Label()
-        idlbl = New Label()
-        sidlbl = New Label()
-        btnSelectPhoto = New PictureBox()
-        welcomelbl = New Label()
+        staffcompadd = New Label()
+        staffcompaddlbl = New Label()
+        staffgender = New Label()
+        studgenderlbl = New Label()
+        staffemail = New Label()
+        stafemaillbl = New Label()
+        staffcontact = New Label()
+        staffcontactlbl = New Label()
+        staffposlbl = New Label()
+        staffpos = New Label()
+        staffcomp = New Label()
+        staffcomplbl = New Label()
+        staffid = New Label()
+        staffidlbl = New Label()
+        profilebtn = New PictureBox()
+        staffwelcome = New Label()
+        Timer = New Timer(components)
+        Panel1 = New Panel()
+        viewgradebtn = New Button()
+        PictureBox4 = New PictureBox()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
-        CType(PictureBox7, ComponentModel.ISupportInitialize).BeginInit()
+        CType(logoutbtn, ComponentModel.ISupportInitialize).BeginInit()
         Panel6.SuspendLayout()
         CType(PictureBox6, ComponentModel.ISupportInitialize).BeginInit()
         Panel5.SuspendLayout()
         CType(PictureBox5, ComponentModel.ISupportInitialize).BeginInit()
-        Panel4.SuspendLayout()
-        CType(PictureBox4, ComponentModel.ISupportInitialize).BeginInit()
         Panel3.SuspendLayout()
         Panel2.SuspendLayout()
         CType(PictureBox3, ComponentModel.ISupportInitialize).BeginInit()
-        Panel1.SuspendLayout()
+        staffstaskpnl.SuspendLayout()
         CType(PictureBox2, ComponentModel.ISupportInitialize).BeginInit()
         Panel7.SuspendLayout()
-        CType(btnSelectPhoto, ComponentModel.ISupportInitialize).BeginInit()
+        CType(profilebtn, ComponentModel.ISupportInitialize).BeginInit()
+        Panel1.SuspendLayout()
+        CType(PictureBox4, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' PictureBox1
@@ -94,41 +94,41 @@ Partial Class supervisorDashboard
         PictureBox1.TabIndex = 66
         PictureBox1.TabStop = False
         ' 
-        ' PictureBox7
+        ' logoutbtn
         ' 
-        PictureBox7.BackColor = Color.Transparent
-        PictureBox7.Image = My.Resources.Resources.icons8_log_out_96
-        PictureBox7.Location = New Point(1684, 34)
-        PictureBox7.Margin = New Padding(3, 2, 3, 2)
-        PictureBox7.Name = "PictureBox7"
-        PictureBox7.Size = New Size(114, 103)
-        PictureBox7.SizeMode = PictureBoxSizeMode.StretchImage
-        PictureBox7.TabIndex = 69
-        PictureBox7.TabStop = False
+        logoutbtn.BackColor = Color.Transparent
+        logoutbtn.Image = My.Resources.Resources.icons8_log_out_96
+        logoutbtn.Location = New Point(1684, 34)
+        logoutbtn.Margin = New Padding(3, 2, 3, 2)
+        logoutbtn.Name = "logoutbtn"
+        logoutbtn.Size = New Size(114, 103)
+        logoutbtn.SizeMode = PictureBoxSizeMode.StretchImage
+        logoutbtn.TabIndex = 69
+        logoutbtn.TabStop = False
         ' 
         ' Panel6
         ' 
         Panel6.BackColor = Color.White
-        Panel6.Controls.Add(Button5)
+        Panel6.Controls.Add(evalstudbtn)
         Panel6.Controls.Add(PictureBox6)
-        Panel6.Location = New Point(37, 897)
+        Panel6.Location = New Point(741, 772)
         Panel6.Margin = New Padding(3, 2, 3, 2)
         Panel6.Name = "Panel6"
-        Panel6.Size = New Size(651, 111)
+        Panel6.Size = New Size(543, 111)
         Panel6.TabIndex = 80
         ' 
-        ' Button5
+        ' evalstudbtn
         ' 
-        Button5.BackColor = Color.Indigo
-        Button5.Font = New Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button5.ForeColor = Color.White
-        Button5.Location = New Point(96, 22)
-        Button5.Margin = New Padding(3, 2, 3, 2)
-        Button5.Name = "Button5"
-        Button5.Size = New Size(537, 69)
-        Button5.TabIndex = 68
-        Button5.Text = "EVALUATE STUDENTS"
-        Button5.UseVisualStyleBackColor = False
+        evalstudbtn.BackColor = Color.Indigo
+        evalstudbtn.Font = New Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        evalstudbtn.ForeColor = Color.White
+        evalstudbtn.Location = New Point(96, 22)
+        evalstudbtn.Margin = New Padding(3, 2, 3, 2)
+        evalstudbtn.Name = "evalstudbtn"
+        evalstudbtn.Size = New Size(429, 69)
+        evalstudbtn.TabIndex = 68
+        evalstudbtn.Text = "EVALUATE STUDENTS"
+        evalstudbtn.UseVisualStyleBackColor = False
         ' 
         ' PictureBox6
         ' 
@@ -144,26 +144,26 @@ Partial Class supervisorDashboard
         ' Panel5
         ' 
         Panel5.BackColor = Color.White
-        Panel5.Controls.Add(Button4)
+        Panel5.Controls.Add(viewvisitlogbtn)
         Panel5.Controls.Add(PictureBox5)
-        Panel5.Location = New Point(37, 767)
+        Panel5.Location = New Point(741, 629)
         Panel5.Margin = New Padding(3, 2, 3, 2)
         Panel5.Name = "Panel5"
-        Panel5.Size = New Size(651, 109)
+        Panel5.Size = New Size(543, 117)
         Panel5.TabIndex = 79
         ' 
-        ' Button4
+        ' viewvisitlogbtn
         ' 
-        Button4.BackColor = Color.Indigo
-        Button4.Font = New Font("Segoe UI", 30F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button4.ForeColor = Color.White
-        Button4.Location = New Point(96, 22)
-        Button4.Margin = New Padding(3, 2, 3, 2)
-        Button4.Name = "Button4"
-        Button4.Size = New Size(537, 71)
-        Button4.TabIndex = 74
-        Button4.Text = "VIEW VISITATION LOGS"
-        Button4.UseVisualStyleBackColor = False
+        viewvisitlogbtn.BackColor = Color.Indigo
+        viewvisitlogbtn.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        viewvisitlogbtn.ForeColor = Color.White
+        viewvisitlogbtn.Location = New Point(94, 22)
+        viewvisitlogbtn.Margin = New Padding(3, 2, 3, 2)
+        viewvisitlogbtn.Name = "viewvisitlogbtn"
+        viewvisitlogbtn.Size = New Size(431, 71)
+        viewvisitlogbtn.TabIndex = 74
+        viewvisitlogbtn.Text = "VIEW VISITATION LOGS"
+        viewvisitlogbtn.UseVisualStyleBackColor = False
         ' 
         ' PictureBox5
         ' 
@@ -176,175 +176,72 @@ Partial Class supervisorDashboard
         PictureBox5.TabIndex = 68
         PictureBox5.TabStop = False
         ' 
-        ' Panel4
-        ' 
-        Panel4.BackColor = Color.White
-        Panel4.Controls.Add(Button6)
-        Panel4.Controls.Add(CheckBox4)
-        Panel4.Controls.Add(Label8)
-        Panel4.Controls.Add(CheckBox5)
-        Panel4.Controls.Add(PictureBox4)
-        Panel4.Controls.Add(CheckBox6)
-        Panel4.Location = New Point(738, 629)
-        Panel4.Margin = New Padding(3, 2, 3, 2)
-        Panel4.Name = "Panel4"
-        Panel4.Size = New Size(546, 380)
-        Panel4.TabIndex = 78
-        ' 
-        ' Button6
-        ' 
-        Button6.BackColor = Color.Indigo
-        Button6.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button6.ForeColor = Color.White
-        Button6.Location = New Point(29, 298)
-        Button6.Margin = New Padding(3, 2, 3, 2)
-        Button6.Name = "Button6"
-        Button6.Size = New Size(155, 61)
-        Button6.TabIndex = 73
-        Button6.Text = "Add"
-        Button6.UseVisualStyleBackColor = False
-        ' 
-        ' CheckBox4
-        ' 
-        CheckBox4.AutoSize = True
-        CheckBox4.Font = New Font("Segoe UI", 24F, FontStyle.Bold)
-        CheckBox4.ForeColor = Color.Indigo
-        CheckBox4.Location = New Point(29, 245)
-        CheckBox4.Margin = New Padding(3, 2, 3, 2)
-        CheckBox4.Name = "CheckBox4"
-        CheckBox4.Size = New Size(421, 49)
-        CheckBox4.TabIndex = 75
-        CheckBox4.Text = "Coffee Machine is broken"
-        CheckBox4.UseVisualStyleBackColor = True
-        ' 
-        ' Label8
-        ' 
-        Label8.AutoSize = True
-        Label8.Font = New Font("Segoe UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label8.ForeColor = Color.Indigo
-        Label8.Location = New Point(92, 36)
-        Label8.Name = "Label8"
-        Label8.Size = New Size(287, 47)
-        Label8.TabIndex = 74
-        Label8.Text = "Announcements"
-        ' 
-        ' CheckBox5
-        ' 
-        CheckBox5.AutoSize = True
-        CheckBox5.Font = New Font("Segoe UI", 24F, FontStyle.Bold)
-        CheckBox5.ForeColor = Color.Indigo
-        CheckBox5.Location = New Point(29, 186)
-        CheckBox5.Margin = New Padding(3, 2, 3, 2)
-        CheckBox5.Name = "CheckBox5"
-        CheckBox5.Size = New Size(326, 49)
-        CheckBox5.TabIndex = 74
-        CheckBox5.Text = "Meeting tomorrow"
-        CheckBox5.UseVisualStyleBackColor = True
-        ' 
-        ' PictureBox4
-        ' 
-        PictureBox4.Image = My.Resources.Resources.icons8_announcement_90
-        PictureBox4.Location = New Point(17, 22)
-        PictureBox4.Margin = New Padding(3, 2, 3, 2)
-        PictureBox4.Name = "PictureBox4"
-        PictureBox4.Size = New Size(69, 71)
-        PictureBox4.SizeMode = PictureBoxSizeMode.StretchImage
-        PictureBox4.TabIndex = 73
-        PictureBox4.TabStop = False
-        ' 
-        ' CheckBox6
-        ' 
-        CheckBox6.AutoSize = True
-        CheckBox6.Font = New Font("Segoe UI", 24F, FontStyle.Bold)
-        CheckBox6.ForeColor = Color.Indigo
-        CheckBox6.Location = New Point(29, 119)
-        CheckBox6.Margin = New Padding(3, 2, 3, 2)
-        CheckBox6.Name = "CheckBox6"
-        CheckBox6.Size = New Size(433, 49)
-        CheckBox6.TabIndex = 73
-        CheckBox6.Text = "Company Event at 3:00PM"
-        CheckBox6.UseVisualStyleBackColor = True
-        ' 
         ' Panel3
         ' 
         Panel3.BackColor = Color.White
-        Panel3.Controls.Add(Label7)
-        Panel3.Controls.Add(Label6)
-        Panel3.Controls.Add(Label5)
-        Panel3.Controls.Add(Button2)
+        Panel3.Controls.Add(timeoutlbl)
+        Panel3.Controls.Add(timetodatlbl)
+        Panel3.Controls.Add(timeinbtn)
         Panel3.Location = New Point(738, 221)
         Panel3.Margin = New Padding(3, 2, 3, 2)
         Panel3.Name = "Panel3"
         Panel3.Size = New Size(546, 380)
         Panel3.TabIndex = 77
         ' 
-        ' Label7
+        ' timeoutlbl
         ' 
-        Label7.AutoSize = True
-        Label7.Font = New Font("Segoe UI", 26.25F, FontStyle.Bold)
-        Label7.Location = New Point(41, 308)
-        Label7.Name = "Label7"
-        Label7.Size = New Size(472, 47)
-        Label7.TabIndex = 3
-        Label7.Text = "October 29, 2025 - 5:01 PM"
+        timeoutlbl.Font = New Font("Segoe UI", 27F, FontStyle.Bold)
+        timeoutlbl.Location = New Point(3, 276)
+        timeoutlbl.Name = "timeoutlbl"
+        timeoutlbl.Size = New Size(540, 47)
+        timeoutlbl.TabIndex = 3
+        timeoutlbl.TextAlign = ContentAlignment.MiddleCenter
         ' 
-        ' Label6
+        ' timetodatlbl
         ' 
-        Label6.AutoSize = True
-        Label6.Font = New Font("Segoe UI", 26.25F, FontStyle.Bold)
-        Label6.Location = New Point(144, 251)
-        Label6.Name = "Label6"
-        Label6.Size = New Size(259, 47)
-        Label6.TabIndex = 2
-        Label6.Text = "Last Time Out:"
+        timetodatlbl.Font = New Font("Segoe UI", 27F, FontStyle.Bold)
+        timetodatlbl.Location = New Point(3, 64)
+        timetodatlbl.Name = "timetodatlbl"
+        timetodatlbl.Size = New Size(540, 59)
+        timetodatlbl.TabIndex = 1
+        timetodatlbl.TextAlign = ContentAlignment.MiddleCenter
         ' 
-        ' Label5
+        ' timeinbtn
         ' 
-        Label5.AutoSize = True
-        Label5.Font = New Font("Segoe UI", 32.25F, FontStyle.Bold)
-        Label5.Location = New Point(31, 64)
-        Label5.Name = "Label5"
-        Label5.Size = New Size(471, 59)
-        Label5.TabIndex = 1
-        Label5.Text = "Time Today: 12:30 PM"
-        ' 
-        ' Button2
-        ' 
-        Button2.BackColor = Color.Indigo
-        Button2.Font = New Font("Segoe UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button2.ForeColor = Color.White
-        Button2.Location = New Point(172, 146)
-        Button2.Margin = New Padding(3, 2, 3, 2)
-        Button2.Name = "Button2"
-        Button2.Size = New Size(207, 87)
-        Button2.TabIndex = 0
-        Button2.Text = "TIME IN"
-        Button2.UseVisualStyleBackColor = False
+        timeinbtn.BackColor = Color.Indigo
+        timeinbtn.Font = New Font("Segoe UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        timeinbtn.ForeColor = Color.White
+        timeinbtn.Location = New Point(172, 146)
+        timeinbtn.Margin = New Padding(3, 2, 3, 2)
+        timeinbtn.Name = "timeinbtn"
+        timeinbtn.Size = New Size(207, 87)
+        timeinbtn.TabIndex = 0
+        timeinbtn.Text = "TIME IN"
+        timeinbtn.UseVisualStyleBackColor = False
         ' 
         ' Panel2
         ' 
         Panel2.BackColor = Color.White
-        Panel2.Controls.Add(viewinternsbtn)
+        Panel2.Controls.Add(vewinternbtn)
         Panel2.Controls.Add(PictureBox3)
-        Panel2.Controls.Add(Label11)
-        Panel2.Location = New Point(1311, 220)
+        Panel2.Location = New Point(738, 913)
         Panel2.Margin = New Padding(3, 2, 3, 2)
         Panel2.Name = "Panel2"
-        Panel2.Size = New Size(546, 380)
+        Panel2.Size = New Size(546, 96)
         Panel2.TabIndex = 76
         ' 
-        ' viewinternsbtn
+        ' vewinternbtn
         ' 
-        viewinternsbtn.BackColor = Color.Indigo
-        viewinternsbtn.Font = New Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        viewinternsbtn.ForeColor = Color.White
-        viewinternsbtn.Location = New Point(16, 158)
-        viewinternsbtn.Margin = New Padding(3, 2, 3, 2)
-        viewinternsbtn.Name = "viewinternsbtn"
-        viewinternsbtn.Size = New Size(504, 76)
-        viewinternsbtn.TabIndex = 76
-        viewinternsbtn.Text = "VIEW INTERNS"
-        viewinternsbtn.UseVisualStyleBackColor = False
+        vewinternbtn.BackColor = Color.Indigo
+        vewinternbtn.Font = New Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        vewinternbtn.ForeColor = Color.White
+        vewinternbtn.Location = New Point(96, 11)
+        vewinternbtn.Margin = New Padding(3, 2, 3, 2)
+        vewinternbtn.Name = "vewinternbtn"
+        vewinternbtn.Size = New Size(432, 71)
+        vewinternbtn.TabIndex = 76
+        vewinternbtn.Text = "VIEW INTERNS"
+        vewinternbtn.UseVisualStyleBackColor = False
         ' 
         ' PictureBox3
         ' 
@@ -357,42 +254,31 @@ Partial Class supervisorDashboard
         PictureBox3.TabIndex = 74
         PictureBox3.TabStop = False
         ' 
-        ' Label11
+        ' staffstaskpnl
         ' 
-        Label11.AutoSize = True
-        Label11.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label11.ForeColor = Color.Indigo
-        Label11.Location = New Point(96, 23)
-        Label11.Name = "Label11"
-        Label11.Size = New Size(124, 45)
-        Label11.TabIndex = 75
-        Label11.Text = "Interns"
+        staffstaskpnl.BackColor = Color.White
+        staffstaskpnl.Controls.Add(completetaskbtn)
+        staffstaskpnl.Controls.Add(PictureBox2)
+        staffstaskpnl.Controls.Add(addtaskbtn)
+        staffstaskpnl.Controls.Add(pendinglbl)
+        staffstaskpnl.Location = New Point(1312, 629)
+        staffstaskpnl.Margin = New Padding(3, 2, 3, 2)
+        staffstaskpnl.Name = "staffstaskpnl"
+        staffstaskpnl.Size = New Size(546, 380)
+        staffstaskpnl.TabIndex = 75
         ' 
-        ' Panel1
+        ' completetaskbtn
         ' 
-        Panel1.BackColor = Color.White
-        Panel1.Controls.Add(Button3)
-        Panel1.Controls.Add(PictureBox2)
-        Panel1.Controls.Add(Button1)
-        Panel1.Controls.Add(Label2)
-        Panel1.Location = New Point(1312, 629)
-        Panel1.Margin = New Padding(3, 2, 3, 2)
-        Panel1.Name = "Panel1"
-        Panel1.Size = New Size(546, 380)
-        Panel1.TabIndex = 75
-        ' 
-        ' Button3
-        ' 
-        Button3.BackColor = Color.Indigo
-        Button3.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button3.ForeColor = Color.White
-        Button3.Location = New Point(281, 301)
-        Button3.Margin = New Padding(3, 2, 3, 2)
-        Button3.Name = "Button3"
-        Button3.Size = New Size(222, 61)
-        Button3.TabIndex = 72
-        Button3.Text = "Complete Tasks"
-        Button3.UseVisualStyleBackColor = False
+        completetaskbtn.BackColor = Color.Indigo
+        completetaskbtn.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        completetaskbtn.ForeColor = Color.White
+        completetaskbtn.Location = New Point(281, 301)
+        completetaskbtn.Margin = New Padding(3, 2, 3, 2)
+        completetaskbtn.Name = "completetaskbtn"
+        completetaskbtn.Size = New Size(222, 61)
+        completetaskbtn.TabIndex = 72
+        completetaskbtn.Text = "Complete Tasks"
+        completetaskbtn.UseVisualStyleBackColor = False
         ' 
         ' PictureBox2
         ' 
@@ -405,181 +291,266 @@ Partial Class supervisorDashboard
         PictureBox2.TabIndex = 67
         PictureBox2.TabStop = False
         ' 
-        ' Button1
+        ' addtaskbtn
         ' 
-        Button1.BackColor = Color.Indigo
-        Button1.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button1.ForeColor = Color.White
-        Button1.Location = New Point(38, 301)
-        Button1.Margin = New Padding(3, 2, 3, 2)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(155, 61)
-        Button1.TabIndex = 68
-        Button1.Text = "Add Tasks"
-        Button1.UseVisualStyleBackColor = False
+        addtaskbtn.BackColor = Color.Indigo
+        addtaskbtn.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        addtaskbtn.ForeColor = Color.White
+        addtaskbtn.Location = New Point(38, 301)
+        addtaskbtn.Margin = New Padding(3, 2, 3, 2)
+        addtaskbtn.Name = "addtaskbtn"
+        addtaskbtn.Size = New Size(155, 61)
+        addtaskbtn.TabIndex = 68
+        addtaskbtn.Text = "Add Tasks"
+        addtaskbtn.UseVisualStyleBackColor = False
         ' 
-        ' Label2
+        ' pendinglbl
         ' 
-        Label2.AutoSize = True
-        Label2.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label2.ForeColor = Color.Indigo
-        Label2.Location = New Point(77, 36)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(231, 45)
-        Label2.TabIndex = 67
-        Label2.Text = "Pending Tasks"
+        pendinglbl.AutoSize = True
+        pendinglbl.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        pendinglbl.ForeColor = Color.Indigo
+        pendinglbl.Location = New Point(77, 36)
+        pendinglbl.Name = "pendinglbl"
+        pendinglbl.Size = New Size(231, 45)
+        pendinglbl.TabIndex = 67
+        pendinglbl.Text = "Pending Tasks"
         ' 
         ' Panel7
         ' 
         Panel7.BackColor = Color.White
-        Panel7.Controls.Add(elbl)
-        Panel7.Controls.Add(emaillbl)
-        Panel7.Controls.Add(contlbl)
-        Panel7.Controls.Add(conatactlbl)
-        Panel7.Controls.Add(pisitionlbl)
-        Panel7.Controls.Add(poslbl)
-        Panel7.Controls.Add(camplbl)
-        Panel7.Controls.Add(companylbl)
-        Panel7.Controls.Add(idlbl)
-        Panel7.Controls.Add(sidlbl)
-        Panel7.Controls.Add(btnSelectPhoto)
-        Panel7.Controls.Add(welcomelbl)
+        Panel7.Controls.Add(staffcompadd)
+        Panel7.Controls.Add(staffcompaddlbl)
+        Panel7.Controls.Add(staffgender)
+        Panel7.Controls.Add(studgenderlbl)
+        Panel7.Controls.Add(staffemail)
+        Panel7.Controls.Add(stafemaillbl)
+        Panel7.Controls.Add(staffcontact)
+        Panel7.Controls.Add(staffcontactlbl)
+        Panel7.Controls.Add(staffposlbl)
+        Panel7.Controls.Add(staffpos)
+        Panel7.Controls.Add(staffcomp)
+        Panel7.Controls.Add(staffcomplbl)
+        Panel7.Controls.Add(staffid)
+        Panel7.Controls.Add(staffidlbl)
+        Panel7.Controls.Add(profilebtn)
+        Panel7.Controls.Add(staffwelcome)
         Panel7.Location = New Point(37, 221)
         Panel7.Name = "Panel7"
-        Panel7.Size = New Size(651, 515)
+        Panel7.Size = New Size(651, 788)
         Panel7.TabIndex = 82
         ' 
-        ' elbl
+        ' staffcompadd
         ' 
-        elbl.AutoSize = True
-        elbl.Font = New Font("Segoe UI Semibold", 14.25F, FontStyle.Bold)
-        elbl.ForeColor = SystemColors.ActiveCaptionText
-        elbl.Location = New Point(251, 179)
-        elbl.Name = "elbl"
-        elbl.Size = New Size(197, 25)
-        elbl.TabIndex = 82
-        elbl.Text = "jdelacruz@gmail.com"
+        staffcompadd.AutoSize = True
+        staffcompadd.Font = New Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        staffcompadd.ForeColor = SystemColors.ActiveCaptionText
+        staffcompadd.Location = New Point(41, 444)
+        staffcompadd.Name = "staffcompadd"
+        staffcompadd.Size = New Size(197, 32)
+        staffcompadd.TabIndex = 90
+        staffcompadd.Text = "123 St. Kingsfield"
         ' 
-        ' emaillbl
+        ' staffcompaddlbl
         ' 
-        emaillbl.AutoSize = True
-        emaillbl.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic)
-        emaillbl.ForeColor = SystemColors.ActiveCaptionText
-        emaillbl.Location = New Point(241, 147)
-        emaillbl.Name = "emaillbl"
-        emaillbl.Size = New Size(79, 32)
-        emaillbl.TabIndex = 81
-        emaillbl.Text = "Email"
+        staffcompaddlbl.AutoSize = True
+        staffcompaddlbl.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        staffcompaddlbl.ForeColor = SystemColors.ActiveCaptionText
+        staffcompaddlbl.Location = New Point(31, 394)
+        staffcompaddlbl.Name = "staffcompaddlbl"
+        staffcompaddlbl.Size = New Size(289, 45)
+        staffcompaddlbl.TabIndex = 89
+        staffcompaddlbl.Text = "Company Address"
         ' 
-        ' contlbl
+        ' staffgender
         ' 
-        contlbl.AutoSize = True
-        contlbl.Font = New Font("Segoe UI Semibold", 14.25F, FontStyle.Bold)
-        contlbl.ForeColor = SystemColors.ActiveCaptionText
-        contlbl.Location = New Point(251, 122)
-        contlbl.Name = "contlbl"
-        contlbl.Size = New Size(129, 25)
-        contlbl.TabIndex = 80
-        contlbl.Text = "09123456789"
+        staffgender.AutoSize = True
+        staffgender.Font = New Font("Segoe UI Semibold", 14.25F, FontStyle.Bold)
+        staffgender.ForeColor = SystemColors.ActiveCaptionText
+        staffgender.Location = New Point(251, 125)
+        staffgender.Name = "staffgender"
+        staffgender.Size = New Size(55, 25)
+        staffgender.TabIndex = 88
+        staffgender.Text = "Male"
         ' 
-        ' conatactlbl
+        ' studgenderlbl
         ' 
-        conatactlbl.AutoSize = True
-        conatactlbl.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic)
-        conatactlbl.ForeColor = SystemColors.ActiveCaptionText
-        conatactlbl.Location = New Point(241, 90)
-        conatactlbl.Name = "conatactlbl"
-        conatactlbl.Size = New Size(198, 32)
-        conatactlbl.TabIndex = 79
-        conatactlbl.Text = "Contact Number"
+        studgenderlbl.AutoSize = True
+        studgenderlbl.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic)
+        studgenderlbl.ForeColor = SystemColors.ActiveCaptionText
+        studgenderlbl.Location = New Point(241, 93)
+        studgenderlbl.Name = "studgenderlbl"
+        studgenderlbl.Size = New Size(93, 32)
+        studgenderlbl.TabIndex = 87
+        studgenderlbl.Text = "Gender"
         ' 
-        ' pisitionlbl
+        ' staffemail
         ' 
-        pisitionlbl.AutoSize = True
-        pisitionlbl.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        pisitionlbl.ForeColor = SystemColors.ActiveCaptionText
-        pisitionlbl.Location = New Point(31, 397)
-        pisitionlbl.Name = "pisitionlbl"
-        pisitionlbl.Size = New Size(141, 45)
-        pisitionlbl.TabIndex = 78
-        pisitionlbl.Text = "Position"
+        staffemail.AutoSize = True
+        staffemail.Font = New Font("Segoe UI Semibold", 18F, FontStyle.Bold)
+        staffemail.ForeColor = SystemColors.ActiveCaptionText
+        staffemail.Location = New Point(38, 626)
+        staffemail.Name = "staffemail"
+        staffemail.Size = New Size(246, 32)
+        staffemail.TabIndex = 82
+        staffemail.Text = "jdelacruz@gmail.com"
         ' 
-        ' poslbl
+        ' stafemaillbl
         ' 
-        poslbl.AutoSize = True
-        poslbl.Font = New Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        poslbl.ForeColor = SystemColors.ActiveCaptionText
-        poslbl.Location = New Point(31, 442)
-        poslbl.Name = "poslbl"
-        poslbl.Size = New Size(131, 32)
-        poslbl.TabIndex = 77
-        poslbl.Text = "Missionary"
+        stafemaillbl.AutoSize = True
+        stafemaillbl.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic)
+        stafemaillbl.ForeColor = SystemColors.ActiveCaptionText
+        stafemaillbl.Location = New Point(33, 581)
+        stafemaillbl.Name = "stafemaillbl"
+        stafemaillbl.Size = New Size(105, 45)
+        stafemaillbl.TabIndex = 81
+        stafemaillbl.Text = "Email"
         ' 
-        ' camplbl
+        ' staffcontact
         ' 
-        camplbl.AutoSize = True
-        camplbl.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        camplbl.ForeColor = SystemColors.ActiveCaptionText
-        camplbl.Location = New Point(33, 339)
-        camplbl.Name = "camplbl"
-        camplbl.Size = New Size(108, 40)
-        camplbl.TabIndex = 76
-        camplbl.Text = "Adonis"
+        staffcontact.AutoSize = True
+        staffcontact.Font = New Font("Segoe UI Semibold", 18F, FontStyle.Bold)
+        staffcontact.ForeColor = SystemColors.ActiveCaptionText
+        staffcontact.Location = New Point(41, 722)
+        staffcontact.Name = "staffcontact"
+        staffcontact.Size = New Size(155, 32)
+        staffcontact.TabIndex = 80
+        staffcontact.Text = "09123456789"
         ' 
-        ' companylbl
+        ' staffcontactlbl
         ' 
-        companylbl.AutoSize = True
-        companylbl.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        companylbl.ForeColor = SystemColors.ActiveCaptionText
-        companylbl.Location = New Point(31, 294)
-        companylbl.Name = "companylbl"
-        companylbl.Size = New Size(161, 45)
-        companylbl.TabIndex = 68
-        companylbl.Text = "Company"
+        staffcontactlbl.AutoSize = True
+        staffcontactlbl.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic)
+        staffcontactlbl.ForeColor = SystemColors.ActiveCaptionText
+        staffcontactlbl.Location = New Point(36, 677)
+        staffcontactlbl.Name = "staffcontactlbl"
+        staffcontactlbl.Size = New Size(267, 45)
+        staffcontactlbl.TabIndex = 79
+        staffcontactlbl.Text = "Contact Number"
         ' 
-        ' idlbl
+        ' staffposlbl
         ' 
-        idlbl.AutoSize = True
-        idlbl.Font = New Font("Segoe UI Semibold", 14.25F, FontStyle.Bold)
-        idlbl.ForeColor = SystemColors.ActiveCaptionText
-        idlbl.Location = New Point(251, 62)
-        idlbl.Name = "idlbl"
-        idlbl.Size = New Size(52, 25)
-        idlbl.TabIndex = 67
-        idlbl.Text = "S001"
+        staffposlbl.AutoSize = True
+        staffposlbl.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        staffposlbl.ForeColor = SystemColors.ActiveCaptionText
+        staffposlbl.Location = New Point(31, 490)
+        staffposlbl.Name = "staffposlbl"
+        staffposlbl.Size = New Size(141, 45)
+        staffposlbl.TabIndex = 78
+        staffposlbl.Text = "Position"
         ' 
-        ' sidlbl
+        ' staffpos
         ' 
-        sidlbl.AutoSize = True
-        sidlbl.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic)
-        sidlbl.ForeColor = SystemColors.ActiveCaptionText
-        sidlbl.Location = New Point(241, 30)
-        sidlbl.Name = "sidlbl"
-        sidlbl.Size = New Size(166, 32)
-        sidlbl.TabIndex = 66
-        sidlbl.Text = "Supervisor ID"
+        staffpos.AutoSize = True
+        staffpos.Font = New Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        staffpos.ForeColor = SystemColors.ActiveCaptionText
+        staffpos.Location = New Point(41, 535)
+        staffpos.Name = "staffpos"
+        staffpos.Size = New Size(131, 32)
+        staffpos.TabIndex = 77
+        staffpos.Text = "Missionary"
         ' 
-        ' btnSelectPhoto
+        ' staffcomp
         ' 
-        btnSelectPhoto.Cursor = Cursors.Hand
-        btnSelectPhoto.Image = My.Resources.Resources.user_square
-        btnSelectPhoto.Location = New Point(31, 24)
-        btnSelectPhoto.Name = "btnSelectPhoto"
-        btnSelectPhoto.Size = New Size(191, 184)
-        btnSelectPhoto.SizeMode = PictureBoxSizeMode.StretchImage
-        btnSelectPhoto.TabIndex = 0
-        btnSelectPhoto.TabStop = False
+        staffcomp.AutoSize = True
+        staffcomp.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        staffcomp.ForeColor = SystemColors.ActiveCaptionText
+        staffcomp.Location = New Point(41, 339)
+        staffcomp.Name = "staffcomp"
+        staffcomp.Size = New Size(108, 40)
+        staffcomp.TabIndex = 76
+        staffcomp.Text = "Adonis"
         ' 
-        ' welcomelbl
+        ' staffcomplbl
         ' 
-        welcomelbl.AutoSize = True
-        welcomelbl.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        welcomelbl.ForeColor = SystemColors.ActiveCaptionText
-        welcomelbl.Location = New Point(33, 222)
-        welcomelbl.Name = "welcomelbl"
-        welcomelbl.Size = New Size(448, 45)
-        welcomelbl.TabIndex = 65
-        welcomelbl.Text = "Welcome [Supervisor Name]"
+        staffcomplbl.AutoSize = True
+        staffcomplbl.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        staffcomplbl.ForeColor = SystemColors.ActiveCaptionText
+        staffcomplbl.Location = New Point(31, 294)
+        staffcomplbl.Name = "staffcomplbl"
+        staffcomplbl.Size = New Size(161, 45)
+        staffcomplbl.TabIndex = 68
+        staffcomplbl.Text = "Company"
+        ' 
+        ' staffid
+        ' 
+        staffid.AutoSize = True
+        staffid.Font = New Font("Segoe UI Semibold", 14.25F, FontStyle.Bold)
+        staffid.ForeColor = SystemColors.ActiveCaptionText
+        staffid.Location = New Point(251, 62)
+        staffid.Name = "staffid"
+        staffid.Size = New Size(52, 25)
+        staffid.TabIndex = 67
+        staffid.Text = "S001"
+        ' 
+        ' staffidlbl
+        ' 
+        staffidlbl.AutoSize = True
+        staffidlbl.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic)
+        staffidlbl.ForeColor = SystemColors.ActiveCaptionText
+        staffidlbl.Location = New Point(241, 30)
+        staffidlbl.Name = "staffidlbl"
+        staffidlbl.Size = New Size(166, 32)
+        staffidlbl.TabIndex = 66
+        staffidlbl.Text = "Supervisor ID"
+        ' 
+        ' profilebtn
+        ' 
+        profilebtn.Cursor = Cursors.Hand
+        profilebtn.Image = My.Resources.Resources.user_square
+        profilebtn.Location = New Point(31, 24)
+        profilebtn.Name = "profilebtn"
+        profilebtn.Size = New Size(191, 184)
+        profilebtn.SizeMode = PictureBoxSizeMode.StretchImage
+        profilebtn.TabIndex = 0
+        profilebtn.TabStop = False
+        ' 
+        ' staffwelcome
+        ' 
+        staffwelcome.AutoSize = True
+        staffwelcome.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        staffwelcome.ForeColor = SystemColors.ActiveCaptionText
+        staffwelcome.Location = New Point(33, 222)
+        staffwelcome.Name = "staffwelcome"
+        staffwelcome.Size = New Size(448, 45)
+        staffwelcome.TabIndex = 65
+        staffwelcome.Text = "Welcome [Supervisor Name]"
+        ' 
+        ' Timer
+        ' 
+        ' 
+        ' Panel1
+        ' 
+        Panel1.BackColor = Color.White
+        Panel1.Controls.Add(viewgradebtn)
+        Panel1.Controls.Add(PictureBox4)
+        Panel1.Location = New Point(1312, 221)
+        Panel1.Name = "Panel1"
+        Panel1.Size = New Size(546, 380)
+        Panel1.TabIndex = 85
+        ' 
+        ' viewgradebtn
+        ' 
+        viewgradebtn.BackColor = Color.Indigo
+        viewgradebtn.Font = New Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        viewgradebtn.ForeColor = Color.White
+        viewgradebtn.Location = New Point(38, 141)
+        viewgradebtn.Margin = New Padding(3, 2, 3, 2)
+        viewgradebtn.Name = "viewgradebtn"
+        viewgradebtn.Size = New Size(473, 87)
+        viewgradebtn.TabIndex = 4
+        viewgradebtn.Text = "VIEW GRADE DATA"
+        viewgradebtn.UseVisualStyleBackColor = False
+        ' 
+        ' PictureBox4
+        ' 
+        PictureBox4.Image = My.Resources.Resources.icons8_positive_dynamic_100
+        PictureBox4.Location = New Point(13, 13)
+        PictureBox4.Margin = New Padding(3, 2, 3, 2)
+        PictureBox4.Name = "PictureBox4"
+        PictureBox4.Size = New Size(73, 71)
+        PictureBox4.SizeMode = PictureBoxSizeMode.StretchImage
+        PictureBox4.TabIndex = 69
+        PictureBox4.TabStop = False
         ' 
         ' supervisorDashboard
         ' 
@@ -587,81 +558,77 @@ Partial Class supervisorDashboard
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.DarkGray
         ClientSize = New Size(1904, 1041)
+        Controls.Add(Panel1)
         Controls.Add(Panel7)
         Controls.Add(Panel6)
         Controls.Add(Panel5)
-        Controls.Add(Panel4)
         Controls.Add(Panel3)
         Controls.Add(Panel2)
-        Controls.Add(Panel1)
-        Controls.Add(PictureBox7)
+        Controls.Add(staffstaskpnl)
+        Controls.Add(logoutbtn)
         Controls.Add(PictureBox1)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "supervisorDashboard"
         Text = "supervisorDashboard"
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
-        CType(PictureBox7, ComponentModel.ISupportInitialize).EndInit()
+        CType(logoutbtn, ComponentModel.ISupportInitialize).EndInit()
         Panel6.ResumeLayout(False)
         CType(PictureBox6, ComponentModel.ISupportInitialize).EndInit()
         Panel5.ResumeLayout(False)
         CType(PictureBox5, ComponentModel.ISupportInitialize).EndInit()
-        Panel4.ResumeLayout(False)
-        Panel4.PerformLayout()
-        CType(PictureBox4, ComponentModel.ISupportInitialize).EndInit()
         Panel3.ResumeLayout(False)
-        Panel3.PerformLayout()
         Panel2.ResumeLayout(False)
-        Panel2.PerformLayout()
         CType(PictureBox3, ComponentModel.ISupportInitialize).EndInit()
-        Panel1.ResumeLayout(False)
-        Panel1.PerformLayout()
+        staffstaskpnl.ResumeLayout(False)
+        staffstaskpnl.PerformLayout()
         CType(PictureBox2, ComponentModel.ISupportInitialize).EndInit()
         Panel7.ResumeLayout(False)
         Panel7.PerformLayout()
-        CType(btnSelectPhoto, ComponentModel.ISupportInitialize).EndInit()
+        CType(profilebtn, ComponentModel.ISupportInitialize).EndInit()
+        Panel1.ResumeLayout(False)
+        CType(PictureBox4, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
     End Sub
 
     Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents PictureBox7 As PictureBox
+    Friend WithEvents logoutbtn As PictureBox
     Friend WithEvents Panel6 As Panel
-    Friend WithEvents Button5 As Button
+    Friend WithEvents evalstudbtn As Button
     Friend WithEvents PictureBox6 As PictureBox
     Friend WithEvents Panel5 As Panel
-    Friend WithEvents Panel4 As Panel
-    Friend WithEvents CheckBox4 As CheckBox
-    Friend WithEvents Label8 As Label
-    Friend WithEvents CheckBox5 As CheckBox
-    Friend WithEvents PictureBox4 As PictureBox
-    Friend WithEvents CheckBox6 As CheckBox
     Friend WithEvents Panel3 As Panel
-    Friend WithEvents Label7 As Label
-    Friend WithEvents Label6 As Label
-    Friend WithEvents Label5 As Label
-    Friend WithEvents Button2 As Button
+    Friend WithEvents timeoutlbl As Label
+    Friend WithEvents timetodatlbl As Label
+    Friend WithEvents timeinbtn As Button
     Friend WithEvents Panel2 As Panel
-    Friend WithEvents Panel1 As Panel
-    Friend WithEvents Button3 As Button
+    Friend WithEvents staffstaskpnl As Panel
+    Friend WithEvents completetaskbtn As Button
     Friend WithEvents PictureBox2 As PictureBox
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Button6 As Button
-    Friend WithEvents viewinternsbtn As Button
+    Friend WithEvents addtaskbtn As Button
+    Friend WithEvents pendinglbl As Label
+    Friend WithEvents vewinternbtn As Button
     Friend WithEvents PictureBox3 As PictureBox
-    Friend WithEvents Label11 As Label
     Friend WithEvents PictureBox5 As PictureBox
-    Friend WithEvents Button4 As Button
+    Friend WithEvents viewvisitlogbtn As Button
     Friend WithEvents Panel7 As Panel
-    Friend WithEvents elbl As Label
-    Friend WithEvents emaillbl As Label
-    Friend WithEvents contlbl As Label
-    Friend WithEvents conatactlbl As Label
-    Friend WithEvents pisitionlbl As Label
-    Friend WithEvents poslbl As Label
-    Friend WithEvents camplbl As Label
-    Friend WithEvents companylbl As Label
-    Friend WithEvents idlbl As Label
-    Friend WithEvents sidlbl As Label
-    Friend WithEvents btnSelectPhoto As PictureBox
-    Friend WithEvents welcomelbl As Label
+    Friend WithEvents staffemail As Label
+    Friend WithEvents stafemaillbl As Label
+    Friend WithEvents staffcontact As Label
+    Friend WithEvents staffcontactlbl As Label
+    Friend WithEvents staffposlbl As Label
+    Friend WithEvents staffpos As Label
+    Friend WithEvents staffcomp As Label
+    Friend WithEvents staffcomplbl As Label
+    Friend WithEvents staffid As Label
+    Friend WithEvents staffidlbl As Label
+    Friend WithEvents profilebtn As PictureBox
+    Friend WithEvents staffwelcome As Label
+    Friend WithEvents Timer As Timer
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents viewgradebtn As Button
+    Friend WithEvents PictureBox4 As PictureBox
+    Friend WithEvents staffcompadd As Label
+    Friend WithEvents staffcompaddlbl As Label
+    Friend WithEvents staffgender As Label
+    Friend WithEvents studgenderlbl As Label
 End Class

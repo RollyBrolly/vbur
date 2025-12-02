@@ -1,291 +1,477 @@
-﻿Public Class facultyStudentRecord
+﻿Imports System.Data
+Imports System.Net.Mail
+Imports MySql.Data.MySqlClient
+Public Class facultyStudentRecord
+    Public Property FacultyID As String
+    Private Const SMTP_EMAIL As String = "pohlovesyou@gmail.com"
+    Private Const SMTP_APP_PASSWORD As String = "wniyhuldxsxahtkt"
 
-    Private skipCloseConfirmation As Boolean = False
-
-    'dictionary
-    Private departmentPrograms As New Dictionary(Of String, String()) From {
-        {"CAS", {"PSY", "BIO", "POL"}},
-        {"CBA", {"BSA", "BMM", "HRM"}},
-        {"CCS", {"CS", "IT"}},
-        {"CIHM", {"HOSP", "TOUR"}},
-        {"COED", {"ELE", "ENG", "FIL", "MATH"}},
-        {"CON", {"NUR", "PHAR", "MEDT"}}
-    }
-
-    'abbreviation dept
-    Private departmentFullNames As New Dictionary(Of String, String) From {
-        {"CAS", "College of Arts and Sciences"},
-        {"CBA", "College of Business Management"},
-        {"CCS", "College of Computer Studies"},
-        {"CIHM", "College of Hospitality Management"},
-        {"COED", "College of Education"},
-        {"CON", "College of Nursing"}
-    }
-
-    'abbreviation program
-    Private programFullNames As New Dictionary(Of String, String) From {
-        {"PSY", "Bachelor of Arts in Psychology"},
-        {"BIO", "Bachelor of Science in Biology"},
-        {"POL", "Bachelor of Science in Political Science"},
-        {"BSA", "Bachelor of Science in Business Administration"},
-        {"BMM", "Bachelor of Science in Marketing Management"},
-        {"HRM", "Bachelor of Science in Human Resource Management"},
-        {"CS", "Bachelor of Science in Computer Science"},
-        {"IT", "Bachelor of Science in Information Technology"},
-        {"HOSP", "Bachelor of Science in Hospitality Management"},
-        {"TOUR", "Bachelor of Science in Tourism Management"},
-        {"ELE", "Bachelor of Elementary Education"},
-        {"ENG", "Bachelor of Secondary Education - English"},
-        {"FIL", "Bachelor of Elementary Education - Filipino"},
-        {"MATH", "Bachelor of Secondary Education - Math"},
-        {"NUR", "Bachelor of Science in Nursing"},
-        {"PHAR", "Bachelor of Science in Pharmacy"},
-        {"MEDT", "Bachelor of Science in Medical Technology"}
-        }
-
-
-    Private sections() As String = {"4A", "4B", "4C", "4D", "4E", "4F"}
-
-    Private Sub facultygradestudents_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub facultyStudentRecord_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.FormBorderStyle = FormBorderStyle.None
         Me.WindowState = FormWindowState.Maximized
 
+        LoadFilter()
+        studDGV.DataSource = GetAllStudents()
+        studDGV.Columns("StudentID").FillWeight = 40
+        studDGV.Columns("StudentLastName").FillWeight = 50
+        studDGV.Columns("StudentFirstName").FillWeight = 50
+        studDGV.Columns("StudentMiddleName").FillWeight = 50
+        studDGV.Columns("Suffix").FillWeight = 30
+        studDGV.Columns("Gender").FillWeight = 30
+        studDGV.Columns("Program").FillWeight = 120
+        studDGV.Columns("Department").FillWeight = 100
+        studDGV.Columns("Section").FillWeight = 30
 
-        deptcbbox.Items.AddRange(departmentFullNames.Values.ToArray())
-        programcbbox.Enabled = False
-        sectioncbbox.Enabled = False
+        studDGV.Columns("StudentID").HeaderText = "Student ID"
+        studDGV.Columns("StudentLastName").HeaderText = "Last Name"
+        studDGV.Columns("StudentFirstName").HeaderText = "First Name"
+        studDGV.Columns("StudentMiddleName").HeaderText = "Middle Name"
 
-        deptfltr.Items.AddRange(departmentPrograms.Keys.ToArray())
-        programfltr.Enabled = False
-        sectionfltr.Enabled = False
+        studDGV.AllowUserToResizeColumns = False
+        studDGV.RowHeadersVisible = False
+        studDGV.AllowUserToResizeRows = False
+        studDGV.ClearSelection()
 
-        searchbox.Text = "Search Name"
-        searchbox.ForeColor = Color.DarkGray
+        containerpnl.Visible = False
+    End Sub
 
+    Private Sub ApplyFilters()
+        Dim sectionValue As String = If(sectionfltr.SelectedIndex >= 0, sectionfltr.SelectedItem.ToString(), "All")
+        Dim programValue As String = If(programfltr.SelectedIndex >= 0, programfltr.SelectedItem.ToString(), "All")
+        Dim deptValue As String = If(deptfltr.SelectedIndex >= 0, deptfltr.SelectedItem.ToString(), "All")
+        Dim keyword As String = searchtxt.Text.Trim()
+
+        studDGV.DataSource = GetFilteredStudents(sectionValue, programValue, deptValue, keyword)
 
     End Sub
 
-
-    Private Sub deptcbbox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles deptcbbox.SelectedIndexChanged
-        If deptcbbox.SelectedItem Is Nothing Then
-            programcbbox.Enabled = False
-            sectioncbbox.Enabled = False
-            Exit Sub
-        End If
-
-        programcbbox.Enabled = True
-        programcbbox.Items.Clear()
-        sectioncbbox.Items.Clear()
-        sectioncbbox.Enabled = False
-
-        Dim selectedDept = deptcbbox.SelectedItem.ToString()
-
-        Select Case selectedDept
-            Case "College of Arts and Sciences"
-                programcbbox.Items.AddRange({"Bachelor of Arts in Psychology", "Bachelor of Science in Biology", "Bachelor of Science in Political Science"})
-            Case "College of Business Management"
-                programcbbox.Items.AddRange({"Bachelor of Science in Business Administration", "Bachelor of Science in Marketing Management", "Bachelor of Science in Human Resource Management"})
-            Case "College of Computer Studies"
-                programcbbox.Items.AddRange({"Bachelor of Science in Computer Science", "Bachelor of Science in Information Technology"})
-            Case "College of Hospitality Management"
-                programcbbox.Items.AddRange({"Bachelor of Science in Hospitality Management", "Bachelor of Science in Tourism Management"})
-            Case "College of Education"
-                programcbbox.Items.AddRange({"Bachelor of Elementary Education", "Bachelor of Secondary Education - English", "Bachelor of Elementary Education - Filipino", "Bachelor of Secondary Education - Math"})
-            Case "College of Nursing"
-                programcbbox.Items.AddRange({"Bachelor of Science in Nursing", "Bachelor of Science in Pharmacy", "Bachelor of Science in Medical Technology"})
-        End Select
-    End Sub
-
-
-    Private Sub programcbbox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles programcbbox.SelectedIndexChanged
-        If programcbbox.SelectedItem Is Nothing Then
-            sectioncbbox.Enabled = False
-            Exit Sub
-        End If
-
-        sectioncbbox.Enabled = True
-        sectioncbbox.Items.Clear()
-        sectioncbbox.Items.AddRange(sections)
-    End Sub
-
-
-
-
-    Private Sub filterDeptCB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles deptfltr.SelectedIndexChanged
-        programfltr.Items.Clear()
+    Private Sub LoadFilter()
         sectionfltr.Items.Clear()
+        sectionfltr.Items.Add("All")
+        sectionfltr.Items.AddRange(New String() {"4A", "4B", "4C", "4D", "4E", "4F"})
+        sectionfltr.SelectedIndex = 0
 
-        If deptfltr.SelectedItem Is Nothing Then
-            programfltr.Enabled = False
-            sectionfltr.Enabled = False
-            Exit Sub
-        End If
+        programfltr.Items.Clear()
+        programfltr.Items.Add("All")
+        Using conn As New MySqlConnection(connstring)
+            conn.Open()
 
+            Dim cmd As New MySqlCommand("SELECT CourseName FROM course ORDER BY CourseName", conn)
+            Dim reader = cmd.ExecuteReader()
+            While reader.Read()
+                programfltr.Items.Add(reader("CourseName").ToString())
+            End While
+        End Using
+        programfltr.SelectedIndex = 0
 
-        Dim deptKey = deptfltr.SelectedItem.ToString()
-        programfltr.Items.AddRange(departmentPrograms(deptKey))
-        programfltr.Enabled = True
-        sectionfltr.Enabled = False
+        deptfltr.Items.Clear()
+        deptfltr.Items.Add("All")
+        Using conn As New MySqlConnection(connstring)
+            conn.Open()
+            Dim cmd As New MySqlCommand("SELECT DeptName FROM department ORDER BY DeptName", conn)
+            Dim reader = cmd.ExecuteReader()
+            While reader.Read()
+                deptfltr.Items.Add(reader("DeptName").ToString())
+            End While
+        End Using
+        deptfltr.SelectedIndex = 0
+    End Sub
+
+    Private Sub searchtxt_TextChanged(sender As Object, e As EventArgs) Handles searchtxt.TextChanged
+        ApplyFilters()
+    End Sub
+
+    Private Sub deptfltr_SelectedIndexChanged(sender As Object, e As EventArgs) Handles deptfltr.SelectedIndexChanged
+        ApplyFilters()
     End Sub
 
     Private Sub programfltr_SelectedIndexChanged(sender As Object, e As EventArgs) Handles programfltr.SelectedIndexChanged
-        If programfltr.SelectedItem Is Nothing Then
-            sectionfltr.Enabled = False
-            Exit Sub
-        End If
-
-        sectionfltr.Items.Clear()
-        sectionfltr.Items.AddRange(sections)
-        sectionfltr.Enabled = True
+        ApplyFilters()
     End Sub
 
-    Private Sub filterbtn_Click(sender As Object, e As EventArgs) Handles filterbtn.Click
-        Dim nameKeyword As String = searchbox.Text.Trim().ToLower()
-        Dim deptFilter As String = deptfltr.Text
-        Dim progFilter As String = programfltr.Text
-        Dim secFilter As String = sectionfltr.Text
+    Private Sub sectionfltr_SelectedIndexChanged(sender As Object, e As EventArgs) Handles sectionfltr.SelectedIndexChanged
+        ApplyFilters()
+    End Sub
 
-        For Each row As DataGridViewRow In DataGridView1.Rows
-            If row.IsNewRow Then Continue For
-
-            Dim visible As Boolean = True
-
-
-            If nameKeyword <> "" Then
-                Dim combinedName = row.Cells("Surname").Value.ToString().ToLower() & " " &
-                                   row.Cells("Firstname").Value.ToString().ToLower() & " " &
-                                   row.Cells("Midname").Value.ToString().ToLower()
-                If Not combinedName.Contains(nameKeyword) Then visible = False
+    Private Sub exitbtn_Click(sender As Object, e As EventArgs) Handles exitbtn.Click
+        If MessageBox.Show("Are you sure you want to Return?", "Return", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+            Dim facultyForm = Application.OpenForms.OfType(Of facultyDashboard)().FirstOrDefault()
+            If facultyForm IsNot Nothing Then
+                facultyForm.Show()
             End If
 
-            ' Department filter
-            If deptFilter <> "" AndAlso Not departmentFullNames(deptFilter).Equals(row.Cells("Department").Value.ToString()) Then
-                visible = False
-            End If
-
-            ' Program filter
-            If progFilter <> "" Then
-                Dim fullProgramName As String = If(programFullNames.ContainsKey(progFilter), programFullNames(progFilter), progFilter)
-                If row.Cells("Program").Value.ToString() <> fullProgramName Then visible = False
-            End If
-
-            ' Section filter
-            If secFilter <> "" AndAlso row.Cells("Section").Value.ToString() <> secFilter Then visible = False
-
-            row.Visible = visible
-        Next
-    End Sub
-
-    Private Sub resetFilterBtn_Click(sender As Object, e As EventArgs) Handles resetFilterBtn.Click
-        ' Clear filter ComboBoxes and search box
-        deptfltr.SelectedIndex = -1
-        programfltr.SelectedIndex = -1
-        sectionfltr.SelectedIndex = -1
-        searchbox.Clear()
-
-        ' Disable program and section filters
-        programfltr.Enabled = False
-        sectionfltr.Enabled = False
-
-        ' Make all rows visible
-        For Each row As DataGridViewRow In DataGridView1.Rows
-            If Not row.IsNewRow Then
-                row.Visible = True
-            End If
-        Next
-
-
-    End Sub
-
-    Private Sub searchbox_Enter(sender As Object, e As EventArgs) Handles searchbox.Enter
-        If searchbox.Text = "Search Name" Then
-            searchbox.Text = ""
-            searchbox.ForeColor = Color.Black
-        End If
-    End Sub
-
-    Private Sub searchbox_Leave(sender As Object, e As EventArgs) Handles searchbox.Leave
-        If String.IsNullOrWhiteSpace(searchbox.Text) Then
-            searchbox.Text = "Search Name"
-            searchbox.ForeColor = Color.Gray
-        End If
-    End Sub
-
-    Private Sub PictureBox7_Click(sender As Object, e As EventArgs) Handles PictureBox7.Click
-        Dim result As DialogResult = MessageBox.Show("Return to dashboard?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-        If result = DialogResult.Yes Then
-            Dim dashboard As New facultyDashboard()
-            dashboard.Show()
-            Me.Hide()
-        End If
-
-    End Sub
-
-    Private Sub btnadd_Click(sender As Object, e As EventArgs) Handles btnadd.Click
-        If String.IsNullOrWhiteSpace(deptcbbox.Text) OrElse
-          String.IsNullOrWhiteSpace(programcbbox.Text) OrElse
-          String.IsNullOrWhiteSpace(sectioncbbox.Text) Then
-            MessageBox.Show("Please fill all selections.")
-            Exit Sub
-        End If
-
-        DataGridView1.Rows.Add(
-            studidtxtbx.Text,
-            surnametxtbox.Text,
-            firstnametxtbox.Text,
-            midnametxtbox.Text,
-            genderccbox.Text,
-            deptcbbox.Text,
-            programcbbox.Text,
-            sectioncbbox.Text
-        )
-
-        studidtxtbx.Clear()
-        surnametxtbox.Clear()
-        firstnametxtbox.Clear()
-        midnametxtbox.Clear()
-        genderccbox.SelectedIndex = -1
-        deptcbbox.SelectedIndex = -1
-        programcbbox.SelectedIndex = -1
-        sectioncbbox.SelectedIndex = -1
-        programcbbox.Enabled = False
-        sectioncbbox.Enabled = False
-
-        MessageBox.Show("Student record added successfully!", "Record Addition Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-    End Sub
-
-    Private Sub btndelete_Click(sender As Object, e As EventArgs) Handles btndelete.Click
-        ' Check if a row is selected
-        If DataGridView1.SelectedRows.Count = 0 Then
-            MessageBox.Show("Please select a student to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Exit Sub
-        End If
-
-        ' Confirm deletion
-        Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete the selected student?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-
-        If result = DialogResult.Yes Then
-            ' Delete selected rows
-            For Each row As DataGridViewRow In DataGridView1.SelectedRows
-                If Not row.IsNewRow Then
-                    DataGridView1.Rows.Remove(row)
-                End If
-            Next
-
-            MessageBox.Show("Selected student(s) deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Me.Close()
         End If
     End Sub
 
     Private Sub gradebtn_Click(sender As Object, e As EventArgs) Handles gradebtn.Click
-        Dim result As DialogResult = MessageBox.Show("Grade Students?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-        If result = DialogResult.Yes Then
-            ' Open the grade form
-            Dim gradeForm As New facultyGradeStudents()
-            gradeForm.ShowDialog() ' Opens as modal
-            Me.Hide()
-            Exit Sub
-        Else
+        Dim studentGrades As New facultyGradeStudents()
+        studentGrades.FacultyID = Me.FacultyID
+        studentGrades.Show()
+        Me.Close()
+    End Sub
+
+    Private Sub btndelete_Click(sender As Object, e As EventArgs) Handles btndelete.Click
+        If studDGV.SelectedRows.Count = 0 Then
+            MessageBox.Show("Please select a student to delete.", "No Student Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        Dim studentID As String = studDGV.SelectedRows(0).Cells("StudentID").Value.ToString()
+
+        If MessageBox.Show("Are you sure you want to delete this student?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
+            Return
+        End If
+
+        Try
+            Using conn As New MySqlConnection(connstring)
+                conn.Open()
+                Using transaction = conn.BeginTransaction()
+
+                    Dim userIDs As New List(Of Integer)
+                    Using cmd As New MySqlCommand("SELECT UserID FROM useraccounts WHERE StudentID = @id", conn, transaction)
+                        cmd.Parameters.AddWithValue("@id", studentID)
+                        Using reader = cmd.ExecuteReader()
+                            While reader.Read()
+                                userIDs.Add(Convert.ToInt32(reader("UserID")))
+                            End While
+                        End Using
+                    End Using
+
+                    Using cmd As New MySqlCommand("DELETE FROM useraccounts WHERE StudentID = @id", conn, transaction)
+                        cmd.Parameters.AddWithValue("@id", studentID)
+                        cmd.ExecuteNonQuery()
+                    End Using
+
+                    For Each uid In userIDs
+                        Using cmd As New MySqlCommand("DELETE FROM users WHERE UserID = @uid", conn, transaction)
+                            cmd.Parameters.AddWithValue("@uid", uid)
+                            cmd.ExecuteNonQuery()
+                        End Using
+                    Next
+
+                    Using cmd As New MySqlCommand("DELETE FROM student WHERE StudentID = @id", conn, transaction)
+                        cmd.Parameters.AddWithValue("@id", studentID)
+                        cmd.ExecuteNonQuery()
+                    End Using
+
+                    transaction.Commit()
+                End Using
+            End Using
+
+            MessageBox.Show("Student deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            ApplyFilters()
+        Catch ex As Exception
+            MessageBox.Show("Error deleting student: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+
+    Private Sub studDGV_SelectionChanged(sender As Object, e As EventArgs) Handles studDGV.SelectionChanged
+        For Each row As DataGridViewRow In studDGV.Rows
+            row.DefaultCellStyle.BackColor = Color.White
+            row.DefaultCellStyle.ForeColor = Color.Black
+        Next
+
+        For Each row As DataGridViewRow In studDGV.SelectedRows
+            row.DefaultCellStyle.BackColor = Color.LightBlue
+            row.DefaultCellStyle.ForeColor = Color.Black
+        Next
+    End Sub
+
+    Private selectedCSVPath As String = ""
+    Private Sub browsebtn_Click(sender As Object, e As EventArgs) Handles browsebtn.Click
+        Dim ofd As New OpenFileDialog()
+        ofd.Filter = "CSV Files (*.csv)|*.csv"
+
+        If ofd.ShowDialog() = DialogResult.OK Then
+            selectedCSVPath = ofd.FileName
+            MessageBox.Show("File selected: " & selectedCSVPath, "CSV Selected")
         End If
     End Sub
+
+    Private Sub previewbtn_Click(sender As Object, e As EventArgs) Handles previewbtn.Click
+        If String.IsNullOrEmpty(selectedCSVPath) Then
+            MessageBox.Show("Please select a CSV file first.", "No File Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        Try
+            Dim dt As New DataTable()
+            Dim lines = IO.File.ReadAllLines(selectedCSVPath)
+
+            If lines.Length = 0 Then
+                MessageBox.Show("CSV file is empty.", "Empty File", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+
+            Dim columns = lines(0).Split(","c)
+            For Each col As String In columns
+                dt.Columns.Add(col.Trim())
+            Next
+
+            For i As Integer = 1 To lines.Length - 1
+                Dim rowData = lines(i).Split(","c)
+
+                While rowData.Length < dt.Columns.Count
+                    ReDim Preserve rowData(dt.Columns.Count - 1)
+                End While
+                dt.Rows.Add(rowData)
+            Next
+
+            previewDGV.DataSource = dt
+
+            previewDGV.Columns("StudentID").FillWeight = 40
+            previewDGV.Columns("StudentFirstName").FillWeight = 50
+            previewDGV.Columns("StudentMiddleName").FillWeight = 50
+            previewDGV.Columns("StudentLastName").FillWeight = 50
+            previewDGV.Columns("Suffix").FillWeight = 30
+            previewDGV.Columns("Gender").FillWeight = 30
+            previewDGV.Columns("Program").FillWeight = 120
+            previewDGV.Columns("Department").FillWeight = 100
+            previewDGV.Columns("Section").FillWeight = 30
+            previewDGV.Columns("StudentEmail").FillWeight = 150
+            previewDGV.Columns("StudentContactNo").FillWeight = 80
+
+            previewDGV.AllowUserToResizeColumns = False
+            previewDGV.RowHeadersVisible = False
+            previewDGV.AllowUserToResizeRows = False
+            previewDGV.ClearSelection()
+
+            containerpnl.Visible = True
+        Catch ex As Exception
+            MessageBox.Show("Error previewing CSV: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Async Sub importbtn_Click(sender As Object, e As EventArgs) Handles importbtn.Click
+        If previewDGV.Rows.Count = 0 Then
+            MessageBox.Show("There is no data to import.", "No Data", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        ' --- Show progress dialog ---
+        Dim dlg As New EmailProgressDialog(Me)
+        dlg.Show()
+
+        Dim rowsToProcess = previewDGV.Rows.Cast(Of DataGridViewRow).Where(Function(r) Not r.IsNewRow).ToList()
+        Dim emailsToSend As New List(Of (fullname As String, sid As String, username As String, password As String, email As String))
+
+        Try
+            Using conn As New MySqlConnection(connectdb.connstring)
+                conn.Open()
+                Using transaction As MySqlTransaction = conn.BeginTransaction()
+
+                    For i As Integer = 0 To rowsToProcess.Count - 1
+                        Dim row = rowsToProcess(i)
+
+                        Dim sid As String
+                        Dim fname = StrConv(row.Cells("StudentFirstName").Value?.ToString().Trim(), VbStrConv.ProperCase)
+                        Dim mname = StrConv(row.Cells("StudentMiddleName").Value?.ToString().Trim(), VbStrConv.ProperCase)
+                        Dim lname = StrConv(row.Cells("StudentLastName").Value?.ToString().Trim(), VbStrConv.ProperCase)
+                        Dim suffix = StrConv(row.Cells("Suffix").Value?.ToString().Trim(), VbStrConv.ProperCase)
+                        Dim gender = row.Cells("Gender").Value?.ToString().Trim()
+                        Dim course = row.Cells("Program").Value?.ToString().Trim()
+                        Dim dept = row.Cells("Department").Value?.ToString().Trim()
+                        Dim section = row.Cells("Section").Value?.ToString().Trim()
+                        Dim email = row.Cells("StudentEmail").Value?.ToString().Trim()
+                        Dim contact = row.Cells("StudentContactNo").Value?.ToString().Trim()
+
+                        Dim isValid As Boolean = True
+
+                        If String.IsNullOrWhiteSpace(email) Then
+                            isValid = False
+                        Else
+                            Try
+                                Dim addr As New System.Net.Mail.MailAddress(email)
+                                Dim domain As String = email.Split("@"c)(1).ToLower()
+
+                                Dim allowedDomains As String() = {"gmail.com", "yahoo.com", "outlook.com", "plpasig.edu.ph"}
+
+                                If Not allowedDomains.Contains(domain) Then
+                                    isValid = False
+                                End If
+
+                            Catch
+                                isValid = False
+                            End Try
+                        End If
+
+                        If Not isValid Then
+                            Dim percentInvalid As Integer = CInt((i + 1) / rowsToProcess.Count * 100)
+                            dlg.UpdateProgress(percentInvalid, $"Skipping invalid email: {email}")
+                            Await Task.Delay(1)
+                            Continue For
+                        End If
+
+                        If String.IsNullOrEmpty(fname) OrElse
+                       String.IsNullOrEmpty(lname) OrElse
+                       String.IsNullOrEmpty(contact) OrElse
+                       String.IsNullOrEmpty(section) OrElse
+                       String.IsNullOrEmpty(course) OrElse
+                       String.IsNullOrEmpty(dept) Then
+
+                            Dim percentSkip = CInt((i + 1) / rowsToProcess.Count * 100)
+                            dlg.UpdateProgress(percentSkip, $"Skipping incomplete row ({i + 1}/{rowsToProcess.Count})")
+                            Await Task.Delay(1)
+                            Continue For
+                        End If
+
+                        If String.IsNullOrEmpty(row.Cells("StudentID").Value?.ToString().Trim()) Then
+                            sid = connectdb.GenerateStudentID()
+                            row.Cells("StudentID").Value = sid
+                        Else
+                            sid = row.Cells("StudentID").Value.ToString().Trim()
+                        End If
+
+                        Dim checkID As New MySqlCommand("SELECT COUNT(*) FROM student WHERE StudentID = @sid", conn, transaction)
+                        checkID.Parameters.AddWithValue("@sid", sid)
+
+                        If Convert.ToInt32(checkID.ExecuteScalar()) > 0 Then
+                            sid = connectdb.GenerateStudentID()
+                            row.Cells("StudentID").Value = sid
+                        End If
+
+                        Dim programCheck As New MySqlCommand("
+                        SELECT COUNT(*)
+                        FROM course c
+                        INNER JOIN department d ON c.DepartmentID = d.DepartmentID
+                        WHERE c.CourseName = @course AND d.DeptName = @dept", conn, transaction)
+
+                        programCheck.Parameters.AddWithValue("@course", course)
+                        programCheck.Parameters.AddWithValue("@dept", dept)
+
+                        If Convert.ToInt32(programCheck.ExecuteScalar()) = 0 Then
+                            dlg.UpdateProgress(0, $"Skipping invalid Program/Department at row {i + 1}.")
+                            Continue For
+                        End If
+
+                        Dim username = sid.Replace("-", "")
+                        Dim fullname = $"{fname} {mname} {lname}".Replace("  ", " ").Trim()
+                        Dim initials = String.Concat(fullname.Split({" "c}, StringSplitOptions.RemoveEmptyEntries).
+                                                 Select(Function(n) n(0).ToString().ToUpper()))
+                        Dim password = username & initials
+
+                        Dim studentQuery As String =
+                    "INSERT INTO student (StudentID, StudentFirstName, StudentMiddleName, StudentLastName, Suffix, Gender, CourseID, Section, StudentContactNo, StudentEmail)
+                     SELECT @sid, @fname, @mname, @lname, @suffix, @gender, c.CourseID, @section, @contact, @email
+                     FROM course c
+                     INNER JOIN department d ON c.DepartmentID = d.DepartmentID
+                     WHERE c.CourseName = @course AND d.DeptName = @dept"
+
+                        Using cmd As New MySqlCommand(studentQuery, conn, transaction)
+                            cmd.Parameters.AddWithValue("@sid", sid)
+                            cmd.Parameters.AddWithValue("@fname", fname)
+                            cmd.Parameters.AddWithValue("@mname", If(String.IsNullOrEmpty(mname), DBNull.Value, mname))
+                            cmd.Parameters.AddWithValue("@lname", lname)
+                            cmd.Parameters.AddWithValue("@suffix", If(String.IsNullOrEmpty(suffix), DBNull.Value, suffix))
+                            cmd.Parameters.AddWithValue("@gender", gender)
+                            cmd.Parameters.AddWithValue("@course", course)
+                            cmd.Parameters.AddWithValue("@dept", dept)
+                            cmd.Parameters.AddWithValue("@section", section)
+                            cmd.Parameters.AddWithValue("@contact", If(String.IsNullOrEmpty(contact), DBNull.Value, contact))
+                            cmd.Parameters.AddWithValue("@email", email)
+
+                            cmd.ExecuteNonQuery()
+                        End Using
+
+
+                        If Not CreateUserAccount(conn, transaction, username, password, "Student", sid, Nothing, Nothing) Then
+                            transaction.Rollback()
+                            MessageBox.Show($"Failed creating login for {fullname}. Import cancelled.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return
+                        End If
+
+                        emailsToSend.Add((fullname, sid, username, password, email))
+
+                        Dim percent = CInt((i + 1) / rowsToProcess.Count * 100)
+                        dlg.UpdateProgress(percent, $"Importing: {fullname} ({i + 1}/{rowsToProcess.Count})")
+                        Await Task.Delay(1)
+                    Next
+
+                    transaction.Commit()
+                End Using
+            End Using
+
+            For i As Integer = 0 To emailsToSend.Count - 1
+                Dim eInfo = emailsToSend(i)
+                dlg.UpdateProgress(CInt((i + 1) / emailsToSend.Count * 100),
+                               $"Sending email to: {eInfo.fullname}")
+                Await SendStudentEmail(eInfo.fullname, eInfo.sid, eInfo.username, eInfo.password, eInfo.email)
+                Await Task.Delay(1)
+            Next
+
+            MessageBox.Show("Import complete! All emails sent.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            studDGV.DataSource = GetAllStudents()
+            containerpnl.Visible = False
+
+        Catch ex As Exception
+            MessageBox.Show("Error importing CSV: " & ex.Message, "Import Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            dlg.Close()
+        End Try
+    End Sub
+
+    Private Async Function SendStudentEmail(fullname As String, studentID As String, username As String, password As String, useremail As String) As Task
+        Try
+            Using smtp As New SmtpClient("smtp.gmail.com", 587)
+                smtp.EnableSsl = True
+                smtp.UseDefaultCredentials = False
+                smtp.Credentials = New Net.NetworkCredential(SMTP_EMAIL, SMTP_APP_PASSWORD)
+
+                Using mail As New MailMessage()
+                    mail.From = New MailAddress(SMTP_EMAIL, "Praxis State University")
+                    mail.To.Add(useremail)
+                    mail.Subject = "Praxis State University - Student Registration Credentails"
+
+                    Dim htmlBody As String =
+                "<!DOCTYPE html>" &
+                "<html>" &
+                "<body style='font-family: Arial, sans-serif; margin:0; padding:0; background-color:#eef2f7;'>" &
+                "<table width='100%' cellpadding='0' cellspacing='0' style='padding:30px 0;'>" &
+                "<tr><td align='center'>" &
+                "<table width='600' cellpadding='0' cellspacing='0' style='background-color:#ffffff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.1);'>" &
+                "<tr><td style='padding:25px; text-align:center; background-color:#003366; color:#ffffff; border-top-left-radius:10px; border-top-right-radius:10px;'>" &
+                "<img src='https://i.imgur.com/bGH3OdK.png' alt='Logo' style='width:90px; display:block; margin:0 auto;'>" &
+                "<h1 style='margin:0; font-size:26px;'>Praxis State University</h1>" &
+                "<p style='margin:5px 0 0; font-size:16px;'>Student Account Registration</p>" &
+                "</td></tr>" &
+                "<tr><td style='padding:25px;'>" &
+                "<p>Dear <strong>" & fullname.ToUpper() & "</strong>,</p>" &
+                "<p>Your student account has been successfully created. Below are your login details:</p>" &
+                "<table width='100%' cellpadding='10' cellspacing='0' style='border:1px solid #dddddd; border-radius:5px; background-color:#f9f9f9;'>" &
+                "<tr><td style='width:30%; font-weight:bold;'>Student ID:</td><td>" & studentID & "</td></tr>" &
+                "<tr><td style='font-weight:bold;'>Username:</td><td>" & username & "</td></tr>" &
+                "<tr><td style='font-weight:bold;'>Password:</td><td>" & password & "</td></tr>" &
+                "</table>" &
+                "<p style='margin-top:20px; font-weight:bold;'>Important Instructions:</p>" &
+                "<ul style='margin-top:5px;'>" &
+                "<li>Keep your username and password confidential.</li>" &
+                "<li>Change your password upon first login.</li>" &
+                "<li>Do not share your credentials with anyone.</li>" &
+                "<li>Contact the university administration for any issues.</li>" &
+                "</ul>" &
+                "<p>We are excited to have you as part of Praxis State University!</p>" &
+                "<hr style='border:none; border-top:1px solid #dddddd; margin:25px 0;'/>" &
+                "<p style='font-size:12px; color:#888888; text-align:center;'>Praxis State University | PSU Pasig Campus Kapasigan, Pasig<br/>" &
+                "Email: psu.pasig@gmail.com | Phone: (123) 456-7890 | Website: www.psu-pasig.edu.ph</p>" &
+                "<p style='font-size:12px; color:#888888; text-align:center;'>This is an automated message. Please do not reply.</p>" &
+                "</td></tr>" &
+                "</table>" &
+                "</td></tr>" &
+                "</table>" &
+                "</body></html>"
+
+                    mail.IsBodyHtml = True
+                    mail.Body = htmlBody
+
+                    Await smtp.SendMailAsync(mail)
+                End Using
+            End Using
+
+        Catch ex As Exception
+            Debug.WriteLine($"Failed to send email to {useremail}: {ex.Message}")
+        End Try
+    End Function
 
 End Class
