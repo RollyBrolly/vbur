@@ -34,11 +34,6 @@ Partial Class studentDashboard
         timeoutlbl = New Label()
         timetodatlbl = New Label()
         timeinbtn = New Button()
-        studevalpnl = New Panel()
-        viewEvalbtn = New Button()
-        sumreportlbl = New Label()
-        viewgradesbtn = New Button()
-        evalicon = New PictureBox()
         logout = New PictureBox()
         ColorDialog1 = New ColorDialog()
         schedicon = New PictureBox()
@@ -62,12 +57,11 @@ Partial Class studentDashboard
         studid = New Label()
         idlbl = New Label()
         studpb = New PictureBox()
+        Label1 = New Label()
         CType(border, ComponentModel.ISupportInitialize).BeginInit()
         studtaskpnl.SuspendLayout()
         CType(tasksicon, ComponentModel.ISupportInitialize).BeginInit()
         studtimeinpnl.SuspendLayout()
-        studevalpnl.SuspendLayout()
-        CType(evalicon, ComponentModel.ISupportInitialize).BeginInit()
         CType(logout, ComponentModel.ISupportInitialize).BeginInit()
         CType(schedicon, ComponentModel.ISupportInitialize).BeginInit()
         studschedpnl.SuspendLayout()
@@ -161,13 +155,14 @@ Partial Class studentDashboard
         ' studtimeinpnl
         ' 
         studtimeinpnl.BackColor = Color.White
+        studtimeinpnl.Controls.Add(Label1)
         studtimeinpnl.Controls.Add(timeoutlbl)
         studtimeinpnl.Controls.Add(timetodatlbl)
         studtimeinpnl.Controls.Add(timeinbtn)
         studtimeinpnl.Location = New Point(731, 221)
         studtimeinpnl.Margin = New Padding(3, 2, 3, 2)
         studtimeinpnl.Name = "studtimeinpnl"
-        studtimeinpnl.Size = New Size(546, 380)
+        studtimeinpnl.Size = New Size(546, 788)
         studtimeinpnl.TabIndex = 68
         ' 
         ' timeoutlbl
@@ -200,67 +195,6 @@ Partial Class studentDashboard
         timeinbtn.TabIndex = 0
         timeinbtn.Text = "TIME IN"
         timeinbtn.UseVisualStyleBackColor = False
-        ' 
-        ' studevalpnl
-        ' 
-        studevalpnl.BackColor = Color.White
-        studevalpnl.Controls.Add(viewEvalbtn)
-        studevalpnl.Controls.Add(sumreportlbl)
-        studevalpnl.Controls.Add(viewgradesbtn)
-        studevalpnl.Controls.Add(evalicon)
-        studevalpnl.Location = New Point(731, 629)
-        studevalpnl.Margin = New Padding(3, 2, 3, 2)
-        studevalpnl.Name = "studevalpnl"
-        studevalpnl.Size = New Size(546, 380)
-        studevalpnl.TabIndex = 74
-        ' 
-        ' viewEvalbtn
-        ' 
-        viewEvalbtn.BackColor = Color.Indigo
-        viewEvalbtn.Font = New Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        viewEvalbtn.ForeColor = Color.White
-        viewEvalbtn.Location = New Point(16, 130)
-        viewEvalbtn.Margin = New Padding(3, 2, 3, 2)
-        viewEvalbtn.Name = "viewEvalbtn"
-        viewEvalbtn.Size = New Size(514, 84)
-        viewEvalbtn.TabIndex = 75
-        viewEvalbtn.Text = "VIEW EVALUATION"
-        viewEvalbtn.UseVisualStyleBackColor = False
-        ' 
-        ' sumreportlbl
-        ' 
-        sumreportlbl.AutoSize = True
-        sumreportlbl.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        sumreportlbl.ForeColor = Color.Indigo
-        sumreportlbl.Location = New Point(95, 33)
-        sumreportlbl.Name = "sumreportlbl"
-        sumreportlbl.Size = New Size(275, 45)
-        sumreportlbl.TabIndex = 74
-        sumreportlbl.Text = "Summary Report"
-        ' 
-        ' viewgradesbtn
-        ' 
-        viewgradesbtn.BackColor = Color.Indigo
-        viewgradesbtn.Font = New Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        viewgradesbtn.ForeColor = Color.White
-        viewgradesbtn.Location = New Point(16, 251)
-        viewgradesbtn.Margin = New Padding(3, 2, 3, 2)
-        viewgradesbtn.Name = "viewgradesbtn"
-        viewgradesbtn.Size = New Size(514, 84)
-        viewgradesbtn.TabIndex = 68
-        viewgradesbtn.Text = "VIEW GRADES"
-        viewgradesbtn.UseVisualStyleBackColor = False
-        ' 
-        ' evalicon
-        ' 
-        evalicon.Image = My.Resources.Resources.icons8_rating_52
-        evalicon.Location = New Point(16, 19)
-        evalicon.Margin = New Padding(3, 2, 3, 2)
-        evalicon.Name = "evalicon"
-        evalicon.Size = New Size(73, 72)
-        evalicon.SizeMode = PictureBoxSizeMode.StretchImage
-        evalicon.TabIndex = 68
-        evalicon.TabStop = False
         ' 
         ' logout
         ' 
@@ -521,6 +455,16 @@ Partial Class studentDashboard
         studpb.TabIndex = 0
         studpb.TabStop = False
         ' 
+        ' Label1
+        ' 
+        Label1.Font = New Font("Segoe UI Semibold", 30F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        Label1.ForeColor = SystemColors.ActiveCaptionText
+        Label1.Location = New Point(14, 333)
+        Label1.Name = "Label1"
+        Label1.Size = New Size(515, 469)
+        Label1.TabIndex = 75
+        Label1.Text = "Note: You can only register your time in/out once per day. Make sure to only register your time cautiously as it cannot be undone"
+        ' 
         ' studentDashboard
         ' 
         AutoScaleMode = AutoScaleMode.None
@@ -528,7 +472,6 @@ Partial Class studentDashboard
         ClientSize = New Size(1904, 1041)
         Controls.Add(Panel1)
         Controls.Add(logout)
-        Controls.Add(studevalpnl)
         Controls.Add(studschedpnl)
         Controls.Add(studtimeinpnl)
         Controls.Add(studtaskpnl)
@@ -542,9 +485,6 @@ Partial Class studentDashboard
         studtaskpnl.PerformLayout()
         CType(tasksicon, ComponentModel.ISupportInitialize).EndInit()
         studtimeinpnl.ResumeLayout(False)
-        studevalpnl.ResumeLayout(False)
-        studevalpnl.PerformLayout()
-        CType(evalicon, ComponentModel.ISupportInitialize).EndInit()
         CType(logout, ComponentModel.ISupportInitialize).EndInit()
         CType(schedicon, ComponentModel.ISupportInitialize).EndInit()
         studschedpnl.ResumeLayout(False)
@@ -568,10 +508,7 @@ Partial Class studentDashboard
     Friend WithEvents timeoutlbl As Label
     Friend WithEvents timetodatlbl As Label
     Friend WithEvents completetasks As Button
-    Friend WithEvents studevalpnl As Panel
-    Friend WithEvents evalicon As PictureBox
     Friend WithEvents logout As PictureBox
-    Friend WithEvents viewgradesbtn As Button
     Friend WithEvents ColorDialog1 As ColorDialog
     Friend WithEvents schedicon As PictureBox
     Friend WithEvents viewschedbtn As Button
@@ -590,8 +527,7 @@ Partial Class studentDashboard
     Friend WithEvents studsectionlbl As Label
     Friend WithEvents studgender As Label
     Friend WithEvents studgenderlbl As Label
-    Friend WithEvents sumreportlbl As Label
     Friend WithEvents schduledesc As Label
     Friend WithEvents scheduellbl As Label
-    Friend WithEvents viewEvalbtn As Button
+    Friend WithEvents Label1 As Label
 End Class

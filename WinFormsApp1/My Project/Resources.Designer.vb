@@ -103,6 +103,16 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property evalInternsheader() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("evalInternsheader", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property facultydashboardHeader() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("facultydashboardHeader", resourceCulture)
@@ -346,6 +356,16 @@ Namespace My.Resources
         Friend ReadOnly Property icons8_user_male_96() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("icons8-user-male-96", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property image_2025_12_03_105246110() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("image_2025-12-03_105246110", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

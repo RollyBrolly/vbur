@@ -22,138 +22,115 @@ Partial Class supervisorEvaluation
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(supervisorEvaluation))
-        PictureBox6 = New PictureBox()
-        Label10 = New Label()
-        DataGridView1 = New DataGridView()
-        colStudNo = New DataGridViewTextBoxColumn()
-        colLastName = New DataGridViewTextBoxColumn()
-        colFirstName = New DataGridViewTextBoxColumn()
-        colDept = New DataGridViewTextBoxColumn()
-        colCourse = New DataGridViewTextBoxColumn()
-        colStatus = New DataGridViewTextBoxColumn()
-        btnEditItem = New Button()
-        btnAddItem = New Button()
-        CType(PictureBox6, ComponentModel.ISupportInitialize).BeginInit()
-        CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
+        savebtn = New Button()
+        evalDGV = New DataGridView()
+        PictureBox1 = New PictureBox()
+        logoutbtn = New PictureBox()
+        Label1 = New Label()
+        CType(evalDGV, ComponentModel.ISupportInitialize).BeginInit()
+        CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
+        CType(logoutbtn, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
-        ' PictureBox6
+        ' savebtn
         ' 
-        PictureBox6.Image = My.Resources.Resources.icons8_rating_52
-        PictureBox6.Location = New Point(24, 23)
-        PictureBox6.Margin = New Padding(3, 2, 3, 2)
-        PictureBox6.Name = "PictureBox6"
-        PictureBox6.Size = New Size(56, 55)
-        PictureBox6.SizeMode = PictureBoxSizeMode.StretchImage
-        PictureBox6.TabIndex = 70
-        PictureBox6.TabStop = False
+        savebtn.BackColor = Color.Indigo
+        savebtn.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        savebtn.ForeColor = Color.White
+        savebtn.Location = New Point(24, 985)
+        savebtn.Margin = New Padding(3, 2, 3, 2)
+        savebtn.Name = "savebtn"
+        savebtn.Size = New Size(124, 45)
+        savebtn.TabIndex = 76
+        savebtn.Text = "Save"
+        savebtn.UseVisualStyleBackColor = False
         ' 
-        ' Label10
+        ' evalDGV
         ' 
-        Label10.AutoSize = True
-        Label10.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label10.ForeColor = Color.Indigo
-        Label10.Location = New Point(86, 27)
-        Label10.Name = "Label10"
-        Label10.Size = New Size(188, 45)
-        Label10.TabIndex = 69
-        Label10.Text = "Evalutation"
+        evalDGV.AllowUserToAddRows = False
+        evalDGV.AllowUserToOrderColumns = True
+        evalDGV.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        evalDGV.BackgroundColor = Color.White
+        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = SystemColors.Control
+        DataGridViewCellStyle1.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle1.ForeColor = Color.Indigo
+        DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
+        evalDGV.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        evalDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = SystemColors.Window
+        DataGridViewCellStyle2.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle2.ForeColor = SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.False
+        evalDGV.DefaultCellStyle = DataGridViewCellStyle2
+        evalDGV.Location = New Point(12, 295)
+        evalDGV.Name = "evalDGV"
+        evalDGV.RowHeadersVisible = False
+        evalDGV.ScrollBars = ScrollBars.Vertical
+        evalDGV.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        evalDGV.Size = New Size(1891, 676)
+        evalDGV.TabIndex = 95
         ' 
-        ' DataGridView1
+        ' PictureBox1
         ' 
-        DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-        DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridView1.Columns.AddRange(New DataGridViewColumn() {colStudNo, colLastName, colFirstName, colDept, colCourse, colStatus})
-        DataGridView1.Location = New Point(76, 127)
-        DataGridView1.Name = "DataGridView1"
-        DataGridView1.Size = New Size(1733, 150)
-        DataGridView1.TabIndex = 71
+        PictureBox1.Image = My.Resources.Resources.evalInternsheader
+        PictureBox1.Location = New Point(-12, -4)
+        PictureBox1.Name = "PictureBox1"
+        PictureBox1.Size = New Size(1928, 180)
+        PictureBox1.TabIndex = 96
+        PictureBox1.TabStop = False
         ' 
-        ' colStudNo
+        ' logoutbtn
         ' 
-        colStudNo.HeaderText = "Student Number"
-        colStudNo.Name = "colStudNo"
+        logoutbtn.BackColor = Color.Transparent
+        logoutbtn.Image = My.Resources.Resources.icons8_log_out_96
+        logoutbtn.Location = New Point(1749, 33)
+        logoutbtn.Margin = New Padding(3, 2, 3, 2)
+        logoutbtn.Name = "logoutbtn"
+        logoutbtn.Size = New Size(114, 103)
+        logoutbtn.SizeMode = PictureBoxSizeMode.StretchImage
+        logoutbtn.TabIndex = 97
+        logoutbtn.TabStop = False
         ' 
-        ' colLastName
+        ' Label1
         ' 
-        colLastName.HeaderText = "Last Name"
-        colLastName.Name = "colLastName"
-        ' 
-        ' colFirstName
-        ' 
-        colFirstName.HeaderText = "First Name"
-        colFirstName.Name = "colFirstName"
-        ' 
-        ' colDept
-        ' 
-        colDept.HeaderText = "Department"
-        colDept.Name = "colDept"
-        ' 
-        ' colCourse
-        ' 
-        colCourse.HeaderText = "Course"
-        colCourse.Name = "colCourse"
-        ' 
-        ' colStatus
-        ' 
-        colStatus.HeaderText = "Status"
-        colStatus.Name = "colStatus"
-        ' 
-        ' btnEditItem
-        ' 
-        btnEditItem.BackColor = Color.Indigo
-        btnEditItem.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnEditItem.ForeColor = Color.White
-        btnEditItem.Location = New Point(170, 967)
-        btnEditItem.Margin = New Padding(3, 2, 3, 2)
-        btnEditItem.Name = "btnEditItem"
-        btnEditItem.Size = New Size(124, 45)
-        btnEditItem.TabIndex = 77
-        btnEditItem.Text = "Edit Item"
-        btnEditItem.UseVisualStyleBackColor = False
-        ' 
-        ' btnAddItem
-        ' 
-        btnAddItem.BackColor = Color.Indigo
-        btnAddItem.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnAddItem.ForeColor = Color.White
-        btnAddItem.Location = New Point(24, 967)
-        btnAddItem.Margin = New Padding(3, 2, 3, 2)
-        btnAddItem.Name = "btnAddItem"
-        btnAddItem.Size = New Size(124, 45)
-        btnAddItem.TabIndex = 76
-        btnAddItem.Text = "Add Item"
-        btnAddItem.UseVisualStyleBackColor = False
+        Label1.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        Label1.Location = New Point(157, 218)
+        Label1.Name = "Label1"
+        Label1.Size = New Size(1706, 47)
+        Label1.TabIndex = 98
+        Label1.Text = "5 – Outstanding (O)    4 – Very Satisfactory (VS)    3 – Satisfactory (S)    2 – Needs Improvement (NI)   1 – Unacceptable (U)"
         ' 
         ' supervisorEvaluation
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
+        BackColor = Color.DarkGray
         ClientSize = New Size(1904, 1041)
-        Controls.Add(btnEditItem)
-        Controls.Add(btnAddItem)
-        Controls.Add(DataGridView1)
-        Controls.Add(PictureBox6)
-        Controls.Add(Label10)
+        Controls.Add(Label1)
+        Controls.Add(logoutbtn)
+        Controls.Add(PictureBox1)
+        Controls.Add(evalDGV)
+        Controls.Add(savebtn)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "supervisorEvaluation"
         Text = "Evaluation Form"
-        CType(PictureBox6, ComponentModel.ISupportInitialize).EndInit()
-        CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
+        CType(evalDGV, ComponentModel.ISupportInitialize).EndInit()
+        CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
+        CType(logoutbtn, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
-        PerformLayout()
     End Sub
-
-    Friend WithEvents PictureBox6 As PictureBox
-    Friend WithEvents Label10 As Label
-    Friend WithEvents DataGridView1 As DataGridView
-    Friend WithEvents colStudNo As DataGridViewTextBoxColumn
-    Friend WithEvents colLastName As DataGridViewTextBoxColumn
-    Friend WithEvents colFirstName As DataGridViewTextBoxColumn
-    Friend WithEvents colDept As DataGridViewTextBoxColumn
-    Friend WithEvents colCourse As DataGridViewTextBoxColumn
-    Friend WithEvents colStatus As DataGridViewTextBoxColumn
-    Friend WithEvents btnEditItem As Button
-    Friend WithEvents btnAddItem As Button
+    Friend WithEvents savebtn As Button
+    Friend WithEvents evalDGV As DataGridView
+    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents logoutbtn As PictureBox
+    Friend WithEvents Label1 As Label
 End Class

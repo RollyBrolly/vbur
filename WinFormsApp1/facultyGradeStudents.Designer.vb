@@ -102,6 +102,7 @@ Partial Class facultyGradeStudents
         gradeDGV.Location = New Point(42, 315)
         gradeDGV.Name = "gradeDGV"
         gradeDGV.RowHeadersVisible = False
+        gradeDGV.ScrollBars = ScrollBars.Vertical
         gradeDGV.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         gradeDGV.Size = New Size(1833, 625)
         gradeDGV.TabIndex = 94

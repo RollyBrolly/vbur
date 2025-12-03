@@ -9,6 +9,8 @@ Public Class supervisorDashboard
     ' Login UserID passed from Login form
     Public Property UserID As Integer
 
+    Public Property SuperID As String
+
     ' SupervisorID retrieved from useraccounts based on UserID
     Private _supervisorID As String
     Private Property SupervisorID As String
@@ -398,19 +400,24 @@ Public Class supervisorDashboard
 
     ' ---------------- BUTTONS / TASKS ----------------
     Private Sub viewvisitlogbtn_Click(sender As Object, e As EventArgs) Handles viewvisitlogbtn.Click
-        MessageBox.Show("Add Tasks not implemented yet")
+        Dim visit As New visitationLogs()
+        visit.SuperID = Me.SuperID
+        visit.Show()
+        Me.Hide()
     End Sub
 
     Private Sub evalstudbtn_Click(sender As Object, e As EventArgs) Handles evalstudbtn.Click
-        MessageBox.Show("Add Tasks not implemented yet")
-    End Sub
-
-    Private Sub addannouncebtn_Click(sender As Object, e As EventArgs)
-        MessageBox.Show("Add Tasks not implemented yet")
+        Dim eval As New supervisorEvaluation()
+        eval.SuperID = Me.SuperID
+        eval.Show()
+        Me.Hide()
     End Sub
 
     Private Sub vewinternbtn_Click(sender As Object, e As EventArgs) Handles vewinternbtn.Click
-        MessageBox.Show("Add Tasks not implemented yet")
+        Dim intern As New internsView()
+        intern.SuperID = Me.SuperID
+        intern.Show()
+        Me.Hide()
     End Sub
 
 
@@ -422,14 +429,6 @@ Public Class supervisorDashboard
             loginForm.Show()
             Me.Hide()
         End If
-    End Sub
-
-    Private Sub PictureBox4_Click(sender As Object, e As EventArgs) Handles PictureBox4.Click
-
-    End Sub
-
-    Private Sub studgenderlbl_Click(sender As Object, e As EventArgs) Handles studgenderlbl.Click
-
     End Sub
 
     Private Sub viewgradebtn_Click(sender As Object, e As EventArgs) Handles viewgradebtn.Click

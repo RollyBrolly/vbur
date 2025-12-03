@@ -1,5 +1,7 @@
 ﻿Imports System.Globalization
 Imports System.IO
+Imports System.Net.Mail
+Imports System.Reflection.Metadata
 Imports System.Windows.Forms
 Imports MySql.Data.MySqlClient
 
@@ -294,12 +296,7 @@ Public Class studentDashboard
         scheduleForm.ShowDialog()
     End Sub
 
-    ' ---------------- BUTTONS ----------------
-    ' You can edit these functions for actual features later
-    Private Sub viewgradesbtn_Click(sender As Object, e As EventArgs) Handles viewgradesbtn.Click
-        'summary report
-        MessageBox.Show("View Grades not implemented yet")
-    End Sub
+
 
     ' ---------------- task ----------------
     Private Sub completetasks_Click(sender As Object, e As EventArgs) Handles completetasks.Click
@@ -416,5 +413,13 @@ Public Class studentDashboard
             Dim loginForm As New Login()
             loginForm.Show()
         End If
+    End Sub
+
+    Private Sub viewEvalbtn_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub viewgradesbtn_Click(sender As Object, e As EventArgs)
+
     End Sub
 End Class

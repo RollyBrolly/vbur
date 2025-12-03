@@ -105,8 +105,14 @@ Public Class facultyStudentRecord
     End Sub
 
     Private Sub gradebtn_Click(sender As Object, e As EventArgs) Handles gradebtn.Click
+        If studDGV.SelectedRows.Count = 0 Then
+            MessageBox.Show("Please select a student to grade.", "No Student Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
         Dim studentGrades As New facultyGradeStudents()
         studentGrades.FacultyID = Me.FacultyID
+        studentGrades.SelectedStudentID = studDGV.SelectedRows(0).Cells("StudentID").Value.ToString()
         studentGrades.Show()
         Me.Close()
     End Sub
@@ -128,6 +134,7 @@ Public Class facultyStudentRecord
                 conn.Open()
                 Using transaction = conn.BeginTransaction()
 
+                    ' 1. Get all user accounts of the student
                     Dim userIDs As New List(Of Integer)
                     Using cmd As New MySqlCommand("SELECT UserID FROM useraccounts WHERE StudentID = @id", conn, transaction)
                         cmd.Parameters.AddWithValue("@id", studentID)
@@ -138,11 +145,19 @@ Public Class facultyStudentRecord
                         End Using
                     End Using
 
+                    ' 2. Delete from studentgrades first (fixes your FK error)
+                    Using cmd As New MySqlCommand("DELETE FROM studentgrades WHERE StudentID = @id", conn, transaction)
+                        cmd.Parameters.AddWithValue("@id", studentID)
+                        cmd.ExecuteNonQuery()
+                    End Using
+
+                    ' 3. Delete useraccounts
                     Using cmd As New MySqlCommand("DELETE FROM useraccounts WHERE StudentID = @id", conn, transaction)
                         cmd.Parameters.AddWithValue("@id", studentID)
                         cmd.ExecuteNonQuery()
                     End Using
 
+                    ' 4. Delete users table
                     For Each uid In userIDs
                         Using cmd As New MySqlCommand("DELETE FROM users WHERE UserID = @uid", conn, transaction)
                             cmd.Parameters.AddWithValue("@uid", uid)
@@ -150,6 +165,7 @@ Public Class facultyStudentRecord
                         End Using
                     Next
 
+                    ' 5. Finally, delete student
                     Using cmd As New MySqlCommand("DELETE FROM student WHERE StudentID = @id", conn, transaction)
                         cmd.Parameters.AddWithValue("@id", studentID)
                         cmd.ExecuteNonQuery()
@@ -161,10 +177,12 @@ Public Class facultyStudentRecord
 
             MessageBox.Show("Student deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
             ApplyFilters()
+
         Catch ex As Exception
             MessageBox.Show("Error deleting student: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
 
 
     Private Sub studDGV_SelectionChanged(sender As Object, e As EventArgs) Handles studDGV.SelectionChanged
@@ -250,7 +268,6 @@ Public Class facultyStudentRecord
             Return
         End If
 
-        ' --- Show progress dialog ---
         Dim dlg As New EmailProgressDialog(Me)
         dlg.Show()
 
