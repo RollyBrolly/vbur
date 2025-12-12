@@ -84,4 +84,8 @@
             e.Graphics.FillRectangle(shadowBrush, 2, 2, Me.Width - 4, Me.Height - 4)
         End Using
     End Sub
+
+    Private Sub EmailProgressDialog_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class

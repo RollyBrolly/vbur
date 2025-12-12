@@ -5,7 +5,7 @@ Module connectdb
         server=localhost;
         userid=root;
         password=;
-        database=internship_db;
+        database=ojt_internship_db;
         "
 
     Public Function GetAllStudents() As DataTable

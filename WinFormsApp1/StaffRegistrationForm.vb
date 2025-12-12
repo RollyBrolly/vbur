@@ -292,24 +292,24 @@ Public Class StaffRegistrationForm
     Public Sub Refreshcompanies()
         staffcomptxt.Items.Clear()
 
-        Dim conn As New MySqlConnection(connectdb.connstring)
-
-        Try
+        Using conn As New MySqlConnection(connectdb.connstring)
             conn.Open()
-            Dim cmd As New MySqlCommand("SELECT CompanyName FROM company", conn)
-            Dim reader = cmd.ExecuteReader()
+            Using cmd As New MySqlCommand("SELECT CompanyID, CompanyName FROM company ORDER BY CompanyName", conn)
+                Using reader = cmd.ExecuteReader()
+                    While reader.Read()
+                        staffcomptxt.Items.Add(New KeyValuePair(Of String, String)(
+                        reader("CompanyID").ToString(),
+                        reader("CompanyName").ToString()
+                    ))
+                    End While
+                End Using
+            End Using
+        End Using
 
-            While reader.Read()
-                staffcomptxt.Items.Add(reader("CompanyName").ToString())
-            End While
-
-            reader.Close()
-        Catch ex As Exception
-            MessageBox.Show("Error loading camapanies: " & ex.Message)
-        Finally
-            conn.Close()
-        End Try
+        staffcomptxt.DisplayMember = "Value"
+        staffcomptxt.ValueMember = "Key"
     End Sub
+
     Private Sub staffreturnbtn_Click(sender As Object, e As EventArgs) Handles staffreturnbtn.Click
         If MessageBox.Show("Return to registration page?", "Confirm", MessageBoxButtons.YesNo) = DialogResult.Yes Then
             If _registrationForm IsNot Nothing Then _registrationForm.Show()

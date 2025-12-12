@@ -25,7 +25,6 @@ Partial Class supervisorDashboard
         components = New ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(supervisorDashboard))
         PictureBox1 = New PictureBox()
-        logoutbtn = New PictureBox()
         Panel6 = New Panel()
         evalstudbtn = New Button()
         PictureBox6 = New PictureBox()
@@ -61,12 +60,15 @@ Partial Class supervisorDashboard
         staffidlbl = New Label()
         profilebtn = New PictureBox()
         staffwelcome = New Label()
+        panelbrowser = New Panel()
+        backsbtn = New PictureBox()
+        web = New Microsoft.Web.WebView2.WinForms.WebView2()
         Timer = New Timer(components)
         Panel1 = New Panel()
         viewgradebtn = New Button()
         PictureBox4 = New PictureBox()
+        logoutbtn = New PictureBox()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
-        CType(logoutbtn, ComponentModel.ISupportInitialize).BeginInit()
         Panel6.SuspendLayout()
         CType(PictureBox6, ComponentModel.ISupportInitialize).BeginInit()
         Panel5.SuspendLayout()
@@ -78,8 +80,12 @@ Partial Class supervisorDashboard
         CType(PictureBox2, ComponentModel.ISupportInitialize).BeginInit()
         Panel7.SuspendLayout()
         CType(profilebtn, ComponentModel.ISupportInitialize).BeginInit()
+        panelbrowser.SuspendLayout()
+        CType(backsbtn, ComponentModel.ISupportInitialize).BeginInit()
+        CType(web, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
         CType(PictureBox4, ComponentModel.ISupportInitialize).BeginInit()
+        CType(logoutbtn, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' PictureBox1
@@ -93,18 +99,6 @@ Partial Class supervisorDashboard
         PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
         PictureBox1.TabIndex = 66
         PictureBox1.TabStop = False
-        ' 
-        ' logoutbtn
-        ' 
-        logoutbtn.BackColor = Color.Transparent
-        logoutbtn.Image = My.Resources.Resources.icons8_log_out_96
-        logoutbtn.Location = New Point(1684, 34)
-        logoutbtn.Margin = New Padding(3, 2, 3, 2)
-        logoutbtn.Name = "logoutbtn"
-        logoutbtn.Size = New Size(114, 103)
-        logoutbtn.SizeMode = PictureBoxSizeMode.StretchImage
-        logoutbtn.TabIndex = 69
-        logoutbtn.TabStop = False
         ' 
         ' Panel6
         ' 
@@ -515,6 +509,41 @@ Partial Class supervisorDashboard
         staffwelcome.TabIndex = 65
         staffwelcome.Text = "Welcome [Supervisor Name]"
         ' 
+        ' panelbrowser
+        ' 
+        panelbrowser.Controls.Add(backsbtn)
+        panelbrowser.Controls.Add(web)
+        panelbrowser.Dock = DockStyle.Fill
+        panelbrowser.Location = New Point(0, 0)
+        panelbrowser.Name = "panelbrowser"
+        panelbrowser.Size = New Size(1684, 796)
+        panelbrowser.TabIndex = 91
+        panelbrowser.Visible = False
+        ' 
+        ' backsbtn
+        ' 
+        backsbtn.BackColor = Color.Transparent
+        backsbtn.Image = My.Resources.Resources.icons8_log_out_96
+        backsbtn.Location = New Point(1800, 10)
+        backsbtn.Margin = New Padding(3, 2, 3, 2)
+        backsbtn.Name = "backsbtn"
+        backsbtn.Size = New Size(90, 80)
+        backsbtn.SizeMode = PictureBoxSizeMode.StretchImage
+        backsbtn.TabIndex = 82
+        backsbtn.TabStop = False
+        ' 
+        ' web
+        ' 
+        web.AllowExternalDrop = True
+        web.CreationProperties = Nothing
+        web.DefaultBackgroundColor = Color.White
+        web.Dock = DockStyle.Fill
+        web.Location = New Point(0, 0)
+        web.Name = "web"
+        web.Size = New Size(1684, 796)
+        web.TabIndex = 0
+        web.ZoomFactor = 1R
+        ' 
         ' Timer
         ' 
         ' 
@@ -552,26 +581,38 @@ Partial Class supervisorDashboard
         PictureBox4.TabIndex = 69
         PictureBox4.TabStop = False
         ' 
+        ' logoutbtn
+        ' 
+        logoutbtn.BackColor = Color.Transparent
+        logoutbtn.Image = My.Resources.Resources.icons8_log_out_96
+        logoutbtn.Location = New Point(1580, 41)
+        logoutbtn.Margin = New Padding(3, 2, 3, 2)
+        logoutbtn.Name = "logoutbtn"
+        logoutbtn.Size = New Size(92, 99)
+        logoutbtn.SizeMode = PictureBoxSizeMode.StretchImage
+        logoutbtn.TabIndex = 83
+        logoutbtn.TabStop = False
+        ' 
         ' supervisorDashboard
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.DarkGray
-        ClientSize = New Size(1904, 1041)
+        ClientSize = New Size(1684, 796)
+        Controls.Add(panelbrowser)
         Controls.Add(Panel1)
         Controls.Add(Panel7)
+        Controls.Add(logoutbtn)
         Controls.Add(Panel6)
         Controls.Add(Panel5)
         Controls.Add(Panel3)
         Controls.Add(Panel2)
         Controls.Add(staffstaskpnl)
-        Controls.Add(logoutbtn)
         Controls.Add(PictureBox1)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "supervisorDashboard"
         Text = "supervisorDashboard"
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
-        CType(logoutbtn, ComponentModel.ISupportInitialize).EndInit()
         Panel6.ResumeLayout(False)
         CType(PictureBox6, ComponentModel.ISupportInitialize).EndInit()
         Panel5.ResumeLayout(False)
@@ -585,13 +626,16 @@ Partial Class supervisorDashboard
         Panel7.ResumeLayout(False)
         Panel7.PerformLayout()
         CType(profilebtn, ComponentModel.ISupportInitialize).EndInit()
+        panelbrowser.ResumeLayout(False)
+        CType(backsbtn, ComponentModel.ISupportInitialize).EndInit()
+        CType(web, ComponentModel.ISupportInitialize).EndInit()
         Panel1.ResumeLayout(False)
         CType(PictureBox4, ComponentModel.ISupportInitialize).EndInit()
+        CType(logoutbtn, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
     End Sub
 
     Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents logoutbtn As PictureBox
     Friend WithEvents Panel6 As Panel
     Friend WithEvents evalstudbtn As Button
     Friend WithEvents PictureBox6 As PictureBox
@@ -631,4 +675,8 @@ Partial Class supervisorDashboard
     Friend WithEvents staffcompaddlbl As Label
     Friend WithEvents staffgender As Label
     Friend WithEvents studgenderlbl As Label
+    Friend WithEvents panelbrowser As Panel
+    Friend WithEvents web As Microsoft.Web.WebView2.WinForms.WebView2
+    Friend WithEvents backsbtn As PictureBox
+    Friend WithEvents logoutbtn As PictureBox
 End Class

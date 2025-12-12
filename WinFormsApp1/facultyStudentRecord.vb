@@ -282,6 +282,7 @@ Public Class facultyStudentRecord
                     For i As Integer = 0 To rowsToProcess.Count - 1
                         Dim row = rowsToProcess(i)
 
+                        ' --- Student Info ---
                         Dim sid As String
                         Dim fname = StrConv(row.Cells("StudentFirstName").Value?.ToString().Trim(), VbStrConv.ProperCase)
                         Dim mname = StrConv(row.Cells("StudentMiddleName").Value?.ToString().Trim(), VbStrConv.ProperCase)
@@ -294,46 +295,38 @@ Public Class facultyStudentRecord
                         Dim email = row.Cells("StudentEmail").Value?.ToString().Trim()
                         Dim contact = row.Cells("StudentContactNo").Value?.ToString().Trim()
 
+                        ' --- Validate Email ---
                         Dim isValid As Boolean = True
-
                         If String.IsNullOrWhiteSpace(email) Then
                             isValid = False
                         Else
                             Try
                                 Dim addr As New System.Net.Mail.MailAddress(email)
-                                Dim domain As String = email.Split("@"c)(1).ToLower()
-
                                 Dim allowedDomains As String() = {"gmail.com", "yahoo.com", "outlook.com", "plpasig.edu.ph"}
-
-                                If Not allowedDomains.Contains(domain) Then
-                                    isValid = False
-                                End If
-
+                                Dim domain As String = email.Split("@"c)(1).ToLower()
+                                If Not allowedDomains.Contains(domain) Then isValid = False
                             Catch
                                 isValid = False
                             End Try
                         End If
 
                         If Not isValid Then
-                            Dim percentInvalid As Integer = CInt((i + 1) / rowsToProcess.Count * 100)
-                            dlg.UpdateProgress(percentInvalid, $"Skipping invalid email: {email}")
+                            dlg.UpdateProgress(CInt((i + 1) / rowsToProcess.Count * 100), $"Skipping invalid email: {email}")
                             Await Task.Delay(1)
                             Continue For
                         End If
 
-                        If String.IsNullOrEmpty(fname) OrElse
-                       String.IsNullOrEmpty(lname) OrElse
-                       String.IsNullOrEmpty(contact) OrElse
-                       String.IsNullOrEmpty(section) OrElse
-                       String.IsNullOrEmpty(course) OrElse
-                       String.IsNullOrEmpty(dept) Then
+                        ' --- Validate Required Fields ---
+                        If String.IsNullOrEmpty(fname) OrElse String.IsNullOrEmpty(lname) OrElse
+                       String.IsNullOrEmpty(contact) OrElse String.IsNullOrEmpty(section) OrElse
+                       String.IsNullOrEmpty(course) OrElse String.IsNullOrEmpty(dept) Then
 
-                            Dim percentSkip = CInt((i + 1) / rowsToProcess.Count * 100)
-                            dlg.UpdateProgress(percentSkip, $"Skipping incomplete row ({i + 1}/{rowsToProcess.Count})")
+                            dlg.UpdateProgress(CInt((i + 1) / rowsToProcess.Count * 100), $"Skipping incomplete row ({i + 1}/{rowsToProcess.Count})")
                             Await Task.Delay(1)
                             Continue For
                         End If
 
+                        ' --- Generate or Check StudentID ---
                         If String.IsNullOrEmpty(row.Cells("StudentID").Value?.ToString().Trim()) Then
                             sid = connectdb.GenerateStudentID()
                             row.Cells("StudentID").Value = sid
@@ -343,38 +336,37 @@ Public Class facultyStudentRecord
 
                         Dim checkID As New MySqlCommand("SELECT COUNT(*) FROM student WHERE StudentID = @sid", conn, transaction)
                         checkID.Parameters.AddWithValue("@sid", sid)
-
                         If Convert.ToInt32(checkID.ExecuteScalar()) > 0 Then
                             sid = connectdb.GenerateStudentID()
                             row.Cells("StudentID").Value = sid
                         End If
 
+                        ' --- Validate Program & Department ---
                         Dim programCheck As New MySqlCommand("
                         SELECT COUNT(*)
                         FROM course c
                         INNER JOIN department d ON c.DepartmentID = d.DepartmentID
                         WHERE c.CourseName = @course AND d.DeptName = @dept", conn, transaction)
-
                         programCheck.Parameters.AddWithValue("@course", course)
                         programCheck.Parameters.AddWithValue("@dept", dept)
-
                         If Convert.ToInt32(programCheck.ExecuteScalar()) = 0 Then
                             dlg.UpdateProgress(0, $"Skipping invalid Program/Department at row {i + 1}.")
                             Continue For
                         End If
 
+                        ' --- User Account ---
                         Dim username = sid.Replace("-", "")
                         Dim fullname = $"{fname} {mname} {lname}".Replace("  ", " ").Trim()
-                        Dim initials = String.Concat(fullname.Split({" "c}, StringSplitOptions.RemoveEmptyEntries).
-                                                 Select(Function(n) n(0).ToString().ToUpper()))
+                        Dim initials = String.Concat(fullname.Split({" "c}, StringSplitOptions.RemoveEmptyEntries).Select(Function(n) n(0).ToString().ToUpper()))
                         Dim password = username & initials
 
-                        Dim studentQuery As String =
-                    "INSERT INTO student (StudentID, StudentFirstName, StudentMiddleName, StudentLastName, Suffix, Gender, CourseID, Section, StudentContactNo, StudentEmail)
-                     SELECT @sid, @fname, @mname, @lname, @suffix, @gender, c.CourseID, @section, @contact, @email
-                     FROM course c
-                     INNER JOIN department d ON c.DepartmentID = d.DepartmentID
-                     WHERE c.CourseName = @course AND d.DeptName = @dept"
+                        ' --- Insert Student ---
+                        Dim studentQuery As String = "
+                        INSERT INTO student (StudentID, StudentFirstName, StudentMiddleName, StudentLastName, Suffix, Gender, CourseID, Section, StudentContactNo, StudentEmail)
+                        SELECT @sid, @fname, @mname, @lname, @suffix, @gender, c.CourseID, @section, @contact, @email
+                        FROM course c
+                        INNER JOIN department d ON c.DepartmentID = d.DepartmentID
+                        WHERE c.CourseName = @course AND d.DeptName = @dept"
 
                         Using cmd As New MySqlCommand(studentQuery, conn, transaction)
                             cmd.Parameters.AddWithValue("@sid", sid)
@@ -388,11 +380,47 @@ Public Class facultyStudentRecord
                             cmd.Parameters.AddWithValue("@section", section)
                             cmd.Parameters.AddWithValue("@contact", If(String.IsNullOrEmpty(contact), DBNull.Value, contact))
                             cmd.Parameters.AddWithValue("@email", email)
-
                             cmd.ExecuteNonQuery()
                         End Using
 
+                        ' --- Read Evaluation Columns from CSV ---
+                        Dim q1 = If(row.Cells("C1: Attends/Starts Promptly").Value IsNot Nothing, Convert.ToInt32(row.Cells("C1: Attends/Starts Promptly").Value), 0)
+                        Dim q2 = If(row.Cells("C2: Suitable Work Attire").Value IsNot Nothing, Convert.ToInt32(row.Cells("C2: Suitable Work Attire").Value), 0)
+                        Dim q3 = If(row.Cells("C3: Expresses Ideas Well").Value IsNot Nothing, Convert.ToInt32(row.Cells("C3: Expresses Ideas Well").Value), 0)
+                        Dim q4 = If(row.Cells("C4: Listens Attentively").Value IsNot Nothing, Convert.ToInt32(row.Cells("C4: Listens Attentively").Value), 0)
+                        Dim q5 = If(row.Cells("C5: Displays Interest").Value IsNot Nothing, Convert.ToInt32(row.Cells("C5: Displays Interest").Value), 0)
+                        Dim q6 = If(row.Cells("C6: Develops Variety of Skills").Value IsNot Nothing, Convert.ToInt32(row.Cells("C6: Develops Variety of Skills").Value), 0)
+                        Dim q7 = If(row.Cells("C7: Orderly/Safe Workstation").Value IsNot Nothing, Convert.ToInt32(row.Cells("C7: Orderly/Safe Workstation").Value), 0)
+                        Dim q8 = If(row.Cells("C8: Submits Reports Accurately").Value IsNot Nothing, Convert.ToInt32(row.Cells("C8: Submits Reports Accurately").Value), 0)
+                        Dim q9 = If(row.Cells("C9: Knows Functions/Responsibilities").Value IsNot Nothing, Convert.ToInt32(row.Cells("C9: Knows Functions/Responsibilities").Value), 0)
+                        Dim q10 = If(row.Cells("C10: Open to Growth/Development").Value IsNot Nothing, Convert.ToInt32(row.Cells("C10: Open to Growth/Development").Value), 0)
+                        Dim totalPoints = If(row.Cells("Overall Score").Value IsNot Nothing, Convert.ToInt32(row.Cells("Overall Score").Value), 0)
+                        Dim rating = If(row.Cells("Remarks").Value IsNot Nothing, row.Cells("Remarks").Value.ToString(), Nothing)
 
+                        ' --- Insert Evaluation ---
+                        Dim evalQuery As String = "
+                        INSERT INTO studentevaluations 
+                        (StudentID, Question1, Question2, Question3, Question4, Question5, Question6, Question7, Question8, Question9, Question10, TotalPoints, Rating)
+                        VALUES (@sid, @q1, @q2, @q3, @q4, @q5, @q6, @q7, @q8, @q9, @q10, @total, @rating)"
+
+                        Using cmdEval As New MySqlCommand(evalQuery, conn, transaction)
+                            cmdEval.Parameters.AddWithValue("@sid", sid)
+                            cmdEval.Parameters.AddWithValue("@q1", q1)
+                            cmdEval.Parameters.AddWithValue("@q2", q2)
+                            cmdEval.Parameters.AddWithValue("@q3", q3)
+                            cmdEval.Parameters.AddWithValue("@q4", q4)
+                            cmdEval.Parameters.AddWithValue("@q5", q5)
+                            cmdEval.Parameters.AddWithValue("@q6", q6)
+                            cmdEval.Parameters.AddWithValue("@q7", q7)
+                            cmdEval.Parameters.AddWithValue("@q8", q8)
+                            cmdEval.Parameters.AddWithValue("@q9", q9)
+                            cmdEval.Parameters.AddWithValue("@q10", q10)
+                            cmdEval.Parameters.AddWithValue("@total", totalPoints)
+                            cmdEval.Parameters.AddWithValue("@rating", If(String.IsNullOrEmpty(rating), DBNull.Value, rating))
+                            cmdEval.ExecuteNonQuery()
+                        End Using
+
+                        ' --- Create User Account ---
                         If Not CreateUserAccount(conn, transaction, username, password, "Student", sid, Nothing, Nothing) Then
                             transaction.Rollback()
                             MessageBox.Show($"Failed creating login for {fullname}. Import cancelled.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -400,9 +428,7 @@ Public Class facultyStudentRecord
                         End If
 
                         emailsToSend.Add((fullname, sid, username, password, email))
-
-                        Dim percent = CInt((i + 1) / rowsToProcess.Count * 100)
-                        dlg.UpdateProgress(percent, $"Importing: {fullname} ({i + 1}/{rowsToProcess.Count})")
+                        dlg.UpdateProgress(CInt((i + 1) / rowsToProcess.Count * 100), $"Importing: {fullname} ({i + 1}/{rowsToProcess.Count})")
                         Await Task.Delay(1)
                     Next
 
@@ -410,16 +436,16 @@ Public Class facultyStudentRecord
                 End Using
             End Using
 
+            ' --- Send Emails ---
             For i As Integer = 0 To emailsToSend.Count - 1
                 Dim eInfo = emailsToSend(i)
-                dlg.UpdateProgress(CInt((i + 1) / emailsToSend.Count * 100),
-                               $"Sending email to: {eInfo.fullname}")
+                dlg.UpdateProgress(CInt((i + 1) / emailsToSend.Count * 100), $"Sending email to: {eInfo.fullname}")
                 Await SendStudentEmail(eInfo.fullname, eInfo.sid, eInfo.username, eInfo.password, eInfo.email)
                 Await Task.Delay(1)
             Next
 
             MessageBox.Show("Import complete! All emails sent.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            studDGV.DataSource = GetAllStudents()
+            studDGV.DataSource = GetStudentsWithEvaluations() ' Show students + evaluations
             containerpnl.Visible = False
 
         Catch ex As Exception
@@ -428,6 +454,59 @@ Public Class facultyStudentRecord
             dlg.Close()
         End Try
     End Sub
+
+
+    Private Function GetStudentsWithEvaluations() As DataTable
+        Dim dt As New DataTable()
+
+        Try
+            Using conn As New MySqlConnection(connectdb.connstring)
+                conn.Open()
+
+                Dim query As String = "
+                SELECT s.StudentID,
+                       s.StudentFirstName,
+                       s.StudentMiddleName,
+                       s.StudentLastName,
+                       s.Suffix,
+                       s.Gender,
+                       s.StudentContactNo,
+                       s.StudentEmail,
+                       c.CourseName,
+                       d.DeptName,
+                       s.Section,
+                       se.Question1,
+                       se.Question2,
+                       se.Question3,
+                       se.Question4,
+                       se.Question5,
+                       se.Question6,
+                       se.Question7,
+                       se.Question8,
+                       se.Question9,
+                       se.Question10,
+                       se.TotalPoints,
+                       se.Rating
+                FROM student s
+                INNER JOIN course c ON s.CourseID = c.CourseID
+                INNER JOIN department d ON c.DepartmentID = d.DepartmentID
+                LEFT JOIN studentevaluations se ON s.StudentID = se.StudentID
+                ORDER BY s.StudentLastName, s.StudentFirstName
+            "
+
+                Using cmd As New MySqlCommand(query, conn)
+                    Using adapter As New MySql.Data.MySqlClient.MySqlDataAdapter(cmd)
+                        adapter.Fill(dt)
+                    End Using
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Error fetching students: " & ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+        Return dt
+    End Function
+
 
     Private Async Function SendStudentEmail(fullname As String, studentID As String, username As String, password As String, useremail As String) As Task
         Try

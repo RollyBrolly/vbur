@@ -429,6 +429,4 @@ Public Class facultyDashboard
             loginForm.Show()
         End If
     End Sub
-
-
 End Class

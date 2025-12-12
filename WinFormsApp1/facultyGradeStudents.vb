@@ -373,10 +373,11 @@ Public Class facultyGradeStudents
             Using conn As New MySqlConnection(connstring)
                 conn.Open()
 
+                ' Loop through each row in the DataGridView
                 For Each row As DataGridViewRow In gradeDGV.Rows
-                    ' Skip empty rows
                     If row.IsNewRow Then Continue For
 
+                    ' Get values safely
                     Dim studentID As String = row.Cells("StudentID").Value.ToString()
                     Dim quiz1 As Object = If(row.Cells("Quiz1").Value Is Nothing, DBNull.Value, row.Cells("Quiz1").Value)
                     Dim quiz2 As Object = If(row.Cells("Quiz2").Value Is Nothing, DBNull.Value, row.Cells("Quiz2").Value)
@@ -387,20 +388,28 @@ Public Class facultyGradeStudents
                     Dim gwa As Object = If(row.Cells("GWA").Value Is Nothing, DBNull.Value, row.Cells("GWA").Value)
                     Dim remarks As Object = If(row.Cells("Remarks").Value Is Nothing, DBNull.Value, row.Cells("Remarks").Value)
 
-                    ' Use INSERT ... ON DUPLICATE KEY UPDATE for MySQL
+                    ' Ensure FacultyID is set
+                    If String.IsNullOrEmpty(FacultyID) Then
+                        MessageBox.Show("Faculty ID is not set.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Return
+                    End If
+
+                    ' Fixed query: use same parameter name for insert & update
                     Dim query As String = "
-                    INSERT INTO studentgrades
-                    (StudentID, Quiz1, Quiz2, Quiz3, Seatwork1, Seatwork2, Seatwork3, GWA, Remarks)
-                    VALUES (@StudentID, @Quiz1, @Quiz2, @Quiz3, @SW1, @SW2, @SW3, @GWA, @Remarks)
-                    ON DUPLICATE KEY UPDATE
-                        Quiz1 = @Quiz1,
-                        Quiz2 = @Quiz2,
-                        Quiz3 = @Quiz3,
-                        Seatwork1 = @SW1,
-                        Seatwork2 = @SW2,
-                        Seatwork3 = @SW3,
-                        GWA = @GWA,
-                        Remarks = @Remarks
+                INSERT INTO studentgrades
+                (StudentID, Quiz1, Quiz2, Quiz3, Seatwork1, Seatwork2, Seatwork3, GWA, Remarks, GradedByFacultyID)
+                VALUES
+                (@StudentID, @Quiz1, @Quiz2, @Quiz3, @SW1, @SW2, @SW3, @GWA, @Remarks, @GradedByFacultyID)
+                ON DUPLICATE KEY UPDATE
+                    Quiz1 = @Quiz1,
+                    Quiz2 = @Quiz2,
+                    Quiz3 = @Quiz3,
+                    Seatwork1 = @SW1,
+                    Seatwork2 = @SW2,
+                    Seatwork3 = @SW3,
+                    GWA = @GWA,
+                    Remarks = @Remarks,
+                    GradedByFacultyID = @GradedByFacultyID
                 "
 
                     Using cmd As New MySqlCommand(query, conn)
@@ -413,17 +422,20 @@ Public Class facultyGradeStudents
                         cmd.Parameters.AddWithValue("@SW3", sw3)
                         cmd.Parameters.AddWithValue("@GWA", gwa)
                         cmd.Parameters.AddWithValue("@Remarks", remarks)
+                        cmd.Parameters.AddWithValue("@GradedByFacultyID", FacultyID) ' match parameter name
 
                         cmd.ExecuteNonQuery()
                     End Using
                 Next
             End Using
 
-            MessageBox.Show("Grades saved to database successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("Grades saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Catch ex As Exception
             MessageBox.Show("Error saving grades: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
+
 
 
     Private Sub gradebtn_Click(sender As Object, e As EventArgs) Handles gradebtn.Click

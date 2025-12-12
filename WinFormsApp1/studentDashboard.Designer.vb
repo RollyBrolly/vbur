@@ -31,9 +31,11 @@ Partial Class studentDashboard
         addtasks = New Button()
         pendingtaskslbl = New Label()
         studtimeinpnl = New Panel()
+        Label1 = New Label()
         timeoutlbl = New Label()
         timetodatlbl = New Label()
         timeinbtn = New Button()
+        reportbtn = New Button()
         logout = New PictureBox()
         ColorDialog1 = New ColorDialog()
         schedicon = New PictureBox()
@@ -57,7 +59,10 @@ Partial Class studentDashboard
         studid = New Label()
         idlbl = New Label()
         studpb = New PictureBox()
-        Label1 = New Label()
+        bropanel = New Panel()
+        web = New Microsoft.Web.WebView2.WinForms.WebView2()
+        browpnl = New Panel()
+        backsbtn = New PictureBox()
         CType(border, ComponentModel.ISupportInitialize).BeginInit()
         studtaskpnl.SuspendLayout()
         CType(tasksicon, ComponentModel.ISupportInitialize).BeginInit()
@@ -67,6 +72,10 @@ Partial Class studentDashboard
         studschedpnl.SuspendLayout()
         Panel1.SuspendLayout()
         CType(studpb, ComponentModel.ISupportInitialize).BeginInit()
+        bropanel.SuspendLayout()
+        CType(web, ComponentModel.ISupportInitialize).BeginInit()
+        browpnl.SuspendLayout()
+        CType(backsbtn, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' border
@@ -162,8 +171,18 @@ Partial Class studentDashboard
         studtimeinpnl.Location = New Point(731, 221)
         studtimeinpnl.Margin = New Padding(3, 2, 3, 2)
         studtimeinpnl.Name = "studtimeinpnl"
-        studtimeinpnl.Size = New Size(546, 788)
+        studtimeinpnl.Size = New Size(546, 489)
         studtimeinpnl.TabIndex = 68
+        ' 
+        ' Label1
+        ' 
+        Label1.Font = New Font("Segoe UI Semibold", 18F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        Label1.ForeColor = SystemColors.ActiveCaptionText
+        Label1.Location = New Point(14, 333)
+        Label1.Name = "Label1"
+        Label1.Size = New Size(498, 213)
+        Label1.TabIndex = 75
+        Label1.Text = "Note: You can only register your time in/out once per day. Make sure to only register your time cautiously as it cannot be undone"
         ' 
         ' timeoutlbl
         ' 
@@ -195,6 +214,19 @@ Partial Class studentDashboard
         timeinbtn.TabIndex = 0
         timeinbtn.Text = "TIME IN"
         timeinbtn.UseVisualStyleBackColor = False
+        ' 
+        ' reportbtn
+        ' 
+        reportbtn.BackColor = Color.Indigo
+        reportbtn.Font = New Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        reportbtn.ForeColor = Color.White
+        reportbtn.Location = New Point(33, 80)
+        reportbtn.Margin = New Padding(3, 2, 3, 2)
+        reportbtn.Name = "reportbtn"
+        reportbtn.Size = New Size(479, 120)
+        reportbtn.TabIndex = 73
+        reportbtn.Text = "VIEW GRADES AND SUMMARY REPORT"
+        reportbtn.UseVisualStyleBackColor = False
         ' 
         ' logout
         ' 
@@ -455,21 +487,56 @@ Partial Class studentDashboard
         studpb.TabIndex = 0
         studpb.TabStop = False
         ' 
-        ' Label1
+        ' bropanel
         ' 
-        Label1.Font = New Font("Segoe UI Semibold", 30F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label1.ForeColor = SystemColors.ActiveCaptionText
-        Label1.Location = New Point(14, 333)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(515, 469)
-        Label1.TabIndex = 75
-        Label1.Text = "Note: You can only register your time in/out once per day. Make sure to only register your time cautiously as it cannot be undone"
+        bropanel.BackColor = Color.White
+        bropanel.Controls.Add(reportbtn)
+        bropanel.Location = New Point(731, 736)
+        bropanel.Name = "bropanel"
+        bropanel.Size = New Size(546, 273)
+        bropanel.TabIndex = 76
+        ' 
+        ' web
+        ' 
+        web.AllowExternalDrop = True
+        web.CreationProperties = Nothing
+        web.DefaultBackgroundColor = Color.White
+        web.Dock = DockStyle.Fill
+        web.Location = New Point(0, 0)
+        web.Name = "web"
+        web.Size = New Size(1904, 1041)
+        web.TabIndex = 77
+        web.ZoomFactor = 1R
+        ' 
+        ' browpnl
+        ' 
+        browpnl.Controls.Add(backsbtn)
+        browpnl.Controls.Add(web)
+        browpnl.Dock = DockStyle.Fill
+        browpnl.Location = New Point(0, 0)
+        browpnl.Name = "browpnl"
+        browpnl.Size = New Size(1904, 1041)
+        browpnl.TabIndex = 78
+        browpnl.Visible = False
+        ' 
+        ' backsbtn
+        ' 
+        backsbtn.BackColor = Color.Transparent
+        backsbtn.Image = My.Resources.Resources.icons8_log_out_96
+        backsbtn.Location = New Point(1800, 13)
+        backsbtn.Name = "backsbtn"
+        backsbtn.Size = New Size(103, 107)
+        backsbtn.SizeMode = PictureBoxSizeMode.StretchImage
+        backsbtn.TabIndex = 83
+        backsbtn.TabStop = False
         ' 
         ' studentDashboard
         ' 
         AutoScaleMode = AutoScaleMode.None
         BackColor = Color.DarkGray
         ClientSize = New Size(1904, 1041)
+        Controls.Add(browpnl)
+        Controls.Add(bropanel)
         Controls.Add(Panel1)
         Controls.Add(logout)
         Controls.Add(studschedpnl)
@@ -492,6 +559,10 @@ Partial Class studentDashboard
         Panel1.ResumeLayout(False)
         Panel1.PerformLayout()
         CType(studpb, ComponentModel.ISupportInitialize).EndInit()
+        bropanel.ResumeLayout(False)
+        CType(web, ComponentModel.ISupportInitialize).EndInit()
+        browpnl.ResumeLayout(False)
+        CType(backsbtn, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
     End Sub
 
@@ -530,4 +601,9 @@ Partial Class studentDashboard
     Friend WithEvents schduledesc As Label
     Friend WithEvents scheduellbl As Label
     Friend WithEvents Label1 As Label
+    Friend WithEvents reportbtn As Button
+    Friend WithEvents bropanel As Panel
+    Friend WithEvents web As Microsoft.Web.WebView2.WinForms.WebView2
+    Friend WithEvents browpnl As Panel
+    Friend WithEvents backsbtn As PictureBox
 End Class

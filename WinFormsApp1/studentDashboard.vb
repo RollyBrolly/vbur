@@ -39,7 +39,7 @@ Public Class studentDashboard
     End Property
 
     ' ---------------- FORM LOAD ----------------
-    Private Sub studentDashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Async Sub studentDashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.FormBorderStyle = FormBorderStyle.None
         Me.WindowState = FormWindowState.Maximized
 
@@ -54,6 +54,12 @@ Public Class studentDashboard
 
         UpdateTimeInOutButton(userID, userType)
         UpdateTimeOutLabel(userID, userType)
+
+        Try
+            Await web.EnsureCoreWebView2Async()
+        Catch ex As Exception
+            MessageBox.Show("Unable to initialize browser: " & ex.Message)
+        End Try
     End Sub
 
     ' ---------------- GET STUDENTID ----------------
@@ -415,11 +421,24 @@ Public Class studentDashboard
         End If
     End Sub
 
-    Private Sub viewEvalbtn_Click(sender As Object, e As EventArgs)
 
+
+    Private Sub reportbtn_Click(sender As Object, e As EventArgs) Handles reportbtn.Click
+        Try
+            ' Make sure the WebView2 control is initialized
+            If web.CoreWebView2 Is Nothing Then
+                web.EnsureCoreWebView2Async()
+            End If
+
+            ' Navigate to your PHP page
+            web.CoreWebView2.Navigate("http://localhost/project/index.php?student_id=" & StudentID)
+            browpnl.Visible = True
+        Catch ex As Exception
+            MessageBox.Show("Unable to load the website: " & ex.Message)
+        End Try
     End Sub
 
-    Private Sub viewgradesbtn_Click(sender As Object, e As EventArgs)
-
+    Private Sub backsbtn_Click(sender As Object, e As EventArgs) Handles backsbtn.Click
+        browpnl.Visible = False
     End Sub
 End Class

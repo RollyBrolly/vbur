@@ -43,7 +43,7 @@ Public Class supervisorDashboard
     End Property
 
     ' ---------------- FORM LOAD ----------------
-    Private Sub supervisorDashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Async Sub supervisorDashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Maximize form
         Me.FormBorderStyle = FormBorderStyle.None
         Me.WindowState = FormWindowState.Maximized
@@ -59,6 +59,12 @@ Public Class supervisorDashboard
 
         UpdateTimeInOutButton(userID, userType)
         UpdateTimeOutLabel(userID, userType)
+
+        Try
+            Await web.EnsureCoreWebView2Async()
+        Catch ex As Exception
+            MessageBox.Show("Unable to initialize browser: " & ex.Message)
+        End Try
     End Sub
 
     ' ---------------- GET SUPERVISORID ----------------
@@ -72,6 +78,7 @@ Public Class supervisorDashboard
 
             If result IsNot Nothing AndAlso Not IsDBNull(result) Then
                 SupervisorID = result.ToString()
+                Me.SuperID = SupervisorID
             Else
                 MessageBox.Show("Supervisor account not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Me.Close()
@@ -425,19 +432,34 @@ Public Class supervisorDashboard
     ' ---------------- LOGOUT ----------------
     Private Sub logoutbtn_Click(sender As Object, e As EventArgs) Handles logoutbtn.Click
         If MessageBox.Show("Return to login page?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-            Dim loginForm As New Login()
+            Dim loginForm As New Login
             loginForm.Show()
-            Me.Hide()
+            Hide()
         End If
     End Sub
 
     Private Sub viewgradebtn_Click(sender As Object, e As EventArgs) Handles viewgradebtn.Click
         Try
-            Dim psi As New ProcessStartInfo("https://raidev07.github.io/cluster/")
-            psi.UseShellExecute = True
-            Process.Start(psi)
+            web.CoreWebView2.Navigate("http://localhost/project/py/index.html")
+            panelbrowser.Visible = True
         Catch ex As Exception
-            MessageBox.Show("Unable to open the website: " & ex.Message)
+            MessageBox.Show("Unable to load the website: " & ex.Message)
         End Try
     End Sub
+
+
+    'Private Sub viewgradebtn_Click(sender As Object, e As EventArgs) Handles viewgradebtn.Click
+    '    Try
+    '        Dim psi As New ProcessStartInfo("https://raidev07.github.io/cluster/")
+    '        psi.UseShellExecute = True
+    '        Process.Start(psi)
+    '    Catch ex As Exception
+    '        MessageBox.Show("Unable to open the website: " & ex.Message)
+    '    End Try
+    'End Sub
+
+    Private Sub backsbtn_Click(sender As Object, e As EventArgs) Handles backsbtn.Click
+        panelbrowser.Visible = False
+    End Sub
+
 End Class
